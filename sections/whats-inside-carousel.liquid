@@ -1,0 +1,1328 @@
+{%- comment -%}
+  What's Inside Carousel: timer-driven, centre-mode ingredient carousel.
+  Design: design-specs/clean-it-off/sections/07-whats-inside.md (Figma 191:464–191:479).
+  - Each "ingredient" block = one circle + its title / description.
+  - The brown arc around the active circle is the autoplay countdown: it draws clockwise from 12 o'clock
+    over `autoplay_speed` seconds; when it closes the full circle the next ingredient becomes active.
+  - Circles are absolutely positioned by their offset from the active one (-2..+2) and moved with
+    transform / opacity only. JS clones the server-rendered circles into a virtual ring of >= 10 nodes so the
+    loop is infinite and wrap-arounds always happen off-screen. With 4 items the opposite ingredient fills
+    both outer edge slots (one is a clone); with 2–3 items only the +-1 neighbours are shown.
+  All CSS is scoped to .wis / #shopify-section-{{ section.id }}; JS is vanilla and per instance.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign block_count = section.blocks.size
+  assign color_text = s.color_text | default: '#28201F'
+  assign active_size = s.active_size | default: 400
+  assign speed = s.autoplay_speed | default: 5
+  assign mobile_size = active_size | times: 0.55 | round
+  assign ring_track = 'none'
+  if s.color_ring_track != blank
+    assign ring_track = s.color_ring_track
+  endif
+
+  # Visible reach either side of the active circle: +-2 with 4+ items, +-1 with 2-3 (no duplicate neighbours)
+  assign reach = 1
+  if block_count >= 4
+    assign reach = 2
+  endif
+  assign reach_park = reach | plus: 1
+  assign reach_park_neg = 0 | minus: reach_park
+  assign half = block_count | divided_by: 2
+
+  assign timer_on = false
+  if s.autoplay and block_count > 1
+    assign timer_on = true
+  endif
+
+  assign wis_classes = 'wis'
+  if block_count < 2
+    assign wis_classes = wis_classes | append: ' wis--static'
+  endif
+  if s.custom_class != blank
+    assign wis_classes = wis_classes | append: ' ' | append: s.custom_class
+  endif
+
+  assign image_sizes = '(min-width: 769px) ' | append: active_size | append: 'px, ' | append: mobile_size | append: 'px'
+  assign image_widths = '220, 300, 400, 440, 600, 800, 960'
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --wis-bg: {{ s.color_background | default: '#FFFCF9' }};
+  --wis-text: {{ color_text }};
+  --wis-text-85: {{ color_text | color_modify: 'alpha', 0.85 }};
+  --wis-text-50: {{ color_text | color_modify: 'alpha', 0.5 }};
+  --wis-text-12: {{ color_text | color_modify: 'alpha', 0.12 }};
+  --wis-text-06: {{ color_text | color_modify: 'alpha', 0.06 }};
+  --wis-accent: {{ s.color_accent | default: '#78563D' }};
+  --wis-arrow-bg: {{ s.color_arrow_bg | default: '#F6F3EE' }};
+  --wis-track: {{ ring_track }};
+  --wis-s: {{ active_size }};
+  --wis-h: {{ s.heading_size | default: 58 }};
+  --wis-h-mobile: {{ s.heading_size_mobile | default: 28 }}px;
+  background-color: var(--wis-bg);
+}
+#shopify-section-{{ section.id }} .wis {
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media only screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .wis {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+
+/* ---------- What's Inside Carousel (.wis): shared rules for every instance ---------- */
+.wis {
+  /* 1 design px at 1920 wide, scales down with the viewport (min 0.5px) */
+  --wis-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  /* Active circle: S at 1920 -> 0.75 S at 990 (400 -> ~344 at 1400 -> 300 at 990) */
+  --wis-a: clamp(calc(var(--wis-s) * 0.75px), calc(var(--wis-s) * 0.75px + (100vw - 990px) * var(--wis-s) / 3720), calc(var(--wis-s) * 1px));
+  --wis-pitch: calc(var(--wis-a) * 1.2); /* 480 at 1920 (Figma 468 / 492) */
+  --wis-ring-w: 6.15; /* ring thickness in ring-viewBox units (410 box) */
+  --wis-move: 760ms;
+  --wis-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --wis-fade: 420ms;
+  --wis-arrow: max(40px, calc(46 * var(--wis-u)));
+  --wis-arrow-gap: max(24px, calc(50 * var(--wis-u)));
+  --wis-desc-w: max(300px, calc(352 * var(--wis-u)));
+  position: relative;
+  overflow: hidden; /* the circle row is full-bleed: never scroll the page sideways */
+  overflow: clip;
+  color: var(--wis-text);
+  background-color: var(--wis-bg);
+}
+.wis *,
+.wis *::before,
+.wis *::after { box-sizing: border-box; }
+
+.wis .wis__heading {
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: 1720px;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(32px, calc(var(--wis-h) * var(--wis-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--wis-text);
+  text-wrap: balance;
+}
+.wis .wis__heading p {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.wis .wis__heading em,
+.wis .wis__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1; /* keep the line box at the roman 120% (Figma 70px) */
+}
+
+/* ---------- Circle row ---------- */
+.wis__carousel { position: relative; }
+.wis__heading + .wis__carousel { margin-top: max(28px, calc(60 * var(--wis-u))); }
+.wis__stage {
+  position: relative;
+  height: calc(var(--wis-a) * 1.025); /* ring box: 410 for a 400 image */
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.wis__track {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wis__item {
+  --o: 0;
+  --sc: 0.6;
+  position: absolute;
+  z-index: 0;
+  top: calc(50% - var(--wis-a) / 2);
+  left: calc(50% - var(--wis-a) / 2);
+  width: var(--wis-a);
+  height: var(--wis-a);
+  border-radius: 50%;
+  transform: translate3d(calc(var(--o) * var(--wis-pitch)), 0, 0) scale(var(--sc));
+  transform-origin: 50% 50%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform var(--wis-move) var(--wis-ease),
+    opacity var(--wis-fade) ease,
+    visibility 0s linear var(--wis-fade);
+  will-change: transform;
+}
+.wis__item[data-slot="0"],
+.wis__item[data-slot="1"],
+.wis__item[data-slot="2"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    transform var(--wis-move) var(--wis-ease),
+    opacity var(--wis-fade) ease,
+    visibility 0s linear 0s;
+}
+.wis__item[data-slot="0"] { --sc: 1; z-index: 3; pointer-events: none; }
+.wis__item[data-slot="1"] { --sc: 0.75; z-index: 2; }
+.wis__item[data-slot="2"] { --sc: 0.6; z-index: 1; }
+.wis__item.is-jump,
+.wis--instant .wis__item { transition: none !important; }
+
+.wis__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--wis-text-06);
+  transform: translateZ(0); /* keep the circular clip crisp while scaling */
+}
+.wis .wis__media img,
+.wis .wis__media .wis__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.wis .wis__media .wis__placeholder {
+  fill: var(--wis-text-12);
+}
+.wis .wis__hit {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+.wis .wis__hit[hidden] { display: none; }
+.wis .wis__hit:focus { outline: none; }
+.wis .wis__hit:focus-visible {
+  outline: 3px solid var(--wis-accent);
+  outline-offset: 6px;
+}
+@media (hover: hover) {
+  .wis__item[data-slot="1"] .wis__media,
+  .wis__item[data-slot="2"] .wis__media { transition: filter 0.3s ease; }
+  .wis__item[data-slot="1"]:hover .wis__media,
+  .wis__item[data-slot="2"]:hover .wis__media { filter: brightness(1.06); }
+}
+
+/* Progress ring: one SVG over the active slot. The bar draws clockwise from -94deg (Figma arc start). */
+.wis__ring {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: calc(50% - var(--wis-a) * 0.5125);
+  display: block;
+  width: calc(var(--wis-a) * 1.025);
+  height: calc(var(--wis-a) * 1.025);
+  overflow: visible;
+  transform: rotate(-94deg);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 240ms ease;
+}
+.wis__ring.is-hidden { opacity: 0; transition-duration: 200ms; }
+.wis__ring--invisible { visibility: hidden; }
+.wis__ring circle {
+  fill: none;
+  stroke-width: var(--wis-ring-w);
+}
+.wis__ring-track { stroke: var(--wis-track); }
+.wis__ring-bar {
+  stroke: var(--wis-accent);
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+}
+.wis__ring.is-full .wis__ring-bar { stroke-dashoffset: 0; }
+.wis--instant .wis__ring { transition: none !important; }
+
+/* ---------- Title / description ---------- */
+.wis__body {
+  display: grid;
+  grid-template-columns: var(--wis-arrow) var(--wis-desc-w) var(--wis-arrow);
+  grid-template-areas:
+    "title title title"
+    "prev desc next";
+  column-gap: var(--wis-arrow-gap);
+  row-gap: max(10px, calc(14 * var(--wis-u)));
+  justify-content: center;
+  align-items: center;
+  margin-top: max(20px, calc(30 * var(--wis-u)));
+  padding: 0 16px;
+}
+.wis__body--single {
+  grid-template-columns: var(--wis-desc-w);
+  grid-template-areas: "title" "desc";
+}
+.wis__slide { display: contents; }
+.wis .wis__title,
+.wis .wis__desc {
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    visibility 0s linear 300ms;
+}
+.wis .wis__title {
+  grid-area: title;
+  align-self: end;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(20px, calc(24 * var(--wis-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--wis-text);
+}
+.wis .wis__desc {
+  grid-area: desc;
+  align-self: start;
+  justify-self: center;
+  width: 100%;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: max(16px, calc(18 * var(--wis-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--wis-text-85);
+}
+.wis__slide.is-active .wis__title,
+.wis__slide.is-active .wis__desc {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 480ms ease 160ms,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 160ms,
+    visibility 0s linear 0s;
+}
+.wis__slide.is-active .wis__desc { transition-delay: 250ms, 250ms, 0s; }
+.wis__slide.is-leaving .wis__title,
+.wis__slide.is-leaving .wis__desc {
+  transform: translate3d(0, -12px, 0);
+}
+.wis__slide.is-leaving .wis__desc { transition-delay: 40ms, 40ms, 340ms; }
+.wis--instant .wis__title,
+.wis--instant .wis__desc { transition: none !important; }
+
+/* Arrows (Figma 191:479 / 191:474) */
+.wis .wis__arrow {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--wis-arrow);
+  height: var(--wis-arrow);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+  background-color: var(--wis-arrow-bg);
+  color: var(--wis-text);
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+.wis .wis__arrow svg { display: block; width: 18px; height: 18px; flex: none; }
+.wis .wis__arrow--prev { grid-area: prev; }
+.wis .wis__arrow--next {
+  grid-area: next;
+  background-color: var(--wis-accent);
+  color: #FFFFFF;
+}
+@media (hover: hover) {
+  .wis .wis__arrow--prev:hover {
+    background-color: var(--wis-accent);
+    color: #FFFFFF;
+  }
+  .wis .wis__arrow--next:hover { opacity: 0.88; }
+}
+.wis .wis__arrow:focus { outline: none; }
+.wis .wis__arrow:focus-visible {
+  outline: 2px solid var(--wis-accent);
+  outline-offset: 3px;
+}
+
+/* Pause / play (WCAG 2.2.2): hidden until it receives keyboard focus */
+.wis .wis__toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  z-index: 6;
+  top: 8px;
+  left: 50%;
+  margin: 0;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 30px;
+  background-color: var(--wis-accent);
+  color: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: translateX(-50%);
+  clip-path: inset(50%);
+  opacity: 0;
+}
+.wis .wis__toggle:focus { outline: none; }
+.wis .wis__toggle:focus-visible {
+  clip-path: none;
+  opacity: 1;
+  outline: 2px solid var(--wis-accent);
+  outline-offset: 3px;
+}
+
+.wis__sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.wis__empty {
+  margin: 24px auto 0;
+  padding: 0 16px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--wis-text-50);
+}
+
+/* ---------- Tablet: outer circles off ---------- */
+@media only screen and (max-width: 990px) {
+  .wis__item[data-slot="2"] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .wis {
+    --wis-a: calc(var(--wis-s) * 0.55px); /* 220 */
+    --wis-pitch: min(calc(50vw + 40px), calc(var(--wis-a) * 1.2)); /* neighbours peek at the edges */
+    --wis-ring-w: 7.3; /* ~4px at 220 */
+    --wis-arrow: 40px;
+    --wis-desc-w: min(280px, 100%);
+  }
+  .wis .wis__heading { font-size: var(--wis-h-mobile); }
+  .wis__heading + .wis__carousel { margin-top: 32px; }
+  .wis__body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "desc desc"
+      "prev next";
+    column-gap: 8px;
+    row-gap: 10px;
+    margin-top: 20px;
+  }
+  .wis__body--single {
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "desc";
+  }
+  .wis .wis__title { font-size: 18px; }
+  .wis .wis__desc {
+    max-width: 280px;
+    font-size: 16px;
+  }
+  .wis .wis__arrow--prev { justify-self: end; margin-top: 10px; }
+  .wis .wis__arrow--next { justify-self: start; margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wis__item,
+  .wis__item[data-slot="0"],
+  .wis__item[data-slot="1"],
+  .wis__item[data-slot="2"] {
+    transition: opacity 200ms ease, visibility 0s linear 0s;
+  }
+  .wis .wis__title,
+  .wis .wis__desc,
+  .wis__slide.is-leaving .wis__title,
+  .wis__slide.is-leaving .wis__desc,
+  .wis__slide.is-active .wis__title,
+  .wis__slide.is-active .wis__desc {
+    transform: none;
+    transition: opacity 200ms ease, visibility 0s linear 0s;
+  }
+  .wis .wis__arrow { transition: none; }
+}
+{% endstyle %}
+
+{%- if block_count > 0 or request.design_mode -%}
+<div
+  class="{{ wis_classes | escape }}"
+  data-wis
+  data-section-id="{{ section.id }}"
+  data-autoplay="{{ timer_on }}"
+  data-speed="{{ speed }}"
+  data-reach="{{ reach }}"
+>
+  {%- if s.heading != blank -%}
+    <h2 class="wis__heading class_h2" id="wis-heading-{{ section.id }}">{{ s.heading }}</h2>
+  {%- endif -%}
+
+  {%- if block_count == 0 -%}
+    <p class="wis__empty">Add an ingredient block to build the carousel.</p>
+  {%- else -%}
+    <div
+      class="wis__carousel"
+      data-wis-carousel
+      role="region"
+      aria-roledescription="carousel"
+      {% if s.heading != blank %}aria-labelledby="wis-heading-{{ section.id }}"{% else %}aria-label="Ingredients"{% endif %}
+    >
+      {%- if timer_on -%}
+        <button type="button" class="wis__toggle" data-wis-toggle aria-pressed="false">Pause ingredient rotation</button>
+      {%- endif -%}
+
+      <div class="wis__stage" data-wis-stage>
+        <div class="wis__track" data-wis-track>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign i = forloop.index0
+              assign pos = i
+              if i > half
+                assign pos = i | minus: block_count
+              endif
+              assign apos = pos | abs
+              assign slot = 'x'
+              if apos <= reach
+                assign slot = apos
+              endif
+              assign off = pos
+              if pos > reach_park
+                assign off = reach_park
+              elsif pos < reach_park_neg
+                assign off = reach_park_neg
+              endif
+              assign name = b.name | default: 'Ingredient'
+              assign img_alt = b.image.alt | default: name
+              assign img_loading = 'lazy'
+              if forloop.first
+                assign img_loading = 'eager'
+              endif
+            -%}
+            <div
+              class="wis__item"
+              data-wis-item
+              data-index="{{ i }}"
+              data-block-id="{{ block.id }}"
+              data-slot="{{ slot }}"
+              style="--o: {{ off }};"
+              {% if slot == 'x' or slot == 2 %}aria-hidden="true"{% endif %}
+              {% if slot == 'x' %}inert{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <div class="wis__media">
+                {%- if b.image != blank -%}
+                  {%- liquid
+                    assign fp_style = ''
+                    if b.image.presentation.focal_point != blank
+                      assign fp_style = 'object-position: ' | append: b.image.presentation.focal_point
+                    endif
+                  -%}
+                  {{-
+                    b.image
+                    | image_url: width: 960
+                    | image_tag:
+                      widths: image_widths,
+                      sizes: image_sizes,
+                      loading: img_loading,
+                      alt: img_alt,
+                      style: fp_style,
+                      draggable: 'false'
+                  -}}
+                {%- else -%}
+                  {{- 'image' | placeholder_svg_tag: 'wis__placeholder' -}}
+                {%- endif -%}
+              </div>
+              {%- if block_count > 1 -%}
+                <button
+                  type="button"
+                  class="wis__hit"
+                  data-wis-hit
+                  aria-label="Show {{ name | escape }}"
+                  {% if slot != 1 %}tabindex="-1"{% endif %}
+                  {% if slot == 0 %}hidden{% endif %}
+                ></button>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <svg
+          class="wis__ring{% if timer_on == false %} is-full{% endif %}{% unless s.show_progress_ring %} wis__ring--invisible{% endunless %}"
+          data-wis-ring
+          viewBox="0 0 410 410"
+          aria-hidden="true"
+          focusable="false"
+        >
+          {%- if ring_track != 'none' -%}<circle class="wis__ring-track" cx="205" cy="205" r="201.925"/>{%- endif -%}
+          <circle class="wis__ring-bar" data-wis-bar cx="205" cy="205" r="201.925" pathLength="100"/>
+        </svg>
+      </div>
+
+      <div class="wis__body{% if block_count < 2 %} wis__body--single{% endif %}">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          <div
+            class="wis__slide{% if forloop.first %} is-active{% endif %}"
+            data-wis-slide
+            data-block-id="{{ block.id }}"
+            {% unless forloop.first %}aria-hidden="true" inert{% endunless %}
+          >
+            {%- if b.name != blank -%}
+              <h3 class="wis__title">{{ b.name | escape }}</h3>
+            {%- endif -%}
+            {%- if b.description != blank -%}
+              <p class="wis__desc">{{ b.description | escape | newline_to_br }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        {%- if block_count > 1 -%}
+          <button type="button" class="wis__arrow wis__arrow--prev" data-wis-prev aria-label="Previous ingredient">
+            {{- 'cio-arrow-left.svg' | inline_asset_content -}}
+          </button>
+          <button type="button" class="wis__arrow wis__arrow--next" data-wis-next aria-label="Next ingredient">
+            {{- 'cio-arrow-right.svg' | inline_asset_content -}}
+          </button>
+        {%- endif -%}
+      </div>
+
+      <div class="wis__sr" data-wis-live aria-live="polite" aria-atomic="true"></div>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if block_count > 1 -%}
+<script>
+  (function () {
+    if (!window.WhatsInsideCarousel) {
+      var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+      var MIN_NODES = 10; // >= 2 * (parked reach 3 + max animated jump 2): every wrap-around happens off-screen
+      var MOVE_MS = 760; // keep in sync with --wis-move
+      var SWIPE_PX = 40;
+
+      var mod = function (a, n) { return ((a % n) + n) % n; };
+
+      var WIS = function (root) {
+        this.root = root;
+        this.ac = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        this.cleanups = [];
+        this.carousel = root.querySelector('[data-wis-carousel]');
+        this.stage = root.querySelector('[data-wis-stage]');
+        this.track = root.querySelector('[data-wis-track]');
+        this.ring = root.querySelector('[data-wis-ring]');
+        this.bar = root.querySelector('[data-wis-bar]');
+        this.live = root.querySelector('[data-wis-live]');
+        this.toggleBtn = root.querySelector('[data-wis-toggle]');
+        this.items = Array.prototype.slice.call(root.querySelectorAll('[data-wis-item]'));
+        this.slides = Array.prototype.slice.call(root.querySelectorAll('[data-wis-slide]'));
+        this.count = this.items.length;
+        this.reach = parseInt(root.getAttribute('data-reach'), 10) || 1;
+        this.delay = Math.min(10, Math.max(3, parseFloat(root.getAttribute('data-speed')) || 5)) * 1000;
+        this.reduce = reduceMotion.matches;
+        this.timerOn = root.getAttribute('data-autoplay') === 'true' && this.count > 1 && !this.reduce;
+        this.index = 0; // active item (0..count-1)
+        this.v = 0; // active virtual position (unbounded)
+        this.nodes = [];
+        this.pos = [];
+        this.pauses = {};
+        this.anim = null;
+        this.settleTimer = null;
+        this.leaveTimers = [];
+        this.init();
+      };
+
+      WIS.prototype.on = function (el, type, fn, opts) {
+        var o = opts || {};
+        if (this.ac) {
+          o.signal = this.ac.signal;
+          el.addEventListener(type, fn, o);
+        } else {
+          el.addEventListener(type, fn, o);
+          this.cleanups.push(function () { el.removeEventListener(type, fn, o); });
+        }
+      };
+
+      WIS.prototype.init = function () {
+        var self = this;
+        // Virtual ring: clone the circles until there are >= MIN_NODES (a whole multiple of count).
+        var copies = Math.ceil(MIN_NODES / this.count);
+        this.nodes = this.items.slice();
+        for (var c = 1; c < copies; c++) {
+          for (var k = 0; k < this.count; k++) {
+            var clone = this.items[k].cloneNode(true);
+            clone.removeAttribute('data-shopify-editor-block');
+            clone.setAttribute('data-wis-clone', '');
+            var img = clone.querySelector('img');
+            if (img) img.setAttribute('loading', 'lazy');
+            this.track.appendChild(clone);
+            this.nodes.push(clone);
+          }
+        }
+        this.N = this.nodes.length;
+        this.layout(0, false);
+
+        var prev = this.root.querySelector('[data-wis-prev]');
+        var next = this.root.querySelector('[data-wis-next]');
+        if (prev) this.on(prev, 'click', function () { self.goBy(-1, { user: true }); });
+        if (next) this.on(next, 'click', function () { self.goBy(1, { user: true }); });
+
+        // Click a neighbour / outer circle: it becomes active.
+        this.on(this.track, 'click', function (e) {
+          if (self.swallowClick) { self.swallowClick = false; e.preventDefault(); return; }
+          var hit = e.target.closest ? e.target.closest('[data-wis-item]') : null;
+          if (!hit) return;
+          var n = self.nodes.indexOf(hit);
+          if (n < 0 || !self.pos[n]) return;
+          var wasFocus = document.activeElement && hit.contains(document.activeElement);
+          self.goBy(self.pos[n], { user: true });
+          if (wasFocus && self.carousel) {
+            // The clicked button is now the active circle (hidden): keep focus inside the carousel.
+            var nextBtn = self.root.querySelector('[data-wis-next]');
+            if (nextBtn) nextBtn.focus({ preventScroll: true });
+          }
+        });
+
+        // Swipe (touch / pen). touch-action: pan-y keeps vertical page scroll native.
+        var sx = 0, sy = 0, pid = null;
+        this.on(this.stage, 'pointerdown', function (e) {
+          if (e.pointerType === 'mouse' || pid !== null) return;
+          pid = e.pointerId; sx = e.clientX; sy = e.clientY;
+          self.pause('touch');
+        });
+        var end = function (e) {
+          if (e.pointerId !== pid) return;
+          pid = null;
+          self.resume('touch');
+          if (e.type !== 'pointerup') return;
+          var dx = e.clientX - sx;
+          var dy = e.clientY - sy;
+          if (Math.abs(dx) > SWIPE_PX && Math.abs(dx) > Math.abs(dy) * 1.2) {
+            self.swallowClick = true;
+            setTimeout(function () { self.swallowClick = false; }, 400);
+            self.goBy(dx < 0 ? 1 : -1, { user: true });
+          }
+        };
+        this.on(this.stage, 'pointerup', end);
+        this.on(this.stage, 'pointercancel', end);
+        this.on(this.stage, 'dragstart', function (e) { e.preventDefault(); });
+
+        // Keyboard: arrow keys while focus is inside the carousel.
+        if (this.carousel) {
+          this.on(this.carousel, 'keydown', function (e) {
+            if (e.altKey || e.ctrlKey || e.metaKey) return;
+            if (e.key === 'ArrowLeft' || e.key === 'Left') { e.preventDefault(); self.goBy(-1, { user: true }); }
+            else if (e.key === 'ArrowRight' || e.key === 'Right') { e.preventDefault(); self.goBy(1, { user: true }); }
+          });
+        }
+
+        if (this.timerOn) {
+          var hoverZone = this.carousel || this.root;
+          // Hover pause for real mice only (touch fires enter without a matching leave).
+          this.on(hoverZone, 'pointerenter', function (e) { if (e.pointerType === 'mouse') self.pause('hover'); });
+          this.on(hoverZone, 'pointerleave', function (e) { if (e.pointerType === 'mouse') self.resume('hover'); });
+          // Keyboard focus only (a mouse click on an arrow must not stop the timer).
+          this.on(this.root, 'focusin', function (e) {
+            var kb = true;
+            try { kb = e.target.matches(':focus-visible'); } catch (err) {}
+            if (kb) self.pause('focus');
+          });
+          this.on(this.root, 'focusout', function (e) {
+            if (!e.relatedTarget || !self.root.contains(e.relatedTarget)) self.resume('focus');
+          });
+          if ('IntersectionObserver' in window) {
+            this.io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (en) { en.isIntersecting ? self.resume('offscreen') : self.pause('offscreen'); });
+            });
+            this.io.observe(this.root);
+          }
+          this.on(document, 'visibilitychange', function () {
+            document.hidden ? self.pause('hidden') : self.resume('hidden');
+          });
+          if (document.hidden) this.pauses.hidden = true;
+          if (this.toggleBtn) {
+            this.on(this.toggleBtn, 'click', function () {
+              var off = !self.pauses.user;
+              off ? self.pause('user') : self.resume('user');
+              self.toggleBtn.setAttribute('aria-pressed', off ? 'true' : 'false');
+              self.toggleBtn.textContent = off ? 'Play ingredient rotation' : 'Pause ingredient rotation';
+            });
+          }
+          this.startRing();
+        } else {
+          this.showStaticRing();
+          if (this.toggleBtn) this.toggleBtn.hidden = true;
+        }
+      };
+
+      /* ----- positions ----- */
+      WIS.prototype.posOf = function (k) {
+        var p = mod(k - this.v, this.N);
+        return p >= this.N / 2 ? p - this.N : p;
+      };
+
+      WIS.prototype.applyNode = function (node, p) {
+        var reach = this.reach;
+        var a = Math.abs(p);
+        var park = reach + 1;
+        var slot = a <= reach ? String(a) : 'x';
+        node.style.setProperty('--o', Math.max(-park, Math.min(park, p)));
+        node.setAttribute('data-slot', slot);
+        if (slot === 'x') node.setAttribute('inert', '');
+        else node.removeAttribute('inert');
+        // Only the active circle and its direct neighbours are exposed to assistive tech.
+        if (slot === 'x' || slot === '2') node.setAttribute('aria-hidden', 'true');
+        else node.removeAttribute('aria-hidden');
+        var hit = node.querySelector('[data-wis-hit]');
+        if (hit) {
+          hit.hidden = slot === '0';
+          if (slot === '1') hit.removeAttribute('tabindex');
+          else hit.setAttribute('tabindex', '-1');
+        }
+      };
+
+      // delta: how far the active virtual position moved. animate=false -> everything jumps.
+      WIS.prototype.layout = function (delta, animate) {
+        var self = this;
+        var next = [];
+        var jumps = [];
+        for (var k = 0; k < this.N; k++) {
+          var p = this.posOf(k);
+          next.push(p);
+          // Wrapped around the back of the ring (always off-screen): move it there without a transition.
+          if (!animate || this.pos[k] === undefined || p !== this.pos[k] - delta) jumps.push(k);
+        }
+        if (!animate) this.root.classList.add('wis--instant');
+        jumps.forEach(function (k) {
+          self.nodes[k].classList.add('is-jump');
+          self.applyNode(self.nodes[k], next[k]);
+        });
+        if (jumps.length) void this.track.offsetWidth; // one style flush for all jumps
+        jumps.forEach(function (k) { self.nodes[k].classList.remove('is-jump'); });
+        if (!animate) this.root.classList.remove('wis--instant');
+        if (animate) {
+          for (var j = 0; j < this.N; j++) {
+            if (jumps.indexOf(j) === -1) this.applyNode(this.nodes[j], next[j]);
+          }
+        }
+        this.pos = next;
+      };
+
+      /* ----- text ----- */
+      WIS.prototype.setSlide = function (n, animate) {
+        var self = this;
+        this.leaveTimers.forEach(clearTimeout);
+        this.leaveTimers = [];
+        if (!animate) this.root.classList.add('wis--instant');
+        this.slides.forEach(function (s, k) {
+          if (k === n) {
+            s.classList.remove('is-leaving');
+            s.classList.add('is-active');
+            s.removeAttribute('aria-hidden');
+            s.removeAttribute('inert');
+          } else {
+            if (s.classList.contains('is-active') && animate) s.classList.add('is-leaving');
+            s.classList.remove('is-active');
+            s.setAttribute('aria-hidden', 'true');
+            s.setAttribute('inert', '');
+          }
+        });
+        if (!animate) {
+          this.slides.forEach(function (s) { s.classList.remove('is-leaving'); });
+          void this.root.offsetWidth;
+          this.root.classList.remove('wis--instant');
+        } else {
+          this.leaveTimers.push(setTimeout(function () {
+            self.slides.forEach(function (s) { if (!s.classList.contains('is-active')) s.classList.remove('is-leaving'); });
+          }, 700));
+        }
+      };
+
+      /* ----- navigation ----- */
+      WIS.prototype.goTo = function (n, opts) {
+        var d = mod(mod(n, this.count) - this.index, this.count);
+        if (d > this.count / 2) d -= this.count;
+        return this.goBy(d, opts);
+      };
+
+      WIS.prototype.goBy = function (delta, opts) {
+        var o = opts || {};
+        if (this.count < 2 || !delta) {
+          if (o.user) this.restartTimer();
+          return;
+        }
+        var self = this;
+        var animate = !o.instant && Math.abs(delta) <= 2;
+        this.v += delta;
+        this.index = mod(this.index + delta, this.count);
+        this.layout(delta, animate);
+        this.setSlide(this.index, animate && !this.reduce);
+        if (o.user) this.announce();
+
+        // Ring: fade out where it is during the move, then draw from 0 on the new circle once it settles.
+        this.freezeRing();
+        clearTimeout(this.settleTimer);
+        var wait = animate && !this.reduce ? MOVE_MS : 0;
+        this.ring.classList.add('is-hidden');
+        this.settleTimer = setTimeout(function () {
+          self.settleTimer = null;
+          if (self.timerOn) self.startRing();
+          else self.showStaticRing();
+        }, wait);
+      };
+
+      WIS.prototype.announce = function () {
+        if (!this.live) return;
+        var slide = this.slides[this.index];
+        var title = slide && slide.querySelector('.wis__title');
+        var name = title ? title.textContent.trim() : 'Ingredient';
+        var live = this.live;
+        var msg = name + ', ingredient ' + (this.index + 1) + ' of ' + this.count;
+        live.textContent = '';
+        clearTimeout(this.liveTimer);
+        this.liveTimer = setTimeout(function () { live.textContent = msg; }, 60);
+      };
+
+      /* ----- timer (the ring IS the timer) ----- */
+      WIS.prototype.stopRing = function () {
+        [this.anim, this.frozen].forEach(function (a) {
+          if (a) { a.onfinish = null; a.cancel(); }
+        });
+        this.anim = null;
+        this.frozen = null;
+      };
+
+      // Keep the arc where it is (fill: forwards) while the ring fades out; cancelled on the next start.
+      WIS.prototype.freezeRing = function () {
+        if (!this.anim) return;
+        this.anim.onfinish = null;
+        if (this.anim.playState === 'running') this.anim.pause();
+        if (this.frozen && this.frozen !== this.anim) this.frozen.cancel();
+        this.frozen = this.anim;
+        this.anim = null;
+      };
+
+      WIS.prototype.showStaticRing = function () {
+        this.stopRing();
+        this.ring.classList.add('is-full');
+        this.ring.classList.remove('is-hidden');
+      };
+
+      WIS.prototype.startRing = function () {
+        var self = this;
+        this.stopRing();
+        this.ring.classList.remove('is-full');
+        this.ring.classList.remove('is-hidden');
+        if (!this.bar.animate) { // no Web Animations: plain timeout, static ring
+          this.ring.classList.add('is-full');
+          return;
+        }
+        this.anim = this.bar.animate(
+          [{ strokeDashoffset: 100 }, { strokeDashoffset: 0 }],
+          { duration: this.delay, easing: 'linear', fill: 'forwards' }
+        );
+        this.anim.onfinish = function () {
+          self.anim = null;
+          self.goBy(1, { auto: true });
+        };
+        if (this.isPaused()) this.anim.pause();
+      };
+
+      WIS.prototype.restartTimer = function () {
+        if (!this.timerOn || this.settleTimer) return;
+        this.startRing();
+      };
+
+      WIS.prototype.isPaused = function () {
+        for (var k in this.pauses) if (this.pauses[k]) return true;
+        return false;
+      };
+
+      WIS.prototype.pause = function (reason) {
+        this.pauses[reason] = true;
+        if (this.anim && this.anim.playState === 'running') this.anim.pause();
+      };
+
+      WIS.prototype.resume = function (reason) {
+        delete this.pauses[reason];
+        if (this.anim && !this.isPaused() && this.anim.playState === 'paused') this.anim.play();
+      };
+
+      WIS.prototype.progress = function () {
+        if (!this.timerOn) return 1;
+        if (!this.anim) return 0;
+        return Math.min(1, (this.anim.currentTime || 0) / this.delay);
+      };
+
+      /* ----- theme editor ----- */
+      WIS.prototype.selectBlock = function (blockId) {
+        var idx = -1;
+        this.items.forEach(function (it, k) { if (it.getAttribute('data-block-id') === blockId) idx = k; });
+        this.pause('editor');
+        if (idx > -1 && idx !== this.index) {
+          var d = mod(idx - this.index, this.count);
+          if (d > this.count / 2) d -= this.count;
+          this.goBy(d, { instant: Math.abs(d) > 2 });
+        }
+      };
+
+      WIS.prototype.jump = function (i) {
+        this.goTo(i, { instant: true });
+      };
+
+      WIS.prototype.destroy = function () {
+        this.stopRing();
+        clearTimeout(this.settleTimer);
+        clearTimeout(this.liveTimer);
+        this.leaveTimers.forEach(clearTimeout);
+        if (this.ac) this.ac.abort();
+        this.cleanups.forEach(function (fn) { fn(); });
+        this.cleanups = [];
+        if (this.io) this.io.disconnect();
+        this.nodes.forEach(function (n) { if (n.hasAttribute('data-wis-clone') && n.parentNode) n.parentNode.removeChild(n); });
+      };
+
+      var api = {
+        instances: {},
+        last: {}, // active ingredient per section, kept across theme-editor re-renders
+        mount: function (sectionId) {
+          var root = document.querySelector('[data-wis][data-section-id="' + sectionId + '"]');
+          var current = this.instances[sectionId];
+          if (current) {
+            if (current.root === root) return current;
+            this.unmount(sectionId);
+          }
+          if (!root || !root.querySelector('[data-wis-track]') || root.querySelectorAll('[data-wis-item]').length < 2) return null;
+          var inst = new WIS(root);
+          this.instances[sectionId] = inst;
+          if (this.last[sectionId] != null && window.Shopify && window.Shopify.designMode) {
+            inst.jump(Math.min(this.last[sectionId], inst.count - 1));
+          }
+          return inst;
+        },
+        unmount: function (sectionId) {
+          var current = this.instances[sectionId];
+          if (current) {
+            this.last[sectionId] = current.index;
+            current.destroy();
+            delete this.instances[sectionId];
+          }
+        }
+      };
+      window.WhatsInsideCarousel = api;
+
+      document.addEventListener('shopify:section:load', function (e) {
+        if (e.detail && e.detail.sectionId) api.mount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:section:unload', function (e) {
+        if (e.detail && e.detail.sectionId) api.unmount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var inst = e.detail && api.instances[e.detail.sectionId];
+        if (inst) inst.selectBlock(e.detail.blockId);
+      });
+      document.addEventListener('shopify:block:deselect', function (e) {
+        var inst = e.detail && api.instances[e.detail.sectionId];
+        if (inst) inst.resume('editor');
+      });
+    }
+
+    var sectionId = {{ section.id | json }};
+    var boot = function () { window.WhatsInsideCarousel.mount(sectionId); };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "What's Inside Carousel",
+  "tag": "section",
+  "class": "index-section wis-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use italic for the serif accent words.",
+      "default": "<p>What's inside, <em>and exactly why.</em></p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "info": "Size at 1920px wide; scales down on smaller screens.",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "info": "Moves to the next ingredient each time the ring around the image completes. Pauses on hover, keyboard focus and when off-screen. Off for visitors who prefer reduced motion.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Time per ingredient",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_ring",
+      "label": "Show progress ring",
+      "info": "With autoplay off, the ring is shown as a full circle.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "active_size",
+      "min": 240,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "label": "Active image size",
+      "info": "Size at 1920px wide. Side images are 75% and 60% of it; scales down on smaller screens.",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background",
+      "default": "#FFFCF9"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#28201F"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent",
+      "info": "Progress ring and next button.",
+      "default": "#78563D"
+    },
+    {
+      "type": "color",
+      "id": "color_arrow_bg",
+      "label": "Previous button background",
+      "default": "#F6F3EE"
+    },
+    {
+      "type": "color",
+      "id": "color_ring_track",
+      "label": "Ring track",
+      "info": "Optional faint full circle behind the progress ring. Leave empty for none."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Square image, at least 800 × 800px. Shown as a circle."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "info": "Shown in capitals.",
+          "default": "Ingredient name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe what this ingredient does."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What's Inside Carousel",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Lactobacillus Ferment Lysate 1%",
+            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Cocamidopropyl Betaine 17%",
+            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Aloe Barbadensis 5%",
+            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Glycerin 6%",
+            "description": "Helps offset the drying effect of cleansing on skin comfort."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,784 @@
+{
+ "slug": "09-science",
+ "title": "The science behind the results (percent stats)",
+ "figmaNodeIds": [
+  "191:540"
+ ],
+ "frameOffsetY": 5244.0,
+ "cropY": [
+  5244,
+  6141
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:540",
+   "name": "Group 2087330676",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 847.0,
+   "children": [
+    {
+     "id": "191:541",
+     "name": "Rectangle 1139962785",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 847.0,
+     "fills": [
+      "IMAGE(ref=254579b51323b05f49037537c8184dc449cd941e, scaleMode=STRETCH)",
+      "#28201F @ 20%"
+     ]
+    },
+    {
+     "id": "191:542",
+     "name": "The science behind the results.",
+     "type": "TEXT",
+     "x": 560.0,
+     "y": 132.0,
+     "w": 800.0,
+     "h": 64.0,
+     "textStyle": {
+      "text": "The science behind the results.",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 58.0,
+      "lineHeightPx": 63.8,
+      "lineHeight": "110.0%",
+      "letterSpacing": -1.16,
+      "align": "CENTER",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#FFFFFF"
+      ],
+      "styledRuns": [
+       {
+        "chars": "The science behind",
+        "lineHeightPx": 63.80000305175781
+       },
+       {
+        "chars": "the results.",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 63.80000305175781,
+        "letterSpacing": -1.16,
+        "color": [
+         "#FFFFFF"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "191:543",
+     "name": "Group 2087330675",
+     "type": "GROUP",
+     "x": 178.0,
+     "y": 266.0,
+     "w": 1565.0,
+     "h": 450.0,
+     "children": [
+      {
+       "id": "191:544",
+       "name": "Union",
+       "type": "BOOLEAN_OPERATION",
+       "x": 178.0,
+       "y": 266.0,
+       "w": 1565.0,
+       "h": 450.0,
+       "fills": [
+        "#FFFFFF"
+       ],
+       "children": [
+        {
+         "id": "191:545",
+         "name": "Rectangle 19",
+         "type": "RECTANGLE",
+         "x": 1117.0,
+         "y": 266.0,
+         "w": 313.0,
+         "h": 450.0,
+         "rotation": -0.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 642.61
+        },
+        {
+         "id": "191:546",
+         "name": "Rectangle 20",
+         "type": "RECTANGLE",
+         "x": 1430.0,
+         "y": 266.0,
+         "w": 313.0,
+         "h": 450.0,
+         "rotation": -0.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 642.61
+        },
+        {
+         "id": "191:547",
+         "name": "Rectangle 19",
+         "type": "RECTANGLE",
+         "x": 178.0,
+         "y": 266.0,
+         "w": 313.0,
+         "h": 450.0,
+         "rotation": -0.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 642.61
+        },
+        {
+         "id": "191:548",
+         "name": "Rectangle 19",
+         "type": "VECTOR",
+         "x": 491.0,
+         "y": 266.0,
+         "w": 313.0,
+         "h": 450.0,
+         "rotation": -0.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 642.61
+        },
+        {
+         "id": "191:549",
+         "name": "Rectangle 19",
+         "type": "RECTANGLE",
+         "x": 804.0,
+         "y": 266.0,
+         "w": 313.0,
+         "h": 450.0,
+         "rotation": -0.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 642.61
+        }
+       ]
+      },
+      {
+       "id": "191:550",
+       "name": "6%",
+       "type": "TEXT",
+       "x": 295.0,
+       "y": 466.0,
+       "w": 79.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "6%",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 58.0,
+        "lineHeightPx": 70.3,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:551",
+       "name": "17%",
+       "type": "TEXT",
+       "x": 598.0,
+       "y": 466.0,
+       "w": 98.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "17%",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 58.0,
+        "lineHeightPx": 70.3,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:552",
+       "name": "5%",
+       "type": "TEXT",
+       "x": 922.0,
+       "y": 466.0,
+       "w": 76.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "5%",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 58.0,
+        "lineHeightPx": 70.3,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:553",
+       "name": "1%",
+       "type": "TEXT",
+       "x": 1238.0,
+       "y": 466.0,
+       "w": 70.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "1%",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 58.0,
+        "lineHeightPx": 70.3,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:554",
+       "name": "0%",
+       "type": "TEXT",
+       "x": 1545.0,
+       "y": 466.0,
+       "w": 82.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "0%",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 58.0,
+        "lineHeightPx": 70.3,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:555",
+       "name": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+       "type": "TEXT",
+       "x": 224.0,
+       "y": 553.0,
+       "w": 221.0,
+       "h": 100.0,
+       "textStyle": {
+        "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 18.0,
+        "lineHeightPx": 25.2,
+        "lineHeight": "140.0%",
+        "letterSpacing": -0.36,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 85%"
+        ]
+       }
+      },
+      {
+       "id": "191:556",
+       "name": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+       "type": "TEXT",
+       "x": 539.0,
+       "y": 553.0,
+       "w": 216.0,
+       "h": 100.0,
+       "textStyle": {
+        "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 18.0,
+        "lineHeightPx": 25.2,
+        "lineHeight": "140.0%",
+        "letterSpacing": -0.36,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 85%"
+        ]
+       }
+      },
+      {
+       "id": "191:557",
+       "name": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
+       "type": "TEXT",
+       "x": 858.0,
+       "y": 553.0,
+       "w": 204.0,
+       "h": 100.0,
+       "textStyle": {
+        "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 18.0,
+        "lineHeightPx": 25.2,
+        "lineHeight": "140.0%",
+        "letterSpacing": -0.36,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 85%"
+        ]
+       }
+      },
+      {
+       "id": "191:558",
+       "name": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
+       "type": "TEXT",
+       "x": 1182.0,
+       "y": 553.0,
+       "w": 183.0,
+       "h": 100.0,
+       "textStyle": {
+        "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 18.0,
+        "lineHeightPx": 25.2,
+        "lineHeight": "140.0%",
+        "letterSpacing": -0.36,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 85%"
+        ]
+       }
+      },
+      {
+       "id": "191:559",
+       "name": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
+       "type": "TEXT",
+       "x": 1491.0,
+       "y": 553.0,
+       "w": 190.0,
+       "h": 100.0,
+       "textStyle": {
+        "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 18.0,
+        "lineHeightPx": 25.2,
+        "lineHeight": "140.0%",
+        "letterSpacing": -0.36,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 85%"
+        ]
+       }
+      },
+      {
+       "id": "191:560",
+       "name": "Group 2087330668",
+       "type": "GROUP",
+       "x": 289.0,
+       "y": 346.0,
+       "w": 90.0,
+       "h": 90.0,
+       "children": [
+        {
+         "id": "191:561",
+         "name": "Ellipse 1338",
+         "type": "ELLIPSE",
+         "x": 289.0,
+         "y": 346.0,
+         "w": 90.0,
+         "h": 90.0,
+         "fills": [
+          "#F5EEE6"
+         ]
+        },
+        {
+         "id": "191:562",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 309.0,
+         "y": 366.0,
+         "w": 50.0,
+         "h": 50.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "191:563",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 309.42,
+           "y": 367.89,
+           "w": 49.17,
+           "h": 46.21,
+           "children": [
+            {
+             "id": "191:564",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 309.42,
+             "y": 367.89,
+             "w": 49.17,
+             "h": 46.21,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:565",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 328.29,
+             "y": 383.87,
+             "w": 11.42,
+             "h": 11.42,
+             "fills": [
+              "#78563D"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:566",
+       "name": "Group 2087330669",
+       "type": "GROUP",
+       "x": 602.0,
+       "y": 346.0,
+       "w": 90.0,
+       "h": 90.0,
+       "children": [
+        {
+         "id": "191:567",
+         "name": "Ellipse 1338",
+         "type": "ELLIPSE",
+         "x": 602.0,
+         "y": 346.0,
+         "w": 90.0,
+         "h": 90.0,
+         "fills": [
+          "#F5EEE6"
+         ]
+        },
+        {
+         "id": "191:568",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 622.0,
+         "y": 366.0,
+         "w": 50.0,
+         "h": 50.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "191:569",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 623.96,
+           "y": 367.96,
+           "w": 46.87,
+           "h": 46.87,
+           "children": [
+            {
+             "id": "191:570",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 623.96,
+             "y": 367.96,
+             "w": 46.87,
+             "h": 46.87,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:571",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 632.75,
+             "y": 394.32,
+             "w": 32.21,
+             "h": 15.62,
+             "fills": [
+              "#78563D"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:572",
+       "name": "Group 2087330673",
+       "type": "GROUP",
+       "x": 915.0,
+       "y": 346.0,
+       "w": 90.0,
+       "h": 90.0,
+       "children": [
+        {
+         "id": "191:573",
+         "name": "Ellipse 1338",
+         "type": "ELLIPSE",
+         "x": 915.0,
+         "y": 346.0,
+         "w": 90.0,
+         "h": 90.0,
+         "fills": [
+          "#F5EEE6"
+         ]
+        },
+        {
+         "id": "191:574",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 935.0,
+         "y": 366.0,
+         "w": 50.0,
+         "h": 50.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "191:575",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 940.92,
+           "y": 366.0,
+           "w": 38.16,
+           "h": 50.0,
+           "children": [
+            {
+             "id": "191:576",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 940.92,
+             "y": 366.0,
+             "w": 38.16,
+             "h": 50.0,
+             "fills": [
+              "#78563D"
+             ],
+             "stroke": {
+              "paint": [
+               "#F5EEE6"
+              ],
+              "weight": 0.30000001192092896,
+              "align": "INSIDE"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:577",
+       "name": "Group 2087330674",
+       "type": "GROUP",
+       "x": 1228.0,
+       "y": 346.0,
+       "w": 90.0,
+       "h": 90.0,
+       "children": [
+        {
+         "id": "191:578",
+         "name": "Ellipse 1338",
+         "type": "ELLIPSE",
+         "x": 1228.0,
+         "y": 346.0,
+         "w": 90.0,
+         "h": 90.0,
+         "fills": [
+          "#F5EEE6"
+         ]
+        },
+        {
+         "id": "191:579",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 1248.0,
+         "y": 366.0,
+         "w": 50.0,
+         "h": 50.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "191:580",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 1249.56,
+           "y": 367.56,
+           "w": 46.88,
+           "h": 46.88,
+           "children": [
+            {
+             "id": "191:581",
+             "name": "Group",
+             "type": "GROUP",
+             "x": 1249.56,
+             "y": 367.56,
+             "w": 46.88,
+             "h": 46.88,
+             "children": [
+              {
+               "id": "191:582",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1249.56,
+               "y": 367.56,
+               "w": 46.88,
+               "h": 46.88,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:583",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1264.41,
+               "y": 379.28,
+               "w": 17.19,
+               "h": 17.19,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:584",
+       "name": "Group 2087330672",
+       "type": "GROUP",
+       "x": 1541.0,
+       "y": 346.0,
+       "w": 90.0,
+       "h": 90.0,
+       "children": [
+        {
+         "id": "191:585",
+         "name": "Ellipse 1338",
+         "type": "ELLIPSE",
+         "x": 1541.0,
+         "y": 346.0,
+         "w": 90.0,
+         "h": 90.0,
+         "fills": [
+          "#F5EEE6"
+         ]
+        },
+        {
+         "id": "191:586",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 1561.0,
+         "y": 366.0,
+         "w": 50.0,
+         "h": 50.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "191:587",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 1565.22,
+           "y": 368.34,
+           "w": 41.56,
+           "h": 45.32,
+           "children": [
+            {
+             "id": "191:588",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1565.22,
+             "y": 368.34,
+             "w": 41.56,
+             "h": 45.32,
+             "fills": [
+              "#78563D"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

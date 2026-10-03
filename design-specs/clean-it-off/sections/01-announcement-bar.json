@@ -1,0 +1,53 @@
+{
+ "slug": "01-announcement-bar",
+ "title": "Announcement bar",
+ "figmaNodeIds": [
+  "191:62",
+  "191:63"
+ ],
+ "frameOffsetY": 0.0,
+ "cropY": [
+  0,
+  26
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:62",
+   "name": "Rectangle 5",
+   "type": "RECTANGLE",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 26.0,
+   "fills": [
+    "#BB9A82"
+   ]
+  },
+  {
+   "id": "191:63",
+   "name": "Save 20% on your first order",
+   "type": "TEXT",
+   "x": 867.0,
+   "y": 4.0,
+   "w": 185.0,
+   "h": 17.0,
+   "textStyle": {
+    "text": "Save 20% on your first order",
+    "font": "Blauer Nue",
+    "postscript": "BlauerNue-Light",
+    "weight": 300,
+    "size": 14.0,
+    "lineHeightPx": 16.8,
+    "lineHeight": "INTRINSIC_%",
+    "letterSpacing": -0.56,
+    "align": "LEFT",
+    "valign": "TOP",
+    "autoResize": "WIDTH_AND_HEIGHT",
+    "color": [
+     "#FFFFFF"
+    ]
+   }
+  }
+ ]
+}

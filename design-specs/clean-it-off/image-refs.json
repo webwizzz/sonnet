@@ -1,0 +1,49 @@
+{
+ "01-announcement-bar": [],
+ "02-header": [
+  "b407fcaa358def7d6f6a8fe9e3c6a351c4b9c0f4"
+ ],
+ "03-product-hero": [
+  "3304dc4ced72748a0193bb3f670c054c0d252f58",
+  "399c342ad4018aeeb7d4d36792083c68887b5f9b",
+  "7611eec366ed6bd6e7caa9c1cfcaaa5e37175ab3",
+  "9e85a04c4832eb6064a8f9af6b8e437d083bb41e",
+  "a4bbc939060f90d53c56b6b6b1523f4eab0cedd6",
+  "ab36657f5ee9801e4ab6d7984820d503115b59f7",
+  "b6adab99994b37b8b9d57dc5b7e47084099fa13b",
+  "d5bb9d060f25d0b08350e190d81abb2288d414b8",
+  "dd77f3ccafd3f4f4af13f029fdb07541e3c57baf",
+  "e87bc4fa7941456060f83f5761deea5fd771c82c"
+ ],
+ "04-why-us-marquee": [],
+ "05-honest-results": [
+  "19939496a2dd01f38143dd994f63adaf041d03ee",
+  "6b96158f2aeef86323a611f6e8ba1dc8622e6c97"
+ ],
+ "06-why-love": [
+  "9dca23095541b7e634040f28a588b4df4e95906d"
+ ],
+ "07-whats-inside": [
+  "0ca26c4c8999d6900178bd5c5a22610baf535beb",
+  "34a97845f6ce0aecd2ad8ed44ed6b86640221fdc",
+  "7a676a09316cd91948ce651abc35051f9695a8c4",
+  "89e6709f45e59e1961021c57c2b1545723f626a1",
+  "d43977f4b6a2f1696c7c2d91bb3af7aebafe7747",
+  "da18476568dd2b6ab6a3f9dc1701196fb6aca4c5"
+ ],
+ "08-comparison": [
+  "3ade0aeb677668052c97db430d73d47627536ac1",
+  "b407fcaa358def7d6f6a8fe9e3c6a351c4b9c0f4",
+  "d5bb9d060f25d0b08350e190d81abb2288d414b8"
+ ],
+ "09-science": [
+  "254579b51323b05f49037537c8184dc449cd941e"
+ ],
+ "10-bundle-ritual": [
+  "d0a1212f0524ac2943088671238cf74e1ab494ed",
+  "d5bb9d060f25d0b08350e190d81abb2288d414b8"
+ ],
+ "11-faq": [
+  "c7eb5d0d8a75d44ee80dcb8eaf871fd997736390"
+ ]
+}

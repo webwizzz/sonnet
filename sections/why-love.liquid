@@ -1,0 +1,1727 @@
+{%- comment -%}
+  Why Love Slider: full-bleed image / panel split, scroll-driven ("sticky") numbered slider.
+  Design: design-specs/clean-it-off/sections/06-why-love.md (Figma node 191:446)
+
+  How it works
+  - The section is a tall scroll track: sticky viewport + (slides - 1) x scroll_length vh.
+    A position: sticky viewport inside it holds the 50/50 split while the page scrolls past.
+  - Scroll progress p = 0 .. slides-1. During transition k -> k+1 the next image is revealed
+    from the bottom (clip-path) while it zooms from zoom_start back to 100%; the outgoing image
+    drifts up slightly and darkens a touch.
+  - When a transition passes its midpoint the pill / stat / caption / body swap with a time-based,
+    staggered animation and the counter number rolls (01 -> 02). Fully reversible.
+  - Each "slide" block = pill label + stat + caption + body (+ optional image).
+  All CSS is scoped to .wly / #shopify-section-{{ section.id }}; JS is vanilla and per instance.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign block_count = section.blocks.size
+  assign color_text = s.color_text | default: '#28201F'
+  assign color_panel = s.color_panel | default: '#F5EEE6'
+  assign total_padded = block_count
+  if block_count < 10
+    assign total_padded = '0' | append: block_count
+  endif
+  comment
+    Plain heading text for aria-label / alt. strip_html keeps richtext entities (&amp;, &#39;), so they
+    are decoded here once (&amp; last) and escaped exactly once where printed; image_tag escapes alt itself.
+  endcomment
+  assign heading_text = s.heading | strip_html | strip | replace: '&#39;', "'" | replace: '&#039;', "'" | replace: '&quot;', '"' | replace: '&nbsp;', ' ' | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&amp;', '&'
+
+  assign is_scroll = false
+  if block_count > 1
+    assign is_scroll = true
+  endif
+  assign steps = block_count | minus: 1
+  if steps < 0
+    assign steps = 0
+  endif
+
+  assign offset_css = 'var(--menu-height-sticky, 0px)'
+  if s.sticky_offset_mode == 'custom'
+    assign offset_css = s.sticky_offset | default: 0 | append: 'px'
+  endif
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --wly-bg: {{ s.color_background | default: '#FFFCF9' }};
+  --wly-panel: {{ color_panel }};
+  --wly-text: {{ color_text }};
+  --wly-accent: {{ s.color_accent | default: '#78563D' }};
+  --wly-pill-text: {{ s.color_pill_text | default: '#FFFFFF' }};
+  --wly-counter-bg: {{ s.color_counter_bg | default: '#FFFFFF' }};
+  --wly-h: {{ s.heading_size | default: 58 }};
+  --wly-hm: {{ s.heading_size_mobile | default: 28 }};
+  --wly-top: {{ offset_css }};
+  --wly-steps: {{ steps }};
+  --wly-len: {{ s.scroll_length | default: 100 }};
+  --wly-mih: {{ s.mobile_image_height | default: 45 }};
+  /* Figma opacity tints, computed server-side (no color-mix() needed) */
+  --wly-text-80: {{ color_text | color_modify: 'alpha', 0.8 }};
+  --wly-text-60: {{ color_text | color_modify: 'alpha', 0.6 }};
+  --wly-text-10: {{ color_text | color_modify: 'alpha', 0.1 }};
+  --wly-text-20: {{ color_text | color_modify: 'alpha', 0.2 }};
+  --wly-text-12: {{ color_text | color_modify: 'alpha', 0.12 }};
+  background-color: var(--wly-bg);
+}
+#shopify-section-{{ section.id }} .wly {
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media only screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .wly {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+
+/* ---------- Why Love Slider (.wly) : shared rules for every instance ---------- */
+.wly {
+  /* Sticky viewport height: the screen minus the sticky header (or the custom offset) */
+  --wly-vh: calc(100vh - var(--wly-top));
+  /* 1 design px at 1920 x 960, scales down with the viewport width AND height (min 0.5px) */
+  --wly-u: clamp(0.5px, min(calc(100vw / 1920), calc(var(--wly-vh) / 960)), 1px);
+  --wly-px: calc(130 * var(--wly-u));
+  --wly-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Incoming element i starts at in + i*stagger; outgoing element i is fully transparent by then. */
+  --wly-in: 180ms;
+  --wly-stagger: 65ms;
+  color: var(--wly-text);
+  background-color: var(--wly-bg);
+}
+@supports (height: 100svh) {
+  .wly { --wly-vh: calc(100svh - var(--wly-top)); }
+}
+.wly--static { --wly-u: clamp(0.5px, calc(100vw / 1920), 1px); }
+.wly *,
+.wly *::before,
+.wly *::after { box-sizing: border-box; }
+
+/* ---------- Scroll track + sticky viewport ---------- */
+.wly__track { position: relative; }
+.wly--scroll .wly__track {
+  height: calc(var(--wly-vh) + var(--wly-steps) * var(--wly-len) * 1vh);
+}
+.wly--scroll .wly__sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--wly-top);
+  height: var(--wly-vh);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Full-bleed 50/50 split */
+.wly__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+.wly--scroll .wly__grid { height: 100%; }
+.wly__media-wrap {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.wly--image-right .wly__media-wrap { order: 2; }
+.wly__media {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: #D9D9D9; /* Figma base fill under the image */
+  isolation: isolate;
+}
+.wly--static .wly__media::before {
+  content: '';
+  display: block;
+  aspect-ratio: 1 / 1;
+}
+
+/* Image layers: one per slide, stacked in DOM order. JS reveals layer k+1 from the bottom. */
+.wly__layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #D9D9D9;
+}
+.wly__layer + .wly__layer { visibility: hidden; } /* before JS runs, only slide 1 shows */
+.wly .wly__layer img,
+.wly .wly__layer .wly-placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  transform-origin: 50% 50%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.wly .wly__layer .wly-placeholder {
+  background-color: #D9D9D9;
+  fill: var(--wly-text-20);
+}
+.wly__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+/* will-change only while a layer is actually moving */
+.wly__layer.is-moving { will-change: clip-path; }
+.wly__layer.is-moving img,
+.wly__layer.is-moving .wly-placeholder { will-change: transform; }
+.wly--rm .wly__layer { transition: opacity 0.4s ease; }
+
+/* ---------- Counter badge ----------
+   Figma places the badge 5px right of and 5px below the true seam / section centre
+   (centre 965,485 vs 960,480). That offset looks accidental, so it is centred exactly here. */
+.wly {
+  --wly-badge: max(90px, calc(130 * var(--wly-u)));
+}
+.wly .wly__badge {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 100%;
+  display: block;
+  width: var(--wly-badge);
+  height: var(--wly-badge);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: max(8px, calc(10 * var(--wly-u)));
+  box-shadow: none;
+  transform: translate(-50%, -50%);
+  background-color: var(--wly-counter-bg);
+  color: var(--wly-text);
+  font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 0.3s ease;
+}
+.wly--image-right .wly__badge { left: 0; }
+.wly button.wly__badge { cursor: pointer; }
+.wly .wly__badge-current,
+.wly .wly__badge-total {
+  position: absolute;
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.wly .wly__badge-current {
+  top: max(10px, calc(14 * var(--wly-u)));
+  left: max(10px, calc(14 * var(--wly-u)));
+  display: block;
+  height: 1.212em;
+  overflow: hidden; /* mask for the rolling number */
+  font-family: 'Test Tiempos Fine Italic', 'Test Tiempos Fine Italic RG', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: max(28px, calc(40 * var(--wly-u)));
+  line-height: 1.212;
+  letter-spacing: -0.02em;
+  color: var(--wly-accent);
+}
+.wly .wly__num-sizer {
+  display: block;
+  padding-right: 0.14em; /* italic overhang */
+  visibility: hidden;
+}
+.wly .wly__num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.7s var(--wly-ease);
+}
+.wly .wly__num[data-pos="-1"] { transform: translate3d(0, -110%, 0); }
+.wly .wly__num[data-pos="1"] { transform: translate3d(0, 110%, 0); }
+.wly .wly__num.is-jump { transition: none; }
+.wly .wly__badge-total {
+  right: max(10px, calc(16 * var(--wly-u)));
+  bottom: max(10px, calc(12 * var(--wly-u)));
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: max(14px, calc(18 * var(--wly-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--wly-text-60);
+}
+@media (hover: hover) {
+  .wly button.wly__badge:hover { box-shadow: 0 6px 24px var(--wly-text-12); }
+}
+.wly .wly__badge:focus { outline: none; }
+.wly .wly__badge:focus-visible {
+  outline: 2px solid var(--wly-accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Panel ---------- */
+.wly__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: calc(100 * var(--wly-u)) var(--wly-px) calc(156 * var(--wly-u));
+  background-color: var(--wly-panel);
+  color: var(--wly-text);
+  text-align: center;
+}
+/* In the sticky viewport the content keeps Figma's 100 / 156 offsets and centres in any extra height */
+.wly--scroll .wly__panel { justify-content: center; }
+/* Desktop sticky viewport: the row is locked to the viewport height (so the image half and the badge
+   always match it). Figma's 100 / 156 top / bottom space is drawn by two spacers that shrink, before
+   the text does, when tall copy or a short laptop screen leaves less room. */
+@media only screen and (min-width: 991px) {
+  .wly--scroll .wly__grid { grid-template-rows: minmax(0, 1fr); }
+  .wly--scroll .wly__panel {
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: safe center;
+  }
+  .wly--scroll .wly__panel::before,
+  .wly--scroll .wly__panel::after {
+    content: '';
+    display: block;
+    flex: 0 1 calc(100 * var(--wly-u));
+    min-height: 20px;
+  }
+  .wly--scroll .wly__panel::after { flex-basis: calc(156 * var(--wly-u)); }
+  .wly--scroll .wly__content { flex-shrink: 0; }
+}
+.wly__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+.wly__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.wly .wly__heading {
+  width: 100%;
+  /* Figma box 564 wide at 58px; em keeps the same line breaks when the size floor kicks in */
+  max-width: max(calc(564 * var(--wly-u)), 9.73em);
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(28px, calc(var(--wly-h) * var(--wly-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--wly-text);
+}
+.wly .wly__heading p {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+.wly .wly__heading em,
+.wly .wly__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+.wly__divider {
+  flex: none;
+  width: 100%;
+  height: 1px;
+  background-color: var(--wly-text-10);
+}
+/* Figma rhythm: heading -> 50 -> divider (stroke drawn outside, so 49 to its top) -> 55 -> pill */
+.wly__heading + .wly__divider { margin-top: calc(49 * var(--wly-u)); }
+.wly__head + .wly__slides { margin-top: calc(55 * var(--wly-u)); }
+.wly__head--plain + .wly__slides { margin-top: calc(64 * var(--wly-u)); }
+
+/* Slides: stacked in one grid cell so the panel keeps the tallest slide's height (no jumps). */
+.wly__slides {
+  display: grid;
+  width: 100%;
+  align-items: start;
+}
+.wly__slide {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.wly__slide.is-active,
+.wly__slide.is-leaving { visibility: visible; }
+.wly__slide.is-active { pointer-events: auto; }
+
+/* Text swap (time-based, staggered pill -> stat -> caption -> body).
+   Waiting state: below + transparent. Active: in place. Leaving: up + transparent. */
+.wly .wly__slide > * {
+  margin: 0;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(5px);
+  transition: none;
+}
+.wly .wly__slide > :nth-child(1) { --i: 0; }
+.wly .wly__slide > :nth-child(2) { --i: 1; }
+.wly .wly__slide > :nth-child(3) { --i: 2; }
+.wly .wly__slide > :nth-child(4) { --i: 3; }
+.wly .wly__slide.is-active > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+  transition:
+    opacity 0.5s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
+    transform 0.6s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
+    filter 0.5s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger));
+}
+/* Out: ease-out travel so most of the 16px happens while the element is still visible; opacity is
+   gone within --wly-in, so outgoing and incoming text never overlap (no double exposure). */
+.wly .wly__slide.is-leaving > * {
+  opacity: 0;
+  transform: translate3d(0, -16px, 0);
+  filter: blur(4px);
+  transition:
+    opacity 0.18s cubic-bezier(0.4, 0, 1, 1) calc(var(--i) * var(--wly-stagger)),
+    transform 0.3s var(--wly-ease) calc(var(--i) * var(--wly-stagger)),
+    filter 0.18s ease calc(var(--i) * var(--wly-stagger));
+}
+/* Scrolling back up: mirror the motion (incoming drops in from above, outgoing leaves downward). */
+.wly--back:not(.wly--text-fade):not(.wly--rm) .wly__slide:not(.is-active):not(.is-leaving) > * { transform: translate3d(0, -24px, 0); }
+.wly--back:not(.wly--text-fade):not(.wly--rm) .wly__slide.is-leaving > * { transform: translate3d(0, 16px, 0); }
+/* text_animation: fade (opacity only) */
+.wly--text-fade .wly__slide > *,
+.wly--text-fade .wly__slide.is-active > *,
+.wly--text-fade .wly__slide.is-leaving > * {
+  transform: none;
+  filter: none;
+}
+.wly--instant .wly__slide > *,
+.wly--instant .wly__num,
+.wly--instant .wly__layer { transition: none !important; }
+
+/* Vertical rhythm inside a slide (Figma: pill -> 42 -> stat -> 16 -> caption -> 120 -> body).
+   Empty fields are not rendered, so the remaining elements close up without gaps. */
+.wly .wly__slide > * + * { margin-top: calc(42 * var(--wly-u)); }
+.wly .wly__slide > .wly__stat + .wly__caption { margin-top: calc(16 * var(--wly-u)); }
+.wly .wly__slide > .wly__stat + .wly__body,
+.wly .wly__slide > .wly__caption + .wly__body { margin-top: var(--wly-body-gap, calc(120 * var(--wly-u))); }
+
+/* Figma uses Blauer Nue Medium *Italic* for the pill, but only the roman Blauer Nue files are loaded
+   (assets/home-tlpc.css), so font-style: italic renders a browser-synthesised oblique here.
+   Upload BlauerNue-Medium_Italic as a woff2 if an exact match is needed. */
+.wly .wly__pill {
+  display: inline-block;
+  max-width: 100%;
+  padding: max(6px, calc(9 * var(--wly-u))) max(14px, calc(20 * var(--wly-u)));
+  border-radius: 50px;
+  background-color: var(--wly-accent);
+  color: var(--wly-pill-text);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: max(13px, calc(16 * var(--wly-u)));
+  line-height: 1.375;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.wly .wly__stat {
+  font-family: 'Test Tiempos Fine Italic', 'Test Tiempos Fine Italic RG', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: max(44px, calc(80 * var(--wly-u)));
+  line-height: 1.212;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--wly-accent);
+}
+.wly .wly__caption,
+.wly .wly__body {
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: max(16px, calc(24 * var(--wly-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--wly-text-80);
+}
+.wly .wly__body {
+  /* Figma text box 637 wide at 24px (26.46em reproduces its line breaks in browsers) */
+  max-width: 26.46em;
+}
+.wly__empty {
+  margin: 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--wly-text-60);
+}
+.wly__sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Smaller desktops: give the text column more room ----------
+   56px floor keeps text clear of the counter badge, which overhangs the panel by up to 45px. */
+@media only screen and (min-width: 991px) and (max-width: 1400px) {
+  .wly { --wly-px: clamp(56px, calc(130 * var(--wly-u) - 30px), 130px); }
+}
+
+/* ---------- Stacked (tablet + mobile) ----------
+   --wly-mu: 1px on a 844px-tall phone, shrinking to 0.78px on short screens so the text fits. */
+@media only screen and (max-width: 990px) {
+  .wly {
+    --wly-u: 0.7px;
+    --wly-mu: clamp(0.78px, calc(var(--wly-vh) / 844), 1px);
+    --wly-body-gap: calc(64 * var(--wly-mu));
+    --wly-badge: max(72px, calc(90 * var(--wly-mu)));
+  }
+  .wly--static { --wly-mu: 1px; }
+  .wly__grid { grid-template-columns: minmax(0, 1fr); }
+  .wly--image-right .wly__media-wrap { order: 0; }
+  .wly--static .wly__media::before { aspect-ratio: 1 / 1; }
+  .wly .wly__badge,
+  .wly--image-right .wly__badge {
+    top: 100%;
+    left: 50%;
+    border-radius: 8px;
+  }
+  .wly .wly__badge-current {
+    top: calc(10 * var(--wly-mu));
+    left: calc(10 * var(--wly-mu));
+    font-size: calc(var(--wly-badge) * 0.3077); /* 40 / 130 */
+  }
+  .wly .wly__badge-total {
+    right: calc(10 * var(--wly-mu));
+    bottom: calc(10 * var(--wly-mu));
+    font-size: max(12px, calc(var(--wly-badge) * 0.1555)); /* 14 / 90 */
+  }
+  .wly__panel { padding: calc(var(--wly-badge) / 2 + 28px) 50px 64px; }
+  .wly .wly__heading { font-size: max(28px, calc(var(--wly-h) * 0.69 * var(--wly-mu))); }
+  .wly .wly__pill { font-size: 14px; }
+  .wly .wly__stat { font-size: calc(56 * var(--wly-mu)); }
+  .wly .wly__caption,
+  .wly .wly__body { font-size: max(16px, calc(18 * var(--wly-mu))); }
+
+  /* Scroll mode: image on top of the sticky viewport, panel below. The image gives up height
+     (down to 26svh) when the text needs more room, so nothing is clipped on short phones. */
+  .wly--scroll .wly__track { background-color: var(--wly-panel); }
+  .wly--scroll .wly__grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .wly--scroll .wly__media-wrap {
+    flex: 0 1 calc(var(--wly-mih) * 1vh);
+    min-height: min(26vh, calc(var(--wly-mih) * 1vh));
+  }
+  .wly--scroll .wly__panel {
+    flex: 1 0 auto;
+    padding: calc(var(--wly-badge) / 2 + 14 * var(--wly-mu)) 50px calc(28 * var(--wly-mu));
+  }
+}
+@supports (height: 100svh) {
+  @media only screen and (max-width: 990px) {
+    .wly--scroll .wly__media-wrap {
+      flex-basis: calc(var(--wly-mih) * 1svh);
+      min-height: min(26svh, calc(var(--wly-mih) * 1svh));
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .wly { --wly-body-gap: calc(32 * var(--wly-mu)); }
+  .wly__panel { padding: calc(var(--wly-badge) / 2 + 24px) 16px 48px; }
+  .wly--scroll .wly__panel { padding: calc(var(--wly-badge) / 2 + 12 * var(--wly-mu)) 16px calc(20 * var(--wly-mu)); }
+  .wly .wly__heading {
+    max-width: 9.73em;
+    font-size: max(20px, calc(var(--wly-hm) * var(--wly-mu)));
+  }
+  .wly__heading + .wly__divider,
+  .wly__head + .wly__slides { margin-top: calc(24 * var(--wly-mu)); }
+  .wly__head--plain + .wly__slides { margin-top: calc(32 * var(--wly-mu)); }
+  .wly .wly__pill {
+    padding: calc(8 * var(--wly-mu)) 16px;
+    font-size: max(12px, calc(13 * var(--wly-mu)));
+    line-height: 1.3;
+  }
+  .wly .wly__slide > * + * { margin-top: calc(24 * var(--wly-mu)); }
+  .wly .wly__slide > .wly__stat + .wly__caption { margin-top: calc(8 * var(--wly-mu)); }
+  .wly .wly__stat { font-size: calc(48 * var(--wly-mu)); }
+  .wly .wly__caption,
+  .wly .wly__body { font-size: max(15px, calc(16 * var(--wly-mu))); }
+}
+@media only screen and (max-width: 990px) and (max-height: 700px) {
+  .wly--scroll .wly__caption,
+  .wly--scroll .wly__body { line-height: 1.45; }
+}
+
+/* ---------- Mobile list (enable_mobile_animation off, or a phone held sideways): image + text per slide, no sticky ---------- */
+@media only screen and (max-width: 990px) {
+  .wly--mobile-list .wly__track,
+  .wly--as-list .wly__track { height: auto; background-color: var(--wly-panel); }
+  .wly--mobile-list .wly__sticky,
+  .wly--as-list .wly__sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+  }
+  .wly--mobile-list .wly__grid,
+  .wly--as-list .wly__grid {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .wly--mobile-list .wly__media-wrap,
+  .wly--as-list .wly__media-wrap,
+  .wly--mobile-list .wly__media,
+  .wly--as-list .wly__media,
+  .wly--mobile-list .wly__panel,
+  .wly--as-list .wly__panel,
+  .wly--mobile-list .wly__content,
+  .wly--as-list .wly__content,
+  .wly--mobile-list .wly__slides,
+  .wly--as-list .wly__slides { display: contents; }
+  .wly--mobile-list .wly__badge,
+  .wly--as-list .wly__badge,
+  .wly--mobile-list .wly__shade,
+  .wly--as-list .wly__shade { display: none; }
+  .wly--mobile-list .wly__head,
+  .wly--as-list .wly__head {
+    order: 0;
+    padding: 60px 16px 40px;
+    background-color: var(--wly-panel);
+  }
+  .wly--mobile-list .wly__layer,
+  .wly--as-list .wly__layer {
+    position: relative;
+    inset: auto;
+    order: calc(var(--i) * 2 + 1);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+  .wly--mobile-list .wly__layer img,
+  .wly--as-list .wly__layer img { transform: none !important; }
+  .wly--mobile-list .wly__slide,
+  .wly--as-list .wly__slide {
+    order: calc(var(--i) * 2 + 2);
+    width: 100%;
+    padding: calc(var(--wly-badge) / 3) 16px 56px;
+    background-color: var(--wly-panel);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .wly--mobile-list .wly__slide > *,
+  .wly--as-list .wly__slide > * {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+@media only screen and (max-width: 990px) and (max-height: 540px) and (orientation: landscape) {
+  .wly--as-list .wly__layer { aspect-ratio: auto; height: 80vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wly { --wly-in: 150ms; --wly-stagger: 0ms; }
+  .wly .wly__slide > *,
+  .wly .wly__slide.is-active > *,
+  .wly .wly__slide.is-leaving > * {
+    transform: none;
+    filter: none;
+  }
+  .wly .wly__slide.is-active > * { transition: opacity 0.35s ease var(--wly-in); }
+  .wly .wly__slide.is-leaving > * { transition: opacity 0.15s linear; }
+  .wly .wly__num { transition: none; }
+  .wly .wly__badge { transition: none; }
+}
+{% endstyle %}
+
+{%- liquid
+  assign wly_classes = 'wly'
+  if s.image_position == 'right'
+    assign wly_classes = wly_classes | append: ' wly--image-right'
+  else
+    assign wly_classes = wly_classes | append: ' wly--image-left'
+  endif
+  if is_scroll
+    assign wly_classes = wly_classes | append: ' wly--scroll'
+    if s.enable_mobile_animation == false
+      assign wly_classes = wly_classes | append: ' wly--mobile-list'
+    endif
+  else
+    assign wly_classes = wly_classes | append: ' wly--static'
+  endif
+  if s.text_animation == 'fade'
+    assign wly_classes = wly_classes | append: ' wly--text-fade'
+  endif
+  assign show_badge = false
+  if s.show_counter and block_count > 0
+    assign show_badge = true
+    assign wly_classes = wly_classes | append: ' wly--has-counter'
+  endif
+  if s.custom_class != blank
+    assign wly_classes = wly_classes | append: ' ' | append: s.custom_class
+  endif
+  assign image_sizes = '(min-width: 991px) max(50vw, 100vh), 100vw'
+  assign image_widths = '375, 550, 750, 960, 1100, 1300, 1500, 1920'
+  assign show_head = false
+  if s.heading != blank or s.show_divider
+    assign show_head = true
+  endif
+-%}
+
+{%- if block_count > 0 or request.design_mode -%}
+<div
+  class="{{ wly_classes | escape }}"
+  data-wly
+  data-section-id="{{ section.id }}"
+  data-zoom="{{ s.zoom_start | default: 125 }}"
+  data-mobile-anim="{{ s.enable_mobile_animation }}"
+  {% if is_scroll %}role="region" aria-roledescription="carousel" aria-label="{{ heading_label | default: 'Slides' }}"{% endif %}
+>
+  <div class="wly__track" data-wly-track>
+    <div class="wly__sticky" data-wly-sticky>
+      <div class="wly__grid">
+        <div class="wly__media-wrap">
+          <div class="wly__media">
+            {%- assign prev_id = '' -%}
+            {%- if block_count == 0 -%}
+              <div class="wly__layer" data-wly-layer style="--i: 0">
+                {%- if s.image != blank -%}
+                  {{- s.image | image_url: width: 1920 | image_tag: widths: image_widths, sizes: image_sizes, loading: 'lazy', alt: heading_label, draggable: 'false' -}}
+                {%- else -%}
+                  {{- 'lifestyle-1' | placeholder_svg_tag: 'wly-placeholder' -}}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign b_img = block.settings.image | default: s.image
+                assign img_id = 'none'
+                if b_img != blank
+                  assign img_id = b_img.id | append: ''
+                endif
+                assign same_prev = false
+                if forloop.first == false and img_id == prev_id
+                  assign same_prev = true
+                endif
+                assign prev_id = img_id
+                assign fp_style = ''
+                if b_img.presentation.focal_point != blank
+                  assign fp_style = 'object-position: ' | append: b_img.presentation.focal_point
+                endif
+                assign alt_text = b_img.alt | default: block.settings.label | default: heading_label
+              -%}
+              <div
+                class="wly__layer"
+                data-wly-layer
+                style="--i: {{ forloop.index0 }}"
+                {% if same_prev %}data-same-prev{% endif %}
+                {% unless forloop.first %}aria-hidden="true"{% endunless %}
+              >
+                {%- if b_img != blank -%}
+                  {{-
+                    b_img
+                    | image_url: width: 1920
+                    | image_tag:
+                      widths: image_widths,
+                      sizes: image_sizes,
+                      loading: 'lazy',
+                      alt: alt_text,
+                      style: fp_style,
+                      draggable: 'false'
+                  -}}
+                {%- else -%}
+                  {{- 'lifestyle-1' | placeholder_svg_tag: 'wly-placeholder' -}}
+                {%- endif -%}
+                {%- if is_scroll -%}<span class="wly__shade" aria-hidden="true"></span>{%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if show_badge -%}
+            {%- if is_scroll -%}
+              <button type="button" class="wly__badge" data-wly-next aria-label="Next slide, 2 of {{ block_count }}">
+            {%- else -%}
+              <div class="wly__badge" aria-hidden="true">
+            {%- endif -%}
+                <span class="wly__badge-current" aria-hidden="true">
+                  <span class="wly__num-sizer">{{ total_padded }}</span>
+                  {%- for block in section.blocks -%}
+                    {%- liquid
+                      assign num = forloop.index
+                      if forloop.index < 10
+                        assign num = '0' | append: forloop.index
+                      endif
+                    -%}
+                    <span class="wly__num" data-wly-num data-pos="{% if forloop.first %}0{% else %}1{% endif %}">{{ num }}</span>
+                  {%- endfor -%}
+                </span>
+                <span class="wly__badge-total" aria-hidden="true">/{{ total_padded }}</span>
+            {%- if is_scroll -%}
+              </button>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+
+        <div class="wly__panel">
+          <div class="wly__content">
+            {%- if show_head -%}
+              <div class="wly__head{% unless s.show_divider %} wly__head--plain{% endunless %}">
+                {%- if s.heading != blank -%}
+                  <h2 class="wly__heading class_h2">{{ s.heading }}</h2>
+                {%- endif -%}
+                {%- if s.show_divider -%}
+                  <div class="wly__divider" role="presentation"></div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="wly__slides" data-wly-slides>
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign b = block.settings
+                  assign label = b.label | strip
+                  assign stat = b.stat | strip
+                  assign caption = b.stat_caption | strip
+                  assign body = b.body | strip
+                  assign announce = label | default: stat | default: caption | escape
+                -%}
+                <div
+                  class="wly__slide{% if forloop.first %} is-active{% endif %}"
+                  data-wly-slide
+                  data-block-id="{{ block.id }}"
+                  data-label="{{ announce }}"
+                  style="--i: {{ forloop.index0 }}"
+                  {% if is_scroll %}role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ block_count }}"{% endif %}
+                  {% unless forloop.first %}aria-hidden="true" inert{% endunless %}
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if label != blank -%}
+                    <p class="wly__pill">{{ label | escape }}</p>
+                  {%- endif -%}
+                  {%- if stat != blank -%}
+                    <p class="wly__stat">{{ stat | escape }}</p>
+                  {%- endif -%}
+                  {%- if caption != blank -%}
+                    <p class="wly__caption">{{ caption | escape }}</p>
+                  {%- endif -%}
+                  {%- if body != blank -%}
+                    <p class="wly__body">{{ body | escape | newline_to_br }}</p>
+                  {%- endif -%}
+                </div>
+              {%- else -%}
+                <p class="wly__empty">Add a slide block to show a stat, its label and description.</p>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- if is_scroll -%}
+    <div class="wly__sr" data-wly-live aria-live="polite" aria-atomic="true"></div>
+  {%- endif -%}
+</div>
+
+{%- if is_scroll -%}
+<script>
+  (function () {
+    if (!window.WhyLoveScroll) {
+      var W = window;
+      var D = document;
+      var mql = function (q) { return W.matchMedia ? W.matchMedia(q) : null; };
+      var onMq = function (m, fn) {
+        if (!m) return function () {};
+        if (m.addEventListener) { m.addEventListener('change', fn); return function () { m.removeEventListener('change', fn); }; }
+        if (m.addListener) { m.addListener(fn); return function () { m.removeListener(fn); }; }
+        return function () {};
+      };
+      var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+      var ease = function (t) { return t * t * (3 - 2 * t); }; // smoothstep ease-in-out
+      var scrollY = function () { return W.pageYOffset || D.documentElement.scrollTop || 0; };
+      var PARALLAX = 8; // % the outgoing image drifts up while it is covered
+      var SHADE = 0.16; // max darkening of the outgoing image
+
+      var WLY = function (root) {
+        var self = this;
+        this.root = root;
+        this.track = root.querySelector('[data-wly-track]');
+        this.sticky = root.querySelector('[data-wly-sticky]');
+        this.slides = Array.prototype.slice.call(root.querySelectorAll('[data-wly-slide]'));
+        this.layers = Array.prototype.map.call(root.querySelectorAll('[data-wly-layer]'), function (el) {
+          return {
+            el: el,
+            img: el.querySelector('img, .wly-placeholder'),
+            shade: el.querySelector('.wly__shade'),
+            same: el.hasAttribute('data-same-prev'),
+            key: ''
+          };
+        });
+        this.nums = Array.prototype.slice.call(root.querySelectorAll('[data-wly-num]'));
+        this.badge = root.querySelector('[data-wly-next]');
+        this.live = root.querySelector('[data-wly-live]');
+        this.count = this.slides.length;
+        this.zoom = clamp((parseFloat(root.getAttribute('data-zoom')) || 125) / 100, 1, 1.5);
+        this.mobileList = root.getAttribute('data-mobile-anim') === 'false';
+        this.index = 0;
+        this.rp = 0; // rendered progress
+        this.target = 0; // progress from the scroll position
+        this.raf = 0;
+        this.inView = !('IntersectionObserver' in W);
+        this.mode = '';
+        this.m = { offset: 0, top: 0, th: 0, sh: 0, step: 1 };
+        this.tin = [];
+        this.leaveTimers = [];
+        this.offs = [];
+        this.ac = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        this.tick = function (now) { self.frame(now); };
+        this.onScroll = function () { self.scrolled(); };
+        if (this.count < 2 || !this.track || !this.sticky || this.layers.length !== this.count) return;
+        this.mqMobile = mql('(max-width: 990px)');
+        // Phones held sideways: the stacked sticky layout cannot fit, so show the plain list instead.
+        this.mqShort = mql('(max-width: 990px) and (max-height: 540px) and (orientation: landscape)');
+        this.mqReduce = mql('(prefers-reduced-motion: reduce)');
+        this.init();
+      };
+
+      WLY.prototype.on = function (el, type, fn, opts) {
+        var o = opts || {};
+        if (this.ac) {
+          o.signal = this.ac.signal;
+          el.addEventListener(type, fn, o);
+        } else {
+          el.addEventListener(type, fn, o);
+          this.offs.push(function () { el.removeEventListener(type, fn, o); });
+        }
+      };
+
+      WLY.prototype.init = function () {
+        var self = this;
+        this.applyMode();
+        this.on(W, 'scroll', this.onScroll, { passive: true });
+        this.on(W, 'resize', function () { self.remeasure(); }, { passive: true });
+        this.on(D, 'theme:resize', function () { self.remeasure(); });
+        this.on(W, 'load', function () { self.remeasure(); });
+        if (D.fonts && D.fonts.ready) D.fonts.ready.then(function () { self.remeasure(); });
+        if ('ResizeObserver' in W) {
+          // Track size (sticky offset / viewport changes) and body size (content above us loading in).
+          this.ro = new ResizeObserver(function () { self.remeasure(); });
+          this.ro.observe(this.track);
+          this.ro.observe(D.body);
+        }
+        if ('IntersectionObserver' in W) {
+          this.io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { self.setInView(en.isIntersecting); });
+          }, { rootMargin: '25% 0px 25% 0px' });
+          this.io.observe(this.track);
+          // Load every slide image (and decode it) before the section scrolls into view.
+          this.pio = new IntersectionObserver(function (entries) {
+            if (!entries.some(function (en) { return en.isIntersecting; })) return;
+            self.preload();
+            self.pio.disconnect();
+            self.pio = null;
+          }, { rootMargin: '150% 0px 150% 0px' });
+          this.pio.observe(this.track);
+        } else {
+          this.preload();
+        }
+        this.offs.push(onMq(this.mqMobile, function () { self.applyMode(); }));
+        this.offs.push(onMq(this.mqReduce, function () { self.applyMode(); }));
+        this.offs.push(onMq(this.mqShort, function () { self.applyMode(); }));
+        if (this.badge) this.on(this.badge, 'click', function () { self.next(); });
+        // Theme editor: sections moved / another section re-rendered can shift us without a resize.
+        var relayout = function () { self.remeasure(); };
+        this.on(D, 'shopify:section:reorder', relayout);
+        this.on(D, 'shopify:section:load', relayout);
+        this.on(D, 'shopify:section:unload', relayout);
+        this.hookLenis();
+      };
+
+      // window.lenis is created by a deferred script in layout/theme.liquid, possibly after we boot.
+      WLY.prototype.hookLenis = function () {
+        var self = this;
+        var tries = 0;
+        var attempt = function () {
+          if (self.dead) return true;
+          var L = W.lenis;
+          if (!L || typeof L.on !== 'function') return false;
+          var fn = function () { self.scrolled(); };
+          var un = L.on('scroll', fn);
+          self.offs.push(function () {
+            if (typeof un === 'function') un();
+            else if (typeof L.off === 'function') L.off('scroll', fn);
+          });
+          self.lenis = L;
+          return true;
+        };
+        if (attempt()) return;
+        var stop = function () { clearInterval(self.lenisPoll); self.lenisPoll = 0; };
+        this.lenisPoll = setInterval(function () { if (attempt() || ++tries > 40) stop(); }, 250);
+        this.on(W, 'load', function () { if (self.lenisPoll && attempt()) stop(); });
+      };
+
+      WLY.prototype.preload = function () {
+        this.layers.forEach(function (l) {
+          var img = l.img;
+          if (!img || img.tagName !== 'IMG') return;
+          if (img.getAttribute('loading') === 'lazy') img.setAttribute('loading', 'eager');
+          if (img.decode) img.decode().catch(function () {});
+        });
+      };
+
+      WLY.prototype.measure = function () {
+        var top = parseFloat(W.getComputedStyle(this.sticky).top);
+        var r = this.track.getBoundingClientRect();
+        var th = this.track.offsetHeight;
+        var sh = this.sticky.offsetHeight;
+        this.m = {
+          offset: isNaN(top) ? 0 : top,
+          top: r.top + scrollY(),
+          th: th,
+          sh: sh,
+          step: Math.max(1, (th - sh) / (this.count - 1))
+        };
+      };
+
+      WLY.prototype.remeasure = function () {
+        var self = this;
+        if (this.mrq || this.dead) return;
+        this.mrq = requestAnimationFrame(function () {
+          self.mrq = 0;
+          if (self.dead || self.mode !== 'scroll') return;
+          self.measure();
+          self.scrolled();
+        });
+      };
+
+      WLY.prototype.progress = function () {
+        var m = this.m;
+        return clamp((scrollY() + m.offset - m.top) / m.step, 0, this.count - 1);
+      };
+
+      WLY.prototype.scrolled = function () {
+        if (this.dead || this.mode !== 'scroll') return;
+        this.target = this.progress();
+        if (this.inView) this.kick();
+      };
+
+      WLY.prototype.kick = function () {
+        if (this.raf || this.target === this.rp) return;
+        clearTimeout(this.announceTimer); // moving again: only announce once it settles
+        this.last = 0;
+        this.raf = requestAnimationFrame(this.tick);
+      };
+
+      // One rAF loop per instance. It runs only while the rendered progress is catching up with the
+      // scroll position and stops when it settles (or when the section leaves the viewport).
+      WLY.prototype.frame = function (now) {
+        this.raf = 0;
+        if (this.dead || this.mode !== 'scroll') return;
+        var dt = this.last ? Math.min(64, now - this.last) : 16.667;
+        this.last = now;
+        var d = this.target - this.rp;
+        if (Math.abs(d) < 0.0008) {
+          this.rp = this.target;
+          this.render();
+          this.syncIndex(false);
+          this.settled();
+          return;
+        }
+        // Lenis already smooths the scroll, so follow it more tightly when it is active.
+        var f = this.lenis ? 0.3 : 0.15;
+        this.rp += d * (1 - Math.pow(1 - f, dt / 16.667));
+        this.render();
+        this.syncIndex(false);
+        this.raf = requestAnimationFrame(this.tick);
+      };
+
+      // Writes only (transform / clip-path / opacity / visibility), with per-layer caching.
+      WLY.prototype.render = function () {
+        var rp = this.rp;
+        var N = this.count;
+        var L = this.layers;
+        var tin = this.tin;
+        var i;
+        for (i = 0; i < N; i++) {
+          tin[i] = i === 0 ? 1 : L[i].same ? (rp > i - 1 ? 1 : 0) : ease(clamp(rp - (i - 1), 0, 1));
+        }
+        for (i = 0; i < N; i++) {
+          var l = L[i];
+          var st = l.el.style;
+          var key;
+          if (this.reduce) {
+            // Reduced motion: no zoom / parallax, a quick crossfade at the midpoint instead.
+            var on = i === 0 || rp >= i - 0.5;
+            key = on ? 'r1' : 'r0';
+            if (key === l.key) continue;
+            l.key = key;
+            st.visibility = 'visible';
+            st.clipPath = st.webkitClipPath = 'none';
+            st.opacity = on ? '1' : '0';
+            if (l.img) l.img.style.transform = '';
+            if (l.shade) l.shade.style.opacity = '';
+            l.el.classList.remove('is-moving');
+            continue;
+          }
+          var t = tin[i];
+          var nxt = i < N - 1 ? tin[i + 1] : 0;
+          var par = i < N - 1 && !L[i + 1].same ? nxt : 0;
+          var vis = t > 0 && nxt < 1;
+          var clip = t >= 1 ? 'none' : 'inset(' + ((1 - t) * 100).toFixed(3) + '% 0px 0px 0px)';
+          var sc = 1 + (this.zoom - 1) * (1 - t);
+          var ty = -PARALLAX * par;
+          var tr = sc === 1 && ty === 0 ? '' : 'translate3d(0, ' + ty.toFixed(3) + '%, 0) scale(' + sc.toFixed(4) + ')';
+          var sh = par > 0 ? (SHADE * par).toFixed(3) : '0';
+          key = vis ? clip + '|' + tr + '|' + sh : 'h';
+          if (key === l.key) continue;
+          l.key = key;
+          st.visibility = vis ? 'visible' : 'hidden';
+          if (!vis) {
+            l.el.classList.remove('is-moving');
+            continue;
+          }
+          st.opacity = '';
+          st.clipPath = clip;
+          st.webkitClipPath = clip;
+          if (l.img) l.img.style.transform = tr;
+          if (l.shade) l.shade.style.opacity = sh;
+          l.el.classList.toggle('is-moving', (t > 0 && t < 1) || (par > 0 && par < 1));
+        }
+      };
+
+      // Text + counter swap when a transition crosses its midpoint (small hysteresis, no flicker).
+      WLY.prototype.syncIndex = function (instant) {
+        var rp = this.rp;
+        var c = clamp(Math.floor(rp + 0.5), 0, this.count - 1);
+        if (c === this.index) return;
+        if (!instant && Math.abs(c - this.index) === 1 && Math.abs(rp - Math.floor(rp) - 0.5) < 0.004) return;
+        this.setActive(c, instant);
+      };
+
+      WLY.prototype.setActive = function (n, instant) {
+        var self = this;
+        var prev = this.index;
+        var root = this.root;
+        if (instant) root.classList.add('wly--instant');
+        // Direction of the text swap. The waiting slides' start offset depends on it, so commit that
+        // style before the classes below start the transitions (one style flush per swap, not per frame).
+        var back = !instant && prev >= 0 && n < prev;
+        if (root.classList.contains('wly--back') !== back) {
+          root.classList.toggle('wly--back', back);
+          if (!instant) void root.offsetWidth;
+        }
+        this.slides.forEach(function (s, k) {
+          clearTimeout(self.leaveTimers[k]);
+          if (k === n) {
+            s.classList.remove('is-leaving');
+            s.classList.add('is-active');
+            s.removeAttribute('aria-hidden');
+            s.removeAttribute('inert');
+            return;
+          }
+          var wasActive = s.classList.contains('is-active');
+          s.classList.remove('is-active');
+          s.setAttribute('aria-hidden', 'true');
+          s.setAttribute('inert', '');
+          if (wasActive && !instant) {
+            s.classList.add('is-leaving');
+            self.leaveTimers[k] = setTimeout(function () { s.classList.remove('is-leaving'); }, 650);
+          } else {
+            s.classList.remove('is-leaving');
+          }
+        });
+        this.layers.forEach(function (l, k) {
+          if (k === n) l.el.removeAttribute('aria-hidden');
+          else l.el.setAttribute('aria-hidden', 'true');
+        });
+        // Counter roll: only the outgoing and incoming numbers animate; the rest jump out of sight.
+        this.nums.forEach(function (el, k) {
+          el.classList.toggle('is-jump', !!instant || (k !== n && k !== prev));
+          el.setAttribute('data-pos', k < n ? '-1' : k > n ? '1' : '0');
+        });
+        if (this.badge) {
+          this.badge.setAttribute('aria-label', n < this.count - 1
+            ? 'Next slide, ' + (n + 2) + ' of ' + this.count
+            : 'Continue past the slides');
+        }
+        this.index = n;
+        if (instant) {
+          void root.offsetWidth; // commit the jump before re-enabling transitions
+          root.classList.remove('wly--instant');
+        }
+      };
+
+      // Announce the slide once scrolling has settled (not on every frame).
+      WLY.prototype.settled = function () {
+        var self = this;
+        if (!this.live || this.index === this.announced) return;
+        clearTimeout(this.announceTimer);
+        this.announceTimer = setTimeout(function () {
+          if (self.dead || self.raf || self.index === self.announced) return;
+          self.announced = self.index;
+          var label = self.slides[self.index].getAttribute('data-label');
+          var msg = 'Slide ' + (self.index + 1) + ' of ' + self.count + (label ? ': ' + label : '');
+          self.live.textContent = '';
+          setTimeout(function () { if (!self.dead) self.live.textContent = msg; }, 60);
+        }, 400);
+      };
+
+      WLY.prototype.setInView = function (v) {
+        this.inView = v;
+        if (this.mode !== 'scroll') return;
+        if (v) {
+          // Re-measure once per entry: the section may have moved without any size change
+          // (sections reordered in the editor, content above swapped for content of equal height).
+          this.measure();
+          // Coming back after a jump (anchor link, fast fling): snap instead of sweeping through slides.
+          this.target = this.progress();
+          if (Math.abs(this.target - this.rp) > 0.5) {
+            if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+            this.rp = this.target;
+            this.render();
+            this.syncIndex(true);
+          }
+          this.kick();
+          return;
+        }
+        // Off screen: stop the loop and snap to the resting state so it is right when we come back.
+        if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+        this.target = this.rp = this.progress();
+        this.render();
+        this.syncIndex(true);
+      };
+
+      WLY.prototype.resetLayers = function () {
+        this.layers.forEach(function (l) {
+          var st = l.el.style;
+          l.key = '';
+          st.visibility = '';
+          st.opacity = '';
+          st.clipPath = '';
+          st.webkitClipPath = '';
+          if (l.img) l.img.style.transform = '';
+          if (l.shade) l.shade.style.opacity = '';
+          l.el.classList.remove('is-moving');
+        });
+      };
+
+      WLY.prototype.applyMode = function () {
+        var small = !!(this.mqMobile && this.mqMobile.matches);
+        var mode = small && (this.mobileList || !!(this.mqShort && this.mqShort.matches)) ? 'list' : 'scroll';
+        this.root.classList.toggle('wly--as-list', mode === 'list');
+        this.root.classList.remove('wly--back');
+        this.reduce = !!(this.mqReduce && this.mqReduce.matches);
+        this.root.classList.toggle('wly--rm', this.reduce);
+        this.mode = mode;
+        if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+        this.resetLayers();
+        if (mode === 'list') {
+          // Plain stacked list: every slide is visible and reachable.
+          this.slides.forEach(function (s) {
+            s.classList.remove('is-leaving');
+            s.classList.add('is-active');
+            s.removeAttribute('aria-hidden');
+            s.removeAttribute('inert');
+          });
+          this.layers.forEach(function (l) { l.el.removeAttribute('aria-hidden'); });
+          return;
+        }
+        this.measure();
+        this.target = this.rp = this.progress();
+        this.render();
+        this.index = -1;
+        this.setActive(clamp(Math.floor(this.rp + 0.5), 0, this.count - 1), true);
+        if (this.announced == null) this.announced = this.index;
+      };
+
+      WLY.prototype.restY = function (i) {
+        var m = this.m;
+        if (i >= this.count) return m.top + m.th - m.offset; // past the end of the section
+        return m.top - m.offset + i * m.step;
+      };
+
+      WLY.prototype.scrollToY = function (y, instant) {
+        y = Math.max(0, Math.round(y));
+        var L = W.lenis;
+        if (L && typeof L.scrollTo === 'function') {
+          try {
+            L.scrollTo(y, instant ? { immediate: true, force: true } : { duration: 1.4, force: true });
+            return;
+          } catch (e) {}
+        }
+        if (instant) {
+          var h = D.documentElement;
+          var prev = h.style.scrollBehavior;
+          h.style.scrollBehavior = 'auto'; // the theme sets html { scroll-behavior: smooth }
+          W.scrollTo(0, y);
+          h.style.scrollBehavior = prev;
+          return;
+        }
+        try { W.scrollTo({ top: y, behavior: 'smooth' }); } catch (e) { W.scrollTo(0, y); }
+      };
+
+      WLY.prototype.next = function () {
+        if (this.mode !== 'scroll') return;
+        this.measure();
+        this.scrollToY(this.restY(this.index + 1), false);
+      };
+
+      WLY.prototype.selectBlock = function (blockId) {
+        var idx = -1;
+        this.slides.forEach(function (s, k) { if (s.getAttribute('data-block-id') === blockId) idx = k; });
+        if (idx < 0) return;
+        if (this.mode !== 'scroll') {
+          var y = this.slides[idx].getBoundingClientRect().top + scrollY() - 120;
+          this.scrollToY(y, true);
+          return;
+        }
+        this.measure();
+        this.scrollToY(this.restY(idx), true);
+        if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+        this.target = this.rp = idx;
+        this.render();
+        this.setActive(idx, true);
+        this.announced = idx;
+      };
+
+      WLY.prototype.destroy = function () {
+        var self = this;
+        this.dead = true;
+        if (this.raf) cancelAnimationFrame(this.raf);
+        if (this.mrq) cancelAnimationFrame(this.mrq);
+        clearTimeout(this.announceTimer);
+        clearInterval(this.lenisPoll);
+        this.leaveTimers.forEach(function (t) { clearTimeout(t); });
+        if (this.ac) this.ac.abort();
+        this.offs.forEach(function (fn) { fn(); });
+        this.offs = [];
+        if (this.ro) this.ro.disconnect();
+        if (this.io) this.io.disconnect();
+        if (this.pio) this.pio.disconnect();
+        self.raf = self.mrq = 0;
+      };
+
+      var api = {
+        instances: {},
+        mount: function (sectionId) {
+          var root = document.querySelector('[data-wly][data-section-id="' + sectionId + '"]');
+          var current = this.instances[sectionId];
+          if (current) {
+            if (current.root === root) return current;
+            this.unmount(sectionId);
+          }
+          if (!root) return null;
+          var inst = new WLY(root);
+          this.instances[sectionId] = inst;
+          return inst;
+        },
+        unmount: function (sectionId) {
+          var current = this.instances[sectionId];
+          if (current) {
+            current.destroy();
+            delete this.instances[sectionId];
+          }
+        }
+      };
+      window.WhyLoveScroll = api;
+
+      document.addEventListener('shopify:section:load', function (e) {
+        if (e.detail && e.detail.sectionId) api.mount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:section:unload', function (e) {
+        if (e.detail && e.detail.sectionId) api.unmount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var inst = e.detail && api.instances[e.detail.sectionId];
+        if (inst && inst.mode) inst.selectBlock(e.detail.blockId);
+      });
+    }
+
+    var sectionId = {{ section.id | json }};
+    var boot = function () { window.WhyLoveScroll.mount(sectionId); };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Why Love Slider",
+  "tag": "section",
+  "class": "index-section wly-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback image",
+      "info": "Shown on every slide that has no image of its own. Square, at least 1920 x 1920px. Set a focal point to control the crop."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use italic for the serif accent words.",
+      "default": "<p>Why your skin will <em>love Clean It Off</em></p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "info": "Size at 1920 x 960; scales down on smaller screens.",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider under heading",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Scroll animation"
+    },
+    {
+      "type": "paragraph",
+      "content": "The section pins to the screen while visitors scroll through the slides. Each image is revealed from the bottom; the text and counter change halfway through."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_counter",
+      "label": "Show counter (01 / 04)",
+      "info": "Clicking the counter scrolls to the next slide.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "unit": "vh",
+      "label": "Scroll distance per slide",
+      "info": "100 = one screen height of scrolling per slide.",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "zoom_start",
+      "min": 100,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Incoming image zoom",
+      "info": "The next image starts at this zoom and settles to 100% when fully revealed.",
+      "default": 125
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text animation",
+      "options": [
+        { "value": "rise", "label": "Rise and fade" },
+        { "value": "fade", "label": "Fade" }
+      ],
+      "default": "rise"
+    },
+    {
+      "type": "select",
+      "id": "sticky_offset_mode",
+      "label": "Pin below",
+      "options": [
+        { "value": "auto", "label": "Sticky header (automatic)" },
+        { "value": "custom", "label": "Custom offset" }
+      ],
+      "default": "auto",
+      "info": "Automatic uses the header height when the header is set to sticky, otherwise 0."
+    },
+    {
+      "type": "range",
+      "id": "sticky_offset",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Custom offset",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile and tablet"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_animation",
+      "label": "Enable scroll animation",
+      "info": "When off, slides show as a simple list (image and text per slide) on screens up to 990px.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "vh",
+      "label": "Image height",
+      "info": "The image gets shorter automatically if the text needs more room.",
+      "default": 45
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Section background",
+      "info": "Visible only when padding is set.",
+      "default": "#FFFCF9"
+    },
+    {
+      "type": "color",
+      "id": "color_panel",
+      "label": "Panel background",
+      "default": "#F5EEE6"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#28201F"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent (pill, stat, counter)",
+      "default": "#78563D"
+    },
+    {
+      "type": "color",
+      "id": "color_pill_text",
+      "label": "Pill text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_counter_bg",
+      "label": "Counter background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "This slide's image. Leave empty to use the section's fallback image."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Pill label",
+          "info": "Shown in capitals.",
+          "default": "Cleanses without stripping the skin"
+        },
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Stat",
+          "default": "17%"
+        },
+        {
+          "type": "text",
+          "id": "stat_caption",
+          "label": "Stat caption",
+          "default": "Cocamidopropyl Betaine — coconut-derived"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Love Slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Cleanses without stripping the skin",
+            "stat": "17%",
+            "stat_caption": "Cocamidopropyl Betaine — coconut-derived",
+            "body": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Offsets the drying effect of cleansing",
+            "stat": "6%",
+            "stat_caption": "Glycerin",
+            "body": "Glycerin helps offset the drying effect of cleansing on skin comfort."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Soothed and comfortable skin",
+            "stat": "5%",
+            "stat_caption": "Aloe Barbadensis",
+            "body": "Aloe Barbadensis helps skin feel soothed and comfortable in the cleansing step."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "A postbiotic in every wash",
+            "stat": "1%",
+            "stat_caption": "Lactobacillus Ferment Lysate",
+            "body": "Lactobacillus Ferment Lysate is a postbiotic active, present in every wash."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

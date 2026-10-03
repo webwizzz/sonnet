@@ -1,0 +1,1029 @@
+{
+ "slug": "11-faq",
+ "title": "Everything you want to know first (FAQ)",
+ "figmaNodeIds": [
+  "191:886"
+ ],
+ "frameOffsetY": 8150.0,
+ "cropY": [
+  8100,
+  9310
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:886",
+   "name": "Group 2087330683",
+   "type": "GROUP",
+   "x": -5.0,
+   "y": 0.0,
+   "w": 1925.0,
+   "h": 1160.0,
+   "children": [
+    {
+     "id": "191:887",
+     "name": "Rectangle 49",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 1160.0,
+     "fills": [
+      "#F6F3EE"
+     ]
+    },
+    {
+     "id": "191:888",
+     "name": "image 107",
+     "type": "RECTANGLE",
+     "x": -5.0,
+     "y": 0.0,
+     "w": 551.0,
+     "h": 641.0,
+     "opacity": 0.1,
+     "rotation": 3.14,
+     "fills": [
+      "IMAGE(ref=c7eb5d0d8a75d44ee80dcb8eaf871fd997736390, scaleMode=STRETCH)"
+     ]
+    },
+    {
+     "id": "191:889",
+     "name": "image 108",
+     "type": "RECTANGLE",
+     "x": 1348.0,
+     "y": 487.0,
+     "w": 572.0,
+     "h": 673.0,
+     "opacity": 0.1,
+     "rotation": 3.14,
+     "fills": [
+      "IMAGE(ref=c7eb5d0d8a75d44ee80dcb8eaf871fd997736390, scaleMode=STRETCH)"
+     ]
+    },
+    {
+     "id": "191:890",
+     "name": "Group 1171278187",
+     "type": "GROUP",
+     "x": 431.0,
+     "y": 100.01,
+     "w": 1059.0,
+     "h": 959.99,
+     "children": [
+      {
+       "id": "191:891",
+       "name": "Everything you want to know first.",
+       "type": "TEXT",
+       "x": 516.0,
+       "y": 100.01,
+       "w": 890.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "Everything you want to know first.",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Medium",
+        "weight": 500,
+        "size": 58.0,
+        "lineHeightPx": 69.58,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ],
+        "styledRuns": [
+         {
+          "chars": "Everything you want to",
+          "fontSize": 58.0
+         },
+         {
+          "chars": " know first.",
+          "fontFamily": "Test Tiempos Fine",
+          "fontWeight": 400,
+          "italic": true,
+          "fontSize": 58.0,
+          "lineHeightPx": 70.2959976196289,
+          "letterSpacing": -1.16,
+          "color": [
+           "#28201F"
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "id": "191:892",
+       "name": "Group 1000008063",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 210.0,
+       "w": 1059.0,
+       "h": 170.0,
+       "children": [
+        {
+         "id": "191:893",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 210.0,
+         "w": 1059.0,
+         "h": 170.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 36.0
+        },
+        {
+         "id": "191:894",
+         "name": "01",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 242.01,
+         "w": 22.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "01",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:895",
+         "name": "Group 1000008071",
+         "type": "GROUP",
+         "x": 535.0,
+         "y": 242.01,
+         "w": 786.0,
+         "h": 99.99,
+         "children": [
+          {
+           "id": "191:896",
+           "name": "Can I use Clean It Off twice a day?",
+           "type": "TEXT",
+           "x": 535.0,
+           "y": 242.01,
+           "w": 412.0,
+           "h": 30.0,
+           "textStyle": {
+            "text": "Can I use Clean It Off twice a day?",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Regular",
+            "weight": 400,
+            "size": 24.0,
+            "lineHeightPx": 30.24,
+            "lineHeight": "126.0%",
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#010101"
+            ]
+           }
+          },
+          {
+           "id": "191:897",
+           "name": "Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.",
+           "type": "TEXT",
+           "x": 535.0,
+           "y": 288.0,
+           "w": 786.0,
+           "h": 54.0,
+           "textStyle": {
+            "text": "Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 18.0,
+            "lineHeightPx": 27.0,
+            "lineHeight": "150.0%",
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#010101 @ 75%"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:898",
+         "name": "Group 1000007989",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 239.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:899",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 239.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:900",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1412.03,
+           "y": 250.03,
+           "w": 33.94,
+           "h": 33.94,
+           "rotation": -0.79,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:901",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 267.0,
+             "w": 14.0,
+             "h": 0.0,
+             "rotation": -0.79,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:902",
+       "name": "Group 1000008064",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 396.0,
+       "w": 1059.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "191:903",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 396.0,
+         "w": 1059.0,
+         "h": 120.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 500.0
+        },
+        {
+         "id": "191:904",
+         "name": "02",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 444.0,
+         "w": 24.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "02",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:905",
+         "name": "Does it remove sunscreen and makeup?",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 441.0,
+         "w": 470.0,
+         "h": 30.0,
+         "textStyle": {
+          "text": "Does it remove sunscreen and makeup?",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 24.0,
+          "lineHeightPx": 30.24,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#010101"
+          ]
+         }
+        },
+        {
+         "id": "191:906",
+         "name": "Group 1000007989",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 428.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:907",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 428.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:908",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1417.0,
+           "y": 444.0,
+           "w": 24.0,
+           "h": 24.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:909",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 456.0,
+             "w": 14.0,
+             "h": 0.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:910",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1429.0,
+             "y": 449.0,
+             "w": 0.0,
+             "h": 14.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:911",
+       "name": "Group 1000008065",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 532.0,
+       "w": 1059.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "191:912",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 532.0,
+         "w": 1059.0,
+         "h": 120.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 500.0
+        },
+        {
+         "id": "191:913",
+         "name": "03",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 580.0,
+         "w": 24.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "03",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:914",
+         "name": "Is it suitable for sensitive skin?",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 577.0,
+         "w": 358.0,
+         "h": 30.0,
+         "textStyle": {
+          "text": "Is it suitable for sensitive skin?",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 24.0,
+          "lineHeightPx": 30.24,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#010101"
+          ]
+         }
+        },
+        {
+         "id": "191:915",
+         "name": "Group 1000007990",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 564.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:916",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 564.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:917",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1417.0,
+           "y": 580.0,
+           "w": 24.0,
+           "h": 24.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:918",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 592.0,
+             "w": 14.0,
+             "h": 0.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:919",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1429.0,
+             "y": 585.0,
+             "w": 0.0,
+             "h": 14.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:920",
+       "name": "Group 1000008066",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 668.0,
+       "w": 1059.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "191:921",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 668.0,
+         "w": 1059.0,
+         "h": 120.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 500.0
+        },
+        {
+         "id": "191:922",
+         "name": "04",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 716.0,
+         "w": 26.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "04",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:923",
+         "name": "Does it contain sulphates?",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 713.0,
+         "w": 308.0,
+         "h": 30.0,
+         "textStyle": {
+          "text": "Does it contain sulphates?",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 24.0,
+          "lineHeightPx": 30.24,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#010101"
+          ]
+         }
+        },
+        {
+         "id": "191:924",
+         "name": "Group 1000007990",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 700.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:925",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 700.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:926",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1417.0,
+           "y": 716.0,
+           "w": 24.0,
+           "h": 24.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:927",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 728.0,
+             "w": 14.0,
+             "h": 0.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:928",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1429.0,
+             "y": 721.0,
+             "w": 0.0,
+             "h": 14.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:929",
+       "name": "Group 1000008067",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 804.0,
+       "w": 1059.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "191:930",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 804.0,
+         "w": 1059.0,
+         "h": 120.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 500.0
+        },
+        {
+         "id": "191:931",
+         "name": "05",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 852.0,
+         "w": 24.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "05",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:932",
+         "name": "What is Lactobacillus Ferment Lysate?",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 849.0,
+         "w": 451.0,
+         "h": 30.0,
+         "textStyle": {
+          "text": "What is Lactobacillus Ferment Lysate?",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 24.0,
+          "lineHeightPx": 30.24,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#010101"
+          ]
+         }
+        },
+        {
+         "id": "191:933",
+         "name": "Group 1000007990",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 836.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:934",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 836.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:935",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1417.0,
+           "y": 852.0,
+           "w": 24.0,
+           "h": 24.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:936",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 864.0,
+             "w": 14.0,
+             "h": 0.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:937",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1429.0,
+             "y": 857.0,
+             "w": 0.0,
+             "h": 14.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:938",
+       "name": "Group 1000008068",
+       "type": "GROUP",
+       "x": 431.0,
+       "y": 940.0,
+       "w": 1059.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "191:939",
+         "name": "Rectangle 1216",
+         "type": "RECTANGLE",
+         "x": 431.0,
+         "y": 940.0,
+         "w": 1059.0,
+         "h": 120.0,
+         "fills": [
+          "#FFFFFF @ 80%"
+         ],
+         "radius": 500.0
+        },
+        {
+         "id": "191:940",
+         "name": "06",
+         "type": "TEXT",
+         "x": 481.0,
+         "y": 988.0,
+         "w": 25.0,
+         "h": 25.0,
+         "textStyle": {
+          "text": "06",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-SemiboldItalic",
+          "weight": 600,
+          "italic": true,
+          "size": 20.0,
+          "lineHeightPx": 25.2,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#78563D"
+          ]
+         }
+        },
+        {
+         "id": "191:941",
+         "name": "Do I need the full ritual?",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 985.0,
+         "w": 275.0,
+         "h": 30.0,
+         "textStyle": {
+          "text": "Do I need the full ritual?",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 24.0,
+          "lineHeightPx": 30.24,
+          "lineHeight": "126.0%",
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#010101"
+          ]
+         }
+        },
+        {
+         "id": "191:942",
+         "name": "Group 1000007990",
+         "type": "GROUP",
+         "x": 1401.0,
+         "y": 972.0,
+         "w": 56.0,
+         "h": 56.0,
+         "children": [
+          {
+           "id": "191:943",
+           "name": "Rectangle 1204",
+           "type": "RECTANGLE",
+           "x": 1401.0,
+           "y": 972.0,
+           "w": 56.0,
+           "h": 56.0,
+           "fills": [
+            "#78563D"
+           ],
+           "stroke": {
+            "paint": [
+             "#010101 @ 10%"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 128.0
+          },
+          {
+           "id": "191:944",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 1417.0,
+           "y": 988.0,
+           "w": 24.0,
+           "h": 24.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:945",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1422.0,
+             "y": 1000.0,
+             "w": 14.0,
+             "h": 0.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:946",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1429.0,
+             "y": 993.0,
+             "w": 0.0,
+             "h": 14.0,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 2.0,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

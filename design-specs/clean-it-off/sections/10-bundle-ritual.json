@@ -1,0 +1,664 @@
+{
+ "slug": "10-bundle-ritual",
+ "title": "Five products, one complete ritual (bundle builder)",
+ "figmaNodeIds": [
+  "191:589"
+ ],
+ "frameOffsetY": 6191.0,
+ "cropY": [
+  6141,
+  6941
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:589",
+   "name": "Group 2087330682",
+   "type": "GROUP",
+   "x": 100.0,
+   "y": 0.0,
+   "w": 1720.0,
+   "h": 700.0,
+   "children": [
+    {
+     "id": "191:590",
+     "name": "Rectangle 1430107051",
+     "type": "RECTANGLE",
+     "x": 100.0,
+     "y": 0.0,
+     "w": 1720.0,
+     "h": 700.0,
+     "fills": [
+      "#FFFFFF",
+      "IMAGE(ref=d0a1212f0524ac2943088671238cf74e1ab494ed, scaleMode=STRETCH)"
+     ],
+     "radius": 16.0
+    },
+    {
+     "id": "191:591",
+     "name": "Five products. one complete ritual.",
+     "type": "TEXT",
+     "x": 190.0,
+     "y": 70.0,
+     "w": 472.0,
+     "h": 140.0,
+     "textStyle": {
+      "text": "Five products. \none complete ritual.",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 58.0,
+      "lineHeightPx": 69.58,
+      "lineHeight": "INTRINSIC_%",
+      "letterSpacing": -1.16,
+      "align": "LEFT",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#FFFFFF"
+      ],
+      "styledRuns": [
+       {
+        "chars": "one",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 70.2959976196289,
+        "letterSpacing": -1.16,
+        "color": [
+         "#FFFFFF"
+        ]
+       },
+       {
+        "chars": "complete ritual.",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 70.2959976196289,
+        "letterSpacing": -1.16,
+        "color": [
+         "#FFFFFF"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "191:592",
+     "name": "Group 2087329584",
+     "type": "GROUP",
+     "x": 190.0,
+     "y": 260.0,
+     "w": 337.0,
+     "h": 54.0,
+     "children": [
+      {
+       "id": "191:593",
+       "name": "Rectangle 1139962762",
+       "type": "RECTANGLE",
+       "x": 190.0,
+       "y": 260.0,
+       "w": 337.0,
+       "h": 54.0,
+       "fills": [
+        "#FFFFFF"
+       ],
+       "radius": 120.0
+      },
+      {
+       "id": "191:594",
+       "name": "Group 1321324377",
+       "type": "GROUP",
+       "x": 340.0,
+       "y": 277.0,
+       "w": 163.0,
+       "h": 20.0,
+       "radius": 40.0,
+       "children": [
+        {
+         "id": "191:595",
+         "name": "Rs. 1,199",
+         "type": "TEXT",
+         "x": 340.0,
+         "y": 278.0,
+         "w": 63.0,
+         "h": 19.0,
+         "textStyle": {
+          "text": "Rs. 1,199",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 16.0,
+          "lineHeightPx": 19.2,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "191:596",
+         "name": "Group 1321324376",
+         "type": "GROUP",
+         "x": 408.0,
+         "y": 277.0,
+         "w": 95.0,
+         "h": 20.0,
+         "radius": 40.0,
+         "children": [
+          {
+           "id": "191:597",
+           "name": "Rs. 1,199",
+           "type": "TEXT",
+           "x": 408.0,
+           "y": 280.0,
+           "w": 47.0,
+           "h": 14.0,
+           "textStyle": {
+            "text": "Rs. 1,199",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-ExtraLight",
+            "weight": 200,
+            "size": 12.0,
+            "lineHeightPx": 14.4,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.24,
+            "align": "LEFT",
+            "valign": "TOP",
+            "decoration": "STRIKETHROUGH",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F @ 50%"
+            ]
+           }
+          },
+          {
+           "id": "191:598",
+           "name": "Group 1321324240",
+           "type": "GROUP",
+           "x": 461.0,
+           "y": 277.0,
+           "w": 42.0,
+           "h": 20.0,
+           "radius": 40.0,
+           "children": [
+            {
+             "id": "191:599",
+             "name": "Rectangle 1139962732",
+             "type": "RECTANGLE",
+             "x": 461.0,
+             "y": 277.0,
+             "w": 42.0,
+             "h": 20.0,
+             "fills": [
+              "#008000 @ 10%"
+             ],
+             "radius": 40.0
+            },
+            {
+             "id": "191:600",
+             "name": "-10%",
+             "type": "TEXT",
+             "x": 469.0,
+             "y": 280.0,
+             "w": 27.0,
+             "h": 14.0,
+             "textStyle": {
+              "text": "-10%",
+              "font": "Blauer Nue",
+              "postscript": "BlauerNue-Medium",
+              "weight": 500,
+              "size": 12.0,
+              "lineHeightPx": 14.4,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.24,
+              "align": "LEFT",
+              "valign": "TOP",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#008000"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:601",
+       "name": "ADD BUNDLE",
+       "type": "TEXT",
+       "x": 214.0,
+       "y": 278.0,
+       "w": 103.0,
+       "h": 19.0,
+       "textStyle": {
+        "text": "ADD BUNDLE",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Medium",
+        "weight": 500,
+        "size": 16.0,
+        "lineHeightPx": 19.2,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.32,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#2A1F19"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:602",
+     "name": "Group 1321321683",
+     "type": "GROUP",
+     "x": 1387.0,
+     "y": 130.0,
+     "w": 313.0,
+     "h": 441.0,
+     "children": [
+      {
+       "id": "191:603",
+       "name": "Rectangle 13",
+       "type": "RECTANGLE",
+       "x": 1387.0,
+       "y": 130.0,
+       "w": 313.0,
+       "h": 441.0,
+       "fills": [
+        "#F6F3EE"
+       ],
+       "radius": 10.0
+      },
+      {
+       "id": "191:604",
+       "name": "Brightening + hydration + scar healing — all in two drops",
+       "type": "TEXT",
+       "x": 1421.0,
+       "y": 498.0,
+       "w": 245.0,
+       "h": 42.0,
+       "textStyle": {
+        "text": "Brightening + hydration + scar healing — all in two drops",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-ExtraLight",
+        "weight": 200,
+        "size": 16.0,
+        "lineHeightPx": 20.8,
+        "lineHeight": "130.0%",
+        "letterSpacing": -0.32,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 60%"
+        ]
+       }
+      },
+      {
+       "id": "191:605",
+       "name": "CLEAN IT OFF Face Wash 100ml",
+       "type": "TEXT",
+       "x": 1447.0,
+       "y": 442.0,
+       "w": 194.0,
+       "h": 48.0,
+       "textStyle": {
+        "text": "CLEAN IT OFF\nFace Wash 100ml",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      },
+      {
+       "id": "191:606",
+       "name": "Sonet wellness serum 1",
+       "type": "RECTANGLE",
+       "x": 1495.0,
+       "y": 164.0,
+       "w": 97.0,
+       "h": 257.0,
+       "fills": [
+        "IMAGE(ref=d5bb9d060f25d0b08350e190d81abb2288d414b8, scaleMode=FILL)"
+       ],
+       "effects": [
+        "DROP_SHADOW x18.06 y13.24 blur22.87 spread0 #000000 @ 17%",
+        "DROP_SHADOW x39.73 y31.3 blur30.1 spread0 #000000 @ 10%",
+        "DROP_SHADOW x71.03 y55.38 blur36.12 spread0 #000000 @ 3%"
+       ]
+      },
+      {
+       "id": "191:607",
+       "name": "Frame 4",
+       "type": "FRAME",
+       "x": 1397.0,
+       "y": 140.0,
+       "w": 98.0,
+       "h": 24.0,
+       "stroke": {
+        "paint": [
+         "#28201F"
+        ],
+        "weight": 1.0,
+        "align": "INSIDE"
+       },
+       "radius": 30.0,
+       "autolayout": {
+        "layoutMode": "HORIZONTAL",
+        "itemSpacing": 10.0,
+        "paddingLeft": 10.0,
+        "paddingRight": 10.0,
+        "paddingTop": 5.0,
+        "paddingBottom": 5.0,
+        "primaryAxisAlignItems": "CENTER",
+        "counterAxisAlignItems": "CENTER",
+        "layoutWrap": "NO_WRAP"
+       },
+       "children": [
+        {
+         "id": "191:608",
+         "name": "100% VEGAN",
+         "type": "TEXT",
+         "x": 1407.0,
+         "y": 145.0,
+         "w": 78.0,
+         "h": 14.0,
+         "textStyle": {
+          "text": "100% VEGAN",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Regular",
+          "weight": 400,
+          "size": 12.0,
+          "lineHeightPx": 14.4,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.24,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F @ 80%"
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "191:609",
+     "name": "Group 2087330677",
+     "type": "GROUP",
+     "x": 1120.0,
+     "y": 81.0,
+     "w": 28.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "191:610",
+       "name": "Ellipse 1339",
+       "type": "ELLIPSE",
+       "x": 1120.0,
+       "y": 81.0,
+       "w": 28.0,
+       "h": 28.0,
+       "fills": [
+        "#78563D"
+       ],
+       "stroke": {
+        "paint": [
+         "#000000"
+        ],
+        "weight": 1.0,
+        "align": "INSIDE"
+       }
+      },
+      {
+       "id": "191:611",
+       "name": "1",
+       "type": "TEXT",
+       "x": 1130.0,
+       "y": 83.0,
+       "w": 8.0,
+       "h": 24.0,
+       "textStyle": {
+        "text": "1",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#FFFFFF"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:612",
+     "name": "Group 2087330678",
+     "type": "GROUP",
+     "x": 886.0,
+     "y": 195.0,
+     "w": 28.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "191:613",
+       "name": "Ellipse 1339",
+       "type": "ELLIPSE",
+       "x": 886.0,
+       "y": 195.0,
+       "w": 28.0,
+       "h": 28.0,
+       "fills": [
+        "#FFFFFF"
+       ]
+      },
+      {
+       "id": "191:614",
+       "name": "2",
+       "type": "TEXT",
+       "x": 894.0,
+       "y": 197.0,
+       "w": 12.0,
+       "h": 24.0,
+       "textStyle": {
+        "text": "2",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:615",
+     "name": "Group 2087330679",
+     "type": "GROUP",
+     "x": 628.0,
+     "y": 384.0,
+     "w": 28.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "191:616",
+       "name": "Ellipse 1339",
+       "type": "ELLIPSE",
+       "x": 628.0,
+       "y": 384.0,
+       "w": 28.0,
+       "h": 28.0,
+       "fills": [
+        "#FFFFFF"
+       ]
+      },
+      {
+       "id": "191:617",
+       "name": "3",
+       "type": "TEXT",
+       "x": 636.0,
+       "y": 386.0,
+       "w": 12.0,
+       "h": 24.0,
+       "textStyle": {
+        "text": "3",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:618",
+     "name": "Group 2087330680",
+     "type": "GROUP",
+     "x": 919.0,
+     "y": 436.0,
+     "w": 28.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "191:619",
+       "name": "Ellipse 1339",
+       "type": "ELLIPSE",
+       "x": 919.0,
+       "y": 436.0,
+       "w": 28.0,
+       "h": 28.0,
+       "fills": [
+        "#FFFFFF"
+       ]
+      },
+      {
+       "id": "191:620",
+       "name": "4",
+       "type": "TEXT",
+       "x": 926.0,
+       "y": 438.0,
+       "w": 14.0,
+       "h": 24.0,
+       "textStyle": {
+        "text": "4",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:621",
+     "name": "Group 2087330681",
+     "type": "GROUP",
+     "x": 1160.0,
+     "y": 379.0,
+     "w": 28.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "191:622",
+       "name": "Ellipse 1339",
+       "type": "ELLIPSE",
+       "x": 1160.0,
+       "y": 379.0,
+       "w": 28.0,
+       "h": 28.0,
+       "fills": [
+        "#FFFFFF"
+       ]
+      },
+      {
+       "id": "191:623",
+       "name": "5",
+       "type": "TEXT",
+       "x": 1168.0,
+       "y": 381.0,
+       "w": 12.0,
+       "h": 24.0,
+       "textStyle": {
+        "text": "5",
+        "font": "Montserrat",
+        "postscript": "Montserrat-Bold",
+        "weight": 700,
+        "size": 20.0,
+        "lineHeightPx": 24.38,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.4,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,974 @@
+{
+ "slug": "08-comparison",
+ "title": "What makes it different from others (comparison table)",
+ "figmaNodeIds": [
+  "191:484"
+ ],
+ "frameOffsetY": 4604.0,
+ "cropY": [
+  4604,
+  5244
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:484",
+   "name": "Group 1321324351",
+   "type": "GROUP",
+   "x": 100.0,
+   "y": 0.0,
+   "w": 1720.0,
+   "h": 540.0,
+   "children": [
+    {
+     "id": "191:485",
+     "name": "Group 1321324367",
+     "type": "GROUP",
+     "x": 100.0,
+     "y": 0.0,
+     "w": 1720.0,
+     "h": 540.0,
+     "children": [
+      {
+       "id": "191:486",
+       "name": "Rectangle 1139962747",
+       "type": "RECTANGLE",
+       "x": 100.0,
+       "y": 0.0,
+       "w": 1720.0,
+       "h": 540.0,
+       "fills": [
+        "#F5EEE6"
+       ],
+       "radius": 24.0
+      },
+      {
+       "id": "191:487",
+       "name": "Group 1321324366",
+       "type": "GROUP",
+       "x": 200.0,
+       "y": 75.0,
+       "w": 1520.0,
+       "h": 388.0,
+       "children": [
+        {
+         "id": "191:488",
+         "name": "What makes it different from others",
+         "type": "TEXT",
+         "x": 200.0,
+         "y": 75.0,
+         "w": 333.0,
+         "h": 96.0,
+         "textStyle": {
+          "text": "What makes it\ndifferent from others",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Medium",
+          "weight": 500,
+          "size": 40.0,
+          "lineHeightPx": 48.0,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.8,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ],
+          "styledRuns": [
+           {
+            "chars": "different from others",
+            "fontFamily": "Test Tiempos Fine",
+            "fontWeight": 400,
+            "italic": true,
+            "fontSize": 40.0,
+            "lineHeightPx": 48.47999954223633,
+            "letterSpacing": -0.8,
+            "color": [
+             "#28201F"
+            ]
+           }
+          ]
+         }
+        },
+        {
+         "id": "191:489",
+         "name": "*Comparison based on leading industry competitors",
+         "type": "TEXT",
+         "x": 200.0,
+         "y": 445.0,
+         "w": 346.0,
+         "h": 18.0,
+         "textStyle": {
+          "text": "*Comparison based on leading industry competitors",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Light",
+          "weight": 300,
+          "size": 14.0,
+          "lineHeightPx": 18.2,
+          "lineHeight": "130.0%",
+          "letterSpacing": -0.28,
+          "align": "CENTER",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F @ 75%"
+          ]
+         }
+        },
+        {
+         "id": "191:490",
+         "name": "Rectangle 1139962749",
+         "type": "RECTANGLE",
+         "x": 200.0,
+         "y": 191.0,
+         "w": 1520.0,
+         "h": 119.0,
+         "fills": [
+          "#F5EEE6"
+         ],
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "INSIDE",
+          "individual": {
+           "top": 1.0,
+           "right": 0.0,
+           "bottom": 1.0,
+           "left": 0.0
+          }
+         }
+        },
+        {
+         "id": "191:491",
+         "name": "Rectangle 1139962750",
+         "type": "RECTANGLE",
+         "x": 200.0,
+         "y": 310.0,
+         "w": 1520.0,
+         "h": 119.0,
+         "fills": [
+          "#F5EEE6"
+         ],
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "INSIDE",
+          "individual": {
+           "top": 0.0,
+           "right": 0.0,
+           "bottom": 1.0,
+           "left": 0.0
+          }
+         }
+        },
+        {
+         "id": "191:492",
+         "name": "Group 1321324362",
+         "type": "GROUP",
+         "x": 219.0,
+         "y": 215.0,
+         "w": 172.0,
+         "h": 71.0,
+         "children": [
+          {
+           "id": "191:493",
+           "name": "Group 2087330643",
+           "type": "GROUP",
+           "x": 219.0,
+           "y": 215.0,
+           "w": 26.62,
+           "h": 71.0,
+           "children": [
+            {
+             "id": "191:494",
+             "name": "Ellipse 1334",
+             "type": "ELLIPSE",
+             "x": 221.96,
+             "y": 277.86,
+             "w": 22.19,
+             "h": 7.4,
+             "fills": [
+              "GRADIENT_RADIAL(#000000 0%, #FFFFFF 100%)"
+             ],
+             "effects": [
+              "LAYER_BLUR 4.0"
+             ]
+            },
+            {
+             "id": "191:495",
+             "name": "Sonet wellness serum 3",
+             "type": "RECTANGLE",
+             "x": 219.0,
+             "y": 215.0,
+             "w": 26.62,
+             "h": 71.0,
+             "fills": [
+              "IMAGE(ref=d5bb9d060f25d0b08350e190d81abb2288d414b8, scaleMode=FILL)"
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:496",
+           "name": "image 2",
+           "type": "RECTANGLE",
+           "x": 281.0,
+           "y": 221.0,
+           "w": 110.0,
+           "h": 59.0,
+           "fills": [
+            "IMAGE(ref=b407fcaa358def7d6f6a8fe9e3c6a351c4b9c0f4, scaleMode=STRETCH)"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:497",
+         "name": "Group 1321324357",
+         "type": "GROUP",
+         "x": 732.0,
+         "y": 109.0,
+         "w": 156.0,
+         "h": 275.0,
+         "children": [
+          {
+           "id": "191:498",
+           "name": "Live postbiotic actives",
+           "type": "TEXT",
+           "x": 732.0,
+           "y": 109.0,
+           "w": 156.0,
+           "h": 42.0,
+           "textStyle": {
+            "text": "Live postbiotic actives",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:499",
+           "name": "Group 1321324340",
+           "type": "GROUP",
+           "x": 796.0,
+           "y": 237.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:500",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 796.0,
+             "y": 237.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:501",
+             "name": "Check",
+             "type": "INSTANCE",
+             "x": 804.0,
+             "y": 245.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:501;7758:11214",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 806.0,
+               "y": 248.0,
+               "w": 8.0,
+               "h": 5.5,
+               "stroke": {
+                "paint": [
+                 "#FFFFFF"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:502",
+           "name": "Group 1321324340",
+           "type": "GROUP",
+           "x": 796.0,
+           "y": 356.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:503",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 796.0,
+             "y": 356.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:504",
+             "name": "X",
+             "type": "INSTANCE",
+             "x": 804.0,
+             "y": 364.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:504;7758:12632",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 807.0,
+               "y": 367.0,
+               "w": 6.0,
+               "h": 6.0,
+               "stroke": {
+                "paint": [
+                 "#28201F"
+                ],
+                "weight": 1.0,
+                "align": "INSIDE"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:505",
+         "name": "Group 1321324358",
+         "type": "GROUP",
+         "x": 950.0,
+         "y": 109.0,
+         "w": 140.0,
+         "h": 275.0,
+         "children": [
+          {
+           "id": "191:506",
+           "name": "Coconut-Derived Co-Surfactant",
+           "type": "TEXT",
+           "x": 950.0,
+           "y": 109.0,
+           "w": 140.0,
+           "h": 42.0,
+           "textStyle": {
+            "text": "Coconut-Derived Co-Surfactant",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:507",
+           "name": "Group 1321324341",
+           "type": "GROUP",
+           "x": 1006.0,
+           "y": 237.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:508",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1006.0,
+             "y": 237.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:509",
+             "name": "Check",
+             "type": "INSTANCE",
+             "x": 1014.0,
+             "y": 245.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:509;7758:11214",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1016.0,
+               "y": 248.0,
+               "w": 8.0,
+               "h": 5.5,
+               "stroke": {
+                "paint": [
+                 "#FFFFFF"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:510",
+           "name": "Group 1321324348",
+           "type": "GROUP",
+           "x": 1006.0,
+           "y": 356.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:511",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1006.0,
+             "y": 356.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:512",
+             "name": "X",
+             "type": "INSTANCE",
+             "x": 1014.0,
+             "y": 364.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:512;7758:12632",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1017.0,
+               "y": 367.0,
+               "w": 6.0,
+               "h": 6.0,
+               "stroke": {
+                "paint": [
+                 "#28201F"
+                ],
+                "weight": 1.0,
+                "align": "INSIDE"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:513",
+         "name": "Group 1321324359",
+         "type": "GROUP",
+         "x": 1160.0,
+         "y": 109.0,
+         "w": 140.0,
+         "h": 275.0,
+         "children": [
+          {
+           "id": "191:514",
+           "name": "No Parabens or Phthalates",
+           "type": "TEXT",
+           "x": 1160.0,
+           "y": 109.0,
+           "w": 140.0,
+           "h": 42.0,
+           "textStyle": {
+            "text": "No Parabens or Phthalates",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:515",
+           "name": "Group 1321324342",
+           "type": "GROUP",
+           "x": 1216.0,
+           "y": 237.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:516",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1216.0,
+             "y": 237.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:517",
+             "name": "Check",
+             "type": "INSTANCE",
+             "x": 1224.0,
+             "y": 245.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:517;7758:11214",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1226.0,
+               "y": 248.0,
+               "w": 8.0,
+               "h": 5.5,
+               "stroke": {
+                "paint": [
+                 "#FFFFFF"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:518",
+           "name": "Group 1321324349",
+           "type": "GROUP",
+           "x": 1216.0,
+           "y": 356.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:519",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1216.0,
+             "y": 356.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:520",
+             "name": "X",
+             "type": "INSTANCE",
+             "x": 1224.0,
+             "y": 364.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:520;7758:12632",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1227.0,
+               "y": 367.0,
+               "w": 6.0,
+               "h": 6.0,
+               "stroke": {
+                "paint": [
+                 "#28201F"
+                ],
+                "weight": 1.0,
+                "align": "INSIDE"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:521",
+         "name": "Group 1321324360",
+         "type": "GROUP",
+         "x": 1370.0,
+         "y": 109.0,
+         "w": 140.0,
+         "h": 275.0,
+         "children": [
+          {
+           "id": "191:522",
+           "name": "Dermatologically Tested",
+           "type": "TEXT",
+           "x": 1370.0,
+           "y": 109.0,
+           "w": 140.0,
+           "h": 42.0,
+           "textStyle": {
+            "text": "Dermatologically Tested",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:523",
+           "name": "Group 1321324343",
+           "type": "GROUP",
+           "x": 1426.0,
+           "y": 237.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:524",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1426.0,
+             "y": 237.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:525",
+             "name": "Check",
+             "type": "INSTANCE",
+             "x": 1434.0,
+             "y": 245.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:525;7758:11214",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1436.0,
+               "y": 248.0,
+               "w": 8.0,
+               "h": 5.5,
+               "stroke": {
+                "paint": [
+                 "#FFFFFF"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:526",
+           "name": "Group 1321324346",
+           "type": "GROUP",
+           "x": 1426.0,
+           "y": 356.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:527",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1426.0,
+             "y": 356.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:528",
+             "name": "X",
+             "type": "INSTANCE",
+             "x": 1434.0,
+             "y": 364.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:528;7758:12632",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1437.0,
+               "y": 367.0,
+               "w": 6.0,
+               "h": 6.0,
+               "stroke": {
+                "paint": [
+                 "#28201F"
+                ],
+                "weight": 1.0,
+                "align": "INSIDE"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:529",
+         "name": "Group 1321324361",
+         "type": "GROUP",
+         "x": 1580.0,
+         "y": 109.0,
+         "w": 140.0,
+         "h": 275.0,
+         "children": [
+          {
+           "id": "191:530",
+           "name": "Microbiome-Friendly Formula",
+           "type": "TEXT",
+           "x": 1580.0,
+           "y": 109.0,
+           "w": 140.0,
+           "h": 42.0,
+           "textStyle": {
+            "text": "Microbiome-Friendly Formula",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:531",
+           "name": "Group 1321324344",
+           "type": "GROUP",
+           "x": 1636.0,
+           "y": 237.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:532",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1636.0,
+             "y": 237.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#78563D"
+             ]
+            },
+            {
+             "id": "191:533",
+             "name": "Check",
+             "type": "INSTANCE",
+             "x": 1644.0,
+             "y": 245.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:533;7758:11214",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1646.0,
+               "y": 248.0,
+               "w": 8.0,
+               "h": 5.5,
+               "stroke": {
+                "paint": [
+                 "#FFFFFF"
+                ],
+                "weight": 1.5,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:534",
+           "name": "Group 1321324347",
+           "type": "GROUP",
+           "x": 1636.0,
+           "y": 356.0,
+           "w": 28.0,
+           "h": 28.0,
+           "children": [
+            {
+             "id": "191:535",
+             "name": "Ellipse 113",
+             "type": "ELLIPSE",
+             "x": 1636.0,
+             "y": 356.0,
+             "w": 28.0,
+             "h": 28.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:536",
+             "name": "X",
+             "type": "INSTANCE",
+             "x": 1644.0,
+             "y": 364.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "I191:536;7758:12632",
+               "name": "Icon",
+               "type": "VECTOR",
+               "x": 1647.0,
+               "y": 367.0,
+               "w": 6.0,
+               "h": 6.0,
+               "stroke": {
+                "paint": [
+                 "#28201F"
+                ],
+                "weight": 1.0,
+                "align": "INSIDE"
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:537",
+         "name": "Group 1321324363",
+         "type": "GROUP",
+         "x": 200.0,
+         "y": 333.0,
+         "w": 199.0,
+         "h": 65.0,
+         "children": [
+          {
+           "id": "191:538",
+           "name": "image 47",
+           "type": "RECTANGLE",
+           "x": 200.0,
+           "y": 333.0,
+           "w": 65.0,
+           "h": 65.0,
+           "fills": [
+            "IMAGE(ref=3ade0aeb677668052c97db430d73d47627536ac1, scaleMode=STRETCH)"
+           ]
+          },
+          {
+           "id": "191:539",
+           "name": "OTHER BRANDS",
+           "type": "TEXT",
+           "x": 272.0,
+           "y": 358.0,
+           "w": 127.0,
+           "h": 21.0,
+           "textStyle": {
+            "text": "OTHER BRANDS",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Medium",
+            "weight": 500,
+            "size": 16.0,
+            "lineHeightPx": 20.8,
+            "lineHeight": "130.0%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

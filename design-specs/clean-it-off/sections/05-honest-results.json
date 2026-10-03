@@ -1,0 +1,873 @@
+{
+ "slug": "05-honest-results",
+ "title": "Honest skin, honest results (testimonial + before/after)",
+ "figmaNodeIds": [
+  "191:393"
+ ],
+ "frameOffsetY": 1926.0,
+ "cropY": [
+  1826,
+  2726
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:393",
+   "name": "Group 2087330661",
+   "type": "GROUP",
+   "x": 100.0,
+   "y": 0.0,
+   "w": 1721.0,
+   "h": 700.0,
+   "children": [
+    {
+     "id": "191:394",
+     "name": "Group 2087330656",
+     "type": "GROUP",
+     "x": 970.0,
+     "y": 0.0,
+     "w": 851.0,
+     "h": 700.0,
+     "children": [
+      {
+       "id": "191:395",
+       "name": "Group 2087330655",
+       "type": "GROUP",
+       "x": 970.0,
+       "y": 0.0,
+       "w": 851.0,
+       "h": 700.0,
+       "children": [
+        {
+         "id": "191:396",
+         "name": "Rectangle 1430107052",
+         "type": "RECTANGLE",
+         "x": 970.0,
+         "y": 0.0,
+         "w": 851.0,
+         "h": 700.0,
+         "fills": [
+          "IMAGE(ref=19939496a2dd01f38143dd994f63adaf041d03ee, scaleMode=STRETCH)"
+         ],
+         "radius": 16.0
+        },
+        {
+         "id": "191:397",
+         "name": "Rectangle 1430107053",
+         "type": "RECTANGLE",
+         "x": 1396.0,
+         "y": 0.0,
+         "w": 425.0,
+         "h": 700.0,
+         "fills": [
+          "IMAGE(ref=19939496a2dd01f38143dd994f63adaf041d03ee, scaleMode=STRETCH)"
+         ],
+         "radii": [
+          0.0,
+          16.0,
+          16.0,
+          0.0
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:398",
+       "name": "Group 2087329715",
+       "type": "GROUP",
+       "x": 1377.0,
+       "y": 0.0,
+       "w": 38.0,
+       "h": 700.0,
+       "children": [
+        {
+         "id": "191:399",
+         "name": "Line 11",
+         "type": "LINE",
+         "x": 1396.0,
+         "y": 0.0,
+         "w": 0.0,
+         "h": 700.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#F5EEE6"
+          ],
+          "weight": 1.5,
+          "align": "CENTER"
+         }
+        },
+        {
+         "id": "191:400",
+         "name": "Group 1321321720",
+         "type": "GROUP",
+         "x": 1377.0,
+         "y": 318.0,
+         "w": 38.0,
+         "h": 65.0,
+         "children": [
+          {
+           "id": "191:401",
+           "name": "Rectangle 29",
+           "type": "RECTANGLE",
+           "x": 1377.0,
+           "y": 318.0,
+           "w": 38.0,
+           "h": 65.0,
+           "fills": [
+            "#F5EEE6"
+           ],
+           "radius": 50.0
+          },
+          {
+           "id": "191:402",
+           "name": "Group 1321321719",
+           "type": "GROUP",
+           "x": 1389.0,
+           "y": 345.79,
+           "w": 13.69,
+           "h": 7.65,
+           "children": [
+            {
+             "id": "191:403",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1395.85,
+             "y": 345.79,
+             "w": 6.85,
+             "h": 7.65,
+             "rotation": 0.84,
+             "stroke": {
+              "paint": [
+               "#28201F"
+              ],
+              "weight": 1.25,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:404",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 1389.0,
+             "y": 345.79,
+             "w": 6.85,
+             "h": 7.65,
+             "rotation": 2.3,
+             "stroke": {
+              "paint": [
+               "#28201F"
+              ],
+              "weight": 1.25,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "191:405",
+     "name": "Frame 3",
+     "type": "FRAME",
+     "x": 984.0,
+     "y": 14.0,
+     "w": 86.0,
+     "h": 29.0,
+     "fills": [
+      "#28201F"
+     ],
+     "radius": 30.0,
+     "autolayout": {
+      "layoutMode": "HORIZONTAL",
+      "itemSpacing": 10.0,
+      "paddingLeft": 12.0,
+      "paddingRight": 12.0,
+      "paddingTop": 5.0,
+      "paddingBottom": 5.0,
+      "primaryAxisAlignItems": "CENTER",
+      "counterAxisAlignItems": "CENTER",
+      "layoutWrap": "NO_WRAP"
+     },
+     "children": [
+      {
+       "id": "191:406",
+       "name": "BEFORE",
+       "type": "TEXT",
+       "x": 996.0,
+       "y": 19.0,
+       "w": 62.0,
+       "h": 19.0,
+       "textStyle": {
+        "text": "BEFORE",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Regular",
+        "weight": 400,
+        "size": 16.0,
+        "lineHeightPx": 19.2,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.32,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#FFFFFF"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:407",
+     "name": "Frame 4",
+     "type": "FRAME",
+     "x": 1729.0,
+     "y": 14.0,
+     "w": 78.0,
+     "h": 29.0,
+     "fills": [
+      "#FFFFFF"
+     ],
+     "radius": 30.0,
+     "autolayout": {
+      "layoutMode": "HORIZONTAL",
+      "itemSpacing": 10.0,
+      "paddingLeft": 12.0,
+      "paddingRight": 12.0,
+      "paddingTop": 5.0,
+      "paddingBottom": 5.0,
+      "primaryAxisAlignItems": "CENTER",
+      "counterAxisAlignItems": "CENTER",
+      "layoutWrap": "NO_WRAP"
+     },
+     "children": [
+      {
+       "id": "191:408",
+       "name": "AFTER",
+       "type": "TEXT",
+       "x": 1741.0,
+       "y": 19.0,
+       "w": 54.0,
+       "h": 19.0,
+       "textStyle": {
+        "text": "AFTER",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Regular",
+        "weight": 400,
+        "size": 16.0,
+        "lineHeightPx": 19.2,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.32,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:409",
+     "name": "Group 2087330660",
+     "type": "GROUP",
+     "x": 100.0,
+     "y": 0.0,
+     "w": 850.0,
+     "h": 700.0,
+     "children": [
+      {
+       "id": "191:410",
+       "name": "Rectangle 1430107051",
+       "type": "RECTANGLE",
+       "x": 100.0,
+       "y": 0.0,
+       "w": 850.0,
+       "h": 700.0,
+       "fills": [
+        "#FFFFFF"
+       ],
+       "radius": 16.0
+      },
+      {
+       "id": "191:411",
+       "name": "Honest skin, honest results",
+       "type": "TEXT",
+       "x": 190.0,
+       "y": 50.0,
+       "w": 671.0,
+       "h": 70.0,
+       "textStyle": {
+        "text": "Honest skin, honest results",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Medium",
+        "weight": 500,
+        "size": 58.0,
+        "lineHeightPx": 69.58,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ],
+        "styledRuns": [
+         {
+          "chars": "Honest skin, ",
+          "fontSize": 58.0
+         },
+         {
+          "chars": "honest results",
+          "fontFamily": "Test Tiempos Fine",
+          "fontWeight": 400,
+          "italic": true,
+          "fontSize": 58.0,
+          "lineHeightPx": 70.2959976196289,
+          "letterSpacing": -1.16,
+          "color": [
+           "#28201F"
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "id": "191:412",
+       "name": "Group 1321321679",
+       "type": "GROUP",
+       "x": 444.0,
+       "y": 434.0,
+       "w": 162.0,
+       "h": 21.0,
+       "children": [
+        {
+         "id": "191:413",
+         "name": "Group 1321321678",
+         "type": "GROUP",
+         "x": 444.0,
+         "y": 436.0,
+         "w": 96.0,
+         "h": 16.0,
+         "children": [
+          {
+           "id": "191:414",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 444.0,
+           "y": 436.0,
+           "w": 16.0,
+           "h": 16.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:415",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 444.0,
+             "y": 436.0,
+             "w": 16.0,
+             "h": 15.36,
+             "fills": [
+              "#F69104"
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:416",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 464.0,
+           "y": 436.0,
+           "w": 16.0,
+           "h": 16.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:417",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 464.0,
+             "y": 436.0,
+             "w": 16.0,
+             "h": 15.36,
+             "fills": [
+              "#F69104"
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:418",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 484.0,
+           "y": 436.0,
+           "w": 16.0,
+           "h": 16.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:419",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 484.0,
+             "y": 436.0,
+             "w": 16.0,
+             "h": 15.36,
+             "fills": [
+              "#F69104"
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:420",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 504.0,
+           "y": 436.0,
+           "w": 16.0,
+           "h": 16.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:421",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 504.0,
+             "y": 436.0,
+             "w": 16.0,
+             "h": 15.36,
+             "fills": [
+              "#F69104"
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:422",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 524.0,
+           "y": 436.0,
+           "w": 16.0,
+           "h": 16.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:423",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 524.0,
+             "y": 436.0,
+             "w": 16.0,
+             "h": 15.36,
+             "stroke": {
+              "paint": [
+               "#F69104"
+              ],
+              "weight": 0.800000011920929,
+              "align": "INSIDE"
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:424",
+         "name": "4.5 | 5.0",
+         "type": "TEXT",
+         "x": 548.0,
+         "y": 434.0,
+         "w": 58.0,
+         "h": 21.0,
+         "textStyle": {
+          "text": "4.5 | 5.0",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Medium",
+          "weight": 500,
+          "size": 16.0,
+          "lineHeightPx": 20.8,
+          "lineHeight": "130.0%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#000000"
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "id": "191:425",
+       "name": "Frame 5",
+       "type": "FRAME",
+       "x": 453.0,
+       "y": 188.0,
+       "w": 145.0,
+       "h": 30.0,
+       "stroke": {
+        "paint": [
+         "#28201F"
+        ],
+        "weight": 1.0,
+        "align": "INSIDE"
+       },
+       "radius": 30.0,
+       "autolayout": {
+        "layoutMode": "HORIZONTAL",
+        "itemSpacing": 10.0,
+        "paddingLeft": 10.0,
+        "paddingRight": 10.0,
+        "paddingTop": 5.0,
+        "paddingBottom": 5.0,
+        "primaryAxisAlignItems": "CENTER",
+        "counterAxisAlignItems": "CENTER",
+        "layoutWrap": "NO_WRAP"
+       },
+       "children": [
+        {
+         "id": "191:426",
+         "name": "SENSITIVE SKIN",
+         "type": "TEXT",
+         "x": 463.0,
+         "y": 193.0,
+         "w": 125.0,
+         "h": 20.0,
+         "textStyle": {
+          "text": "SENSITIVE SKIN",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Medium",
+          "weight": 500,
+          "size": 16.0,
+          "lineHeightPx": 19.5,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "case": "UPPER",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "id": "191:427",
+       "name": "Line 10",
+       "type": "LINE",
+       "x": 175.0,
+       "y": 154.0,
+       "w": 700.0,
+       "h": 0.0,
+       "stroke": {
+        "paint": [
+         "#28201F @ 10%"
+        ],
+        "weight": 1.0,
+        "align": "OUTSIDE"
+       }
+      },
+      {
+       "id": "191:428",
+       "name": "MY SKIN STOPPED FEELING TIGHT.",
+       "type": "TEXT",
+       "x": 272.0,
+       "y": 246.0,
+       "w": 507.0,
+       "h": 36.0,
+       "textStyle": {
+        "text": "MY SKIN STOPPED FEELING TIGHT.",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Medium",
+        "weight": 500,
+        "size": 30.0,
+        "lineHeightPx": 35.99,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.6,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F"
+        ]
+       }
+      },
+      {
+       "id": "191:429",
+       "name": "My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.",
+       "type": "TEXT",
+       "x": 207.0,
+       "y": 296.0,
+       "w": 637.0,
+       "h": 108.0,
+       "textStyle": {
+        "text": "My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Light",
+        "weight": 300,
+        "size": 24.0,
+        "lineHeightPx": 36.0,
+        "lineHeight": "150.0%",
+        "letterSpacing": -0.48,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F @ 80%"
+        ]
+       }
+      },
+      {
+       "id": "191:430",
+       "name": "Group 2087330659",
+       "type": "GROUP",
+       "x": 429.0,
+       "y": 485.0,
+       "w": 192.0,
+       "h": 94.0,
+       "children": [
+        {
+         "id": "191:431",
+         "name": "Ellipse 1337",
+         "type": "ELLIPSE",
+         "x": 495.0,
+         "y": 485.0,
+         "w": 60.0,
+         "h": 60.0,
+         "fills": [
+          "IMAGE(ref=6b96158f2aeef86323a611f6e8ba1dc8622e6c97, scaleMode=FILL)"
+         ]
+        },
+        {
+         "id": "191:432",
+         "name": "Group 2087330658",
+         "type": "GROUP",
+         "x": 429.0,
+         "y": 557.0,
+         "w": 192.0,
+         "h": 22.0,
+         "children": [
+          {
+           "id": "191:433",
+           "name": "Ananya R",
+           "type": "TEXT",
+           "x": 429.0,
+           "y": 557.0,
+           "w": 96.0,
+           "h": 22.0,
+           "textStyle": {
+            "text": "Ananya R",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Medium",
+            "weight": 500,
+            "size": 18.0,
+            "lineHeightPx": 21.6,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.36,
+            "align": "LEFT",
+            "valign": "TOP",
+            "case": "UPPER",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          },
+          {
+           "id": "191:434",
+           "name": "Bengaluru",
+           "type": "TEXT",
+           "x": 537.0,
+           "y": 557.0,
+           "w": 84.0,
+           "h": 22.0,
+           "textStyle": {
+            "text": "Bengaluru",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 18.0,
+            "lineHeightPx": 21.59,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.36,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F @ 50%"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:435",
+       "name": "Group 1321321716",
+       "type": "GROUP",
+       "x": 478.0,
+       "y": 604.0,
+       "w": 94.0,
+       "h": 46.0,
+       "children": [
+        {
+         "id": "191:436",
+         "name": "Group 1321321714",
+         "type": "GROUP",
+         "x": 526.0,
+         "y": 604.0,
+         "w": 46.0,
+         "h": 46.0,
+         "children": [
+          {
+           "id": "191:437",
+           "name": "Ellipse 6",
+           "type": "ELLIPSE",
+           "x": 526.0,
+           "y": 604.0,
+           "w": 46.0,
+           "h": 46.0,
+           "fills": [
+            "#78563D"
+           ]
+          },
+          {
+           "id": "191:438",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 540.0,
+           "y": 618.0,
+           "w": 18.0,
+           "h": 18.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:439",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 543.7,
+             "y": 621.7,
+             "w": 10.61,
+             "h": 10.61,
+             "rotation": 0.79,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 1.5,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:440",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 543.7,
+             "y": 621.7,
+             "w": 10.61,
+             "h": 10.61,
+             "rotation": 0.79,
+             "stroke": {
+              "paint": [
+               "#FFFFFF"
+              ],
+              "weight": 1.5,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "191:441",
+         "name": "Group 1321321715",
+         "type": "GROUP",
+         "x": 478.0,
+         "y": 604.0,
+         "w": 46.0,
+         "h": 46.0,
+         "children": [
+          {
+           "id": "191:442",
+           "name": "Ellipse 6",
+           "type": "ELLIPSE",
+           "x": 478.0,
+           "y": 604.0,
+           "w": 46.0,
+           "h": 46.0,
+           "fills": [
+            "#F6F3EE"
+           ]
+          },
+          {
+           "id": "191:443",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 492.0,
+           "y": 618.0,
+           "w": 18.0,
+           "h": 18.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "191:444",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 495.7,
+             "y": 621.7,
+             "w": 10.61,
+             "h": 10.61,
+             "rotation": 2.36,
+             "stroke": {
+              "paint": [
+               "#28201F"
+              ],
+              "weight": 1.5,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "191:445",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 495.7,
+             "y": 621.7,
+             "w": 10.61,
+             "h": 10.61,
+             "rotation": 2.36,
+             "stroke": {
+              "paint": [
+               "#28201F"
+              ],
+              "weight": 1.5,
+              "align": "CENTER"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

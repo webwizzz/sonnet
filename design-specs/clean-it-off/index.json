@@ -1,0 +1,113 @@
+{
+ "index": [
+  {
+   "slug": "01-announcement-bar",
+   "title": "Announcement bar",
+   "ids": [
+    "191:62",
+    "191:63"
+   ],
+   "top": 0.0
+  },
+  {
+   "slug": "02-header",
+   "title": "Header / navigation",
+   "ids": [
+    "191:64",
+    "191:92"
+   ],
+   "top": 46.0
+  },
+  {
+   "slug": "03-product-hero",
+   "title": "Product hero (gallery + buy box)",
+   "ids": [
+    "191:60",
+    "191:61",
+    "191:313",
+    "191:90",
+    "191:91",
+    "191:93",
+    "191:134",
+    "191:107",
+    "191:339",
+    "191:335",
+    "191:38",
+    "191:208",
+    "191:258",
+    "191:392",
+    "191:285"
+   ],
+   "top": 132.0
+  },
+  {
+   "slug": "04-why-us-marquee",
+   "title": "Why us? marquee strip",
+   "ids": [
+    "191:135"
+   ],
+   "top": 1752.0
+  },
+  {
+   "slug": "05-honest-results",
+   "title": "Honest skin, honest results (testimonial + before/after)",
+   "ids": [
+    "191:393"
+   ],
+   "top": 1926.0
+  },
+  {
+   "slug": "06-why-love",
+   "title": "Why your skin will love Clean It Off (numbered slider)",
+   "ids": [
+    "191:446"
+   ],
+   "top": 2726.0
+  },
+  {
+   "slug": "07-whats-inside",
+   "title": "What's inside, and exactly why (ingredient carousel)",
+   "ids": [
+    "191:464",
+    "191:465",
+    "191:473",
+    "191:472",
+    "191:474",
+    "191:479"
+   ],
+   "top": 3786.0
+  },
+  {
+   "slug": "08-comparison",
+   "title": "What makes it different from others (comparison table)",
+   "ids": [
+    "191:484"
+   ],
+   "top": 4604.0
+  },
+  {
+   "slug": "09-science",
+   "title": "The science behind the results (percent stats)",
+   "ids": [
+    "191:540"
+   ],
+   "top": 5244.0
+  },
+  {
+   "slug": "10-bundle-ritual",
+   "title": "Five products, one complete ritual (bundle builder)",
+   "ids": [
+    "191:589"
+   ],
+   "top": 6191.0
+  },
+  {
+   "slug": "11-faq",
+   "title": "Everything you want to know first (FAQ)",
+   "ids": [
+    "191:886"
+   ],
+   "top": 8150.0
+  }
+ ]
+}

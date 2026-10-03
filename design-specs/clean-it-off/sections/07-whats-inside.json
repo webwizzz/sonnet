@@ -1,0 +1,341 @@
+{
+ "slug": "07-whats-inside",
+ "title": "What's inside, and exactly why (ingredient carousel)",
+ "figmaNodeIds": [
+  "191:464",
+  "191:465",
+  "191:473",
+  "191:472",
+  "191:474",
+  "191:479"
+ ],
+ "frameOffsetY": 3786.0,
+ "cropY": [
+  3686,
+  4604
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:464",
+   "name": "What's inside, and exactly why.",
+   "type": "TEXT",
+   "x": 573.0,
+   "y": 0.0,
+   "w": 775.0,
+   "h": 70.0,
+   "textStyle": {
+    "text": "What's inside, and exactly why.",
+    "font": "Blauer Nue",
+    "postscript": "BlauerNue-Medium",
+    "weight": 500,
+    "size": 58.0,
+    "lineHeightPx": 69.58,
+    "lineHeight": "INTRINSIC_%",
+    "letterSpacing": -1.16,
+    "align": "LEFT",
+    "valign": "TOP",
+    "autoResize": "WIDTH_AND_HEIGHT",
+    "color": [
+     "#28201F"
+    ],
+    "styledRuns": [
+     {
+      "chars": "What's inside, ",
+      "fontSize": 58.0
+     },
+     {
+      "chars": "and exactly why.",
+      "fontFamily": "Test Tiempos Fine",
+      "fontWeight": 400,
+      "italic": true,
+      "fontSize": 58.0,
+      "lineHeightPx": 70.2959976196289,
+      "letterSpacing": -1.16,
+      "color": [
+       "#28201F"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "191:465",
+   "name": "Group 2087330667",
+   "type": "GROUP",
+   "x": -120.0,
+   "y": 130.0,
+   "w": 2160.0,
+   "h": 410.0,
+   "children": [
+    {
+     "id": "191:466",
+     "name": "Ellipse 96",
+     "type": "ELLIPSE",
+     "x": 755.0,
+     "y": 130.0,
+     "w": 410.0,
+     "h": 410.0,
+     "fills": [
+      "#78563D"
+     ]
+    },
+    {
+     "id": "191:467",
+     "name": "image",
+     "type": "RECTANGLE",
+     "x": 760.0,
+     "y": 135.0,
+     "w": 400.0,
+     "h": 400.0,
+     "fills": [
+      "IMAGE(ref=da18476568dd2b6ab6a3f9dc1701196fb6aca4c5, scaleMode=FILL)"
+     ],
+     "radius": 500.0
+    },
+    {
+     "id": "191:468",
+     "name": "image",
+     "type": "RECTANGLE",
+     "x": 1800.0,
+     "y": 215.0,
+     "w": 240.0,
+     "h": 240.0,
+     "fills": [
+      "IMAGE(ref=89e6709f45e59e1961021c57c2b1545723f626a1, scaleMode=FILL)",
+      "IMAGE(ref=0ca26c4c8999d6900178bd5c5a22610baf535beb, scaleMode=STRETCH)"
+     ],
+     "radius": 500.0
+    },
+    {
+     "id": "191:469",
+     "name": "image",
+     "type": "RECTANGLE",
+     "x": -120.0,
+     "y": 215.0,
+     "w": 240.0,
+     "h": 240.0,
+     "fills": [
+      "IMAGE(ref=d43977f4b6a2f1696c7c2d91bb3af7aebafe7747, scaleMode=FILL)"
+     ],
+     "radius": 500.0
+    },
+    {
+     "id": "191:470",
+     "name": "image",
+     "type": "RECTANGLE",
+     "x": 318.0,
+     "y": 185.0,
+     "w": 300.0,
+     "h": 300.0,
+     "fills": [
+      "IMAGE(ref=34a97845f6ce0aecd2ad8ed44ed6b86640221fdc, scaleMode=FILL)"
+     ],
+     "radius": 500.0
+    },
+    {
+     "id": "191:471",
+     "name": "image",
+     "type": "RECTANGLE",
+     "x": 1303.0,
+     "y": 185.0,
+     "w": 300.0,
+     "h": 300.0,
+     "fills": [
+      "IMAGE(ref=7a676a09316cd91948ce651abc35051f9695a8c4, scaleMode=FILL)"
+     ],
+     "radius": 500.0
+    }
+   ]
+  },
+  {
+   "id": "191:473",
+   "name": "LACTOBACILLUS FERMENT LYSATE 1%",
+   "type": "TEXT",
+   "x": 736.0,
+   "y": 570.0,
+   "w": 448.0,
+   "h": 34.0,
+   "textStyle": {
+    "text": "LACTOBACILLUS FERMENT LYSATE 1%",
+    "font": "Blauer Nue",
+    "postscript": "BlauerNue-Medium",
+    "weight": 500,
+    "size": 24.0,
+    "lineHeightPx": 33.6,
+    "lineHeight": "140.0%",
+    "letterSpacing": -0.48,
+    "align": "CENTER",
+    "valign": "TOP",
+    "case": "UPPER",
+    "autoResize": "WIDTH_AND_HEIGHT",
+    "color": [
+     "#28201F"
+    ]
+   }
+  },
+  {
+   "id": "191:472",
+   "name": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture.",
+   "type": "TEXT",
+   "x": 784.0,
+   "y": 618.0,
+   "w": 352.0,
+   "h": 100.0,
+   "textStyle": {
+    "text": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture.",
+    "font": "Blauer Nue",
+    "postscript": "BlauerNue-ExtraLight",
+    "weight": 200,
+    "size": 18.0,
+    "lineHeightPx": 25.2,
+    "lineHeight": "140.0%",
+    "letterSpacing": -0.36,
+    "align": "CENTER",
+    "valign": "TOP",
+    "autoResize": "HEIGHT",
+    "color": [
+     "#28201F @ 85%"
+    ]
+   }
+  },
+  {
+   "id": "191:474",
+   "name": "Group 1321321714",
+   "type": "GROUP",
+   "x": 1186.0,
+   "y": 645.0,
+   "w": 46.0,
+   "h": 46.0,
+   "children": [
+    {
+     "id": "191:475",
+     "name": "Ellipse 6",
+     "type": "ELLIPSE",
+     "x": 1186.0,
+     "y": 645.0,
+     "w": 46.0,
+     "h": 46.0,
+     "fills": [
+      "#78563D"
+     ]
+    },
+    {
+     "id": "191:476",
+     "name": "Frame",
+     "type": "FRAME",
+     "x": 1200.0,
+     "y": 659.0,
+     "w": 18.0,
+     "h": 18.0,
+     "clips": true,
+     "children": [
+      {
+       "id": "191:477",
+       "name": "Vector",
+       "type": "VECTOR",
+       "x": 1203.7,
+       "y": 662.7,
+       "w": 10.61,
+       "h": 10.61,
+       "rotation": 0.79,
+       "stroke": {
+        "paint": [
+         "#FFFFFF"
+        ],
+        "weight": 1.5,
+        "align": "CENTER"
+       }
+      },
+      {
+       "id": "191:478",
+       "name": "Vector",
+       "type": "VECTOR",
+       "x": 1203.7,
+       "y": 662.7,
+       "w": 10.61,
+       "h": 10.61,
+       "rotation": 0.79,
+       "stroke": {
+        "paint": [
+         "#FFFFFF"
+        ],
+        "weight": 1.5,
+        "align": "CENTER"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "191:479",
+   "name": "Group 1321321715",
+   "type": "GROUP",
+   "x": 688.0,
+   "y": 645.0,
+   "w": 46.0,
+   "h": 46.0,
+   "children": [
+    {
+     "id": "191:480",
+     "name": "Ellipse 6",
+     "type": "ELLIPSE",
+     "x": 688.0,
+     "y": 645.0,
+     "w": 46.0,
+     "h": 46.0,
+     "fills": [
+      "#F6F3EE"
+     ]
+    },
+    {
+     "id": "191:481",
+     "name": "Frame",
+     "type": "FRAME",
+     "x": 702.0,
+     "y": 659.0,
+     "w": 18.0,
+     "h": 18.0,
+     "clips": true,
+     "children": [
+      {
+       "id": "191:482",
+       "name": "Vector",
+       "type": "VECTOR",
+       "x": 705.7,
+       "y": 662.7,
+       "w": 10.61,
+       "h": 10.61,
+       "rotation": 2.36,
+       "stroke": {
+        "paint": [
+         "#28201F"
+        ],
+        "weight": 1.5,
+        "align": "CENTER"
+       }
+      },
+      {
+       "id": "191:483",
+       "name": "Vector",
+       "type": "VECTOR",
+       "x": 705.7,
+       "y": 662.7,
+       "w": 10.61,
+       "h": 10.61,
+       "rotation": 2.36,
+       "stroke": {
+        "paint": [
+         "#28201F"
+        ],
+        "weight": 1.5,
+        "align": "CENTER"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

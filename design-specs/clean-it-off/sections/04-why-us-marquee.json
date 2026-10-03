@@ -1,0 +1,1082 @@
+{
+ "slug": "04-why-us-marquee",
+ "title": "Why us? marquee strip",
+ "figmaNodeIds": [
+  "191:135"
+ ],
+ "frameOffsetY": 1752.0,
+ "cropY": [
+  1752,
+  1826
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:135",
+   "name": "Group 2087330685",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 74.0,
+   "children": [
+    {
+     "id": "191:136",
+     "name": "Rectangle 10",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 74.0,
+     "fills": [
+      "#EAE7E2"
+     ]
+    },
+    {
+     "id": "191:137",
+     "name": "WHY US?",
+     "type": "TEXT",
+     "x": 150.0,
+     "y": 27.0,
+     "w": 74.0,
+     "h": 19.0,
+     "textStyle": {
+      "text": "WHY US?",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 16.0,
+      "lineHeightPx": 19.2,
+      "lineHeight": "INTRINSIC_%",
+      "letterSpacing": -0.32,
+      "align": "LEFT",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#28201F"
+      ]
+     }
+    },
+    {
+     "id": "191:138",
+     "name": "Line 2",
+     "type": "LINE",
+     "x": 244.0,
+     "y": 20.0,
+     "w": 0.0,
+     "h": 34.0,
+     "rotation": 1.57,
+     "stroke": {
+      "paint": [
+       "#28201F @ 8%"
+      ],
+      "weight": 1.0,
+      "align": "OUTSIDE"
+     }
+    },
+    {
+     "id": "191:139",
+     "name": "Frame 2",
+     "type": "FRAME",
+     "x": 245.0,
+     "y": 20.0,
+     "w": 1525.0,
+     "h": 34.0,
+     "clips": true,
+     "children": [
+      {
+       "id": "191:140",
+       "name": "Group 1321321675",
+       "type": "GROUP",
+       "x": 264.0,
+       "y": 20.0,
+       "w": 1560.0,
+       "h": 34.0,
+       "children": [
+        {
+         "id": "191:141",
+         "name": "Line 3",
+         "type": "LINE",
+         "x": 522.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:142",
+         "name": "Line 4",
+         "type": "LINE",
+         "x": 769.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:143",
+         "name": "Line 5",
+         "type": "LINE",
+         "x": 1031.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:144",
+         "name": "Line 6",
+         "type": "LINE",
+         "x": 1234.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:145",
+         "name": "Line 7",
+         "type": "LINE",
+         "x": 1437.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:146",
+         "name": "Line 8",
+         "type": "LINE",
+         "x": 1640.0,
+         "y": 27.0,
+         "w": 0.0,
+         "h": 20.0,
+         "rotation": 1.57,
+         "stroke": {
+          "paint": [
+           "#28201F @ 8%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:147",
+         "name": "Group 1321321669",
+         "type": "GROUP",
+         "x": 264.0,
+         "y": 20.0,
+         "w": 228.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:148",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 264.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:149",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 264.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:150",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 272.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:151",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 275.0,
+               "y": 29.5,
+               "w": 12.0,
+               "h": 15.0,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:152",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 278.75,
+               "y": 35.5,
+               "w": 4.5,
+               "h": 3.0,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:153",
+           "name": "Dermatologically Tested",
+           "type": "TEXT",
+           "x": 310.0,
+           "y": 27.0,
+           "w": 182.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "Dermatologically Tested",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:154",
+         "name": "Group 1321321675",
+         "type": "GROUP",
+         "x": 1670.0,
+         "y": 20.0,
+         "w": 154.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:155",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 1670.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:156",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 1670.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:157",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1678.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:158",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1678.56,
+               "y": 28.56,
+               "w": 16.88,
+               "h": 16.88,
+               "children": [
+                {
+                 "id": "191:159",
+                 "name": "Group",
+                 "type": "GROUP",
+                 "x": 1678.56,
+                 "y": 28.56,
+                 "w": 16.88,
+                 "h": 16.88,
+                 "children": [
+                  {
+                   "id": "191:160",
+                   "name": "Vector",
+                   "type": "VECTOR",
+                   "x": 1680.53,
+                   "y": 29.21,
+                   "w": 12.94,
+                   "h": 13.14,
+                   "stroke": {
+                    "paint": [
+                     "#78563D"
+                    ],
+                    "weight": 0.8999999761581421,
+                    "align": "CENTER"
+                   }
+                  },
+                  {
+                   "id": "191:161",
+                   "name": "Vector",
+                   "type": "VECTOR",
+                   "x": 1678.56,
+                   "y": 28.56,
+                   "w": 16.88,
+                   "h": 16.88,
+                   "stroke": {
+                    "paint": [
+                     "#78563D"
+                    ],
+                    "weight": 0.8999999761581421,
+                    "align": "CENTER"
+                   }
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:162",
+           "name": "All Skin Types",
+           "type": "TEXT",
+           "x": 1716.0,
+           "y": 27.0,
+           "w": 108.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "All Skin Types",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:163",
+         "name": "Group 1321321670",
+         "type": "GROUP",
+         "x": 552.0,
+         "y": 20.0,
+         "w": 187.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:164",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 552.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:165",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 552.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:166",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 560.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:167",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 561.49,
+               "y": 29.5,
+               "w": 15.0,
+               "h": 15.0,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:168",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 566.75,
+               "y": 35.5,
+               "w": 4.5,
+               "h": 3.0,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:169",
+           "name": "Postbiotic Formula",
+           "type": "TEXT",
+           "x": 598.0,
+           "y": 27.0,
+           "w": 141.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "Postbiotic Formula",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:170",
+         "name": "Group 1321321671",
+         "type": "GROUP",
+         "x": 799.0,
+         "y": 20.0,
+         "w": 202.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:171",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 799.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:172",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 799.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:173",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 807.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:174",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 809.98,
+               "y": 29.5,
+               "w": 12.77,
+               "h": 13.5,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:175",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 808.5,
+               "y": 37.0,
+               "w": 8.25,
+               "h": 6.75,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:176",
+           "name": "100% Vegan & Clean",
+           "type": "TEXT",
+           "x": 845.0,
+           "y": 27.0,
+           "w": 156.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "100% Vegan & Clean",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:177",
+         "name": "Group 1321321672",
+         "type": "GROUP",
+         "x": 1061.0,
+         "y": 20.0,
+         "w": 143.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:178",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 1061.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:179",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 1061.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:180",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1069.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:181",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1070.5,
+               "y": 30.99,
+               "w": 15.0,
+               "h": 12.76,
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 1.25,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:182",
+           "name": "Cruelty Free",
+           "type": "TEXT",
+           "x": 1107.0,
+           "y": 27.0,
+           "w": 97.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "Cruelty Free",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:183",
+         "name": "Group 1321321673",
+         "type": "GROUP",
+         "x": 1264.0,
+         "y": 20.0,
+         "w": 143.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:184",
+           "name": "Group 1321321668",
+           "type": "GROUP",
+           "x": 1264.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:185",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 1264.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:186",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1272.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "191:187",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1272.0,
+               "y": 28.0,
+               "w": 18.0,
+               "h": 18.0,
+               "children": [
+                {
+                 "id": "191:188",
+                 "name": "Mask group",
+                 "type": "GROUP",
+                 "x": 1272.0,
+                 "y": 28.0,
+                 "w": 18.0,
+                 "h": 18.0,
+                 "children": [
+                  {
+                   "id": "191:189",
+                   "name": "Group",
+                   "type": "GROUP",
+                   "x": 1272.0,
+                   "y": 28.0,
+                   "w": 18.0,
+                   "h": 18.0,
+                   "mask": true,
+                   "children": [
+                    {
+                     "id": "191:190",
+                     "name": "Vector",
+                     "type": "VECTOR",
+                     "x": 1272.0,
+                     "y": 28.0,
+                     "w": 18.0,
+                     "h": 18.0,
+                     "fills": [
+                      "#FFFFFF"
+                     ],
+                     "stroke": {
+                      "paint": [
+                       "#FFFFFF"
+                      ],
+                      "weight": 1.0,
+                      "align": "INSIDE"
+                     }
+                    }
+                   ]
+                  },
+                  {
+                   "id": "191:191",
+                   "name": "Group",
+                   "type": "GROUP",
+                   "x": 1272.0,
+                   "y": 28.0,
+                   "w": 18.0,
+                   "h": 18.0,
+                   "children": [
+                    {
+                     "id": "191:192",
+                     "name": "Clip path group",
+                     "type": "GROUP",
+                     "x": 1272.0,
+                     "y": 28.0,
+                     "w": 18.0,
+                     "h": 18.0,
+                     "children": [
+                      {
+                       "id": "191:193",
+                       "name": "b",
+                       "type": "GROUP",
+                       "x": 1272.0,
+                       "y": 28.0,
+                       "w": 18.0,
+                       "h": 18.0,
+                       "mask": true,
+                       "children": [
+                        {
+                         "id": "191:194",
+                         "name": "Vector",
+                         "type": "VECTOR",
+                         "x": 1272.0,
+                         "y": 28.0,
+                         "w": 18.0,
+                         "h": 18.0,
+                         "fills": [
+                          "#000000"
+                         ],
+                         "stroke": {
+                          "paint": [
+                           "#FFFFFF"
+                          ],
+                          "weight": 1.0,
+                          "align": "INSIDE"
+                         }
+                        }
+                       ]
+                      },
+                      {
+                       "id": "191:195",
+                       "name": "Group",
+                       "type": "GROUP",
+                       "x": 1274.05,
+                       "y": 28.79,
+                       "w": 14.4,
+                       "h": 16.68,
+                       "children": [
+                        {
+                         "id": "191:196",
+                         "name": "Vector",
+                         "type": "VECTOR",
+                         "x": 1274.05,
+                         "y": 28.79,
+                         "w": 14.4,
+                         "h": 16.68,
+                         "stroke": {
+                          "paint": [
+                           "#78563D"
+                          ],
+                          "weight": 1.25,
+                          "align": "CENTER"
+                         }
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:197",
+           "name": "Made In India",
+           "type": "TEXT",
+           "x": 1310.0,
+           "y": 27.0,
+           "w": 97.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "Made In India",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:198",
+         "name": "Group 1321321674",
+         "type": "GROUP",
+         "x": 1467.0,
+         "y": 20.0,
+         "w": 142.0,
+         "h": 34.0,
+         "children": [
+          {
+           "id": "191:199",
+           "name": "Group 1321321669",
+           "type": "GROUP",
+           "x": 1467.0,
+           "y": 20.0,
+           "w": 34.0,
+           "h": 34.0,
+           "children": [
+            {
+             "id": "191:200",
+             "name": "Ellipse 2",
+             "type": "ELLIPSE",
+             "x": 1467.0,
+             "y": 20.0,
+             "w": 34.0,
+             "h": 34.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            },
+            {
+             "id": "191:201",
+             "name": "Group",
+             "type": "GROUP",
+             "x": 1475.0,
+             "y": 28.0,
+             "w": 18.0,
+             "h": 18.0,
+             "children": [
+              {
+               "id": "191:202",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1475.0,
+               "y": 28.0,
+               "w": 18.0,
+               "h": 18.0,
+               "fills": [
+                "#78563D"
+               ],
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 0.30000001192092896,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:203",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1480.52,
+               "y": 31.18,
+               "w": 6.96,
+               "h": 11.64,
+               "fills": [
+                "#78563D"
+               ],
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 0.30000001192092896,
+                "align": "CENTER"
+               }
+              },
+              {
+               "id": "191:204",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1482.38,
+               "y": 39.27,
+               "w": 3.56,
+               "h": 2.07,
+               "fills": [
+                "#78563D"
+               ],
+               "stroke": {
+                "paint": [
+                 "#78563D"
+                ],
+                "weight": 0.30000001192092896,
+                "align": "CENTER"
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "191:205",
+           "name": "No Parabens",
+           "type": "TEXT",
+           "x": 1513.0,
+           "y": 27.0,
+           "w": 96.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "No Parabens",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "191:206",
+       "name": "Rectangle 11",
+       "type": "RECTANGLE",
+       "x": 245.0,
+       "y": 20.0,
+       "w": 100.0,
+       "h": 34.0,
+       "fills": [
+        "GRADIENT_LINEAR(#EAE7E2 @ 0% 0%, #EAE7E2 100%)"
+       ]
+      },
+      {
+       "id": "191:207",
+       "name": "Rectangle 12",
+       "type": "RECTANGLE",
+       "x": 1670.0,
+       "y": 20.0,
+       "w": 100.0,
+       "h": 34.0,
+       "rotation": 3.14,
+       "fills": [
+        "GRADIENT_LINEAR(#EAE7E2 @ 0% 0%, #EAE7E2 100%)"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

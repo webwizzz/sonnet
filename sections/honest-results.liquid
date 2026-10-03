@@ -1,0 +1,1466 @@
+{%- comment -%}
+  Honest Results: testimonial card + before/after compare slider.
+  Design: design-specs/clean-it-off/sections/05-honest-results.md (Figma node 191:393)
+  Each "testimonial" block = one slide (card copy + its before/after images).
+  All CSS is scoped to .hsr / #shopify-section-{{ section.id }}; JS is vanilla and per instance.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign block_count = section.blocks.size
+  assign compare_start = s.compare_start | default: 50
+  assign color_text = s.color_text | default: '#28201F'
+  assign color_card = s.color_card | default: '#FFFFFF'
+  assign color_ui = s.color_compare_ui | default: '#F5EEE6'
+-%}
+
+{% style %}
+{%- if s.tag_font -%}{{ s.tag_font | font_face: font_display: 'swap' }}{%- endif %}
+#shopify-section-{{ section.id }} {
+  --hsr-bg: {{ s.color_background | default: '#FFFCF9' }};
+  --hsr-card: {{ s.color_card | default: '#FFFFFF' }};
+  --hsr-text: {{ s.color_text | default: '#28201F' }};
+  --hsr-accent: {{ s.color_accent | default: '#78563D' }};
+  --hsr-button: {{ s.color_button | default: '#F6F3EE' }};
+  --hsr-star: {{ s.color_star | default: '#F69104' }};
+  --hsr-ui: {{ s.color_compare_ui | default: '#F5EEE6' }};
+  --hsr-h-size: {{ s.heading_size | default: 58 }};
+  --hsr-h-size-mobile: {{ s.heading_size_mobile | default: 28 }}px;
+  --hsr-height: {{ s.desktop_height | default: 700 }};
+  --hsr-ratio: {{ s.mobile_aspect_ratio | default: '1/1' }};
+  --hsr-start: {{ compare_start }}%;
+  /* Figma opacity tints, computed server-side (no color-mix() needed) */
+  --hsr-text-80: {{ color_text | color_modify: 'alpha', 0.8 }};
+  --hsr-text-50: {{ color_text | color_modify: 'alpha', 0.5 }};
+  --hsr-text-10: {{ color_text | color_modify: 'alpha', 0.1 }};
+  --hsr-text-22: {{ color_text | color_modify: 'alpha', 0.22 }};
+  --hsr-ph-before: {{ color_ui | color_mix: color_card, 70 }};
+  --hsr-ph-after: {{ color_ui | color_mix: color_text, 94 }};
+  background-color: var(--hsr-bg);
+}
+{%- if s.tag_font %}
+#shopify-section-{{ section.id }} .hsr .hsr__tag {
+  font-family: {{ s.tag_font.family }}, {{ s.tag_font.fallback_families }};
+  font-weight: {{ s.tag_font.weight }};
+  font-style: {{ s.tag_font.style }};
+}
+{%- endif %}
+#shopify-section-{{ section.id }} .hsr {
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media only screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .hsr {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+
+/* ---------- Honest Results (.hsr) : shared rules for every instance ---------- */
+.hsr {
+  /* 1 design px at 1920 wide, scales down with the viewport (min 0.5px) */
+  --hsr-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --hsr-fade: 400ms;
+  color: var(--hsr-text);
+  background-color: var(--hsr-bg);
+}
+.hsr *,
+.hsr *::before,
+.hsr *::after { box-sizing: border-box; }
+
+.hsr__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 850fr) minmax(0, 851fr);
+  gap: max(12px, calc(20 * var(--hsr-u)));
+  align-items: stretch;
+}
+
+/* ---------- Card ---------- */
+.hsr__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  min-height: calc(var(--hsr-height) * var(--hsr-u));
+  padding: max(24px, calc(50 * var(--hsr-u))) max(20px, calc(75 * var(--hsr-u)));
+  border-radius: 16px;
+  background-color: var(--hsr-card);
+  color: var(--hsr-text);
+  text-align: center;
+}
+.hsr .hsr__heading {
+  width: 100%;
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(26px, calc(var(--hsr-h-size) * var(--hsr-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--hsr-text);
+  text-wrap: balance;
+}
+.hsr .hsr__heading p {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.hsr .hsr__heading em,
+.hsr .hsr__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1; /* keep the line box at the roman 120% (Figma 70px) */
+}
+.hsr__divider {
+  flex: none;
+  width: 100%;
+  height: 1px;
+  margin-top: calc(34 * var(--hsr-u));
+  background-color: var(--hsr-text-10);
+}
+.hsr__heading + .hsr__slides { margin-top: calc(34 * var(--hsr-u)); }
+.hsr__card > :first-child { margin-top: 0; }
+
+/* Slides: stacked in one grid cell so the card keeps the tallest slide's height (no jumps). */
+.hsr__slides {
+  flex: 1 0 auto;
+  display: grid;
+  width: 100%;
+  margin-top: calc(34 * var(--hsr-u));
+  align-items: center;
+}
+.hsr__slide {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--hsr-fade) ease, visibility 0s linear var(--hsr-fade);
+}
+.hsr__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--hsr-fade) ease, visibility 0s linear 0s;
+}
+.hsr__slide > * + * { margin-top: var(--hsr-mt, 0); }
+
+.hsr .hsr__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px; /* Figma: 5px 10px with a 1px inside stroke */
+  border: 1px solid var(--hsr-text);
+  border-radius: 30px;
+  /* family / weight come from the tag_font setting (scoped rule above) */
+  font-family: var(--FONT-STACK-ACCENT, sans-serif);
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(14px, calc(16 * var(--hsr-u)));
+  line-height: 1.21875;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--hsr-text);
+}
+.hsr .hsr__title {
+  --hsr-mt: calc(28 * var(--hsr-u));
+  margin-bottom: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: max(18px, calc(30 * var(--hsr-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--hsr-text);
+}
+.hsr .hsr__review {
+  --hsr-mt: calc(14 * var(--hsr-u));
+  max-width: min(100%, max(320px, calc(635 * var(--hsr-u)))); /* Figma text box is 637; 635 reproduces its line breaks in browsers */
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(16px, calc(24 * var(--hsr-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--hsr-text-80);
+}
+.hsr .hsr__review p {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+.hsr .hsr__review p + p { margin-top: 0.5em; }
+.hsr .hsr__review strong,
+.hsr .hsr__review b { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; }
+
+.hsr__rating {
+  --hsr-mt: calc(30 * var(--hsr-u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.hsr__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--hsr-star);
+}
+.hsr__star {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.hsr__star svg { display: block; width: 100%; height: 100%; }
+.hsr .hsr__rating-text {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #000;
+  white-space: nowrap;
+}
+
+.hsr__author {
+  --hsr-mt: calc(30 * var(--hsr-u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hsr__avatar {
+  display: block;
+  width: max(48px, calc(60 * var(--hsr-u)));
+  height: max(48px, calc(60 * var(--hsr-u)));
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+  background-color: var(--hsr-ui);
+}
+.hsr .hsr__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.hsr__person {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: 12px;
+  row-gap: 2px;
+}
+.hsr__avatar + .hsr__person { margin-top: calc(12 * var(--hsr-u)); }
+.hsr .hsr__name,
+.hsr .hsr__location {
+  font-size: max(15px, calc(18 * var(--hsr-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.hsr .hsr__name {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--hsr-text);
+}
+.hsr .hsr__location {
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  color: var(--hsr-text-50);
+}
+
+/* Arrows */
+.hsr__nav {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: calc(25 * var(--hsr-u));
+}
+.hsr .hsr__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max(40px, calc(46 * var(--hsr-u)));
+  height: max(40px, calc(46 * var(--hsr-u)));
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--hsr-button);
+  color: var(--hsr-text);
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+.hsr .hsr__arrow svg { width: 18px; height: 18px; display: block; }
+.hsr .hsr__arrow--next {
+  background-color: var(--hsr-accent);
+  color: #FFFFFF;
+}
+@media (hover: hover) {
+  .hsr .hsr__arrow--prev:hover {
+    background-color: var(--hsr-accent);
+    color: #FFFFFF;
+  }
+  .hsr .hsr__arrow--next:hover { opacity: 0.88; }
+}
+.hsr .hsr__arrow:focus { outline: none; }
+.hsr .hsr__arrow:focus-visible {
+  outline: 2px solid var(--hsr-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Before / after compare ---------- */
+.hsr__media {
+  position: relative;
+  min-width: 0;
+  min-height: calc(var(--hsr-height) * var(--hsr-u));
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--hsr-ui);
+  isolation: isolate;
+}
+.hsr__compare {
+  --pos: var(--hsr-start, 50%);
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--hsr-fade) ease, visibility 0s linear var(--hsr-fade);
+}
+.hsr__compare.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--hsr-fade) ease, visibility 0s linear 0s;
+}
+/* Outgoing compare stays fully opaque underneath while the new one fades in (no background flash). */
+.hsr__compare.is-leaving {
+  z-index: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+.hsr--instant .hsr__slide,
+.hsr--instant .hsr__compare { transition: none !important; }
+.hsr__empty {
+  margin: 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--hsr-text-50);
+}
+.hsr__compare.is-split { cursor: ew-resize; }
+.hsr__layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hsr__layer--before { z-index: 0; }
+.hsr__layer--after {
+  z-index: 1;
+  clip-path: inset(0 0 0 var(--pos));
+}
+.hsr .hsr__layer img,
+.hsr .hsr__layer .hsr-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.hsr .hsr__layer .hsr-placeholder {
+  background-color: var(--hsr-ph-before);
+  fill: var(--hsr-text-22);
+}
+.hsr .hsr__layer--after .hsr-placeholder {
+  background-color: var(--hsr-ph-after);
+}
+.hsr__line {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 1.5px;
+  transform: translateX(-50%);
+  background-color: var(--hsr-ui);
+  pointer-events: none;
+}
+.hsr__handle {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: var(--pos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 65px;
+  border-radius: 19px;
+  transform: translate(-50%, -50%);
+  background-color: var(--hsr-ui);
+  color: var(--hsr-text);
+  pointer-events: none;
+  transition: box-shadow 0.2s ease;
+}
+.hsr__handle svg { display: block; width: 100%; height: 100%; }
+.hsr .hsr__label {
+  position: absolute;
+  z-index: 4;
+  top: 14px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  pointer-events: none;
+}
+.hsr .hsr__label--before {
+  left: 14px;
+  background-color: var(--hsr-text);
+  color: #FFFFFF;
+}
+.hsr .hsr__label--after {
+  right: 14px;
+  background-color: #FFFFFF;
+  color: var(--hsr-text);
+}
+/* Keyboard control: a transparent native range input over the image.
+   Pointer input is handled in JS (so page scroll keeps working); the input takes keyboard focus. */
+.hsr .hsr__range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+.hsr .hsr__range:focus-visible ~ .hsr__handle {
+  box-shadow: 0 0 0 2px var(--hsr-card), 0 0 0 4px var(--hsr-accent);
+}
+.hsr__sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Image left / right on desktop */
+@media only screen and (min-width: 990px) {
+  .hsr--image-left .hsr__grid { grid-template-columns: minmax(0, 851fr) minmax(0, 850fr); }
+  .hsr--image-left .hsr__media { order: -1; }
+}
+
+/* ---------- Stacked (tablet + mobile) ---------- */
+@media only screen and (max-width: 989px) {
+  .hsr { --hsr-u: 0.75px; }
+  .hsr__grid { grid-template-columns: minmax(0, 1fr); }
+  .hsr__card { min-height: 0; }
+  .hsr__media {
+    min-height: 0;
+    aspect-ratio: 851 / 700;
+  }
+  .hsr--mobile-image-first .hsr__media { order: -1; }
+  .hsr--mobile-card-first .hsr__media { order: 1; }
+}
+
+@media only screen and (max-width: 768px) {
+  .hsr__grid { gap: 12px; }
+  .hsr__card { padding: 32px 16px; }
+  .hsr .hsr__heading { font-size: var(--hsr-h-size-mobile); }
+  .hsr__divider { margin-top: 20px; }
+  .hsr__slides,
+  .hsr__heading + .hsr__slides { margin-top: 24px; }
+  .hsr .hsr__tag { font-size: 13px; padding: 3px 9px; }
+  .hsr .hsr__title { --hsr-mt: 18px; font-size: 20px; }
+  .hsr .hsr__review { --hsr-mt: 10px; max-width: 100%; font-size: 16px; }
+  .hsr__rating { --hsr-mt: 20px; }
+  .hsr .hsr__rating-text { font-size: 14px; }
+  .hsr__author { --hsr-mt: 20px; }
+  .hsr__avatar { width: 52px; height: 52px; }
+  .hsr__avatar + .hsr__person { margin-top: 10px; }
+  .hsr .hsr__name,
+  .hsr .hsr__location { font-size: 16px; }
+  .hsr__nav { margin-top: 24px; }
+  .hsr .hsr__arrow { width: 40px; height: 40px; }
+  .hsr__media { aspect-ratio: var(--hsr-ratio); }
+  .hsr .hsr__label {
+    top: 10px;
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .hsr .hsr__label--before { left: 10px; }
+  .hsr .hsr__label--after { right: 10px; }
+  .hsr__handle { width: 32px; height: 54px; border-radius: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hsr { --hsr-fade: 0ms; }
+  .hsr .hsr__arrow,
+  .hsr__handle { transition: none; }
+}
+{% endstyle %}
+
+{%- comment -%} Icons live in assets/ (exported from Figma); inlined so currentColor follows the colour settings. {%- endcomment -%}
+{%- capture star_full -%}<span class="hsr__star">{{ 'cio-star-filled.svg' | inline_asset_content }}</span>{%- endcapture -%}
+{%- capture star_empty -%}<span class="hsr__star">{{ 'cio-star-outline.svg' | inline_asset_content }}</span>{%- endcapture -%}
+{%- assign handle_icon = 'cio-compare-chevrons.svg' | inline_asset_content -%}
+
+{%- liquid
+  assign hsr_classes = 'hsr'
+  if s.image_position == 'left'
+    assign hsr_classes = hsr_classes | append: ' hsr--image-left'
+  else
+    assign hsr_classes = hsr_classes | append: ' hsr--image-right'
+  endif
+  if s.mobile_order == 'card_first'
+    assign hsr_classes = hsr_classes | append: ' hsr--mobile-card-first'
+  else
+    assign hsr_classes = hsr_classes | append: ' hsr--mobile-image-first'
+  endif
+  if s.custom_class != blank
+    assign hsr_classes = hsr_classes | append: ' ' | append: s.custom_class
+  endif
+  assign image_sizes = '(min-width: 990px) calc(50vw - 60px), calc(100vw - 32px)'
+  assign image_widths = '375, 550, 750, 900, 1100, 1300, 1500, 1800'
+-%}
+
+{%- if block_count > 0 or request.design_mode -%}
+<div
+  class="{{ hsr_classes | escape }}"
+  data-hsr
+  data-section-id="{{ section.id }}"
+  data-start="{{ compare_start }}"
+  data-autoplay="{{ s.autoplay }}"
+  data-speed="{{ s.autoplay_speed | default: 6 }}"
+>
+  <div class="main-container">
+    <div class="hsr__grid">
+      <div class="hsr__card">
+        {%- if s.heading != blank -%}
+          <h2 class="hsr__heading class_h2">{{ s.heading }}</h2>
+        {%- endif -%}
+        {%- if s.show_divider -%}
+          <div class="hsr__divider" role="presentation"></div>
+        {%- endif -%}
+
+        <div
+          class="hsr__slides"
+          data-hsr-slides
+          aria-live="{% if s.autoplay and block_count > 1 %}off{% else %}polite{% endif %}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign rating = b.rating | default: 0
+              assign full_stars = rating | floor
+              assign rating_times_ten = rating | times: 10 | round
+              assign rating_int = rating_times_ten | divided_by: 10
+              assign rating_dec = rating_times_ten | modulo: 10
+              assign rating_text = rating_int | append: '.' | append: rating_dec
+              if b.rating_label != blank
+                assign rating_label = b.rating_label | escape
+              else
+                assign rating_label = rating_text | append: ' | 5.0'
+              endif
+            -%}
+            <div
+              class="hsr__slide{% if forloop.first %} is-active{% endif %}"
+              data-hsr-slide
+              data-block-id="{{ block.id }}"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="{{ forloop.index }} / {{ block_count }}"
+              {% unless forloop.first %}aria-hidden="true" inert{% endunless %}
+              {{ block.shopify_attributes }}
+            >
+              {%- if b.tag != blank -%}
+                <span class="hsr__tag">{{ b.tag | escape }}</span>
+              {%- endif -%}
+              {%- if b.title != blank -%}
+                <h3 class="hsr__title">{{ b.title | escape }}</h3>
+              {%- endif -%}
+              {%- if b.review != blank -%}
+                <div class="hsr__review">{{ b.review }}</div>
+              {%- endif -%}
+              {%- if rating > 0 or b.rating_label != blank -%}
+                <div class="hsr__rating">
+                  {%- if rating > 0 -%}
+                    <span class="hsr__stars" aria-hidden="true">
+                      {%- for i in (1..5) -%}
+                        {%- if i <= full_stars -%}{{ star_full }}{%- else -%}{{ star_empty }}{%- endif -%}
+                      {%- endfor -%}
+                    </span>
+                    <span class="hsr__sr">Rated {{ rating_text }} out of 5</span>
+                    <span class="hsr__rating-text"{% if b.rating_label == blank %} aria-hidden="true"{% endif %}>{{ rating_label }}</span>
+                  {%- else -%}
+                    <span class="hsr__rating-text">{{ rating_label }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if b.avatar != blank or b.name != blank or b.location != blank -%}
+                <div class="hsr__author">
+                  {%- if b.avatar != blank -%}
+                    <span class="hsr__avatar">
+                      {{-
+                        b.avatar
+                        | image_url: width: 240
+                        | image_tag:
+                          widths: '60, 120, 180, 240',
+                          sizes: '60px',
+                          loading: 'lazy',
+                          alt: '',
+                          draggable: 'false'
+                      -}}
+                    </span>
+                  {%- endif -%}
+                  {%- if b.name != blank or b.location != blank -%}
+                    <p class="hsr__person">
+                      {%- if b.name != blank -%}<span class="hsr__name">{{ b.name | escape }}</span>{%- endif -%}
+                      {%- if b.location != blank -%}<span class="hsr__location">{{ b.location | escape }}</span>{%- endif -%}
+                    </p>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            <p class="hsr__empty">Add a testimonial block to show a review and its before / after images.</p>
+          {%- endfor -%}
+        </div>
+
+        {%- if block_count > 1 -%}
+          <div class="hsr__nav">
+            <button type="button" class="hsr__arrow hsr__arrow--prev" data-hsr-prev aria-label="Previous testimonial">
+              {{- 'cio-arrow-left.svg' | inline_asset_content -}}
+            </button>
+            <button type="button" class="hsr__arrow hsr__arrow--next" data-hsr-next aria-label="Next testimonial">
+              {{- 'cio-arrow-right.svg' | inline_asset_content -}}
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="hsr__media">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign before_img = b.before_image
+            assign after_img = b.after_image
+            assign alt_base = b.title | default: 'Before and after result'
+            assign is_split = true
+            assign single_is_after = false
+            if before_img != blank and after_img == blank
+              assign is_split = false
+            elsif before_img == blank and after_img != blank
+              assign is_split = false
+              assign single_is_after = true
+            endif
+          -%}
+          <div
+            class="hsr__compare{% if is_split %} is-split{% endif %}{% if forloop.first %} is-active{% endif %}"
+            data-hsr-compare
+            data-block-id="{{ block.id }}"
+            {% unless forloop.first %}aria-hidden="true" inert{% endunless %}
+          >
+            {%- if is_split or single_is_after == false -%}
+              <div class="hsr__layer hsr__layer--before">
+                {%- if before_img != blank -%}
+                  {%- liquid
+                    assign alt_text = before_img.alt | default: alt_base
+                    if is_split and s.before_label != blank
+                      assign alt_text = alt_text | append: ' (' | append: s.before_label | append: ')'
+                    endif
+                    assign fp_style = ''
+                    if before_img.presentation.focal_point != blank
+                      assign fp_style = 'object-position: ' | append: before_img.presentation.focal_point
+                    endif
+                  -%}
+                  {{-
+                    before_img
+                    | image_url: width: 1800
+                    | image_tag:
+                      widths: image_widths,
+                      sizes: image_sizes,
+                      loading: 'lazy',
+                      alt: alt_text,
+                      style: fp_style,
+                      draggable: 'false'
+                  -}}
+                {%- else -%}
+                  {{- 'lifestyle-1' | placeholder_svg_tag: 'hsr-placeholder' -}}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if is_split or single_is_after -%}
+              <div class="hsr__layer hsr__layer--after"{% unless is_split %} style="clip-path: none;"{% endunless %}>
+                {%- if after_img != blank -%}
+                  {%- liquid
+                    assign alt_text = after_img.alt | default: alt_base
+                    if is_split and s.after_label != blank
+                      assign alt_text = alt_text | append: ' (' | append: s.after_label | append: ')'
+                    endif
+                    assign fp_style = ''
+                    if after_img.presentation.focal_point != blank
+                      assign fp_style = 'object-position: ' | append: after_img.presentation.focal_point
+                    endif
+                  -%}
+                  {{-
+                    after_img
+                    | image_url: width: 1800
+                    | image_tag:
+                      widths: image_widths,
+                      sizes: image_sizes,
+                      loading: 'lazy',
+                      alt: alt_text,
+                      style: fp_style,
+                      draggable: 'false'
+                  -}}
+                {%- else -%}
+                  {{- 'lifestyle-2' | placeholder_svg_tag: 'hsr-placeholder' -}}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if is_split -%}
+              <div class="hsr__line" aria-hidden="true"></div>
+              <input
+                class="hsr__range"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="{{ compare_start }}"
+                aria-label="{{ s.before_label | default: 'Before' | escape }} / {{ s.after_label | default: 'After' | escape }}{% if b.title != blank %}: {{ b.title | escape }}{% endif %}"
+                aria-valuetext="{{ compare_start }}%"
+                data-hsr-range
+              >
+              <div class="hsr__handle" aria-hidden="true">{{ handle_icon }}</div>
+            {%- endif -%}
+
+            {%- if s.before_label != blank and single_is_after == false -%}
+              <span class="hsr__label hsr__label--before" aria-hidden="true">{{ s.before_label | escape }}</span>
+            {%- endif -%}
+            {%- liquid
+              assign show_after_label = false
+              if s.after_label != blank
+                if is_split or single_is_after
+                  assign show_after_label = true
+                endif
+              endif
+            -%}
+            {%- if show_after_label -%}
+              <span class="hsr__label hsr__label--after" aria-hidden="true">{{ s.after_label | escape }}</span>
+            {%- endif -%}
+          </div>
+        {%- else -%}
+          <div class="hsr__compare is-active" aria-hidden="true">
+            <div class="hsr__layer hsr__layer--before">
+              {{- 'lifestyle-1' | placeholder_svg_tag: 'hsr-placeholder' -}}
+            </div>
+            {%- if s.before_label != blank -%}
+              <span class="hsr__label hsr__label--before">{{ s.before_label | escape }}</span>
+            {%- endif -%}
+            {%- if s.after_label != blank -%}
+              <span class="hsr__label hsr__label--after">{{ s.after_label | escape }}</span>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    if (!window.HonestResults) {
+      var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+
+      var HSR = function (root) {
+        this.root = root;
+        this.ac = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        this.slides = Array.prototype.slice.call(root.querySelectorAll('[data-hsr-slide]'));
+        this.compares = Array.prototype.slice.call(root.querySelectorAll('[data-hsr-compare]'));
+        this.slidesWrap = root.querySelector('[data-hsr-slides]');
+        this.count = this.slides.length;
+        this.index = 0;
+        this.start = parseFloat(root.getAttribute('data-start')) || 50;
+        this.delay = Math.max(3, parseFloat(root.getAttribute('data-speed')) || 6) * 1000;
+        this.autoplay = root.getAttribute('data-autoplay') === 'true' && this.count > 1;
+        this.pauses = {};
+        this.timer = null;
+        this.cleanups = [];
+        this.init();
+      };
+
+      HSR.prototype.on = function (el, type, fn, opts) {
+        var o = opts || {};
+        if (this.ac) {
+          o.signal = this.ac.signal;
+          el.addEventListener(type, fn, o);
+        } else {
+          el.addEventListener(type, fn, o);
+          this.cleanups.push(function () { el.removeEventListener(type, fn, o); });
+        }
+      };
+
+      HSR.prototype.init = function () {
+        var self = this;
+        var prev = this.root.querySelector('[data-hsr-prev]');
+        var next = this.root.querySelector('[data-hsr-next]');
+        if (prev) this.on(prev, 'click', function () { self.go(self.index - 1, true); });
+        if (next) this.on(next, 'click', function () { self.go(self.index + 1, true); });
+
+        this.compares.forEach(function (c) {
+          self.setPos(c, self.start);
+          self.initCompare(c);
+        });
+
+        if (this.autoplay) {
+          // Hover pause for real mice only (touch fires enter without a matching leave).
+          this.on(this.root, 'pointerenter', function (e) { if (e.pointerType === 'mouse') self.pause('hover'); });
+          this.on(this.root, 'pointerleave', function (e) { if (e.pointerType === 'mouse') self.resume('hover'); });
+          // Focus pause only for keyboard focus (a mouse click / tap on an arrow must not stop autoplay).
+          this.on(this.root, 'focusin', function (e) {
+            var el = e.target;
+            var kb = true;
+            try { kb = el.matches(':focus-visible'); } catch (err) {}
+            if (kb) self.pause('focus');
+          });
+          this.on(this.root, 'focusout', function (e) {
+            if (!e.relatedTarget || !self.root.contains(e.relatedTarget)) self.resume('focus');
+          });
+          if ('IntersectionObserver' in window) {
+            this.io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (en) { en.isIntersecting ? self.resume('offscreen') : self.pause('offscreen'); });
+            });
+            this.io.observe(this.root);
+          }
+          if (reduceMotion.matches) this.pause('motion');
+          this.schedule();
+        }
+      };
+
+      HSR.prototype.setPos = function (compare, value) {
+        var v = Math.min(100, Math.max(0, value));
+        v = Math.round(v * 10) / 10;
+        compare.style.setProperty('--pos', v + '%');
+        var range = compare.querySelector('[data-hsr-range]');
+        if (range) {
+          range.value = v;
+          range.setAttribute('aria-valuetext', Math.round(v) + '%');
+        }
+      };
+
+      HSR.prototype.initCompare = function (compare) {
+        var self = this;
+        var range = compare.querySelector('[data-hsr-range]');
+        if (!range) return;
+        var dragging = false;
+        var pending = false; // touch/pen pressed, direction not decided yet
+        var pointerId = null;
+        var startX = 0;
+        var startY = 0;
+        var fromEvent = function (e) {
+          var rect = compare.getBoundingClientRect();
+          if (!rect.width) return;
+          self.setPos(compare, ((e.clientX - rect.left) / rect.width) * 100);
+        };
+        var begin = function (e) {
+          dragging = true;
+          pending = false;
+          self.pause('interact');
+          try { compare.setPointerCapture(pointerId); } catch (err) {}
+          fromEvent(e);
+        };
+        this.on(compare, 'pointerdown', function (e) {
+          if (pointerId !== null) return;
+          if (e.pointerType === 'mouse') {
+            if (e.button !== 0) return;
+            pointerId = e.pointerId;
+            e.preventDefault();
+            begin(e);
+            return;
+          }
+          // Touch / pen: wait until the gesture is clearly horizontal so vertical page scroll is untouched.
+          pointerId = e.pointerId;
+          pending = true;
+          startX = e.clientX;
+          startY = e.clientY;
+        });
+        var stop;
+        this.on(compare, 'pointermove', function (e) {
+          if (e.pointerId !== pointerId) return;
+          // Mouse released outside after capture was lost: end the drag.
+          if (dragging && e.pointerType === 'mouse' && !(e.buttons & 1)) { stop(e); return; }
+          if (pending) {
+            var dx = Math.abs(e.clientX - startX);
+            var dy = Math.abs(e.clientY - startY);
+            if (dx > 6 && dx > dy) begin(e);
+            return;
+          }
+          if (dragging) fromEvent(e);
+        });
+        stop = function (e) {
+          if (pointerId === null || (e && e.pointerId !== pointerId)) return;
+          // A tap (no movement) moves the divider to the tapped point.
+          if (pending && e && e.type === 'pointerup') fromEvent(e);
+          var wasDragging = dragging;
+          dragging = false;
+          pending = false;
+          if (wasDragging) {
+            try { compare.releasePointerCapture(pointerId); } catch (err) {}
+          }
+          pointerId = null;
+          if (wasDragging) self.resume('interact');
+        };
+        this.on(compare, 'pointerup', stop);
+        this.on(compare, 'pointercancel', stop);
+        // Note: no 'lostpointercapture' handler. Touch pointers swap implicit/explicit capture
+        // mid-gesture, and ending the drag there would drop the rest of the swipe.
+        this.on(compare, 'dragstart', function (e) { e.preventDefault(); });
+        this.on(range, 'input', function () {
+          self.pause('interact');
+          self.setPos(compare, parseFloat(range.value));
+        });
+        this.on(range, 'change', function () { self.resume('interact'); });
+        this.on(range, 'blur', function () { self.resume('interact'); });
+      };
+
+      HSR.prototype.toggle = function (el, active) {
+        el.classList.toggle('is-active', active);
+        if (active) {
+          el.removeAttribute('aria-hidden');
+          el.removeAttribute('inert');
+        } else {
+          el.setAttribute('aria-hidden', 'true');
+          el.setAttribute('inert', '');
+        }
+      };
+
+      HSR.prototype.go = function (i, fromUser) {
+        if (!this.count) return;
+        var n = ((i % this.count) + this.count) % this.count;
+        var self = this;
+        if (n !== this.index) {
+          var target = this.compares[n];
+          var leaving = this.compares[this.index];
+          if (target) this.setPos(target, this.start);
+          clearTimeout(this.leaveTimer);
+          this.compares.forEach(function (c) { c.classList.remove('is-leaving'); });
+          if (leaving && leaving !== target) {
+            leaving.classList.add('is-leaving');
+            this.leaveTimer = setTimeout(function () { leaving.classList.remove('is-leaving'); }, reduceMotion.matches ? 0 : 450);
+          }
+          this.slides.forEach(function (s, k) { self.toggle(s, k === n); });
+          this.compares.forEach(function (c, k) { self.toggle(c, k === n); });
+          this.index = n;
+        }
+        if (fromUser) this.schedule();
+      };
+
+      HSR.prototype.schedule = function () {
+        var self = this;
+        clearTimeout(this.timer);
+        this.timer = null;
+        if (!this.autoplay || Object.keys(this.pauses).length) {
+          if (this.slidesWrap) this.slidesWrap.setAttribute('aria-live', 'polite');
+          return;
+        }
+        if (this.slidesWrap) this.slidesWrap.setAttribute('aria-live', 'off');
+        this.timer = setTimeout(function () {
+          self.go(self.index + 1, false);
+          self.schedule();
+        }, this.delay);
+      };
+
+      HSR.prototype.pause = function (reason) {
+        this.pauses[reason] = true;
+        this.schedule();
+      };
+
+      HSR.prototype.resume = function (reason) {
+        delete this.pauses[reason];
+        this.schedule();
+      };
+
+      HSR.prototype.selectBlock = function (blockId) {
+        var idx = -1;
+        this.slides.forEach(function (s, k) { if (s.getAttribute('data-block-id') === blockId) idx = k; });
+        this.pause('editor');
+        if (idx > -1) this.go(idx, false);
+      };
+
+      HSR.prototype.jump = function (i) {
+        // Switch slide with no fade (used to restore the slide after an editor re-render).
+        var root = this.root;
+        root.classList.add('hsr--instant');
+        this.go(i, false);
+        this.compares.forEach(function (c) { c.classList.remove('is-leaving'); });
+        void root.offsetWidth;
+        root.classList.remove('hsr--instant');
+      };
+
+      HSR.prototype.destroy = function () {
+        clearTimeout(this.timer);
+        clearTimeout(this.leaveTimer);
+        if (this.ac) this.ac.abort();
+        this.cleanups.forEach(function (fn) { fn(); });
+        this.cleanups = [];
+        if (this.io) this.io.disconnect();
+      };
+
+      var api = {
+        instances: {},
+        last: {}, // slide index per section, kept across theme-editor re-renders
+        mount: function (sectionId) {
+          var root = document.querySelector('[data-hsr][data-section-id="' + sectionId + '"]');
+          var current = this.instances[sectionId];
+          if (current) {
+            if (current.root === root) return current;
+            this.unmount(sectionId);
+          }
+          if (!root) return null;
+          var inst = new HSR(root);
+          this.instances[sectionId] = inst;
+          var designMode = window.Shopify && window.Shopify.designMode;
+          if (designMode && this.last[sectionId] != null) {
+            inst.jump(this.last[sectionId]);
+            inst.pause('editor');
+          }
+          return inst;
+        },
+        unmount: function (sectionId) {
+          var current = this.instances[sectionId];
+          if (current) {
+            this.last[sectionId] = current.index;
+            current.destroy();
+            delete this.instances[sectionId];
+          }
+        }
+      };
+      window.HonestResults = api;
+
+      document.addEventListener('shopify:section:load', function (e) {
+        if (e.detail && e.detail.sectionId) api.mount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:section:unload', function (e) {
+        if (e.detail && e.detail.sectionId) api.unmount(e.detail.sectionId);
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var inst = e.detail && api.instances[e.detail.sectionId];
+        if (inst) inst.selectBlock(e.detail.blockId);
+      });
+      document.addEventListener('shopify:block:deselect', function (e) {
+        var inst = e.detail && api.instances[e.detail.sectionId];
+        if (inst) inst.resume('editor');
+      });
+    }
+
+    var sectionId = {{ section.id | json }};
+    var boot = function () { window.HonestResults.mount(sectionId); };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Honest Results",
+  "tag": "section",
+  "class": "index-section hsr-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use italic for the serif accent words.",
+      "default": "<p>Honest skin, <em>honest results</em></p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "info": "Size at 1920px wide; scales down on smaller screens.",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider under heading",
+      "default": true
+    },
+    {
+      "type": "font_picker",
+      "id": "tag_font",
+      "label": "Tag font",
+      "info": "Font for the small tag pill (e.g. \"Sensitive skin\"). Design uses Montserrat Medium.",
+      "default": "montserrat_n5"
+    },
+    {
+      "type": "header",
+      "content": "Before / after"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "BEFORE"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "AFTER"
+    },
+    {
+      "type": "range",
+      "id": "compare_start",
+      "min": 5,
+      "max": 95,
+      "step": 1,
+      "unit": "%",
+      "label": "Slider start position",
+      "info": "Where the divider sits when a testimonial is shown.",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "select",
+      "id": "mobile_order",
+      "label": "Mobile order",
+      "options": [
+        { "value": "image_first", "label": "Image first" },
+        { "value": "card_first", "label": "Card first" }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop height",
+      "info": "Minimum height at 1920px wide; grows if the content needs more room.",
+      "default": 700
+    },
+    {
+      "type": "select",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile image aspect ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/5", "label": "Portrait (4:5)" },
+        { "value": "3/4", "label": "Portrait (3:4)" },
+        { "value": "4/3", "label": "Landscape (4:3)" }
+      ],
+      "default": "1/1"
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay testimonials",
+      "info": "Pauses on hover, focus and when the slider is dragged.",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay delay",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background",
+      "default": "#FFFCF9"
+    },
+    {
+      "type": "color",
+      "id": "color_card",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#28201F"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent (next button)",
+      "default": "#78563D"
+    },
+    {
+      "type": "color",
+      "id": "color_button",
+      "label": "Previous button background",
+      "default": "#F6F3EE"
+    },
+    {
+      "type": "color",
+      "id": "color_star",
+      "label": "Stars",
+      "default": "#F69104"
+    },
+    {
+      "type": "color",
+      "id": "color_compare_ui",
+      "label": "Compare handle and line",
+      "default": "#F5EEE6"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Before / after images"
+        },
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image",
+          "info": "Use the same crop and size for both images so they line up."
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image",
+          "info": "Leave empty to show the before image on its own."
+        },
+        {
+          "type": "header",
+          "content": "Review"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Sensitive skin"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "My skin stopped feeling tight."
+        },
+        {
+          "type": "richtext",
+          "id": "review",
+          "label": "Review",
+          "default": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "label": "Rating",
+          "info": "Set to 0 to hide the stars.",
+          "default": 4.5
+        },
+        {
+          "type": "text",
+          "id": "rating_label",
+          "label": "Rating label",
+          "info": "Optional. Defaults to \"4.5 | 5.0\" from the rating."
+        },
+        {
+          "type": "header",
+          "content": "Customer"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Ananya R"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Bengaluru"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Honest Results",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "tag": "Sensitive skin",
+            "title": "My skin stopped feeling tight.",
+            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "rating": 4.5,
+            "name": "Ananya R",
+            "location": "Bengaluru"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "tag": "Oily skin",
+            "title": "No more afternoon shine.",
+            "review": "<p>I used to blot my T-zone by lunch. Clean It Off lifts sunscreen and oil without that squeaky feel, and now my skin stays fresh and matte well into the evening.</p>",
+            "rating": 5,
+            "name": "Priya M",
+            "location": "Mumbai"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

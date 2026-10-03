@@ -1,0 +1,350 @@
+{
+ "slug": "06-why-love",
+ "title": "Why your skin will love Clean It Off (numbered slider)",
+ "figmaNodeIds": [
+  "191:446"
+ ],
+ "frameOffsetY": 2726.0,
+ "cropY": [
+  2726,
+  3686
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "191:446",
+   "name": "Group 2087330665",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 960.0,
+   "children": [
+    {
+     "id": "191:447",
+     "name": "Rectangle 1430107054",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 960.0,
+     "h": 960.0,
+     "fills": [
+      "#D9D9D9",
+      "IMAGE(ref=9dca23095541b7e634040f28a588b4df4e95906d, scaleMode=STRETCH)"
+     ]
+    },
+    {
+     "id": "191:448",
+     "name": "Rectangle 1430107055",
+     "type": "RECTANGLE",
+     "x": 960.0,
+     "y": 0.0,
+     "w": 960.0,
+     "h": 960.0,
+     "fills": [
+      "#F5EEE6"
+     ]
+    },
+    {
+     "id": "191:449",
+     "name": "Group 2087330662",
+     "type": "GROUP",
+     "x": 900.0,
+     "y": 420.0,
+     "w": 130.0,
+     "h": 130.0,
+     "radius": 10.0,
+     "children": [
+      {
+       "id": "191:450",
+       "name": "Rectangle 1430107056",
+       "type": "RECTANGLE",
+       "x": 900.0,
+       "y": 420.0,
+       "w": 130.0,
+       "h": 130.0,
+       "fills": [
+        "#FFFFFF"
+       ],
+       "radius": 10.0
+      },
+      {
+       "id": "191:451",
+       "name": "01",
+       "type": "TEXT",
+       "x": 914.0,
+       "y": 434.0,
+       "w": 42.0,
+       "h": 48.0,
+       "textStyle": {
+        "text": "01",
+        "font": "Test Tiempos Fine",
+        "postscript": "TestTiemposFine-MediumItalic",
+        "weight": 500,
+        "italic": true,
+        "size": 40.0,
+        "lineHeightPx": 48.48,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.8,
+        "align": "LEFT",
+        "valign": "TOP",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#78563D"
+        ]
+       }
+      },
+      {
+       "id": "191:452",
+       "name": "/04",
+       "type": "TEXT",
+       "x": 982.0,
+       "y": 516.0,
+       "w": 32.0,
+       "h": 22.0,
+       "textStyle": {
+        "text": "/04",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Regular",
+        "weight": 400,
+        "size": 18.0,
+        "lineHeightPx": 21.59,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER",
+        "autoResize": "WIDTH_AND_HEIGHT",
+        "color": [
+         "#28201F @ 60%"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "191:453",
+     "name": "Group 2087330666",
+     "type": "GROUP",
+     "x": 1090.0,
+     "y": 100.0,
+     "w": 700.0,
+     "h": 704.0,
+     "radius": 50.0,
+     "children": [
+      {
+       "id": "191:454",
+       "name": "Why your skin will love Clean It Off",
+       "type": "TEXT",
+       "x": 1158.0,
+       "y": 100.0,
+       "w": 564.0,
+       "h": 140.0,
+       "textStyle": {
+        "text": "Why your skin will love Clean It Off",
+        "font": "Blauer Nue",
+        "postscript": "BlauerNue-Medium",
+        "weight": 500,
+        "size": 58.0,
+        "lineHeightPx": 69.6,
+        "lineHeight": "INTRINSIC_%",
+        "letterSpacing": -1.16,
+        "align": "CENTER",
+        "valign": "TOP",
+        "autoResize": "HEIGHT",
+        "color": [
+         "#28201F"
+        ],
+        "styledRuns": [
+         {
+          "chars": "Why your skin will ",
+          "fontSize": 58.0
+         },
+         {
+          "chars": "love Clean It Off",
+          "fontFamily": "Test Tiempos Fine",
+          "fontWeight": 400,
+          "italic": true,
+          "fontSize": 58.0,
+          "lineHeightPx": 70.2959976196289,
+          "letterSpacing": -1.16,
+          "color": [
+           "#28201F"
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "id": "191:455",
+       "name": "Group 2087330664",
+       "type": "GROUP",
+       "x": 1090.0,
+       "y": 290.0,
+       "w": 700.0,
+       "h": 514.0,
+       "radius": 50.0,
+       "children": [
+        {
+         "id": "191:456",
+         "name": "Group 2087329688",
+         "type": "GROUP",
+         "x": 1253.0,
+         "y": 345.0,
+         "w": 375.0,
+         "h": 40.0,
+         "radius": 50.0,
+         "children": [
+          {
+           "id": "191:457",
+           "name": "Rectangle 34",
+           "type": "RECTANGLE",
+           "x": 1253.0,
+           "y": 345.0,
+           "w": 375.0,
+           "h": 40.0,
+           "fills": [
+            "#78563D"
+           ],
+           "radius": 50.0
+          },
+          {
+           "id": "191:458",
+           "name": "CLEANSES WITHOUT STRIPPING THE SKIN",
+           "type": "TEXT",
+           "x": 1273.0,
+           "y": 354.0,
+           "w": 336.0,
+           "h": 22.0,
+           "textStyle": {
+            "text": "CLEANSES WITHOUT STRIPPING THE SKIN",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Medium_Italic",
+            "weight": 500,
+            "italic": true,
+            "size": 16.0,
+            "lineHeightPx": 22.4,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.16,
+            "align": "LEFT",
+            "valign": "TOP",
+            "case": "UPPER",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#FFFFFF"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "191:459",
+         "name": "Line 10",
+         "type": "LINE",
+         "x": 1090.0,
+         "y": 290.0,
+         "w": 700.0,
+         "h": 0.0,
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "OUTSIDE"
+         }
+        },
+        {
+         "id": "191:460",
+         "name": "Group 2087330663",
+         "type": "GROUP",
+         "x": 1122.0,
+         "y": 427.0,
+         "w": 637.0,
+         "h": 377.0,
+         "children": [
+          {
+           "id": "191:461",
+           "name": "17%",
+           "type": "TEXT",
+           "x": 1374.0,
+           "y": 427.0,
+           "w": 133.0,
+           "h": 97.0,
+           "textStyle": {
+            "text": "17% ",
+            "font": "Test Tiempos Fine",
+            "postscript": "TestTiemposFine-MediumItalic",
+            "weight": 500,
+            "italic": true,
+            "size": 80.0,
+            "lineHeightPx": 96.96,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -1.6,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#78563D"
+            ]
+           }
+          },
+          {
+           "id": "191:462",
+           "name": "Cocamidopropyl Betaine — coconut-derived",
+           "type": "TEXT",
+           "x": 1182.0,
+           "y": 540.0,
+           "w": 495.0,
+           "h": 36.0,
+           "textStyle": {
+            "text": "Cocamidopropyl Betaine — coconut-derived ",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 24.0,
+            "lineHeightPx": 36.0,
+            "lineHeight": "150.0%",
+            "letterSpacing": -0.48,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F @ 80%"
+            ]
+           }
+          },
+          {
+           "id": "191:463",
+           "name": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after.",
+           "type": "TEXT",
+           "x": 1122.0,
+           "y": 696.0,
+           "w": 637.0,
+           "h": 108.0,
+           "textStyle": {
+            "text": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after.",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Light",
+            "weight": 300,
+            "size": 24.0,
+            "lineHeightPx": 36.0,
+            "lineHeight": "150.0%",
+            "letterSpacing": -0.48,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F @ 80%"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
