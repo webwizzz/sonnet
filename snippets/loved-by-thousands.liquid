@@ -1,0 +1,210 @@
+{%- liquid
+  assign testimonials = product.metafields.custom.video_testimonials.value
+-%}
+
+{% if testimonials != blank and testimonials.size > 0 %}
+<div class="lbt-section">
+  <h2 class="lbt-heading">Loved by thousands</h2>
+
+  <div class="lbt-grid">
+    {%- for item in testimonials -%}
+      {%- liquid
+        assign thumbnail = item.thumbnail_image.value
+        assign quote     = item.quote_text.value
+        assign video_url = item.video_url.value
+        assign name      = item.customer_name.value
+      -%}
+
+      <div class="lbt-card">
+
+        {% comment %} Thumbnail {% endcomment %}
+        {%- if thumbnail != blank -%}
+          <img
+            class="lbt-card__img"
+            src="{{ thumbnail | image_url }}"
+            alt="{{ name | default: 'Customer testimonial' | escape }}"
+            loading="lazy" width="" height=""
+          >
+        {%- endif -%}
+
+        {% comment %} Video (using video_url) {% endcomment %}
+        {%- if video_url != blank -%}
+          <video
+            class="lbt-card__video"
+            playsinline
+            preload="metadata"
+            controls
+          >
+            <source src="{{ video_url | escape }}" type="video/mp4">
+          </video>
+
+          <button class="lbt-card__play" aria-label="Play video">
+            <svg width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 8.16667V0L6.41667 4.08333L0 8.16667Z" fill="#28201F"/>
+            </svg>
+          </button>
+        {%- endif -%}
+
+        {% comment %} Quote {% endcomment %}
+        {%- if quote != blank -%}
+          <div class="lbt-card__quote">
+            <p>&ldquo;{{ quote | escape }}&rdquo;</p>
+          </div>
+        {%- endif -%}
+
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% endif %}
+
+
+<style>
+.lbt-section{
+    margin-bottom: 30px;
+}
+.lbt-heading {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    color: #28201F;
+}
+
+.lbt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0;
+}
+
+@media (max-width: 1470px) {
+  .lbt-grid {
+      display: flex;
+      overflow-x: scroll;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+  }
+  .lbt-card{
+    min-width: 200px;
+  }
+  .lbt-card__quote p {
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 768px) {
+  .lbt-section{
+    padding-right: 0 !important;
+  }
+  .lbt-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .lbt-grid { grid-template-columns: 1fr; }
+  .lbt-heading {
+    font-size: 16px;
+  }
+  .lbt-card {
+    height: 270px !important;
+    max-width: 200px;
+  }
+}
+
+.lbt-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 300px;
+  background: #e0ddd8;
+}
+
+/* Image */
+.lbt-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video */
+.lbt-card__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  z-index: 1;
+}
+
+/* Play button */
+.lbt-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Quote */
+.lbt-card__quote p {
+    backdrop-filter: blur(10px);
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+    padding: 10px 28px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Blauer Nue RG';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    text-align: center;
+    border-radius: 4px;
+}
+.lbt-card__quote {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  width: 100%;
+  z-index: 2;
+}
+</style>
+
+<script>
+document.querySelectorAll('.lbt-card').forEach(function(card){
+
+  var btn = card.querySelector('.lbt-card__play');
+  var video = card.querySelector('.lbt-card__video');
+  var img = card.querySelector('.lbt-card__img');
+  var quote = card.querySelector('.lbt-card__quote');
+
+  if(!btn || !video) return;
+
+  btn.addEventListener('click', function(){
+
+    // hide image + quote + button
+    if(img) img.style.display = 'none';
+    if(quote) quote.style.display = 'none';
+    btn.style.display = 'none';
+
+    // show video
+    video.style.display = 'block';
+
+    // play video
+    video.play().catch(function(e){
+      console.log('Play blocked:', e);
+    });
+
+  });
+
+});
+</script>

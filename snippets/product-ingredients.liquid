@@ -1,0 +1,124 @@
+{%- liquid
+  assign ingredients = nil
+
+  if product and product.metafields.custom.key_ingredients != blank
+    assign ingredients = product.metafields.custom.key_ingredients.value
+  endif
+-%}
+
+{% if ingredients and ingredients.size > 0 %}
+
+  <div class="ingredients-list">
+    {%- for ingredient in ingredients -%}
+      {%- liquid
+        assign ing_name  = ingredient.name.value        | default: ingredient.name
+        assign ing_desc  = ingredient.description.value | default: ingredient.description
+        assign ing_image = ingredient.image.value       | default: ingredient.image
+      -%}
+
+      <div class="ingredients-list__item">
+
+        <div class="ingredients-list__image-wrap">
+          {%- if ing_image != blank -%}
+            <img class="ingredients-list__image" src="{{ ing_image | image_url }}" alt="{{ ing_name | escape }}">
+          {%- else -%}
+            <div class="ingredients-list__image-placeholder"></div>
+          {%- endif -%}
+        </div>
+
+        <div class="ingredients-list__content">
+          {%- if ing_name != blank -%}
+            <p class="ingredients-list__name">{{ ing_name }}</p>
+          {%- endif -%}
+          {%- if ing_desc != blank -%}
+            <p class="ingredients-list__desc">{{ ing_desc }}</p>
+          {%- endif -%}
+        </div>
+
+      </div>
+    {%- endfor -%}
+  </div>
+
+{% endif %}
+
+
+<style>
+  /* ── Wrapper ── */
+  .ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── Each row ── */
+  .ingredients-list__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+
+  /* ── Circular image ── */
+  .ingredients-list__image-wrap {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .ingredients-list__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .ingredients-list__image-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #e8e3dd;
+  }
+
+  /* ── Text block ── */
+  .ingredients-list__content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 6px;
+  }
+
+  .ingredients-list__name {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    color: #28201F;
+  }
+
+  .ingredients-list__desc {
+    color: #28201FCC;
+    font-family: 'Blauer Nue LT';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 500px) {
+    .ingredients-list__image-wrap {
+      width: 48px;
+      height: 48px;
+    }
+
+    .ingredients-list__desc, .ingredients-list__name {
+      font-size: 12px;
+    }
+  }
+</style>

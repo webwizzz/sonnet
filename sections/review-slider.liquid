@@ -1,0 +1,828 @@
+{% comment %}
+  /sections/review-slider.liquid
+
+  Review slider section — two card types:
+    • "image_card"  → full-bleed photo + rating + product pill at bottom
+    • "review_card" → author + rating + title + body + product pill at bottom
+
+  Swiper: 5 slides desktop / 1.3 mobile
+  Pipeline 8.x compatible
+{% endcomment %}
+
+{%- liquid
+  assign section_id   = 'rs-' | append: section.id
+  assign heading      = section.settings.heading
+  assign arrow_color  = section.settings.arrow_color
+  assign card_bg      = section.settings.card_bg
+-%}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  /* ── Section ────────────────────────────────── */
+  #{{ section_id }} {
+    --rs-card-bg:    {{ card_bg }};
+    --rs-arrow-bg:  {{ arrow_color }};
+    --rs-font:      'Georgia', 'Times New Roman', serif;
+    --rs-dark:      #1C1712;
+    --rs-mid:       #6B5E52;
+    --rs-star:      #C8A97A;
+    --rs-radius:    14px;
+    padding: 0;
+    margin-bottom: 80px;
+    background: #FFFCF9;
+    overflow: hidden;
+  }
+
+
+  /* ── Header row ─────────────────────────────── */
+  #{{ section_id }} .rs-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 68px 40px 100px;
+    gap: 16px;
+  }
+
+
+
+  #{{ section_id }} .rs-heading {
+    font-family: 'Blauer Nue MD';
+    font-size: 40px;
+    font-weight: 500;
+    color: #28201F;
+    margin: 0;
+    line-height: 100%;
+    letter-spacing: -2%;
+  }
+
+  #{{ section_id }} .rs-heading em {
+    font-style: italic;
+    font-family: 'Test Tiempos Fine Italic RG';
+  }
+
+  /* ── Arrows ─────────────────────────────────── */
+  #{{ section_id }} .rs-arrows {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .rs-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--rs-arrow-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .rs-arrow:hover { opacity: 0.82; transform: scale(1.06); }
+  #{{ section_id }} .rs-arrow.swiper-button-disabled { background: #F6F3EE; cursor: default; }
+  #{{ section_id }} .rs-arrow.swiper-button-disabled svg path{ stroke: #28201F; }
+
+  #{{ section_id }} .rs-arrow svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── Swiper track ───────────────────────────── */
+  #{{ section_id }} .rs-swiper-wrap {
+    padding-left: 100px;
+    overflow: visible;
+  }
+
+  #{{ section_id }} .rs-swiper { overflow: visible; }
+
+  #{{ section_id }} .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+
+  /* ── Shared card base ───────────────────────── */
+  #{{ section_id }} .rs-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    gap: 5px;
+  }
+
+  /* ── Stars ──────────────────────────────────── */
+    #{{ section_id }} .rs-rating-num {
+    font-family: 'Blauer Nue RG';
+    font-size: 12px;
+    line-height: 100%;
+    font-weight: 400;
+    color: #28201F;
+    letter-spacing: -2%;
+  }
+
+  #{{ section_id }} .rs-img-rating-badge .rs-rating-num {
+    color: var(--rs-dark);
+  }
+  #{{ section_id }} .rs-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  #{{ section_id }} .rs-stars svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ── Product pill (bottom of every card) ────── */
+  #{{ section_id }} .rs-product-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #F5EEE6;
+    margin-top: auto;
+    text-decoration: none;
+  }
+
+  #{{ section_id }} .rs-pill-img {
+    width: 36px;
+    height: 50px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .rs-pill-img--placeholder {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    background: #EDE8E2;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .rs-pill-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #{{ section_id }} .rs-pill-title {
+    font-family: 'Blauer Nue MD';
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -2%;
+    text-transform: uppercase;
+    color: #28201F;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 100%;
+    margin-bottom: 4px;
+}
+
+#{{ section_id }} .rs-pill-shop {
+    font-family: 'Blauer Nue TH';
+    font-size: 14px;
+    line-height: 100%;
+    color: #28201F;
+    display: block;
+    margin-top: 1px;
+    text-decoration: underline;
+  }
+
+  /* ════════════════════════════════════════════
+     IMAGE CARD
+  ════════════════════════════════════════════ */
+  #{{ section_id }} .rs-card--image .rs-image-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 480px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} .rs-card--image .rs-slide-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Badge overlay (rating on image) */
+  #{{ section_id }} .rs-card--image .rs-img-rating-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #fff;
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+  }
+
+
+  /* ════════════════════════════════════════════
+     REVIEW CARD
+  ════════════════════════════════════════════ */
+  #{{ section_id }} .rs-card--review .rs-review-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    justify-content: space-between;
+    background: #F6F3EE;
+    border-radius: 10px;
+    height: 480px;
+  }
+img.author_image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+  #{{ section_id }} .rs-review-author-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  #{{ section_id }} .rs-author-name {
+    font-family: 'Blauer Nue RG';
+    font-size: 14px;
+    font-weight: 400;
+    color: #28201F;
+    letter-spacing: -2%;
+    line-height: 100%;
+  }
+
+  #{{ section_id }} .rs-review-title {
+    font-family: 'Blauer Nue MD';
+    font-size: 20px;
+    font-weight: 500;
+    color: #28201F;
+    line-height: 130%;
+    text-transform: uppercase;
+    letter-spacing: -2%;
+    margin: 0 0 14px;
+  }
+
+  #{{ section_id }} .rs-review-desc {
+    font-family: 'Blauer Nue TH';
+    font-size: 16px;
+    color: #28201FE5;
+    line-height: 150%;
+    margin: 0;
+  }
+
+  /* ── Video inside image card ────────────────── */
+  #{{ section_id }} .rs-card--image .rs-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: none;
+    z-index: 2;
+  }
+
+  #{{ section_id }} .rs-card--image.is-playing .rs-video {
+    display: block;
+  }
+
+  #{{ section_id }} .rs-card--image.is-playing .rs-slide-img,
+  #{{ section_id }} .rs-card--image.is-playing .rs-img-rating-badge,
+  #{{ section_id }} .rs-card--image.is-playing .rs-play-btn {
+    display: none;
+  }
+
+  /* Play button */
+  #{{ section_id }} .rs-play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    z-index: 3;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 10px;
+  }
+
+  #{{ section_id }} .rs-play-btn-inner {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    background: #00000012;
+}
+
+
+  /* Hide play btn when no video */
+  #{{ section_id }} .rs-card--image:not([data-has-video]) .rs-play-btn {
+    display: none;
+  }
+
+  @media (max-width: 1440px) {
+    #{{ section_id }} .rs-card--review .rs-review-body {
+      padding: 20px;
+    }
+    #{{ section_id }} .rs-swiper-wrap {
+      padding-left: 40px;
+    }
+    #{{ section_id }} .rs-header {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  @media (max-width: 1200px) {
+    #{{ section_id }} .rs-heading{
+      font-size: 36px;
+    }
+  }
+  @media (max-width: 768px) {
+    #{{ section_id }} .rs-heading{
+      font-size: 28px;
+    }
+    #{{ section_id }} .rs-video,
+    #{{ section_id }} .rs-card--review .rs-review-body {
+      height: 400px !important;
+    }
+    #{{ section_id }} .rs-image-wrap {
+      min-height: 400px !important;
+      max-height: 400px !important;
+    }
+    #{{ section_id }} { 
+      padding: 20px 0 50px; 
+      margin-bottom: 0;
+    }
+    #{{ section_id }} .rs-swiper-wrap { 
+      padding-left: 16px; 
+    }
+    #{{ section_id }} .rs-header { 
+      padding: 0 16px 20px; 
+    }
+  }
+  @media (max-width: 500px) {
+    #{{ section_id }} .rs-img-rating-badge svg{
+      width: 8px;
+    } 
+    #{{ section_id }} .rs-rating-num {
+      font-size: 10px;
+    } 
+    #{{ section_id }} .rs-play-btn-inner {
+      width: 28px;
+      height: 28px;
+    }
+    #{{ section_id }} .rs-play-btn-inner svg {
+      width: 11px;
+    }
+    #{{ section_id }} .rs-pill-title,
+    #{{ section_id }} .rs-pill-shop{
+      font-size: 12px;
+    }
+    #{{ section_id }} .rs-product-pill{
+      padding: 12px;
+    }
+    #{{ section_id }} .rs-author-name {
+      font-size: 11px;
+    }
+    img.author_image {
+    height: 28px;
+    width: 28px;
+  }
+  #{{ section_id }} .rs-stars svg {
+      width: 8px;
+      height: 8px;
+  }
+  #{{ section_id }} .rs-stars {
+    gap: 1px;
+  }
+  #{{ section_id }} .rs-review-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  #{{ section_id }} .rs-review-desc{
+    font-size: 12px;
+  }
+  #{{ section_id }} .rs-arrow {
+    width: 23px;
+    height: 23px;
+  }
+  #{{ section_id }} .rs-arrow svg {
+    width: 10px;
+    height: 10px;
+  }
+  }
+</style>
+
+<div id="{{ section_id }}">
+
+  <!-- Header -->
+  <div class="rs-header">
+    {%- if heading != blank -%}
+      <h2 class="rs-heading">{{ heading }}</h2>
+    {%- endif -%}
+
+    <div class="rs-arrows">
+      <button class="rs-arrow rs-prev" aria-label="{{ 'general.accessibility.previous' | t | default: 'Previous' }}">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3.69672L3.6967 9.00002L9 14.3033" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14.3033 9.00002H3.6967" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="rs-arrow rs-next" aria-label="{{ 'general.accessibility.next' | t | default: 'Next' }}">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3.69672L14.3033 9.00002L9 14.3033" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3.6967 9.00002H14.3033" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Swiper -->
+  <div class="rs-swiper-wrap">
+    <div class="swiper rs-swiper" id="{{ section_id }}-swiper">
+      <div class="swiper-wrapper">
+
+        {%- for block in section.blocks -%}
+          {%- assign bset = block.settings -%}
+          {%- assign star_count = bset.star_rating | plus: 0 | default: 5 -%}
+          {%- assign block_product = all_products[bset.product] -%}
+
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            {%- if block.type == 'image_card' -%}
+              {%- assign has_video = false -%}
+              {%- if bset.video != blank and bset.video.sources.size > 0 -%}{%- assign has_video = true -%}{%- endif -%}
+
+              <!-- ── IMAGE CARD ── -->
+              <div class="rs-card rs-card--image" {% if has_video %}data-has-video{% endif %}>
+                <div class="rs-image-wrap">
+                  {%- if bset.image != blank -%}
+                    <img class="rs-slide-img" loading="lazy" alt="{{ bset.image.alt | default: 'Review image' }}" src="{{ bset.image | image_url }}">
+                  {%- else -%}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'rs-slide-img' }}
+                  {%- endif -%}
+
+                  {%- comment -%} Video element — hidden until play is pressed {%- endcomment -%}
+                  {%- if has_video -%}
+                    {%- assign poster_url = '' -%}
+                    {%- if bset.image != blank -%}
+                      {%- assign poster_url = bset.image | image_url: width: 800 -%}
+                    {%- endif -%}
+                    {%- comment -%}
+                      Shopify 'video' setting: use video_tag filter which correctly
+                      handles all sources, formats, and CDN URLs automatically.
+                      We wrap it to inject our custom class, controls, poster, and preload.
+                    {%- endcomment -%}
+                    {{-
+                      bset.video
+                      | video_tag:
+                        class: 'rs-video',
+                        controls: true,
+                        playsinline: true,
+                        preload: 'none',
+                        poster: poster_url,
+                        loop: false,
+                        muted: false
+                    -}}
+                  {%- endif -%}
+
+                  <!-- Star badge on image -->
+                   <div class="rs-img-rating-badge">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.94706 3.60036C9.88329 3.41826 9.71301 3.29276 9.51727 3.28359H6.44038L5.46359 0.31747C5.39403 0.118612 5.19862 -0.0107194 4.98496 0.000699649C4.7758 -0.000776857 4.58989 0.131386 4.52587 0.327069L3.54907 3.29319H0.481947C0.275924 3.2918 0.092112 3.42012 0.025632 3.61176C-0.0408479 3.8034 0.0249233 4.01534 0.18891 4.13791L2.67973 5.99053L1.70294 8.97585C1.63394 9.17183 1.70369 9.3891 1.87465 9.51069C2.04561 9.63227 2.27743 9.62947 2.4453 9.5038L5.05333 7.58398L7.67113 9.5038C7.75267 9.56477 7.85196 9.59841 7.9544 9.59979C8.11035 9.60194 8.25759 9.52929 8.34898 9.40508C8.44036 9.28088 8.46444 9.12071 8.4135 8.97585L7.4367 5.99053L9.87868 4.12831C10.0103 3.98314 10.0375 3.77331 9.94706 3.60036Z" fill="#28201F"/>
+                    </svg>
+                    <span class="rs-rating-num">{{ bset.star_rating }}</span>
+                    </div>
+
+                  {%- if has_video -%}
+                    <!-- Play button overlay -->
+                    <button class="rs-play-btn" aria-label="Play video" data-rs-play>
+                      <span class="rs-play-btn-inner">
+                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.33325 12.6667V3.33333L12.6666 7.99999L5.33325 12.6667Z" fill="white"/>
+                        </svg>
+                      </span>
+                    </button>
+                  {%- endif -%}
+                </div>
+
+                <!-- Product pill -->
+                {%- if block_product != blank -%}
+                  <a href="{{ block_product.url }}" class="rs-product-pill">
+                    {%- if block_product.featured_media -%}
+                      <img class="rs-pill-img" src="{{ block_product.featured_media | image_url }}" alt="{{ block_product.title }}" loading="lazy"> 
+                    {%- else -%}
+                      <div class="rs-pill-img--placeholder"></div>
+                    {%- endif -%}
+                    <div class="rs-pill-info">
+                      <span class="rs-pill-title">{{ block_product.title | upcase | truncate: 28 }}</span>
+                      <span class="rs-pill-shop">Shop Now</span>
+                    </div>
+                  </a>
+                {%- endif -%}
+              </div>
+
+            {%- elsif block.type == 'review_card' -%}
+
+              <!-- ── REVIEW CARD ── -->
+              <div class="rs-card rs-card--review">
+                <div class="rs-review-body">
+                  <!-- Author + stars -->
+                  <div class="rs-review-author-row">
+                        <img src="{{ block.settings.author_image | image_url }}" class="author_image">
+                        <div class="author-info">
+                            <span class="rs-author-name">{{ bset.author_name }}</span>
+                            <div class="rs-stars">
+                                {%- assign star_count_rev = bset.star_rating | plus: 0 -%}
+                                {%- for i in (1..5) -%}
+                                    {%- if i <= star_count_rev -%}
+                                    <svg viewBox="0 0 12 12" fill="#28201F" xmlns="http://www.w3.org/2000/svg"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5"/></svg>
+                                    {%- else -%}
+                                    <svg viewBox="0 0 12 12" fill="none" stroke="#28201F" stroke-width="0.8" xmlns="http://www.w3.org/2000/svg"><polygon points="6,1 7.5,4.5 11,5 8.5,7.5 9,11 6,9.5 3,11 3.5,7.5 1,5 4.5,4.5"/></svg>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                  </div>
+
+                  <div class="reviews-wrapper">
+                    {%- if bset.review_title != blank -%}
+                        <p class="rs-review-title">{{ bset.review_title }}</p>
+                    {%- endif -%}
+
+                    {%- if bset.review_desc != blank -%}
+                        <p class="rs-review-desc">{{ bset.review_desc }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+                <!-- Product pill -->
+                {%- if block_product != blank -%}
+                  <a href="{{ block_product.url }}" class="rs-product-pill">
+                    {%- if block_product.featured_media -%}
+                        <img src="{{ block_product.featured_media | image_url }}" alt="{{ block_product.title }}" class="rs-pill-img" loading="lazy">
+                    {%- else -%}
+                      <div class="rs-pill-img--placeholder"></div>
+                    {%- endif -%}
+                    <div class="rs-pill-info">
+                      <span class="rs-pill-title">{{ block_product.title | upcase | truncate: 28 }}</span>
+                      <span class="rs-pill-shop">Shop Now</span>
+                    </div>
+                  </a>
+                {%- endif -%}
+              </div>
+
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+      </div><!-- /.swiper-wrapper -->
+    </div><!-- /.swiper -->
+  </div><!-- /.rs-swiper-wrap -->
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+(function () {
+  function initReviewSlider() {
+    var wrap = document.getElementById('{{ section_id }}');
+    if (!wrap || typeof Swiper === 'undefined') return;
+
+    var swiperEl = document.getElementById('{{ section_id }}-swiper');
+    var prevBtn  = wrap.querySelector('.rs-prev');
+    var nextBtn  = wrap.querySelector('.rs-next');
+
+    new Swiper(swiperEl, {
+      slidesPerView: 1.5,
+      spaceBetween: 12,
+      grabCursor: true,
+      navigation: {
+        prevEl: prevBtn,
+        nextEl: nextBtn,
+      },
+      breakpoints: {
+        1600: { slidesPerView: 5.1, spaceBetween: 14 },
+        1440: { slidesPerView: 4.1, spaceBetween: 14 },
+        1024: { slidesPerView: 3.1, spaceBetween: 12 },
+        768:  { slidesPerView: 2.1, spaceBetween: 12 },
+        480:  { slidesPerView: 2, spaceBetween: 12 },
+        0:    { slidesPerView: 1.5, spaceBetween: 12 },
+      },
+    });
+  }
+
+  /* ── Video play button handler ──────────────── */
+  document.addEventListener('click', function (e) {
+    var playBtn = e.target.closest('[data-rs-play]');
+    if (!playBtn) return;
+
+    var card  = playBtn.closest('.rs-card--image');
+    var video = card && card.querySelector('video');
+    if (!video) return;
+
+    card.classList.add('is-playing');
+    video.play();
+
+    /* When video ends, reset back to poster state */
+    video.addEventListener('ended', function () {
+      card.classList.remove('is-playing');
+      video.currentTime = 0;
+    }, { once: true });
+  });
+
+  if (typeof Swiper !== 'undefined') {
+    initReviewSlider();
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof Swiper !== 'undefined') {
+        initReviewSlider();
+      } else {
+        var scripts = document.querySelectorAll('script[src*="swiper"]');
+        if (scripts.length) {
+          scripts[scripts.length - 1].addEventListener('load', initReviewSlider);
+        }
+      }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Review Slider",
+  "tag": "section",
+  "class": "review-slider-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Real skin, real <em>results</em></p>"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow background color",
+      "default": "#2A2118"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background color",
+      "default": "#F3EDE7"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "select",
+          "id": "star_rating",
+          "label": "Star rating",
+          "options": [
+            { "value": "1", "label": "1 star" },
+            { "value": "1.5", "label": "1.5 star" },
+            { "value": "2", "label": "2 stars" },
+            { "value": "2.5", "label": "2.5 stars" },
+            { "value": "3", "label": "3 stars" },
+            { "value": "3.5", "label": "3.5 stars" },
+            { "value": "4", "label": "4 stars" },
+            { "value": "4.5", "label": "4.5 stars" },
+            { "value": "5", "label": "5 stars" }
+          ],
+          "default": "5"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "review_card",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Priya S."
+        },
+        {
+          "type": "select",
+          "id": "star_rating",
+          "label": "Star rating",
+          "options": [
+            { "value": "1", "label": "1 star" },
+            { "value": "1.5", "label": "1.5 star" },
+            { "value": "2", "label": "2 stars" },
+            { "value": "2.5", "label": "2.5 stars" },
+            { "value": "3", "label": "3 stars" },
+            { "value": "3.5", "label": "3.5 stars" },
+            { "value": "4", "label": "4 stars" },
+            { "value": "4.5", "label": "4.5 stars" },
+            { "value": "5", "label": "5 stars" }
+          ],
+          "default": "5"
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review title",
+          "default": "MY SKIN STOPPED BREAKING OUT IN 2 WEEKS"
+        },
+        {
+          "type": "textarea",
+          "id": "review_desc",
+          "label": "Review description",
+          "default": "I've tried every anti-acne product on the market. Nothing worked until I stopped fighting my skin and started feeding it."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review Slider",
+      "blocks": [
+        {
+          "type": "image_card",
+          "settings": {
+            "star_rating": "4"
+          }
+        },
+        {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Priya S.",
+            "star_rating": "4",
+            "review_title": "MY SKIN STOPPED BREAKING OUT IN 2 WEEKS",
+            "review_desc": "I've tried every anti-acne product on the market. Nothing worked until I stopped fighting my skin and started feeding it. The Face Wash and Serum together changed everything — fewer breakouts, less redness, and my scars are actually fading."
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": { "star_rating": "5" }
+        },
+        {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Devansh M.",
+            "star_rating": "4",
+            "review_title": "THE MOISTURISER IS RICH WITHOUT BEING HEAVY – RARE.",
+            "review_desc": "I have very dry and most moisturisers either feel greasy or stop working after an hour. This Soak It In cream is different — it sinks in properly and my skin still feels soft by evening. After 3 weeks the texture improvement has been real."
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": { "star_rating": "5" }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20
+}
+{% endschema %}

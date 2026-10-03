@@ -1,0 +1,543 @@
+{% comment %}
+  Section: Science Cards (Probiotics / Prebiotics / Postbiotics style)
+  File: sections/science-cards.liquid
+{% endcomment %}
+
+<style>
+  #science-cards-{{ section.id }} {
+    position: relative;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  /* ── Background image ── */
+  #science-cards-{{ section.id }} .sc__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  #science-cards-{{ section.id }} video{
+    height: 100%;
+    width: 100%;
+  }
+
+  #science-cards-{{ section.id }} .sc__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(180, 160, 140, 0.35);
+    z-index: 1;
+  }
+
+  /* ── Inner wrapper ── */
+  #science-cards-{{ section.id }} .sc__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1220px;
+    margin: 0 auto;
+  }
+
+  /* ── Heading ── */
+  #science-cards-{{ section.id }} .sc__heading {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    max-width: 640px;
+    font-family: 'Blauer Nue RG';
+    color:#FFFFFF;
+    margin: 0 auto 40px;
+  }
+
+  #science-cards-{{ section.id }} .sc__heading em {
+    font-style: italic;
+    font-family: 'Test Tiempos Fine Italic RG';
+  }
+
+  /* ── Card grid ── */
+  #science-cards-{{ section.id }} .sc__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size }}, 1fr);
+    gap: 10px;
+    align-items: start;
+  }
+
+  /* ── Single card ── */
+  #science-cards-{{ section.id }} .sc__card {
+    background: #F6F3EEB2;
+    backdrop-filter: blur(20px)
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 50px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+  }
+
+  /* ── Icon circle ── */
+  #science-cards-{{ section.id }} .sc__card-icon-wrap {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #science-cards-{{ section.id }} .sc__card-icon-wrap img {
+    object-fit: cover;
+  }
+  .sc__bg::-webkit-media-controls {
+  display: none !important;
+}
+
+  #science-cards-{{ section.id }} .sc__card-icon-placeholder {
+    opacity: 0.3;
+  }
+
+  /* ── Card title ── */
+  #science-cards-{{ section.id }} .sc__card-title {
+    color: #28201F;
+    margin: 0 0 14px;
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-align: center;
+    text-transform: uppercase;
+
+  }
+
+  /* ── Description ── */
+  #science-cards-{{ section.id }} .sc__card-desc {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-align: center;
+    margin: 0 0 30px;
+    flex: 1;
+    color: #28201FB2;
+  }
+
+  /* ── Stats row ── */
+  #science-cards-{{ section.id }} .sc__card-stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid #28201F1A;
+    padding-top: 16px;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  #science-cards-{{ section.id }} .sc__stat:not(:last-child){
+    border-right: 1px solid #28201F1A;
+}
+
+  #science-cards-{{ section.id }} .sc__stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #science-cards-{{ section.id }} .sc__stat + .sc__stat {
+    border-left: none;
+  }
+
+  #science-cards-{{ section.id }} .sc__stat-value {
+    font-family: 'Test Tiempos Fine Italic';
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #28201F;
+    }
+
+  #science-cards-{{ section.id }} .sc__stat-label {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 13px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201FB2;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 1220px) {
+    #science-cards-{{ section.id }} .sc__inner {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+@media (max-width: 1200px) {
+    #science-cards-{{ section.id }} .sc__heading {
+        font-size: 36px;
+    }
+    #science-cards-{{ section.id }} .sc__card-icon-wrap {
+        width: 120px;
+        height: 120px;
+    }
+}
+    @media (max-width: 1025px) {
+        #science-cards-{{ section.id }} .sc__inner {
+            padding-right: 0;
+            padding-left: 16px;
+        }
+        #science-cards-{{ section.id }} .sc__heading {
+            padding-right: 16px;
+        }
+        #science-cards-{{ section.id }} .sc__grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        padding: 0 20px 16px;
+        /* hide scrollbar but keep functionality */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        align-items: stretch;
+        }
+        
+    #science-cards-{{ section.id }} .sc__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    #science-cards-{{ section.id }} .sc__card {
+      min-width: 35vw;
+      max-width: 35vw;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+    }
+  @media (max-width: 768px) {
+    #science-cards-{{ section.id }} .sc__card{
+        background:#F6F3EE;
+    }
+    #science-cards-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    #science-cards-{{ section.id }} .sc__heading {
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+    #science-cards-{{ section.id }} .sc__card {
+      min-width: 48vw;
+      max-width: 48vw;
+    }
+}
+
+@media (max-width: 500px) {
+    #science-cards-{{ section.id }} .sc__card-icon-wrap {
+        width: 114px;
+        height: 114px;
+        margin-bottom: 20px;
+    }
+    #science-cards-{{ section.id }} .sc__card-title{
+        font-size: 16px;
+    }
+    #science-cards-{{ section.id }} .sc__card-desc{
+        margin-bottom: 20px;
+        font-size: 12px;
+    }
+    #science-cards-{{ section.id }} .sc__stat-value {
+        font-size: 20px;
+    }
+    #science-cards-{{ section.id }} .sc__stat-label {
+        font-size: 10px;
+    }
+    #science-cards-{{ section.id }} .sc__card {
+      min-width: 75vw;
+      max-width: 75vw;
+    }
+  }
+  @media (max-width: 480px) {
+    #science-cards-{{ section.id }} .sc__card {
+      min-width: 82vw;
+      max-width: 82vw;
+      padding: 32px 14px 20px;
+    }
+  }
+</style>
+
+<div id="science-cards-{{ section.id }}" class="science-cards">
+
+  
+    {% comment %} <img class="sc__bg" src="{{ section.settings.background_image | image_url }}" alt="" role="presentation" loading="lazy"> {% endcomment %}
+     {%- assign poster_url = section.settings.poster_image | image_url -%}
+      {{
+        section.settings.video
+        | video_tag:
+          class: 'sc__bg',
+          autoplay: true,
+          loop: true,
+          muted: true,
+          playsinline: true,
+          controls: false,
+          preload: 'metadata',
+          poster: poster_url
+      }}
+
+  <div class="sc__bg-overlay"></div>
+
+  <div class="sc__inner">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="sc__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="sc__grid">
+      {%- for block in section.blocks -%}
+        <div class="sc__card" {{ block.shopify_attributes }}>
+
+          {%- comment -%} Icon ── {%- endcomment -%}
+          <div class="sc__card-icon-wrap">
+            {%- if block.settings.icon_image != blank -%}
+              <img src="{{ block.settings.icon_image | image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {%- endif -%}
+          </div>
+
+          {%- comment -%} Title ── {%- endcomment -%}
+          {%- if block.settings.title != blank -%}
+            <h3 class="sc__card-title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+
+          {%- comment -%} Description ── {%- endcomment -%}
+          {%- if block.settings.description != blank -%}
+            <p class="sc__card-desc">{{ block.settings.description }}</p>
+          {%- endif -%}
+
+          {%- comment -%} Stats ── {%- endcomment -%}
+          <div class="sc__card-stats">
+            {%- if block.settings.stat_1_value != blank -%}
+              <div class="sc__stat">
+                <span class="sc__stat-value">{{ block.settings.stat_1_value }}</span>
+                <span class="sc__stat-label">{{ block.settings.stat_1_label }}</span>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.stat_2_value != blank -%}
+              <div class="sc__stat">
+                <span class="sc__stat-value">{{ block.settings.stat_2_value }}</span>
+                <span class="sc__stat-label">{{ block.settings.stat_2_label }}</span>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.stat_3_value != blank -%}
+              <div class="sc__stat">
+                <span class="sc__stat-value">{{ block.settings.stat_3_value }}</span>
+                <span class="sc__stat-label">{{ block.settings.stat_3_label }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const videos = document.querySelectorAll('.sc__bg');
+
+    videos.forEach(video => {
+      video.muted = true;
+      video.play().catch(() => {
+        // iOS sometimes blocks autoplay, retry on user interaction
+        document.addEventListener('touchstart', () => {
+          video.play();
+        }, { once: true });
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Science Cards",
+  "tag": "section",
+  "class": "science-cards-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background Video"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Your skin hosts billions of living organisms. <em>Are you feeding them?</em></p>"
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "science_card",
+      "name": "Science Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Card Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "PROBIOTICS"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Live beneficial bacteria that directly populate and reinforce your skin's microbial community, reducing acne-causing bacteria at the cellular level."
+        },
+        {
+          "type": "header",
+          "content": "Stat 1"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_value",
+          "label": "Stat 1 Value",
+          "default": "10T+"
+        },
+        {
+          "type": "text",
+          "id": "stat_1_label",
+          "label": "Stat 1 Label",
+          "default": "Microorganisms"
+        },
+        {
+          "type": "header",
+          "content": "Stat 2"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_value",
+          "label": "Stat 2 Value",
+          "default": "72h"
+        },
+        {
+          "type": "text",
+          "id": "stat_2_label",
+          "label": "Stat 2 Label",
+          "default": "Colonisation"
+        },
+        {
+          "type": "header",
+          "content": "Stat 3"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_value",
+          "label": "Stat 3 Value",
+          "default": "4w"
+        },
+        {
+          "type": "text",
+          "id": "stat_3_label",
+          "label": "Stat 3 Label",
+          "default": "Usage"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Cards"
+    }
+  ]
+}
+{% endschema %}

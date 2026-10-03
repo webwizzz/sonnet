@@ -1,0 +1,385 @@
+<style>
+  #faq-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: #F6F3EE;
+  }
+
+  #faq-{{ section.id }} .faq__inner {
+    max-width: 1520px;
+    margin: 0 auto;
+  }
+
+  /* ── Heading ── */
+  #faq-{{ section.id }} .faq__heading {
+   font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201F;
+    margin: 0 auto 40px;
+  }
+
+  #faq-{{ section.id }} .faq__heading em {
+    font-style: italic;
+    font-family: 'Blauer Nue RG';
+  }
+
+  /* ── Two-column grid ── */
+  #faq-{{ section.id }} .faq__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  /* ── Single accordion item ── */
+  #faq-{{ section.id }} .faq__item {
+    border: 1px solid #28201F1A;
+    background: #fff;
+    padding: 25px 20px 25px 30px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+}
+
+
+  /* ── Trigger button ── */
+  #faq-{{ section.id }} .faq__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  #faq-{{ section.id }} .faq__question {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    color: #28201F;
+    flex: 1;
+  }
+
+  /* ── Icon (+ / ×) ── */
+  #faq-{{ section.id }} .faq__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #F5EEE6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.35s ease;
+    font-style: normal;
+  }
+
+  #faq-{{ section.id }} .faq__icon svg{
+    height: 15px;
+    width: 15px;
+    }
+  #faq-{{ section.id }} .faq__item.is-open .faq__icon {
+    border-color: #1a1a1a;
+    transform: rotate(45deg);
+  }
+
+  /* ── Answer panel ── */
+  #faq-{{ section.id }} .faq__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding-bottom 0.35s ease;
+    padding-bottom: 0;
+  }
+
+  #faq-{{ section.id }} .faq__item.is-open .faq__panel {
+    max-height: 600px;
+    padding-bottom: 18px;
+    padding-top: 12px;
+  }
+
+  #faq-{{ section.id }} .faq__answer {
+    font-family: 'Blauer Nue LT';
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: -2%;
+    color: #28201FE5;
+    margin: 0;
+    max-width: 90%;
+  }
+
+  #faq-{{ section.id }} .faq__answer p {
+    margin: 0 0 8px;
+  }
+
+  #faq-{{ section.id }} .faq__answer p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 1520px) {
+    #faq-{{ section.id }} .faq__inner {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+  }
+  @media (max-width: 1200px) {
+        #faq-{{ section.id }} .faq__heading {
+        font-size: 36px;
+        }
+        #faq-{{ section.id }} .faq__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+  @media (max-width: 768px) {
+    #faq-{{ section.id }} .faq__question {
+        white-space: break-spaces;
+        font-size: 14px;
+        line-height: 130%;
+    }
+    #faq-{{ section.id }} .faq__answer{
+        font-size: 12px;
+    }
+    #faq-{{ section.id }} .faq__icon {
+        width: 28px;
+        height: 28px;
+    }
+    #faq-{{ section.id }} .faq__item.is-open .faq__panel {
+        padding-bottom: 0;
+    }
+    #faq-{{ section.id }} .faq__item {
+        padding: 16px 16px 22px 16px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+    }
+     #faq-{{ section.id }} .faq__inner {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    #faq-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    #faq-{{ section.id }} .faq__heading {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 28px;
+    }
+
+    #faq-{{ section.id }} .faq__grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    /* On mobile all items sit in one column — reset last-child border */
+    #faq-{{ section.id }} .faq__col:first-child .faq__item:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+<div id="faq-{{ section.id }}" class="faq-section">
+  <div class="faq__inner">
+
+    {%- if section.settings.heading != blank -%}
+      <div class="faq__heading">{{ section.settings.heading }}</div>
+    {%- endif -%}
+
+    {%- liquid
+      assign total      = section.blocks.size
+      assign half       = total | divided_by: 2 | ceil
+      assign col1_items = section.blocks | slice: 0, half
+      assign col2_items = section.blocks | slice: half, total
+    -%}
+
+    <div class="faq__grid">
+
+      {%- comment -%} Left column ── {%- endcomment -%}
+      <div class="faq__col">
+        {%- for block in col1_items -%}
+          <div
+            class="faq__item"
+            {{ block.shopify_attributes }}
+          >
+            <button
+              class="faq__trigger"
+              aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+              <span class="faq__question">{{ block.settings.question }}</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 6.00024L2.5 6.00024M6 2.50024L6 9.50024" stroke="#78563D" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div
+              class="faq__panel"
+              aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+            >
+              {%- if block.settings.answer != blank -%}
+                <div class="faq__answer">{{ block.settings.answer }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Right column ── {%- endcomment -%}
+      <div class="faq__col">
+        {%- for block in col2_items -%}
+          <div class="faq__item" {{ block.shopify_attributes }}>
+            <button class="faq__trigger" aria-expanded="false">
+              <span class="faq__question">{{ block.settings.question }}</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 6.00024L2.5 6.00024M6 2.50024L6 9.50024" stroke="#78563D" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq__panel" aria-hidden="true">
+              {%- if block.settings.answer != blank -%}
+                <div class="faq__answer">{{ block.settings.answer }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var section = document.getElementById('faq-{{ section.id }}');
+  if (!section) return;
+
+  var items = section.querySelectorAll('.faq__item');
+
+  items.forEach(function (item) {
+    var trigger = item.querySelector('.faq__trigger');
+    var panel   = item.querySelector('.faq__panel');
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener('click', function () {
+      var isOpen = item.classList.contains('is-open');
+
+      /* Close all items in this section */
+      items.forEach(function (el) {
+        el.classList.remove('is-open');
+        var p = el.querySelector('.faq__panel');
+        var t = el.querySelector('.faq__trigger');
+        if (p) p.setAttribute('aria-hidden', 'true');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      /* Open clicked item if it was closed */
+      if (!isOpen) {
+        item.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "tag": "section",
+  "class": "faq-accordion-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is the skin microbiome?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>The skin microbiome refers to the collection of microorganisms that naturally live on your skin and help support its barrier and overall function.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion"
+    }
+  ]
+}
+{% endschema %}

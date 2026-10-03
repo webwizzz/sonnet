@@ -1,0 +1,1233 @@
+{%- liquid
+  comment
+    ─────────────────────────────────────────────────────────────
+    METAFIELD RESOLUTION
+    ─────────────────────────────────────────────────────────────
+    If this section is rendered on a product page and the product
+    has metafields set, those values take priority over the
+    section/customizer settings.
+
+    Metafield namespace used: "microbiome_compare"
+
+    Product metafields expected:
+      microbiome_compare.heading          → richtext  (or single_line_text_field)
+      microbiome_compare.subheading       → single_line_text_field
+      microbiome_compare.before_image     → file_reference  (image)
+      microbiome_compare.after_image      → file_reference  (image)
+      microbiome_compare.before_label     → single_line_text_field
+      microbiome_compare.after_label      → single_line_text_field
+      microbiome_compare.quote            → single_line_text_field
+      microbiome_compare.left_label       → single_line_text_field
+      microbiome_compare.right_label      → single_line_text_field
+
+    Metaobject type: "microbiome_compare_item"
+    Fields on each entry:
+      panel           → single_line_text_field  ("disrupted" | "balanced")
+      icon            → file_reference          (image, optional)
+      title           → single_line_text_field
+      description     → multi_line_text_field
+
+    Product metafields for item lists:
+      microbiome_compare.disrupted_items  → list.metaobject_reference
+      microbiome_compare.balanced_items   → list.metaobject_reference
+    ─────────────────────────────────────────────────────────────
+  endcomment
+
+  assign mf = product.metafields.microbiome_compare
+
+  comment — heading —
+  endcomment
+  if mf.heading != blank
+    assign mc_heading = mf.headings | metafield_tag
+  else
+    assign mc_heading = section.settings.heading
+  endif
+
+  comment — subheading —
+  endcomment
+  if mf.subheading != blank
+    assign mc_subheading = mf.subheading.value
+  else
+    assign mc_subheading = section.settings.subheading
+  endif
+
+  comment — images —
+  endcomment
+  if mf.before_image != blank
+    assign mc_before_image = mf.before_image.value
+  else
+    assign mc_before_image = section.settings.before_image
+  endif
+
+  if mf.after_image != blank
+    assign mc_after_image = mf.after_image.value
+  else
+    assign mc_after_image = section.settings.after_image
+  endif
+
+  comment — labels —
+  endcomment
+  if mf.before_label != blank
+    assign mc_before_label = mf.before_label.value
+  else
+    assign mc_before_label = section.settings.before_label | default: 'Disrupted'
+  endif
+
+  if mf.after_label != blank
+    assign mc_after_label = mf.after_label.value
+  else
+    assign mc_after_label = section.settings.after_label | default: 'Balanced'
+  endif
+
+  comment — quote —
+  endcomment
+  if mf.quote != blank
+    assign mc_quote = mf.quote.value
+  else
+    assign mc_quote = section.settings.quote
+  endif
+
+  comment — panel labels —
+  endcomment
+  if mf.left_label != blank
+    assign mc_left_label = mf.left_label.value
+  else
+    assign mc_left_label = section.settings.left_label | default: 'Microbiome Disrupted'
+  endif
+
+  if mf.right_label != blank
+    assign mc_right_label = mf.right_label.value
+  else
+    assign mc_right_label = section.settings.right_label | default: 'Microbiome Balanced'
+  endif
+
+  comment
+    ─── Feature items ───
+    If the product has metaobject lists, use them.
+    Otherwise fall back to section blocks (customizer).
+  endcomment
+  assign use_meta_items = false
+  if mf.disrupted_items != blank or mf.balanced_items != blank
+    assign use_meta_items = true
+    assign mc_disrupted_items = mf.disrupted_items.value
+    assign mc_balanced_items  = mf.balanced_items.value
+  else
+    assign mc_disrupted_items = section.blocks | where: 'type', 'disrupted_item'
+    assign mc_balanced_items  = section.blocks | where: 'type', 'balanced_item'
+  endif
+-%}
+
+<style>
+  #mc-{{ section.id}}{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  #mc-{{ section.id}} .mc__inner {
+    max-width: 1720px;
+    margin: 0 auto;
+  }
+  #mc-{{ section.id}} .desktop-hide{
+      display: none; 
+  }
+  /* ── Heading ── */
+  #mc-{{ section.id }}  .mc__heading-wrap {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  #mc-{{section.id }} .mc__heading {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 30px;
+    color: #28201F;
+}
+  #mc-{{ section.id }}  .mc__heading em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  #mc-{{ section.id }} .mc__subheading {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201FCC;
+    margin: 0;
+  }
+
+  /* ── Three-column layout ── */
+  #mc-{{ section.id }} .mc__layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 800px) 1fr;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  /* ── Side panels ── */
+#mc-{{ section.id }} .mc__panel {
+    background: #F6F3EE;
+    border-radius: {{ section.settings.panel_border_radius }}px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+  }
+  #mc-{{ section.id }} .mc__panel_inner {
+    border-radius: 10px;
+      border: 1px solid #28201F1A;
+  }
+  #mc-{{ section.id }} .mc__panel-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -2%;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 9px 20px 9px 38px;
+    width: max-content;
+    border-radius: 10px 0 10px 0;
+    color: #28201F;
+    line-height: 140%;
+    font-family: 'Blauer Nue MD';
+  }
+  
+  #mc-{{section.id }} .mc__panel-label-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  #mc-{{ section.id }} .mc__panel-label-dot--disrupted {
+    background: #FF8080;
+  }
+  #mc-{{ section.id }} .mc__panel-label:has(.mc__panel-label-dot--balanced){
+    background: #E5D5C2;
+}
+  #mc-{{ section.id }} .mc__panel-label-dot--balanced {
+    background: #80BF80;
+  }
+
+  /* ── Feature items ── */
+  #mc-{{ section.id }} .mc__feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0 30px;
+  }
+
+  #mc-{{ section.id }} .mc__feature {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 30px;
+    border-bottom:1px solid #28201F14;
+    max-width: 295px;
+  }
+  #mc-{{ section.id }} .mc__feature:last-child{
+    border-bottom:none;
+  }
+  #mc-{{ section.id }} .mc__feature-text_wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 10px;
+      align-items: center;
+  }
+  #mc-{{ section.id }} .mc__feature-num-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  #mc-{{ section.id }} .mc__feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  #mc-{{section.id }} .mc__feature-icon-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #d4b0a0;
+    flex-shrink: 0;
+  }
+
+  #mc-{{ section.id }} .mc__feature-num {
+    font-family: 'Blauer Nue MD';
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 110.00000000000001%;
+    letter-spacing: -6%;
+    color: #28201F0F;
+    }
+
+  /* Numbered display without icon */
+  #mc- {{ section.id }} .mc__feature-index {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(180, 140, 120, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7a4a30;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  #mc-{{section.id }} .mc__feature-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #mc-{{section.id}} .mc__feature-title {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 110.00000000000001%;
+    letter-spacing: -2%;
+    color: #28201F;
+    margin: 0 0 4px;
+    max-width: 65%;
+  }
+
+  #mc-{{ section.id}} .mc__feature-desc {
+    color: #666;
+    margin: 0;
+    font-family: 'Blauer Nue LT';
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+  }
+
+  /* ── Centre: before/after slider ── */
+  #mc-{{ section.id}} .mc__slider-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+    position: relative;
+  }
+
+  #mc-{{ section.id }} .mc__compare-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: {{ section.settings.slider_border_radius }}px;
+    overflow: hidden;
+    cursor: ew-resize;
+  }
+
+
+  #mc-{{ section.id }} .mc__after-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+  }
+
+  #mc-{{ section.id }} .mc__divisor {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 50%;
+    background-size: cover;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+
+  #mc-{{ section.id }} .mc__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  #mc-{{ section.id }} .mc__handle svg {
+    width: 24px;
+    height: 14px;
+  }
+
+  #mc-{{ section.id }} .mc__slider-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    z-index: 4;
+    cursor: ew-resize;
+    margin: 0;
+    padding: 0;
+  }
+
+  #mc-{{ section.id }} .mc__slider-input::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    width: 26px;
+    height: 100%;
+    background: transparent;
+  }
+
+  #mc-{{ section.id}} .mc__slider-input::-moz-range-thumb {
+    width: 26px;
+    height: 100%;
+    background: transparent;
+    border: none;
+  }
+
+  /* Before / after pill labels */
+  #mc-{{ section.id }} .mc__ba-label {
+    position: absolute;
+    bottom: 14px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 30px;
+    z-index: 2;
+    pointer-events: none;
+    line-height: 1.4;
+  }
+
+  #mc-{{ section.id }} .mc__ba-label--before {
+    left: 12px;
+    color: #c04040;
+    z-index: 5;
+  }
+
+  #mc-{{ section.id }} .mc__ba-label--after {
+    right: 12px;
+    color: #3a8a3a;
+  }
+
+  /* Quote strip below slider */
+  #mc-{{ section.id }} .mc__quote {
+    background: #F5EEE6;
+    color: #28201F;
+    font-family: 'Test Tiempos Fine Italic RG';
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    padding: 16px 20px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    margin: 0 16px;
+    max-width: calc(100% - 32px);
+}
+
+  /* ── Mobile ── */
+  @media (max-width: 1720px) {
+    #mc-{{ section.id}} .mc__inner{
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  @media (max-width: 1500px) {
+    .comparison {
+      height: 630px !important;
+    }
+    #mc-{{ section.id}} .mc__slider-col {
+      height: 100%;
+  }
+
+    }
+  @media (max-width: 1440px) {
+    #mc-{{ section.id}} .mc__layout {
+      grid-template-columns: 1fr minmax(0, 700px) 1fr;
+    }
+    #mc-{{ section.id}} .mc__panel {
+      padding: 20px;
+    } 
+    #mc-{{ section.id}} .mc__panel-label{
+      padding-left: 20px;
+    }
+    #mc-{{ section.id}} .mc__feature-list {
+      padding: 0 20px;
+    }
+    #mc-{{ section.id}} .mc__quote {
+      font-size: 22px;
+    }
+  }
+  @media (max-width: 1360px) {
+    #mc-{{ section.id}} .mc__layout {
+      grid-template-columns: 1fr minmax(0, 650px) 1fr;
+    }
+  }
+  @media (max-width: 1200px) {
+    #mc-{{ section.id}} .mc__quote {
+      font-size: 18px;
+    }
+    #mc-{{ section.id}} .mc__heading {
+      font-size: 36px;
+    }
+    #mc-{{ section.id}} .mc__feature-num {
+      font-size: 33px;
+    }
+    #mc-{{ section.id}} .mc__feature-title {
+      max-width: 80%;
+    }
+  }
+  @media (max-width: 1050px) {
+    #mc-{{ section.id}} .desktop-hide{
+      display: block !important; 
+      margin-bottom: 10px;
+    }
+    #mc-{{ section.id}} .mobile-hide{
+      display: none; 
+    }
+    #mc-{{ section.id}} .mc__layout {
+      grid-template-columns: 1fr 1fr;
+    }
+    #mc-{{ section.id}} .mc__panel {
+      padding: 30px;
+      justify-content: center;
+    }
+  }
+  @media(min-width: 769px){
+    .before-after-card .review-box, .before-after-card .review-slider-nav {
+      display: none !important;
+    }
+  }
+  @media(max-width: 768px){
+     #mc-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    #mc-{{ section.id }} .mc__panels-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .compare-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      cursor: ew-resize;
+      height: 600px;
+      border-radius: 12px;
+    }
+    .before-after-card .review-text {
+      margin: 24px 0 14px;
+      text-align: center;
+    }
+    .before-after-card .review-slider-nav {
+      margin: 30px auto 0;
+    }
+  }
+  @media(max-width: 500px){
+    #mc-{{ section.id }} .mc__inner {
+      padding: 0 0 0 16px;
+    }
+    #mc-{{ section.id }} .mc__heading-wrap, #mc-{{ section.id}} .desktop-hide{
+      padding-right: 16px;
+    }
+    .comparison, .compare-wrapper,  #mc-{{ section.id }} .mc__slider-col {
+      height: 280px !important;
+    }
+    #mc-{{ section.id }} .mc__panel-label-dot{
+      height: 8px;
+      width: 8px;
+    }
+    .before-label, .after-label {
+      height: fit-content;
+    }
+    #mc-{{ section.id }} .mc__quote {
+        font-size: 12px;
+        padding: 7px;
+    }
+    #mc-{{ section.id}} .mc__layout {
+      overflow-x: scroll;
+      scrollbar-width: none; 
+      -ms-overflow-style: none;
+    }
+    #mc-{{ section.id}} .mc__inner {
+        overflow: hidden;
+    }
+    #mc-{{ section.id }} .mc__panels-row {
+      grid-template-columns: 1fr;
+    }
+
+    #mc-{{ section.id }} .mc__panel {
+      padding: 16px 14px;
+      min-width: 320px;
+    }
+    #mc-{{ section.id}} .mc__panel-label{
+      font-size: 13px;
+      padding: 7px 14px 7px 27px;
+      line-height: 1;
+      gap: 5px;
+    }
+    #mc-{{ section.id}} .mc__feature-num {
+      font-size: 32px;
+    }
+    #mc-{{ section.id}} .mc__feature-icon {
+      width: 32px;
+      height: 32px;
+    }
+    #mc-{{ section.id}} .mc__feature-title{
+      font-size: 14px;
+    }
+    #mc-template--19513462456502__microbiome_compare_8HFKnW .mc__feature-desc {
+      font-size: 12px;
+    }
+    #mc-{{ section.id }} .mc__heading {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    #mc-{{ section.id }} .mc__subheading{
+      font-size: 14px;
+    }
+    #mc-{{ section.id }} .mc__heading-wrap {
+      margin-bottom: 24px;
+    }
+    .handle {
+        width: 28px;
+        height: 44px;
+    }
+    .before-label, .after-label {
+        font-size: 10px !important;
+    }
+    .after-label{
+      right: 10px !important; 
+    }
+    .before-label{
+      left: 10px !important; 
+    }
+  } 
+
+.comparison {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.after-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  {% comment %} background-position: center; {% endcomment %}
+}
+.before-after-slider-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  z-index: 4;
+  cursor: ew-resize;
+
+}
+.before-after-slider-input {
+  pointer-events: auto;
+  touch-action: pan-x !important;
+  -webkit-appearance: none;
+}
+.before-after-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 46px;
+  background: transparent;
+}
+
+.before-after-slider-input::-moz-range-thumb {
+  width: 26px;
+  height: 46px;
+  background: transparent;
+}
+.handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 38px;
+    height: 65px;
+    background: #fff;
+    border-radius: 50px;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.handle svg{
+  -webkit-box-shadow: none;
+    box-shadow: none;
+    background: transparent;
+}
+.before-label,
+.after-label {
+  position: absolute;
+  top: 16px;
+  padding: 5px 10px;
+  background: #FFFFFF;
+  color: #28201F;
+  font-family: 'Blauer Nue RG';
+  font-size: 12px;
+  font-weight: 400;
+  border-radius: 30px;
+  z-index: 5;
+  line-height:100%;
+  letter-spacing: -2%;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.divisor {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  background-size: cover;
+  {% comment %} background-position: center; {% endcomment %}
+  box-shadow: 2px 0 0 #fff;
+}
+.before-label {
+  left: 16px;
+}
+
+.after-label {
+    right: 16px;
+    z-index: 0;
+    background: #E5D5C2;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none !important;
+  border: none;
+}
+</style>
+
+{%- comment -%}
+  ─────────────────────────────────────────────────────────────
+  CAPTURE: slider HTML (used twice — mobile + desktop)
+  ─────────────────────────────────────────────────────────────
+{%- endcomment -%}
+{%- capture slider_html -%}
+  <div class="before-after-card">
+    <div class="compare-wrapper" data-before-after>
+      <div class="comparison">
+        <figure class="after-image" style="background-image:url('{{ mc_after_image | img_url: 'master' }}')">
+          <div class="after-label">{{ mc_after_label }}</div>
+          <div class="divisor" style="background-image:url('{{ mc_before_image | img_url: 'master' }}')">
+            <div class="before-label">{{ mc_before_label }}</div>
+          </div>
+          <div class="handle">
+            <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.8596 0.658508L14.2829 4.48199L10.8596 8.30548" stroke="#28201F" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4.01294 0.658508L0.589661 4.48199L4.01294 8.30548" stroke="#28201F" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </figure>
+        <input type="range" min="0" max="100" value="50" class="before-after-slider-input">
+      </div>
+    </div>
+  </div>
+  {%- if mc_quote != blank -%}
+    <div class="mc__quote">{{ mc_quote }}</div>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%}
+  ─────────────────────────────────────────────────────────────
+  CAPTURE: disrupted feature list items
+  Handles both metaobject entries and section blocks uniformly.
+  ─────────────────────────────────────────────────────────────
+{%- endcomment -%}
+{%- capture disrupted_items_html -%}
+  {%- if use_meta_items -%}
+    {%- for entry in mc_disrupted_items -%}
+      {%- assign item_icon  = entry.icon.value -%}
+      {%- assign item_title = entry.title.value -%}
+      {%- assign item_desc  = entry.description.value -%}
+      <li class="mc__feature">
+        <div class="mc__feature-text_wrapper">
+          {%- if item_icon != blank -%}
+            <div class="mc__feature-num-wrap">
+              <span class="mc__feature-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+          {%- else -%}
+            <span class="mc__feature-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          {%- endif -%}
+          <div class="mc__feature-text">
+            {%- if item_icon != blank -%}
+              <img class="mc__feature-icon" src="{{ item_icon | image_url }}" alt="" loading="lazy">
+            {%- endif -%}
+            <p class="mc__feature-title">{{ item_title }}</p>
+          </div>
+        </div>
+        <div class="mc__feature-desc_wrapper">
+          <p class="mc__feature-desc">{{ item_desc }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for block in mc_disrupted_items -%}
+      <li class="mc__feature" {{ block.shopify_attributes }}>
+        <div class="mc__feature-text_wrapper">
+          {%- if block.settings.icon != blank -%}
+            <div class="mc__feature-num-wrap">
+              <span class="mc__feature-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+          {%- else -%}
+            <span class="mc__feature-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          {%- endif -%}
+          <div class="mc__feature-text">
+            <img class="mc__feature-icon" src="{{ block.settings.icon | image_url }}" alt="" loading="lazy">
+            <p class="mc__feature-title">{{ block.settings.title }}</p>
+          </div>
+        </div>
+        <div class="mc__feature-desc_wrapper">
+          <p class="mc__feature-desc">{{ block.settings.description }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%}
+  ─────────────────────────────────────────────────────────────
+  CAPTURE: balanced feature list items
+  ─────────────────────────────────────────────────────────────
+{%- endcomment -%}
+{%- capture balanced_items_html -%}
+  {%- if use_meta_items -%}
+    {%- for entry in mc_balanced_items -%}
+      {%- assign item_icon  = entry.icon.value -%}
+      {%- assign item_title = entry.title.value -%}
+      {%- assign item_desc  = entry.description.value -%}
+      <li class="mc__feature" >
+        <div class="mc__feature-text_wrapper">
+          {%- if item_icon != blank -%}
+            <div class="mc__feature-num-wrap">
+              <span class="mc__feature-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+          {%- else -%}
+            <span class="mc__feature-index" style="background:rgba(80,140,80,0.15);color:#3a7a3a;">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          {%- endif -%}
+          <div class="mc__feature-text">
+            {%- if item_icon != blank -%}
+              <img class="mc__feature-icon" src="{{ item_icon | image_url }}" alt="" loading="lazy">
+            {%- endif -%}
+            <p class="mc__feature-title">{{ item_title }}</p>
+          </div>
+        </div>
+        <div class="mc__feature-desc_wrapper">
+          <p class="mc__feature-desc">{{ item_desc }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for block in mc_balanced_items -%}
+      <li class="mc__feature" {{ block.shopify_attributes }}>
+        <div class="mc__feature-text_wrapper">
+          {%- if block.settings.icon != blank -%}
+            <div class="mc__feature-num-wrap">
+              <span class="mc__feature-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+          {%- else -%}
+            <span class="mc__feature-index" style="background:rgba(80,140,80,0.15);color:#3a7a3a;">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          {%- endif -%}
+          <div class="mc__feature-text">
+            <img class="mc__feature-icon" src="{{ block.settings.icon | image_url }}" alt="" loading="lazy">
+            <p class="mc__feature-title">{{ block.settings.title }}</p>
+          </div>
+        </div>
+        <div class="mc__feature-desc_wrapper">
+          <p class="mc__feature-desc">{{ block.settings.description }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+<div id="mc-{{ section.id }}" class="microbiome-compare">
+  <div class="mc__inner">
+
+    {%- comment -%} Heading ── {%- endcomment -%}
+    <div class="mc__heading-wrap">
+      {%- if mc_heading != blank -%}
+        <div class="mc__heading">{{ mc_heading }}</div>
+      {%- endif -%}
+      {%- if mc_subheading != blank -%}
+        <p class="mc__subheading">{{ mc_subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Mobile slider (shown above panels on small screens) ── {%- endcomment -%}
+    <div class="desktop-hide">
+      <div class="mc__slider-col">
+        {{ slider_html }}
+      </div>
+    </div>
+
+    {%- comment -%} Desktop: 3-col grid ── {%- endcomment -%}
+    <div class="mc__layout">
+
+      {%- comment -%} Left panel — DISRUPTED ── {%- endcomment -%}
+      <div class="mc__panel">
+        <div class="mc__panel_inner">
+          <div class="mc__panel-label">
+            <span class="mc__panel-label-dot mc__panel-label-dot--disrupted"></span>
+            {{ mc_left_label }}
+          </div>
+          <ul class="mc__feature-list">
+            {{ disrupted_items_html }}
+          </ul>
+        </div>
+      </div>
+
+      {%- comment -%} Centre — slider (desktop) ── {%- endcomment -%}
+      <div class="mc__slider-col mobile-hide">
+        {{ slider_html }}
+      </div>
+
+      {%- comment -%} Right panel — BALANCED ── {%- endcomment -%}
+      <div class="mc__panel">
+        <div class="mc__panel_inner">
+          <div class="mc__panel-label">
+            <span class="mc__panel-label-dot mc__panel-label-dot--balanced"></span>
+            {{ mc_right_label }}
+          </div>
+          <ul class="mc__feature-list">
+            {{ balanced_items_html }}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    {%- comment -%} end .mc__layout ── {%- endcomment -%}
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll('[data-before-after]').forEach(wrapper => {
+    const slider = wrapper.querySelector('.before-after-slider-input');
+    const divisor = wrapper.querySelector('.divisor');
+    const handle = wrapper.querySelector('.handle');
+    const beforeLabel = wrapper.querySelector('.before-label');
+
+    function move(val) {
+      divisor.style.width = val + '%';
+      handle.style.left = val + '%';
+
+      // Hide before label when divisor is too small
+      if (val < 10) {
+        beforeLabel.style.opacity = '0';
+      } else {
+        beforeLabel.style.opacity = '1';
+      }
+    }
+
+    // Default position
+    slider.value = 50;
+    move(slider.value);
+
+    slider.addEventListener('input', e => {
+      move(e.target.value);
+    });
+
+    slider.addEventListener('touchstart', e => {
+      e.stopPropagation();
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', e => {
+      e.stopPropagation();
+    }, { passive: true });
+
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Microbiome Compare",
+  "tag": "section",
+  "class": "microbiome-compare-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "On product pages, metafields under the namespace 'microbiome_compare' will override all settings below. Set metafields on the product to customise per-product content."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#faf8f5"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Drag the slider to see the difference a balanced microbiome makes"
+    },
+    {
+      "type": "header",
+      "content": "Before / After Slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "Disrupted"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "Balanced"
+    },
+    {
+      "type": "text",
+      "id": "quote",
+      "label": "Quote (below slider)",
+      "default": "\"The difference isn't a new ingredient, it's a restored ecosystem.\""
+    },
+    {
+      "type": "range",
+      "id": "slider_border_radius",
+      "label": "Slider Border Radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Side Panels"
+    },
+    {
+      "type": "text",
+      "id": "left_label",
+      "label": "Left Panel Label",
+      "default": "Microbiome Disrupted"
+    },
+    {
+      "type": "text",
+      "id": "right_label",
+      "label": "Right Panel Label",
+      "default": "Microbiome Balanced"
+    },
+    {
+      "type": "range",
+      "id": "panel_border_radius",
+      "label": "Panel Border Radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "disrupted_item",
+      "name": "Disrupted Item (Left)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Breakouts & acne flare-ups"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Bad bacteria overgrow and trigger inflammatory acne cycles"
+        }
+      ]
+    },
+    {
+      "type": "balanced_item",
+      "name": "Balanced Item (Right)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Clear, Calm Skin"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Good bacteria outcompete pathogens, fewer breakouts naturally"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Microbiome Compare",
+      "blocks": [
+        {
+          "type": "disrupted_item",
+          "settings": {
+            "title": "Breakouts & acne flare-ups",
+            "description": "Bad bacteria overgrow and trigger inflammatory acne cycles"
+          }
+        },
+        {
+          "type": "disrupted_item",
+          "settings": {
+            "title": "Persistent redness & inflammation",
+            "description": "Chronic inflammation from an imbalanced skin ecosystem"
+          }
+        },
+        {
+          "type": "disrupted_item",
+          "settings": {
+            "title": "Damaged skin barrier",
+            "description": "Harsh products strip ceramides and protective lipids"
+          }
+        },
+        {
+          "type": "balanced_item",
+          "settings": {
+            "title": "Clear, Calm Skin",
+            "description": "Good bacteria outcompete pathogens, fewer breakouts naturally"
+          }
+        },
+        {
+          "type": "balanced_item",
+          "settings": {
+            "title": "Resilient Barrier",
+            "description": "Probiotics boost ceramide production and protective peptides"
+          }
+        },
+        {
+          "type": "balanced_item",
+          "settings": {
+            "title": "Even Pigmentation",
+            "description": "Balanced ecosystem reduces melanin overproduction over time"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

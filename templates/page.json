@@ -1,0 +1,508 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "settings": {
+        "kicker": "",
+        "show_title": true,
+        "show_content": true,
+        "align_text": "text-left",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper"
+      }
+    },
+    "b2310261-a11e-4d08-9bc3-60d8eef29a1f": {
+      "type": "section-recent-products",
+      "settings": {
+        "bg": "palette--light bg--neutral",
+        "product_recently_heading": "Popular Products",
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4
+      }
+    },
+    "3e93ed28-df4b-4ea9-986b-b839f9532d1f": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__3e93ed28-df4b-4ea9-986b-b839f9532d1f-1671718028e332b2cd-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "How to Create the Perfect Natural Skin Care Routine",
+            "text": "<p>Do you think the <strong>perfect skincare routine</strong> doesn't exist? Well, it does, and you'll have to read this blog to know what we're talking about. </p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "https://sonnetwellness.com/pages/how-to-create-the-perfect-natural-skin-care-routine",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__3e93ed28-df4b-4ea9-986b-b839f9532d1f-1671718028e332b2cd-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cosmetic-gf5de436c9_1920.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the blog",
+            "link": "https://sonnetwellness.com/pages/how-to-create-the-perfect-natural-skin-care-routine",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__3e93ed28-df4b-4ea9-986b-b839f9532d1f-1671718028e332b2cd-0",
+        "template--15118317093046__3e93ed28-df4b-4ea9-986b-b839f9532d1f-1671718028e332b2cd-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "a1ee2c04-696e-47c7-9dd5-3be408c5bbbe": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__a1ee2c04-696e-47c7-9dd5-3be408c5bbbe-167171841526ed4eda-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Probiotic Skincare: Everything You Need to Know",
+            "text": "<p>Everything you need to know about probiotic skincare and why you should be using it! </p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/probiotic-skincare-everything-you-need-to-know",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__a1ee2c04-696e-47c7-9dd5-3be408c5bbbe-167171841526ed4eda-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/humphrey-muleba-NfpkqJ9314E-unsplash_1.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the blog",
+            "link": "https://sonnetwellness.com/pages/probiotic-skincare-everything-you-need-to-know",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__a1ee2c04-696e-47c7-9dd5-3be408c5bbbe-167171841526ed4eda-0",
+        "template--15118317093046__a1ee2c04-696e-47c7-9dd5-3be408c5bbbe-167171841526ed4eda-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "5a734a79-386f-4693-bada-564fd4bb884a": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__5a734a79-386f-4693-bada-564fd4bb884a-1672644437c24d73f7-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Winter Skincare: 5 Vows to save your skin",
+            "text": "<p>Winter calls for special attention to your skin, explore the perfect winter skincare routine through this blog to get supple and smooth skin.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/winter-skin-care-5-vows-to-save-your-skin",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__5a734a79-386f-4693-bada-564fd4bb884a-1672644437c24d73f7-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-holds-jar-with-cosmetic-cream-her-hands.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the Blog",
+            "link": "shopify://pages/winter-skin-care-5-vows-to-save-your-skin",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__5a734a79-386f-4693-bada-564fd4bb884a-1672644437c24d73f7-0",
+        "template--15118317093046__5a734a79-386f-4693-bada-564fd4bb884a-1672644437c24d73f7-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "6b96a460-d623-4747-b22b-02558c1e626f": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__6b96a460-d623-4747-b22b-02558c1e626f-1672644437c24d73f7-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Wedding skincare routine for the perfect glow",
+            "text": "<p>Wedding Skincare is more than just products; read about the perfect wedding skincare routine in this blog!</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/wedding-skincare-routine-for-the-perfect-glow",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__6b96a460-d623-4747-b22b-02558c1e626f-1672644437c24d73f7-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/skincare-treatment-and-a-nice-coffee.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the blog",
+            "link": "shopify://pages/wedding-skincare-routine-for-the-perfect-glow",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__6b96a460-d623-4747-b22b-02558c1e626f-1672644437c24d73f7-0",
+        "template--15118317093046__6b96a460-d623-4747-b22b-02558c1e626f-1672644437c24d73f7-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "8fe8a250-b945-4f2b-bc45-184995eb1763": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__8fe8a250-b945-4f2b-bc45-184995eb1763-1673513500ba9f5392-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Probiotic Skincare: What is it, and how does it work",
+            "text": "<p>Do you wish to explore the wonders of<strong> Probiotic skincare? </strong>Read this blog to find out what's best for your skin type.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/the-surprising-way-probiotics-can-manage-your-skin-care",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__8fe8a250-b945-4f2b-bc45-184995eb1763-1673513500ba9f5392-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-wading.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the blog",
+            "link": "shopify://pages/the-surprising-way-probiotics-can-manage-your-skin-care",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__8fe8a250-b945-4f2b-bc45-184995eb1763-1673513500ba9f5392-0",
+        "template--15118317093046__8fe8a250-b945-4f2b-bc45-184995eb1763-1673513500ba9f5392-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "c7570b7d-af55-40a4-ad54-bdcdf43310c9": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__c7570b7d-af55-40a4-ad54-bdcdf43310c9-167704669761ecc643-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "<!--td {border: 1px solid #cccccc;}br {mso-data-placement:same-cell;}-->A Nighttime Skin Care Routine For Every Skin Type",
+            "text": "<p>Know the benefits of having a nighttime skincare routine and follow the detailed AM:PM skincare ritual with Sonnet Wellness</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/a-nighttime-skin-care-routine-for-every-skin-type",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__c7570b7d-af55-40a4-ad54-bdcdf43310c9-167704669761ecc643-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-getting-makeup-applied.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "Read the blog",
+            "link": "shopify://pages/a-nighttime-skin-care-routine-for-every-skin-type",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__c7570b7d-af55-40a4-ad54-bdcdf43310c9-167704669761ecc643-0",
+        "template--15118317093046__c7570b7d-af55-40a4-ad54-bdcdf43310c9-167704669761ecc643-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "de3cb8d6-b5e2-45ea-b34d-6fb47c130713": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__de3cb8d6-b5e2-45ea-b34d-6fb47c130713-167704669761ecc643-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "What Is a Toner & Best face toner for Oily Skin",
+            "text": "<p>Have you ever wondered about the role that a toner plays in your skincare routine? Here’s everything you need to know about toners.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/what-is-a-toner-best-face-toner-for-oily-skin",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__de3cb8d6-b5e2-45ea-b34d-6fb47c130713-167704669761ecc643-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/person-looks-in-a-mirror-at-their-reflection.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "read the blog",
+            "link": "shopify://pages/what-is-a-toner-best-face-toner-for-oily-skin",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__de3cb8d6-b5e2-45ea-b34d-6fb47c130713-167704669761ecc643-0",
+        "template--15118317093046__de3cb8d6-b5e2-45ea-b34d-6fb47c130713-167704669761ecc643-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf-167704669761ecc643-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Cleansers 101: How Often Should One Wash Their Face?",
+            "text": "<p>Here’s everything you need to know about face washes and cleansers, and the best face wash for oily skin, read on!</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/cleansers-101-how-often-should-you-wash-your-face",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf-167704669761ecc643-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/relaxed-in-orange.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "read the blog",
+            "link": "shopify://pages/cleansers-101-how-often-should-you-wash-your-face",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf-167704669761ecc643-0",
+        "template--15118317093046__c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf-167704669761ecc643-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "3400878f-4048-4459-81b4-9bcd0fbe4409": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__3400878f-4048-4459-81b4-9bcd0fbe4409-167704669761ecc643-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "What Does A Serum Do? Using The Right Serum For Dry Skin",
+            "text": "<p>Your search for the ideal face serum for dry skin ends with this blog! Know all about serums, their usage, and an added takeaway for dry skin.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/what-does-a-serum-do-using-the-right-serum-for-dry-skin",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__3400878f-4048-4459-81b4-9bcd0fbe4409-167704669761ecc643-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/persons-torso-and-neck-in-a-grey-sweater.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "read the blog",
+            "link": "shopify://pages/what-does-a-serum-do-using-the-right-serum-for-dry-skin",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__3400878f-4048-4459-81b4-9bcd0fbe4409-167704669761ecc643-0",
+        "template--15118317093046__3400878f-4048-4459-81b4-9bcd0fbe4409-167704669761ecc643-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "52d049ef-59c6-42b5-9b10-80acc8a06e51": {
+      "type": "section-double",
+      "blocks": {
+        "template--15118317093046__52d049ef-59c6-42b5-9b10-80acc8a06e51-167704669761ecc643-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Face Masks 101: Types, Benefits, and How Often to Use Them",
+            "text": "<p>Looking for the perfect face mask for your skin concern? Read this blog to give you an idea of what'll work for you and all you need to know about face masks.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://pages/face-masks-101-benefits-types-how-often-you-should-use-one",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        },
+        "template--15118317093046__52d049ef-59c6-42b5-9b10-80acc8a06e51-167704669761ecc643-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-holds-a-jade-face-massager-to-her-face.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "read the blog",
+            "link": "shopify://pages/face-masks-101-benefits-types-how-often-you-should-use-one",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "template--15118317093046__52d049ef-59c6-42b5-9b10-80acc8a06e51-167704669761ecc643-0",
+        "template--15118317093046__52d049ef-59c6-42b5-9b10-80acc8a06e51-167704669761ecc643-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "b2310261-a11e-4d08-9bc3-60d8eef29a1f",
+    "3e93ed28-df4b-4ea9-986b-b839f9532d1f",
+    "a1ee2c04-696e-47c7-9dd5-3be408c5bbbe",
+    "5a734a79-386f-4693-bada-564fd4bb884a",
+    "6b96a460-d623-4747-b22b-02558c1e626f",
+    "8fe8a250-b945-4f2b-bc45-184995eb1763",
+    "c7570b7d-af55-40a4-ad54-bdcdf43310c9",
+    "de3cb8d6-b5e2-45ea-b34d-6fb47c130713",
+    "c7e9f8ab-d06b-4c17-b275-bb4b7a96acaf",
+    "3400878f-4048-4459-81b4-9bcd0fbe4409",
+    "52d049ef-59c6-42b5-9b10-80acc8a06e51"
+  ]
+}

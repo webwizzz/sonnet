@@ -1,0 +1,331 @@
+{% style %}
+#shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.color_background != blank %}
+        background-color: {{ section.settings.color_background }};
+    {% endif %}
+    {% if section.settings.color_text != blank %}
+        color: {{ section.settings.color_text }};
+    {% endif %}
+    overflow: hidden;
+}
+img.topimage {
+    width: 120px;
+    height: 120px;
+}
+
+.blcok_title {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 140%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.blcok_description p {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.bottom-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: auto;
+    z-index: 2;
+}
+
+.what-grid-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #F6F3EE;
+    width: 400px;
+    gap: 36px;
+    height: 446px;
+    justify-content: space-between;
+}
+
+.what-grid-wrap::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(255, 255, 255, 0.5);
+  content: "";
+  z-index: 1;
+  opacity: 0;
+}
+
+.what-wrapper {
+    display: flex;
+}
+
+.what-slide {
+    width: auto;
+}
+
+img.backimage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.top-block {
+    z-index: 1;
+    position: relative;
+}
+img.backimage {
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.4s;
+}
+.top-block {
+    transition: 0.3s;
+}
+.what-grid-wrap:hover img.backimage {
+    opacity: 1;
+}
+
+.what-grid-wrap:hover:after {
+    opacity: 1;
+}
+.what-grid-wrap:hover .top-block {
+    opacity: 0;
+}
+.what-grid-wrap {
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+        padding-top: {{ section.settings.mobile_padding_top }}px;
+        padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+        a.common_link {
+            flex: none;
+        }
+
+        .title-wrap {
+            align-items: flex-end;
+        }
+    }
+.what-grid-wrap {
+    width: 280px;
+    min-height: 303px;
+    padding: 24px;
+    height: 100%;
+}
+
+img.topimage {
+    width: 80px;
+    height: 80px;
+}
+
+.blcok_title {
+    font-size: 18px;
+}
+
+.blcok_description p {
+    font-size: 14px;
+}
+
+.bottom-block {
+    gap: 10px;
+}
+}
+{% endstyle %}
+
+<div class="relative{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
+    <div class="main-container">
+        <div class="title-wrap">
+            <h2 class="class_h2">{{section.settings.title }}</h2>
+            <a class="common_link" href="{{ section.settings.href }}">{{ section.settings.label }}</a>
+        </div>
+      <div class="what-{{ section.id }} whats-swiper">
+          <div class="what-wrapper">
+              {% for block in section.blocks %}
+              <div class="what-slide">
+                <div class="what-grid-wrap">
+                    <div class="top-block">
+                        {% if block.settings.image != blank %}
+                            <img class="topimage" preload width="" height="" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="bottom-block">
+                        <div class="blcok_title">{{ block.settings.title }}</div>
+                        <div class="blcok_description">{{ block.settings.desc }}</div>
+                    </div>
+                    {% if block.settings.image1 != blank %}
+                            <img class="backimage" preload width="" height="" src="{{ block.settings.image1 | image_url }}" alt="{{ block.settings.title }}">
+                    {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+          {% comment %} <div class="slider-pagination pagination-{{ section.id }}"></div> {% endcomment %}
+      </div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const what_swiper = new Swiper('.what-{{ section.id }}', {
+          slidesPerView: "auto",
+          spaceBetween: 10,
+          speed: 500,
+          wrapperClass:'what-wrapper',
+          slideClass:'what-slide',
+          {% if section.settings.check1 != false %}
+          loop: true,
+          autoplay: {
+              delay: {{ section.settings.duration | times: 1000 }},
+          },
+          {% endif %}
+          pagination: {
+              el: '.pagination-{{ section.id }}',
+              clickable: true,
+          },
+      });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "What's inside",
+  "class": "index-section whats_inside",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom Class"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "href",
+      "label": "Link Url"
+    },
+    {
+      "type": "checkbox",
+      "id": "check1",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay delay",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Top Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Back Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What's inside"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,257 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "kicker": "",
+        "show_title": true,
+        "show_content": true,
+        "align_text": "text-left",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper"
+      }
+    },
+    "dade210c-44e2-4e6a-a2b6-ecf389ea2600": {
+      "type": "section-double",
+      "blocks": {
+        "template--16024381128886__dade210c-44e2-4e6a-a2b6-ecf389ea2600-16805090870c8e6b9d-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/untitled1-1663767761536_1200x_2fc6d38b-f84a-4937-8d55-01475567e455.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "caps--link"
+          }
+        }
+      },
+      "block_order": [
+        "template--16024381128886__dade210c-44e2-4e6a-a2b6-ecf389ea2600-16805090870c8e6b9d-1"
+      ],
+      "settings": {
+        "height": "use_pixels_500",
+        "borders": false
+      }
+    },
+    "c60334ee-02cc-4efd-8999-de5fa83e5aa3": {
+      "type": "section-richtext",
+      "settings": {
+        "align_text": "text-left",
+        "text_color": "text--white",
+        "bg": "palette--dark bg--invert",
+        "width": "wrapper--full"
+      }
+    },
+    "bf4aa0aa-7f56-4e23-9113-21c553b54907": {
+      "type": "section-double",
+      "blocks": {
+        "7d725857-ee3f-4713-ae72-aba650a4df5f": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Our Vision",
+            "text": "<p>Our vision at Sonnet Wellness is to create safe to use, accessible, clinically tested and approved, highly effective, result oriented, skincare & wellness products that contain no harsh chemicals.<br/><br/>Build a community around people who are passionate about wellness and personal care and provide product guidance and skincare consultation support to our consumers.Create total transparency around our products and its ingredients. No Lies. No B.S.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        },
+        "a51421cf-bf31-4032-b7f0-58c50a23cdb3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/untitled2-1663767992211_1200x_0c561181-7c70-4f69-a034-651856054a57.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "caps--link"
+          }
+        }
+      },
+      "block_order": [
+        "7d725857-ee3f-4713-ae72-aba650a4df5f",
+        "a51421cf-bf31-4032-b7f0-58c50a23cdb3"
+      ],
+      "settings": {
+        "height": "use_screen_full",
+        "borders": false
+      }
+    },
+    "a20e42df-e3f4-446e-bba7-953ed35600f2": {
+      "type": "section-double",
+      "blocks": {
+        "1bcde8ab-76f5-4000-b431-643a58f76649": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/untitled10-1663770358191_1200x_e5baf31f-afa3-411c-a20e-6351d3163b65.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "caps--link"
+          }
+        },
+        "e9e1dc68-ca87-4f57-9d2d-1c5bb13b6d39": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "What makes us different",
+            "text": "<p>Vegan & Cruelty Free: We have been passionate believers of making sure our products are vegan and cruelty free. We don’t involve any animals in our products or testing process. <br/><br/>Safety Tests, Clinically & FDA Approved: We send our products for safety tests and dermatological tests. Our products and ingredients are clinically tested, clinically cleared and approved by the FDA. Only once we are happy with what we’ve produced and know that it is safe to use, is when we launch it into the market. <br/><br/>Yes to Good Ingredients. No to Harmful Chemicals: Our ingredients and products contain no toxic parabens, GMO, pthalates, alcohol, mineral oil, petrolatum, Propylene Glycol. We only use the best of the ingredients and formulation and produce them in the safest way possible. </p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        }
+      },
+      "block_order": [
+        "1bcde8ab-76f5-4000-b431-643a58f76649",
+        "e9e1dc68-ca87-4f57-9d2d-1c5bb13b6d39"
+      ],
+      "settings": {
+        "height": "image-height",
+        "borders": false
+      }
+    },
+    "3b3e9011-08bc-496b-9457-35ec316329b7": {
+      "type": "section-double",
+      "blocks": {
+        "276e43f2-2f3a-40e9-899a-3d0c81aa24ad": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Our Ethos",
+            "text": "<p>Highly Efficient, Result Oriented: Our mission is to bring to you solutions that give you the maximum benefit and are highly effective while being safe to use and contain no harsh chemicals.  We use active ingredients that are most beneficial and effective at potent concentrations. We don’t believe in discriminating against natural or safe synthetic ingredients and instead look for ingredients that are efficient and functional and give you the best results. We pick ingredients based on their compatibility with each other to ensure there are no side effects when they are used together. Our objective is simple - to get you the most effective, result based products.<br/><br/>We are transparent about every ingredient that goes into the making of our product. Whether it’s a key ingredient or a supporting ingredient that contributes - even if it is at a lesser quantity. Also, contrary to popular belief, chemical compounds do appear in the most naturally available ingredients as well. We make it a point to also mention the chemicals that are available in any of our naturally sourced, organic ingredients so you know exactly what you are using on your skin and body.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        },
+        "cac549c5-097a-4b0a-9021-ee3026574bc0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/untitled9-1663770307541_1200x_af5df54e-254e-4f38-af5d-b04e5a624da8.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "caps--link"
+          }
+        }
+      },
+      "block_order": [
+        "276e43f2-2f3a-40e9-899a-3d0c81aa24ad",
+        "cac549c5-097a-4b0a-9021-ee3026574bc0"
+      ],
+      "settings": {
+        "height": "image-height",
+        "borders": false
+      }
+    },
+    "5cd2626d-0e47-400b-8d22-49fbd079fba7": {
+      "type": "section-double",
+      "blocks": {
+        "fc9842d4-ba40-4df4-85f0-18a5e0999569": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/manjula.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "caps--link"
+          }
+        },
+        "15846777-c8d2-4880-971e-33b1eddc3226": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "",
+            "text": "<h2>Manju Ogale</h2><p><strong>OUR CO-FOUNDER</strong><br/><br/>Our Co-Founder, Manju has had her footprints in the skincare and haircare journey for long now. Manju takes it as a gospel that everything we need to keep our skin and hair looking their best and healthy, we can find in our kitchens. This belief was the seed to creating Sonnet Wellness which started off as a home based venture.<br/><br/>Postpartum, Manju created hair care concoctions for herself at home. After great results, her family and friends also grew keen on trying these mixes for themselves and began requesting for orders, leading to Manju’s introduction into the hair care industry.<br/><br/>A huge segment of the mixtures she created consisted of curd. After researching a little more, Manju realised that what made her blends so effective was the probiotic component of curd. Manju didn’t want to keep her powerful blends only to her friends and soon developed into the creation of Sonnet Wellness officially.While she wanted the line to be efficient and effective, she didn’t want it to be a product of animal testing or cruelty of any kind. This was why she decided to use lab made probiotic which made it not only cruelty free but also vegan.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        }
+      },
+      "block_order": [
+        "fc9842d4-ba40-4df4-85f0-18a5e0999569",
+        "15846777-c8d2-4880-971e-33b1eddc3226"
+      ],
+      "settings": {
+        "height": "image-height",
+        "borders": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "dade210c-44e2-4e6a-a2b6-ecf389ea2600",
+    "c60334ee-02cc-4efd-8999-de5fa83e5aa3",
+    "bf4aa0aa-7f56-4e23-9113-21c553b54907",
+    "a20e42df-e3f4-446e-bba7-953ed35600f2",
+    "3b3e9011-08bc-496b-9457-35ec316329b7",
+    "5cd2626d-0e47-400b-8d22-49fbd079fba7"
+  ]
+}

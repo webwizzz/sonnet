@@ -1,0 +1,526 @@
+<style>
+  #rtic-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: #FFFCF9;
+  }
+
+  #rtic-{{ section.id }} .rtic__inner {
+    max-width: 1720px;
+    margin: 0 auto;
+  }
+
+  /* ── Quote mark ── */
+  #rtic-{{ section.id }} .rtic__quote-mark {
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 45px;
+  }
+
+  /* ── Heading ── */
+  #rtic-{{ section.id }} .rtic__heading {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201F;
+    margin: 0 auto 30px;
+    max-width: 390px;
+}
+
+#rtic-{{ section.id }} .rtic__heading em {
+    font-style: italic;
+    font-family: 'Test Tiempos Fine Italic RG';
+}
+
+/* ── Subheading ── */
+#rtic-{{ section.id }} .rtic__subheading {
+    font-family: 'Test Tiempos Fine Italic RG';
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    margin: 0 auto 20px;
+    color:#28201F;
+  }
+
+  /* ── Rich text description ── */
+  #rtic-{{ section.id }} .rtic__desc {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201FB2;
+    margin: 0 auto 100px;
+    max-width: 750px;
+  }
+
+  #rtic-{{ section.id }} .rtic__desc p {
+    margin: 0 0 12px;
+  }
+
+  #rtic-{{ section.id }} .rtic__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Cards grid ── */
+  #rtic-{{ section.id }} .rtic__cards {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size }}, 1fr);
+    gap: 10px;
+  }
+
+  /* ── Single card ── */
+  #rtic-{{ section.id }} .rtic__card:last-child {
+    align-items: flex-start;
+  }
+  #rtic-{{ section.id }} .rtic__card {
+    padding-left: 100px;
+    padding-right: 100px;
+    position: relative;
+    border-radius: {{ section.settings.card_border_radius }}px;
+    overflow: hidden;
+    height: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* BG image */
+  #rtic-{{ section.id }} .rtic__card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  /* BG gradient overlay */
+  #rtic-{{ section.id }} .rtic__card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* Content sits above overlay */
+  #rtic-{{ section.id }} .rtic__card-content {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+#rtic-{{ section.id }} .rtic__card:last-child .rtic__card-content {
+    gap: 0;
+}
+
+  /* Logo */
+  #rtic-{{ section.id }} .rtic__card-logo {
+    width: auto;
+    max-width: 185px;
+    max-height: 100px;
+    object-fit: contain;
+  }
+
+  /* Number (rich text) */
+  #rtic-{{ section.id }} .rtic__card-number {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+    margin: 0;
+  }
+
+  #rtic-{{ section.id }} .rtic__card-number p {
+    margin: 0;
+  }
+
+  #rtic-{{ section.id }} .rtic__card-number em {
+    font-style: italic;
+  }
+
+  /* Card description */
+  #rtic-{{ section.id }} .rtic__card:last-child .rtic__card-desc{
+    max-width: 325px;
+    margin: 16px auto 24px;
+}
+  #rtic-{{ section.id }} .rtic__card-desc {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    max-width:285px;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-align: center;
+    color:#FFFFFF;
+  }
+
+  /* CTA button */
+  #rtic-{{ section.id }} .rtic__card-cta {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 14px 45px;
+    border: 1.5px solid rgba(255,255,255,0.75);
+    border-radius: 40px;
+    color: #212121;
+    font-size: 16px;
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+    margin:0 auto;
+  }
+    #rtic-{{ section.id }} .rtic__card-number h3 {
+        font-family: 'Test Tiempos Fine Italic';
+        font-weight: 500;
+        font-size: 130px;
+        line-height: 1;
+        letter-spacing: -2%;
+        color: #FFFFFF;
+        margin: 0;
+    }
+    
+    #rtic-{{ section.id }} .rtic__card-number h3 em{
+    font-size: 80px;
+    }
+    #rtic-{{ section.id }} .rtic__card-number p{
+        font-family: 'Blauer Nue TH';
+        font-weight: 200;
+        font-size: 18px;
+        line-height: 140%;
+        letter-spacing: -2%;
+        text-align: center;
+    }
+  #rtic-{{ section.id }} .rtic__card-cta:hover {
+    background-color: rgba(255,255,255,0.18);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 1720px) {
+    #rtic-{{ section.id }} .rtic__inner{
+        padding-right: 30px;
+        padding-left: 30px;
+    }   
+}
+  @media (max-width: 1440px) {
+    #rtic-{{ section.id }} .rtic__desc {
+    margin: 0px auto 70px;
+    max-width: 850px;
+  }
+  #rtic-{{ section.id }} .rtic__card {
+    height: 750px;
+  }
+}
+@media (max-width: 1200px) {
+  #rtic-{{ section.id }} .rtic__desc {
+   max-width: 90%;
+  }
+  #rtic-{{ section.id }} .rtic__heading {
+      font-size: 36px;
+    }
+    #rtic-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+@media (max-width: 768px) {
+    #rtic-{{ section.id }} .rtic__inner {
+      padding: 0 16px;
+    }
+
+    #rtic-{{ section.id }} .rtic__heading {
+      font-size: 28px;
+      max-width: 60%;
+    }
+
+    #rtic-{{ section.id }} .rtic__quote-mark {
+      margin-bottom: 24px;
+    }
+
+    #rtic-{{ section.id }} .rtic__desc {
+      max-width: 100%;
+      margin-bottom: 40px;
+    }
+
+    #rtic-{{ section.id }} .rtic__cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    #rtic-{{ section.id }} .rtic__card:last-child {
+      align-items: center;
+    } 
+    #rtic-{{ section.id }} .rtic__card {
+        height: 450px;
+    }
+    #rtic-{{ section.id }} .rtic__card-number h3 {
+      font-size: 80px;
+    }
+    #rtic-{{ section.id }} .rtic__card-number h3 em {
+      font-size: 60px;
+    }
+}
+@media(max-width: 500px){
+  #rtic-{{ section.id }} .rtic__heading {
+    max-width: 70%;
+  }
+  #rtic-{{ section.id }} .rtic__subheading{
+    font-size: 18px;
+    max-width: 80%;
+    line-height: 130%;
+  }
+  #rtic-{{ section.id }} .rtic__desc {
+    font-size: 14px;
+  }
+  #rtic-{{ section.id }} .rtic__desc  p {
+      margin: 0 !important;
+  }
+  #rtic-{{ section.id }} .rtic__card {
+      height: 370px;
+      border-radius: 12px;
+      padding: 0 30px;
+  }
+  #rtic-{{ section.id }} .rtic__card-logo {
+    max-width: 111px;
+    max-height: 60px;
+  }
+  #rtic-{{ section.id }} .rtic__card-desc {
+    font-size: 14px;
+  }
+  #rtic-{{ section.id }} .rtic__card-content{
+    gap: 16px;
+  }
+  #rtic-{{ section.id }} .rtic__card-cta {
+    padding: 13px 32px;
+    font-size: 14px;
+  }
+}
+</style>
+
+<section id="rtic-{{ section.id }}" class="rtic">
+  <div class="rtic__inner">
+
+    {%- comment -%} Quote mark ── {%- endcomment -%}
+    <div class="rtic__quote-mark" aria-hidden="true">
+        <svg width="36" height="23" viewBox="0 0 36 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.2461 21.9673C18.2513 19.7143 19.445 17.3361 20.8272 14.8326C22.2094 12.3293 23.6859 9.79456 25.2565 7.22857C26.8272 4.66259 28.3351 2.25306 29.7801 0H36C34.9319 2.44082 33.801 5.0381 32.6073 7.79184C31.4764 10.5456 30.377 13.2367 29.3089 15.8653C28.3037 18.4313 27.4241 20.8095 26.6702 23H17.623L17.2461 21.9673ZM0 21.9673C1.00524 19.7143 2.16754 17.3361 3.48691 14.8326C4.86911 12.3293 6.31414 9.79456 7.82199 7.22857C9.39267 4.66259 10.9005 2.25306 12.3455 0H18.6597C17.8429 1.87755 16.9948 3.81769 16.1152 5.82041C15.2984 7.82313 14.4817 9.85714 13.6649 11.9224C12.8482 13.9252 12.0628 15.8653 11.3089 17.7429C10.555 19.6204 9.89529 21.3728 9.32984 23H0.282722L0 21.9673Z" fill="#78563D"/>
+        </svg>
+    </div>
+
+    {%- comment -%} Heading ── {%- endcomment -%}
+    {%- if section.settings.heading != blank -%}
+      <div class="rtic__heading">{{ section.settings.heading }}</div>
+    {%- endif -%}
+
+    {%- comment -%} Subheading ── {%- endcomment -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="rtic__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- comment -%} Rich text description ── {%- endcomment -%}
+    {%- if section.settings.description != blank -%}
+      <div class="rtic__desc">{{ section.settings.description }}</div>
+    {%- endif -%}
+
+    {%- comment -%} Cards ── {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="rtic__cards">
+        {%- for block in section.blocks -%}
+          <div class="rtic__card" {{ block.shopify_attributes }}>
+
+            {%- if block.settings.background_image != blank -%}
+              <img class="rtic__card-bg" src="{{ block.settings.background_image | image_url }}" alt="" role="presentation" loading="lazy" >
+            {%- endif -%}
+            <div
+              class="rtic__card-overlay"
+              style="background: {{ block.settings.overlay_gradient }};"
+            ></div>
+
+            <div class="rtic__card-content">
+
+              {%- if block.settings.logo != blank -%}
+                <img class="rtic__card-logo" src="{{ block.settings.logo | image_url }}" alt="{{ block.settings.logo.alt | escape }}"loading="lazy">
+              {%- endif -%}
+
+              {%- if block.settings.number != blank -%}
+                <div class="rtic__card-number">{{ block.settings.number }}</div>
+              {%- endif -%}
+
+              {%- if block.settings.card_desc != blank -%}
+                <p class="rtic__card-desc">{{ block.settings.card_desc }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.cta_label != blank and block.settings.cta_url != blank -%}
+                <a class="rtic__card-cta" href="{{ block.settings.cta_url }}">
+                  {{ block.settings.cta_label }}
+                </a>
+              {%- endif -%}
+
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich Text + Image Cards",
+  "tag": "section",
+  "class": "rtic-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Text"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading (italic line)",
+      "default": "The story behind India's first probiotic skincare brand"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>My grandmother applied curd to her face every morning. Her Dadi did too before her. That ritual at its fastest purity – one that forever changed everything.</p><p>Nitya Sujata grew up watching homemade probiotic remedies heal skin that no chemical product could fix. After years of research she created the brand wisdom wasn't branded – it was science. Curd's natural probiotic cultures and the same powerful strains now captured in clinical dermatology.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "overlay_gradient",
+          "label": "Background Gradient / Overlay",
+          "info": "CSS value e.g. linear-gradient(to top, #000000cc 40%, transparent) or a solid rgba like rgba(0,0,0,0.5)",
+          "default": "linear-gradient(to top, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.08) 100%)"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo / Badge Image"
+        },
+        {
+          "type": "richtext",
+          "id": "number",
+          "label": "Number / Stat (rich text)",
+          "default": "<p>1%</p>"
+        },
+        {
+          "type": "textarea",
+          "id": "card_desc",
+          "label": "Card Description",
+          "default": "Go back to the wholesome and educational values of ecology, climate."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Button Label",
+          "default": "Our Story"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text + Image Cards"
+    }
+  ]
+}
+{% endschema %}

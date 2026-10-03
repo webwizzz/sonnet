@@ -1,0 +1,887 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_swiper_RncWWd": {
+      "type": "hero-swiper",
+      "blocks": {
+        "slide_aP6hPq": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Rectangle_6.webp",
+            "image_mobile": "shopify://shop_images/Rectangle_8_1.webp",
+            "heading": "<p>Skin that heals itself. <em>Naturally.</em></p>",
+            "feature_1_icon": "shopify://shop_images/Group_1321321659.webp",
+            "feature_1_title": "Prebiotics",
+            "feature_1_info": "Feed your skin’s good bacteria",
+            "feature_2_icon": "shopify://shop_images/Group_1321321664.webp",
+            "feature_2_title": "Microbiome",
+            "feature_2_info": "Balance and support skin flora",
+            "feature_3_icon": "shopify://shop_images/Group_1321321659_1.webp",
+            "feature_3_title": "Postbiotics",
+            "feature_3_info": "Strengthen, calm, and protect skin",
+            "description": "<p>Your skin hosts trillions of living organisms. When they're balanced, your skin heals, glows, and protects itself naturally. Sonnet Wellness supports that ecosystem, the way your grandmother's dahi always did.</p>",
+            "cta_text": "Shop Ritual",
+            "cta_url": ""
+          }
+        },
+        "slide_WAnNYm": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image_desktop": "shopify://shop_images/Rectangle_6.webp",
+            "image_mobile": "shopify://shop_images/Rectangle_8_1.webp",
+            "heading": "<p>Skin that heals itself. <em>Naturally.</em></p>",
+            "feature_1_icon": "shopify://shop_images/Group_1321321659.webp",
+            "feature_1_title": "Probiotics",
+            "feature_1_info": "Feed your skin's good bacteria",
+            "feature_2_icon": "shopify://shop_images/Group_1321321664.webp",
+            "feature_2_title": "Prebiotics",
+            "feature_2_info": "Balance and support skin flora",
+            "feature_3_icon": "shopify://shop_images/Group_1321321659_1.webp",
+            "feature_3_title": "Postbiotics",
+            "feature_3_info": "Strengthen, calm, and protect skin",
+            "description": "<p>Your skin hosts trillions of living organisms. When they're balanced, your skin heals, glows, and protects itself naturally. Sonnet Wellness supports that ecosystem, the way your grandmother's dahi always did.</p>",
+            "cta_text": "Shop Ritual",
+            "cta_url": ""
+          }
+        },
+        "slide_Gxtz8U": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image_desktop": "shopify://shop_images/Rectangle_6.webp",
+            "image_mobile": "shopify://shop_images/Rectangle_8_1.webp",
+            "heading": "<p>Skin that heals itself. <em>Naturally.</em></p>",
+            "feature_1_icon": "shopify://shop_images/Group_1321321659.webp",
+            "feature_1_title": "Probiotics",
+            "feature_1_info": "Feed your skin's good bacteria",
+            "feature_2_icon": "shopify://shop_images/Group_1321321664.webp",
+            "feature_2_title": "Prebiotics",
+            "feature_2_info": "Balance and support skin flora",
+            "feature_3_icon": "shopify://shop_images/Group_1321321659_1.webp",
+            "feature_3_title": "Postbiotics",
+            "feature_3_info": "Strengthen, calm, and protect skin",
+            "description": "<p>Your skin hosts trillions of living organisms. When they're balanced, your skin heals, glows, and protects itself naturally. Sonnet Wellness supports that ecosystem, the way your grandmother's dahi always did.</p>",
+            "cta_text": "Shop Ritual",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_aP6hPq",
+        "slide_WAnNYm",
+        "slide_Gxtz8U"
+      ],
+      "name": "Hero Swiper",
+      "settings": {
+        "autoplay_enabled": true,
+        "autoplay_delay": 5000,
+        "slide_border_radius": 22,
+        "margin_top_desktop": 26,
+        "margin_bottom_desktop": 50,
+        "padding_left_desktop": 50,
+        "padding_right_desktop": 50,
+        "margin_top_mobile": 16,
+        "margin_bottom_mobile": 24,
+        "padding_left_mobile": 16,
+        "padding_right_mobile": 16
+      }
+    },
+    "marquee_bar_JWg97z": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_UEezym": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_3.webp",
+            "title": "Postbiotic + Microbiome-Friendly Skincare"
+          }
+        },
+        "item_BentGF": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No Harsh Chemicals"
+          }
+        },
+        "item_gyYAKA": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329697.webp",
+            "title": "For All Skin Types"
+          }
+        },
+        "item_4iY4rD": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329696.webp",
+            "title": "100% vegan & cruelty free"
+          }
+        },
+        "item_XkJDgW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No GMO Ingredients"
+          }
+        },
+        "item_8EP8Nt": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.webp",
+            "title": "Made In India"
+          }
+        }
+      },
+      "block_order": [
+        "item_UEezym",
+        "item_BentGF",
+        "item_gyYAKA",
+        "item_4iY4rD",
+        "item_XkJDgW",
+        "item_8EP8Nt"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "",
+        "label": "WHY US?",
+        "background_color": "#f3ede7",
+        "marquee_speed": 6,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
+      }
+    },
+    "featured_collection_bKqEiX": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "all",
+        "products_limit": 12,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "skin_needs_z9BwBC": {
+      "type": "skin-needs",
+      "blocks": {
+        "skin_concern_eM3RT7": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_3.webp",
+            "title": "Acne & Breakouts",
+            "description": "Helps support clearer-looking skin by maintaining balance",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_h83Baj": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_3_7.webp",
+            "title": "Redness & Sensitivity",
+            "description": "Restore calm visibly irritated and reactive skin",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_Xn8nQy": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_4.webp",
+            "title": "Dullness & Uneven Tone",
+            "description": "Supports brighter, more even-looking skin over time",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_C3k6xc": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_5_2.webp",
+            "title": "Dryness & Dehydration",
+            "description": "Makes improvement in moisture retention and skin comfort",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_caMme4": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_6.webp",
+            "title": "Excess Oil & Imbalance",
+            "description": "Supports balanced-looking skin without over-drying",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_AdwPdK": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_10.webp",
+            "title": "Weak Skin Barrier",
+            "description": "Helps reinforce and support the skin’s natural barrier",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_9pnWdU": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_8.webp",
+            "title": "Texture & Roughness",
+            "description": "Supports smoother-looking skin with gentle renewal",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        },
+        "skin_concern_RrdyzT": {
+          "type": "skin_concern",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_9.webp",
+            "title": "Post-Acne Marks & Pigmentation",
+            "description": "Improves the appearance of uneven skin tone",
+            "item_count": 10,
+            "cta_label": "Shop Solution",
+            "cta_url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "skin_concern_eM3RT7",
+        "skin_concern_h83Baj",
+        "skin_concern_Xn8nQy",
+        "skin_concern_C3k6xc",
+        "skin_concern_caMme4",
+        "skin_concern_AdwPdK",
+        "skin_concern_9pnWdU",
+        "skin_concern_RrdyzT"
+      ],
+      "disabled": true,
+      "name": "Skin Needs",
+      "settings": {
+        "heading": "<h1><strong>Know what your </strong><em><strong>skin needs</strong></em></h1>",
+        "subtitle": "Explore routines designed to support common skin concerns",
+        "cta_label": "SHOP ALL",
+        "cta_url": "#",
+        "block_bg_color": "#f5eee6",
+        "block_cta_bg_color": "#78563d",
+        "block_border_radius": 10,
+        "padding_top": 12,
+        "padding_bottom": 52,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "bundle_section_RjjGVF": {
+      "type": "bundle-section",
+      "blocks": {
+        "bundle_item_U6Lr6b": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52.webp",
+            "title": "CLEAN IT OFF (Face Wash) 100ml:",
+            "tagline": "Removes impurities. Never strips the skin."
+          }
+        },
+        "bundle_item_rzihi3": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_1.webp",
+            "title": "DAB IT ON (Toner) 100ml:",
+            "tagline": "Balances pH. Opens skin for deeper absorption."
+          }
+        },
+        "bundle_item_hg7WJT": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_2.webp",
+            "title": "RUB IT IN (Serum) 30ml :",
+            "tagline": "Fades spots. Brightens. Controls oil."
+          }
+        },
+        "bundle_item_AR9xNF": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_3.webp",
+            "title": "SOAK IT IN (Moisturiser) 45ml :",
+            "tagline": "Seals hydration. Nourishes and repairs the barrier."
+          }
+        },
+        "bundle_item_j3pipq": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_4.webp",
+            "title": "SMEAR IT ON (Clay Mask) 45ml :",
+            "tagline": "Deep cleanses. Weekly microbiome reset."
+          }
+        }
+      },
+      "block_order": [
+        "bundle_item_U6Lr6b",
+        "bundle_item_rzihi3",
+        "bundle_item_hg7WJT",
+        "bundle_item_AR9xNF",
+        "bundle_item_j3pipq"
+      ],
+      "disabled": true,
+      "name": "Product Bundle",
+      "settings": {
+        "bg_image_desktop": "shopify://shop_images/Rectangle_1469.webp",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_1469_2.webp",
+        "overlay_color": "",
+        "section_border_radius": 16,
+        "heading": "<p>Five products.<br/><em>one complete ritual.</em></p>",
+        "bundle_product": "5-niacinamide-barrier-support-serum-rub-it-in-serum",
+        "margin_top": 0,
+        "margin_bottom": 56,
+        "padding_top": 88,
+        "padding_bottom": 88,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "review_slider_GjUNVz": {
+      "type": "review-slider",
+      "blocks": {
+        "image_card_HXBUeF": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_22.webp",
+            "star_rating": "4.5",
+            "product": "rub-it-in-serum-1"
+          }
+        },
+        "review_card_kgNLki": {
+          "type": "review_card",
+          "settings": {
+            "author_image": "shopify://shop_images/Ellipse_5.webp",
+            "author_name": "Priya S.",
+            "star_rating": "4.5",
+            "review_title": "My skin stopped breaking out in 2 weeks.",
+            "review_desc": "\"I've tried every anti-acne product on the market. Nothing worked until I stopped fighting my skin and started feeding it. The Face Wash and Serum together changed everything — fewer breakouts, less redness, and my scars are actually fading.\"",
+            "product": "rub-it-in-serum-1"
+          }
+        },
+        "image_card_VaLBhD": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_22_1.webp",
+            "star_rating": "4.5",
+            "product": "rub-it-in-serum-1"
+          }
+        },
+        "review_card_LPFd3f": {
+          "type": "review_card",
+          "settings": {
+            "author_image": "shopify://shop_images/Ellipse_5_1.webp",
+            "author_name": "Devansh M.",
+            "star_rating": "4.5",
+            "review_title": "The moisturiser is rich without being heavy — rare.",
+            "review_desc": "\"I have very dry skin and most moisturisers either feel greasy or stop working after an hour. The Soak It In cream is different — it sinks in properly and my skin still feels soft by evening. After 3 weeks the texture improvement has been real.\"",
+            "product": "rub-it-in-serum-1"
+          }
+        },
+        "image_card_idw8dD": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_22_2.webp",
+            "star_rating": "5",
+            "product": "rub-it-in-serum-1"
+          }
+        },
+        "review_card_LdLzdb": {
+          "type": "review_card",
+          "settings": {
+            "author_image": "shopify://shop_images/Ellipse_5_429b9574-2848-499f-bf75-018658e4f51d.webp",
+            "author_name": "Ananya R.",
+            "star_rating": "5",
+            "review_title": "Finally something that doesn't flare my skin.",
+            "review_desc": "As someone with rosacea, I was terrified to try anything new. The toner alone calmed my redness in the first week. The formula is genuinely gentle no stinging, no tightness just skin that slowly feels like it's working with me for the first time.\"",
+            "product": "rub-it-in-serum-1"
+          }
+        }
+      },
+      "block_order": [
+        "image_card_HXBUeF",
+        "review_card_kgNLki",
+        "image_card_VaLBhD",
+        "review_card_LPFd3f",
+        "image_card_idw8dD",
+        "review_card_LdLzdb"
+      ],
+      "name": "Review Slider",
+      "settings": {
+        "heading": "<p>Real skin, real <em>results</em></p>",
+        "arrow_color": "#78563d",
+        "card_bg": "#f6f3ee"
+      }
+    },
+    "marquee_bar_NWDAhY": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_fjPAqi": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Outlook_India_idakpXWxjE_1_2.webp",
+            "title": ""
+          }
+        },
+        "item_nHXQ3M": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Mask_group.webp",
+            "title": ""
+          }
+        },
+        "item_xatNz8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Mask_group_1.webp",
+            "title": ""
+          }
+        },
+        "item_wdh3MY": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Outlook_India_idakpXWxjE_1_2.webp",
+            "title": ""
+          }
+        },
+        "item_LUM8AA": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Mask_group.webp",
+            "title": ""
+          }
+        },
+        "item_pDy3QU": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Mask_group_1.webp",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_fjPAqi",
+        "item_nHXQ3M",
+        "item_xatNz8",
+        "item_wdh3MY",
+        "item_LUM8AA",
+        "item_pDy3QU"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "logo-marquee",
+        "label": "Featured In",
+        "background_color": "#f5eee6",
+        "marquee_speed": 6,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
+      }
+    },
+    "microbiome_compare_8HFKnW": {
+      "type": "microbiome-compare",
+      "blocks": {
+        "disrupted_item_r4e9kU": {
+          "type": "disrupted_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_1.webp",
+            "title": "Breakouts & acne flare-ups",
+            "description": "Bad bacteria overgrow and trigger inflammatory acne cycles"
+          }
+        },
+        "disrupted_item_d4N8UJ": {
+          "type": "disrupted_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_2.webp",
+            "title": "Persistent redness & inflammation",
+            "description": "Chronic inflammation from an imbalanced skin ecosystem"
+          }
+        },
+        "disrupted_item_dpHWKc": {
+          "type": "disrupted_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_3.webp",
+            "title": "Damaged skin barrier",
+            "description": "Harsh products strip ceramides and proactive lipids"
+          }
+        },
+        "balanced_item_jzDf3k": {
+          "type": "balanced_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_4.webp",
+            "title": "Clear, Calm Skin",
+            "description": "Good bacteria outcompete pathogens, fewer breakouts naturally"
+          }
+        },
+        "balanced_item_P7DXBf": {
+          "type": "balanced_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_5.webp",
+            "title": "Resident Barrier",
+            "description": "Postbiotic boost ceramide production and protective peptides"
+          }
+        },
+        "balanced_item_gF33NC": {
+          "type": "balanced_item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_3_6.webp",
+            "title": "Even Pigmentation",
+            "description": "Balanced ecosystem reduces melanin overproduction over time"
+          }
+        }
+      },
+      "block_order": [
+        "disrupted_item_r4e9kU",
+        "disrupted_item_d4N8UJ",
+        "disrupted_item_dpHWKc",
+        "balanced_item_jzDf3k",
+        "balanced_item_P7DXBf",
+        "balanced_item_gF33NC"
+      ],
+      "name": "Microbiome Compare",
+      "settings": {
+        "bg_color": "#fffcf9",
+        "heading": "<p>Most skincare treats symptoms. <em>We treat the cause.</em></p>",
+        "subheading": "Drag the slider to see the difference a balanced microbiome makes",
+        "before_image": "shopify://shop_images/Rectangle_1935.webp",
+        "after_image": "shopify://shop_images/Rectangle_1935_1.webp",
+        "before_label": "Disrupted",
+        "after_label": "Balanced",
+        "quote": "\"The difference isn't a new ingredient, it's a restored ecosystem.\"",
+        "slider_border_radius": 10,
+        "left_label": "Microbiome Disrupted",
+        "right_label": "Microbiome Balanced",
+        "panel_border_radius": 12,
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "stats_microbiome_q8cU3y": {
+      "type": "stats-microbiome",
+      "blocks": {
+        "stat_pill_e97eTa": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "2-4 wk",
+            "description": "to rebuild a balanced skin ecosystem",
+            "highlighted": false
+          }
+        },
+        "stat_pill_UJRYM8": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "10T+",
+            "description": "Microorganisms living on your skin right now",
+            "highlighted": true
+          }
+        },
+        "stat_pill_MFPXxr": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "1.5–2 m²",
+            "description": "Skin covers, stating as the largest organ",
+            "highlighted": false
+          }
+        },
+        "stat_pill_BwbTNF": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "4.5 – 5.5",
+            "description": "is the range for Skin surface pH",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "stat_pill_e97eTa",
+        "stat_pill_UJRYM8",
+        "stat_pill_MFPXxr",
+        "stat_pill_BwbTNF"
+      ],
+      "name": "Stats Section",
+      "settings": {
+        "add_class": "",
+        "heading": "",
+        "trusetd_text": "",
+        "trusted_reviews": "",
+        "big_stat": "73%",
+        "subtitle": "<p>Indians face skin issue from <em>disrupted Microbiome</em></p>",
+        "background_color": "#28201f",
+        "text_color": "#feefee",
+        "pill_background_color": "#28201f",
+        "pill_active_background_color": "#feefee",
+        "pill_text_color": "#feefee",
+        "section_border_radius": 0,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "margin_top_desktop": 100,
+        "margin_bottom_desktop": 0,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "margin_top_mobile": 52,
+        "margin_bottom_mobile": 0
+      }
+    },
+    "science_cards_HpNqpJ": {
+      "type": "science-cards",
+      "blocks": {
+        "science_card_rz8UjT": {
+          "type": "science_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/Group_1321321742.webp",
+            "title": "Microbiome Actives",
+            "description": "Ferment-derived bioactive compounds that nourish your skin's microbiome ecosystem, restoring balance and strengthening the barrier from deep within.",
+            "stat_1_value": "10T+",
+            "stat_1_label": "Microorganisms",
+            "stat_2_value": "72h",
+            "stat_2_label": "Colonisation",
+            "stat_3_value": "4w",
+            "stat_3_label": "Usage"
+          }
+        },
+        "science_card_eRY6iA": {
+          "type": "science_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/Group_1321321742_1.webp",
+            "title": "Prebiotics",
+            "description": "Nourishment for the good bacteria already on your skin. The food source that helps beneficial microorganisms thrive, multiply, and outcompete harmful ones.",
+            "stat_1_value": "3x",
+            "stat_1_label": "Growth",
+            "stat_2_value": "48h",
+            "stat_2_label": "Activate",
+            "stat_3_value": "41%",
+            "stat_3_label": "Improvement"
+          }
+        },
+        "science_card_TKMzKJ": {
+          "type": "science_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/Group_1321321742_2.webp",
+            "title": "Postbiotics",
+            "description": "Live beneficial bacteria that directly populate and reinforce your skin's microbial community, reducing acne-causing bacteria at the cellular level.",
+            "stat_1_value": "5x",
+            "stat_1_label": "More stable",
+            "stat_2_value": "3x",
+            "stat_2_label": "Barrier repair",
+            "stat_3_value": "29%",
+            "stat_3_label": "Reduction"
+          }
+        }
+      },
+      "block_order": [
+        "science_card_rz8UjT",
+        "science_card_eRY6iA",
+        "science_card_TKMzKJ"
+      ],
+      "name": "Science Cards",
+      "settings": {
+        "poster_image": "shopify://shop_images/Rectangle_1139962776.webp",
+        "video": "shopify://files/videos/Bubble_wiggling (1).mp4",
+        "heading": "<p>Your skin hosts billions of living organisms. <em>Are you feeding them?</em></p>",
+        "card_border_radius": 10,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "rich_text_image_cards_DTrH3K": {
+      "type": "rich-text-image-cards",
+      "blocks": {
+        "image_card_p3acmr": {
+          "type": "image_card",
+          "settings": {
+            "background_image": "shopify://shop_images/Rectangle_48_2.webp",
+            "overlay_gradient": "#00000080",
+            "logo": "shopify://shop_images/Group_1321324362.webp",
+            "number": "",
+            "card_desc": "The story behind India's \nfirst microbiome-friendly skincare brand",
+            "cta_label": "Our Story",
+            "cta_url": "#"
+          }
+        },
+        "image_card_FtiGXe": {
+          "type": "image_card",
+          "settings": {
+            "background_image": "shopify://shop_images/Rectangle_48_1.webp",
+            "overlay_gradient": "",
+            "number": "<h3>1<em>%</em></h3><p>of our sales</p>",
+            "card_desc": "Go back to the environment and education of underprivileged children.",
+            "cta_label": "Contribute with us",
+            "cta_url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "image_card_p3acmr",
+        "image_card_FtiGXe"
+      ],
+      "name": "Rich Text + Image Cards",
+      "settings": {
+        "heading": "<p>From a bowl of curd to <em>clinical science.</em></p>",
+        "subheading": "The story behind India's first microbiome-friendly skincare brand",
+        "description": "<p>My grandmother applied curd to her face every morning. Her skin at 70 was better than mine at 30. I asked why — and that answer changed everything.\"</p><p><br/>We grew up watching homemade curd calm skin that pharmacy shelves couldn't. After years of research, she understood why, the Lactobacillus cultures in traditional dahi belong to the same bacterial family that modern dermatology now studies for skin barrier health. That wisdom became the foundation of this formula<br/><br/></p>",
+        "card_border_radius": 16,
+        "padding_top": 120,
+        "padding_bottom": 100,
+        "padding_top_mobile": 52,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "blog_cards_88V3b3": {
+      "type": "blog-cards",
+      "name": "Blog Cards",
+      "settings": {
+        "heading": "<p>Learn how your <em>skin works</em></p>",
+        "blog": "articles",
+        "post_limit": 4,
+        "cta_label": "Read More",
+        "card_border_radius": 10,
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "faq_accordion_6XkTMJ": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_RUHxfb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the skin microbiome?",
+            "answer": "<p>The skin microbiome refers to the collection of microorganisms that naturally live on your skin and help support its barrier and overall function.</p>"
+          }
+        },
+        "faq_item_cAeLqn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the AM:PM Ritual and do I need all 5 products?",
+            "answer": "<p>The AM:PM Ritual is a complete 5-step microbiome skincare system: Clean It Off (Face Wash) → Dab It On (Toner) → Rub It In (Serum) → Soak It In (Moisturiser) → Smear It On (Clay Mask, weekly). Each product works individually, but together they create a synergistic system where each step prepares your skin for the next — rebuilding your microbiome from cleanse to moisturise.</p>"
+          }
+        },
+        "faq_item_bEQz4A": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are Sonnet Wellness products vegan and cruelty-free?",
+            "answer": "<p>Yes — 100%. All Sonnet Wellness products are completely vegan with no animal-derived ingredients, and we never test on animals. Every formulation is also free from parabens, GMO ingredients, phthalates, alcohol, mineral oil, petrolatum, and Propylene Glycol.</p>"
+          }
+        },
+        "faq_item_kUdfnT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are Sonnet products suitable for sensitive skin?",
+            "answer": "<p>The formulations are designed to be gentle and suitable for all skin types, including sensitive skin. However, a patch test is always recommended.</p>"
+          }
+        },
+        "faq_item_fyixGT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I use these products if I have acne-prone skin?",
+            "answer": "<p>Yes, the formulations are designed to support balanced skin, which may help improve the appearance of acne-prone skin.</p>"
+          }
+        },
+        "faq_item_7HL9Dm": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need to use the full routine?",
+            "answer": "<p>Products can be used individually, but using them as a routine may provide more consistent results.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_RUHxfb",
+        "faq_item_cAeLqn",
+        "faq_item_bEQz4A",
+        "faq_item_kUdfnT",
+        "faq_item_fyixGT",
+        "faq_item_7HL9Dm"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "heading": "<p>Everything you need to know <em>questions</em></p>",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 24
+      }
+    },
+    "1775729373b21b4568": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_eNgNkY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_eNgNkY"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "hero_swiper_RncWWd",
+    "marquee_bar_JWg97z",
+    "featured_collection_bKqEiX",
+    "skin_needs_z9BwBC",
+    "bundle_section_RjjGVF",
+    "review_slider_GjUNVz",
+    "marquee_bar_NWDAhY",
+    "microbiome_compare_8HFKnW",
+    "stats_microbiome_q8cU3y",
+    "science_cards_HpNqpJ",
+    "rich_text_image_cards_DTrH3K",
+    "blog_cards_88V3b3",
+    "faq_accordion_6XkTMJ",
+    "1775729373b21b4568"
+  ]
+}

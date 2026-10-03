@@ -1,0 +1,833 @@
+{%- liquid
+  assign section_id = 'hero-slider-' | append: section.id
+  assign mt_desktop = section.settings.margin_top_desktop
+  assign mb_desktop = section.settings.margin_bottom_desktop
+  assign pl_desktop = section.settings.padding_left_desktop
+  assign pr_desktop = section.settings.padding_right_desktop
+  assign mt_mobile  = section.settings.margin_top_mobile
+  assign mb_mobile  = section.settings.margin_bottom_mobile
+  assign pl_mobile  = section.settings.padding_left_mobile
+  assign pr_mobile  = section.settings.padding_right_mobile
+  assign border_radius = section.settings.slide_border_radius
+  assign autoplay_delay = section.settings.autoplay_delay | default: 5000
+-%}
+
+<style>
+  /* ── Root tokens ─────────────────────────────── */
+  #{{ section_id }} {
+    --slider-border-radius: {{ border_radius }}px;
+    --autoplay-delay: {{ autoplay_delay }}ms;
+
+    /* Desktop spacing */
+    margin-top:    {{ mt_desktop }}px;
+    margin-bottom: {{ mb_desktop }}px;
+    padding-left:  {{ pl_desktop }}px;
+    padding-right: {{ pr_desktop }}px;
+  }
+
+  /* ── Wrapper ─────────────────────────────────── */
+  #{{ section_id }} .hs-swiper-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: var(--slider-border-radius);
+    overflow: hidden;
+  }
+
+  /* ── Slide ───────────────────────────────────── */
+  #{{ section_id }} .swiper-slide {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    border-radius: var(--slider-border-radius);
+  }
+  /* ── Slide images ────────────────────────────── */
+  #{{ section_id }} .hs-slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  #{{ section_id }} .hs-slide-img--mobile { display: none; }
+
+  @media (max-width: 768px) {
+    #{{ section_id }} .hs-slide-img--desktop { display: none; }
+    #{{ section_id }} .hs-slide-img--mobile  { display: block; }
+  }
+
+  /* ── Overlay gradient ────────────────────────── */
+  #{{ section_id }} .hs-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(128.52deg,
+      rgba(40,32,31,0) 44.07%,
+      rgba(120,86,61,0.48) 68.92%,
+      rgba(40,32,31,0.6) 89.52%);
+    z-index: 1;
+  }
+
+  /* ── Content grid ────────────────────────────── */
+  #{{ section_id }} .hs-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 100px 50px 50px 100px;
+    gap: 0;
+  }
+
+  /* Heading — top left */
+  #{{ section_id }} .hs-heading {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -2%;
+    max-width: 450px;
+    font-family: 'Blauer Nue MD';
+  }
+
+  #{{ section_id }} .hs-heading em {
+    font-style: italic;
+    font-weight: 500;
+    font-family: 'Test Tiempos Fine Italic RG';
+  }
+
+  /* Features — bottom left */
+  #{{ section_id }} .hs-features {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: end;
+  }
+
+  #{{ section_id }} .hs-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+  }
+
+  #{{ section_id }} .hs-feature-icon {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  #{{ section_id }} .hs-feature-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #{{ section_id }} .hs-feature-title {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  #{{ section_id }} .hs-feature-info {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    color:#FFFFFFB2;
+  }
+
+  /* Description + CTA — bottom right */
+  #{{ section_id }} .hs-right {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-left: 0;
+    max-width: 550px;
+    margin-left: auto;
+    width: 100%;
+}
+
+  #{{ section_id }} .hs-description {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+  }
+
+  #{{ section_id }} .hs-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 32px;
+    background: #fff;
+    color: #000000;
+    font-family: 'Blauer Nue RG';
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: -1%;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 2px 2px 2px 30px;
+    border-radius: 100px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  #{{ section_id }} .hs-cta-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #78563D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s transform ease-in; 
+    flex-shrink: 0;
+  }
+
+    .hs-cta:hover span.hs-cta-arrow {
+        transform: rotate(45deg);
+    }
+  #{{ section_id }} .hs-cta-arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── Pagination ───────────────────────────────── */
+  #{{ section_id }} .hs-pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  #{{ section_id }} .hs-dot {
+    width: 10px;
+    height: 6px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.35);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .hs-dot.is-active {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.15);
+    width: 30px;
+  }
+
+  /* Progress fill ring */
+  #{{ section_id }} .hs-dot-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: #fff;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: none;
+  }
+
+  #{{ section_id }} .hs-dot.is-active .hs-dot-fill {
+    animation: dotFillProgress var(--autoplay-delay) linear forwards;
+  }
+
+  @keyframes dotFillProgress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── Mobile layout ───────────────────────────── */
+
+  @media(max-width: 1820px){
+    #{{ section_id }} {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    }
+  @media(max-width: 1440px){
+    #{{ section_id }} .swiper-slide {
+        aspect-ratio: 12 / 6;
+    }    
+  }      
+  @media(max-width: 1300px){
+    #{{ section_id }} .swiper-slide {
+        aspect-ratio: 11 / 6;
+    }    
+    #{{ section_id }} .hs-content {
+        padding: 60px 30px 50px 60px;
+    }
+    #{{ section_id }} .hs-description {
+        font-size: 22px;
+    }
+}      
+@media(max-width: 1300px){
+    #{{ section_id }} .swiper-slide {
+        aspect-ratio: 10 / 7;
+    }   
+    #{{ section_id }} {
+      padding-left:  {{ pl_mobile }}px;
+      padding-right: {{ pr_mobile }}px;
+    }
+    #{{ section_id }} .hs-content {
+        padding: 40px 30px 50px 30px;
+    }
+}
+@media (max-width: 768px) {
+    #{{ section_id }} {
+        margin-top:    {{ mt_mobile }}px;
+        margin-bottom: {{ mb_mobile }}px;
+    }
+
+    #{{ section_id }} .hs-content {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      padding: 28px 24px 40px;
+    }
+    
+    #{{ section_id }} .swiper-slide {
+      aspect-ratio: 10 / 9;
+    }
+    #{{ section_id }} .hs-heading {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 32px;
+      max-width: 50%;
+    }
+
+    #{{ section_id }} .hs-right {
+    grid-column: 1;
+    grid-row: 3;
+    padding-left: 0;
+    justify-content: flex-start;
+    padding-bottom: 16px;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-top: 30px;
+    margin-left: 0;
+}
+
+    #{{ section_id }} .hs-description {
+        font-size: 16px;
+      max-width: 100%;
+    }
+
+    #{{ section_id }} .hs-features {
+      grid-column: 1;
+      grid-row: 2;
+    }
+}
+@media (max-width: 500px) {
+    #hero-slider-template--19513462456502__hero_swiper_RncWWd .hs-cta {
+        padding-left: 22px;
+    }
+    #{{ section_id }} .hs-content {
+      padding: 30px 17px 42px 30px;
+    }
+    #{{ section_id }} .hs-heading{
+        max-width: 75%;
+    }
+     #{{ section_id }} .swiper-slide {
+      aspect-ratio: 9 / 16;
+    }
+    #{{ section_id }} .hs-feature-icon {
+        width: 32px;
+        height: 32px;
+    }
+    #{{ section_id }} .hs-feature-title,
+    #{{ section_id }} .hs-feature-info,
+    #{{ section_id }} .hs-cta {
+        font-size: 12px;
+    }
+    #{{ section_id }} .hs-cta-arrow{
+        height: 32px;
+        width: 32px;
+    }
+    #{{ section_id }} .hs-cta-arrow svg{
+        height: 14px;
+        width: 14px;
+    }
+}
+</style>
+
+<div id="{{ section_id }}">
+    <div class="hs-swiper-wrapper">
+        <div class="swiper hs-swiper">
+            <div class="swiper-wrapper">
+                
+                {%- for block in section.blocks -%}
+                    {%- assign bset = block.settings -%}
+                    <div class="swiper-slide" {{ block.shopify_attributes }}>
+                        
+            {%- if bset.image_desktop != blank -%}
+              {{ bset.image_desktop | image_url: width: 2400 | image_tag:
+                class: 'hs-slide-img hs-slide-img--desktop',
+                loading: 'lazy',
+                widths: '800, 1200, 1600, 2000, 2400',
+                alt: bset.heading }}
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide-img hs-slide-img--desktop' }}
+            {%- endif -%}
+
+            {%- if bset.image_mobile != blank -%}
+              {{ bset.image_mobile | image_url: width: 900 | image_tag:
+                class: 'hs-slide-img hs-slide-img--mobile',
+                loading: 'lazy',
+                widths: '400, 600, 800, 900',
+                alt: bset.heading }}
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide-img hs-slide-img--mobile' }}
+            {%- endif -%}
+
+            <div class="hs-overlay"></div>
+
+            <div class="hs-content">
+
+              <!-- Heading — top left -->
+              {%- if bset.heading != blank -%}
+                <h2 class="hs-heading">{{ bset.heading }}</h2>
+              {%- endif -%}
+
+              <!-- Features — bottom left -->
+              <div class="hs-features">
+                {%- for i in (1..3) -%}
+                  {%- assign icon_key  = 'feature_' | append: i | append: '_icon' -%}
+                  {%- assign title_key = 'feature_' | append: i | append: '_title' -%}
+                  {%- assign info_key  = 'feature_' | append: i | append: '_info' -%}
+                  {%- assign f_title = bset[title_key] -%}
+                  {%- assign f_info  = bset[info_key] -%}
+                  {%- if f_title != blank -%}
+                    <div class="hs-feature">
+                      {%- if bset[icon_key] != blank -%}
+                        <img class="hs-feature-icon" src="{{ bset[icon_key] | image_url }}" loading="lazy" alt="{{ f_title }}"> 
+                      {%- else -%}
+                        <div class="hs-feature-icon" style="background:rgba(255,255,255,0.12);"></div>
+                      {%- endif -%}
+                      <div class="hs-feature-text">
+                        <span class="hs-feature-title">{{ f_title }}</span>
+                        {%- if f_info != blank -%}
+                          <span class="hs-feature-info">{{ f_info }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <!-- Description + CTA — bottom right -->
+              <div class="hs-right">
+                {%- if bset.description != blank -%}
+                  <div class="hs-description">{{ bset.description }}</div>
+                {%- endif -%}
+                {%- if bset.cta_text != blank -%}
+                  <a href="{{ bset.cta_url | default: '#' }}" class="hs-cta">
+                    {{- bset.cta_text -}}
+                    <span class="hs-cta-arrow">
+                      <svg viewBox="0 0 12 12"><line x1="2" y1="10" x2="10" y2="2"/><polyline points="4,2 10,2 10,8"/></svg>
+                    </span>
+                  </a>
+                {%- endif -%}
+              </div>
+
+            </div><!-- /.hs-content -->
+          </div><!-- /.swiper-slide -->
+        {%- endfor -%}
+
+      </div><!-- /.swiper-wrapper -->
+    </div><!-- /.swiper -->
+
+    <!-- Custom Pagination -->
+    <div class="hs-pagination" id="{{ section_id }}-pagination"></div>
+
+  </div><!-- /.hs-swiper-wrapper -->
+</div>
+
+
+<script>
+(function () {
+  function initSlider() {
+    var el     = document.getElementById('{{ section_id }}');
+    if (!el) return;
+
+    var swiperEl  = el.querySelector('.hs-swiper');
+    var paginEl   = el.querySelector('.hs-pagination');
+    var slideCount = el.querySelectorAll('.swiper-slide').length;
+    var delay      = {{ autoplay_delay }};
+
+    /* Build custom dots */
+    paginEl.innerHTML = '';
+    var dots = [];
+    for (var i = 0; i < slideCount; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'hs-dot';
+      dot.innerHTML = '<div class="hs-dot-fill"></div>';
+      (function(idx) {
+        dot.addEventListener('click', function () {
+          swiper.slideTo(idx);
+        });
+      })(i);
+      paginEl.appendChild(dot);
+      dots.push(dot);
+    }
+
+    function setActiveDot(index) {
+      dots.forEach(function (d) {
+        d.classList.remove('is-active');
+        /* Reset animation */
+        var fill = d.querySelector('.hs-dot-fill');
+        fill.style.animation = 'none';
+        fill.offsetHeight; /* reflow */
+        fill.style.animation = '';
+      });
+      if (dots[index]) dots[index].classList.add('is-active');
+    }
+
+    /* Init Swiper */
+    var swiper = new Swiper(swiperEl, {
+      loop: true,
+      speed: 800,
+      {% if section.settings.autoplay_enabled %}
+      autoplay: {
+        delay: delay,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      {% endif %}
+      on: {
+        init: function (sw) {
+          setActiveDot(sw.realIndex);
+        },
+        slideChange: function (sw) {
+          setActiveDot(sw.realIndex);
+        },
+      }
+    });
+
+    setActiveDot(0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      /* Wait for Swiper script */
+      if (typeof Swiper !== 'undefined') {
+        initSlider();
+      } else {
+        var scripts = document.querySelectorAll('script[src*="swiper"]');
+        if (scripts.length) {
+          scripts[scripts.length - 1].addEventListener('load', initSlider);
+        }
+      }
+    });
+  } else {
+    if (typeof Swiper !== 'undefined') {
+      initSlider();
+    } else {
+      document.addEventListener('DOMContentLoaded', initSlider);
+    }
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "tag": "section",
+  "class": "hero-slider-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_enabled",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay delay (ms)",
+      "min": 2000,
+      "max": 9500,
+      "step": 500,
+      "default": 5000
+    },
+    {
+      "type": "header",
+      "content": "Border Radius"
+    },
+    {
+      "type": "range",
+      "id": "slide_border_radius",
+      "label": "Slide border radius (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin top — desktop (px)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin bottom — desktop (px)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding left — desktop (px)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding right — desktop (px)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "label": "Margin top — mobile (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "label": "Margin bottom — mobile (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding left — mobile (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding right — mobile (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image"
+        },
+        {
+          "type": "header",
+          "content": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<p>Skin that heals itself. <em>Naturally.</em></p>"
+        },
+        {
+          "type": "header",
+          "content": "Feature 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_1_icon",
+          "label": "Feature 1 icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_title",
+          "label": "Feature 1 title",
+          "default": "Probiotics"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_info",
+          "label": "Feature 1 information",
+          "default": "Feed your skin's good bacteria"
+        },
+        {
+          "type": "header",
+          "content": "Feature 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_2_icon",
+          "label": "Feature 2 icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_title",
+          "label": "Feature 2 title",
+          "default": "Prebiotics"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_info",
+          "label": "Feature 2 information",
+          "default": "Balance and support skin flora"
+        },
+        {
+          "type": "header",
+          "content": "Feature 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_3_icon",
+          "label": "Feature 3 icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_title",
+          "label": "Feature 3 title",
+          "default": "Postbiotics"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_info",
+          "label": "Feature 3 information",
+          "default": "Strengthen, calm, and protect skin"
+        },
+        {
+          "type": "header",
+          "content": "Description & CTA"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA button text",
+          "default": "Shop Ritual"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "<p>Skin that heals itself. <em>Naturally.</em></p>",
+            "feature_1_title": "Probiotics",
+            "feature_1_info": "Feed your skin's good bacteria",
+            "feature_2_title": "Prebiotics",
+            "feature_2_info": "Balance and support skin flora",
+            "feature_3_title": "Postbiotics",
+            "feature_3_info": "Strengthen, calm, and protect skin",
+            "description": "",
+            "cta_text": "Shop Ritual"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "<p>Skin that heals itself. <em>Naturally.</em></p>",
+            "feature_1_title": "Probiotics",
+            "feature_1_info": "Feed your skin's good bacteria",
+            "feature_2_title": "Prebiotics",
+            "feature_2_info": "Balance and support skin flora",
+            "feature_3_title": "Postbiotics",
+            "feature_3_info": "Strengthen, calm, and protect skin",
+            "description": "",
+            "cta_text": "Shop Ritual"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10
+}
+{% endschema %}

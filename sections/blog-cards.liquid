@@ -1,0 +1,445 @@
+{%- liquid
+  assign blog_handle = section.settings.blog
+  assign post_limit  = section.settings.post_limit
+  assign blog_obj    = blogs[blog_handle]
+-%}
+
+<style>
+  #blog-cards-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: #FFFCF9;
+  }
+
+  #blog-cards-{{ section.id }} .bc__inner {
+    max-width: 1520px;
+    margin: 0 auto;
+  }
+
+  /* ── Heading ── */
+  #blog-cards-{{ section.id }} .bc__heading {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: #28201F;
+    margin: 0 auto 40px;
+  }
+
+  #blog-cards-{{ section.id }} .bc__heading em {
+    font-style: italic;
+    font-family: 'Test Tiempos Fine Italic RG';
+  }
+
+  /* ── Grid ── */
+  #blog-cards-{{ section.id }} .bc__grid {
+    display: grid;
+    grid-template-columns: repeat({{ post_limit }}, 1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* ── Card ── */
+  #blog-cards-{{ section.id }} .bc__card {
+    display: flex;
+    flex-direction: column;
+    border-radius: {{ section.settings.card_border_radius }}px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ── Image ── */
+  #blog-cards-{{ section.id }} .bc__card-img-wrap {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 10px;
+  }
+
+  #blog-cards-{{ section.id }} .bc__card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  #blog-cards-{{ section.id }} .bc__card:hover .bc__card-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  #blog-cards-{{ section.id }} .bc__card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #d8cfc6;
+  }
+
+  /* ── Card body ── */
+  #blog-cards-{{ section.id }} .bc__card-body {
+    background: #F5EEE6;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-top: 2px;
+    flex: 1;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+/* ── Meta row: tag + reading time ── */
+#blog-cards-{{ section.id }} .bc__card-meta {
+    display: flex;
+    align-items: center;
+    padding-bottom:16px;
+    padding-left:20px;
+    padding-right: 20px;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid #28201F0F;
+  }
+
+  #blog-cards-{{ section.id }} .bc__card-tag {
+    display: inline-block;
+    font-family: 'Blauer Nue LT';
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #28201F;
+    background: #fff;
+    border-radius: 40px;
+    padding: 6px 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+  }
+
+  #blog-cards-{{ section.id }} .bc__card-time {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    text-align: right;
+    color: #28201F;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Title ── */
+
+
+  #blog-cards-{{ section.id }} .bc__card-title {
+  font-family: 'Blauer Nue RG';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -2%;
+  margin: 0;
+  color: #28201F;
+  padding: 16px 20px 20px;
+}
+  /* ── Read More ── */
+  #blog-cards-{{ section.id }} .bc__card-cta {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    color: #28201F;
+    font-family: 'Blauer Nue TH';
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 200;
+    margin-top: auto;
+    transition: opacity 0.2s ease;
+    padding: 0 20px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 1520px) {
+    #blog-cards-{{ section.id }} .bc__inner{
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+  }
+  @media (max-width: 1360px) {
+    #blog-cards-{{ section.id }} .bc__inner{
+      padding-right: 0;
+    }
+    #blog-cards-template--19513462456502__blog_cards_88V3b3 .bc__heading {
+      padding-right: 16px;
+    }
+    #blog-cards-{{ section.id }} .bc__grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: 12px;
+      padding: 0 18px 12px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #blog-cards-{{ section.id }} .bc__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    #blog-cards-{{ section.id }} .bc__card {
+      min-width: 28vw;
+      max-width: 28vw;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+  }
+  @media (max-width: 1200px) {
+    #blog-cards-{{ section.id }} .bc__heading {
+      font-size: 36px;
+    }
+}
+  @media (max-width: 768px) {
+     #blog-cards-{{ section.id }} .bc__heading {
+      font-size: 28px;
+    }
+    #blog-cards-{{ section.id }} .bc__inner{
+      padding-right: 0;
+      padding-left: 16px;
+    }
+    #blog-cards-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    #blog-cards-{{ section.id }} .bc__heading {
+      margin-bottom: 24px;
+    }
+    #blog-cards-{{ section.id }} .bc__card {
+      min-width: 45vw;
+      max-width: 45vw;
+    }
+  }
+
+  @media (max-width: 500px) {
+    #blog-cards-{{ section.id }} .bc__card-img-wrap {
+        height: 250px;
+        border-radius: 6px;
+    }
+    #blog-cards-{{ section.id }} .bc__card-body {
+        border-radius: 6px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    #blog-cards-{{ section.id }} .bc__card-meta {
+      padding-bottom: 12px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    #blog-cards-{{ section.id }} .bc__card-time {
+      font-size: 12px;
+    }
+    #blog-cards-{{ section.id }} .bc__card-title{
+      font-size: 14px;
+      padding: 15px 16px;
+    }
+    #blog-cards-{{ section.id }} .bc__card-tag {
+      padding: 5px 12px;
+      font-size: 11px;
+      line-height: 1;
+    }
+    #blog-cards-{{ section.id }} .bc__card {
+      min-width: 84vw;
+      max-width: 84vw;
+    }
+    #blog-cards-{{ section.id }} .bc__heading {
+      margin-bottom: 16px;
+    }
+  }
+</style>
+
+<div id="blog-cards-{{ section.id }}" class="blog-cards">
+  <div class="bc__inner">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="bc__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="bc__grid">
+      {%- if blog_obj != blank -%}
+
+        {%- for article in blog_obj.articles limit: post_limit -%}
+          <a class="bc__card" href="{{ article.url }}">
+
+            {%- comment -%} Image ── {%- endcomment -%}
+            <div class="bc__card-img-wrap">
+              {%- if article.image != blank -%}
+                <img src="{{ article.image | image_url }}" alt="{{ article.image.alt | default: article.title | escape }}" loading="lazy">
+              {%- else -%}
+                <div class="bc__card-img-placeholder"></div>
+              {%- endif -%}
+            </div>
+
+            <div class="bc__card-body">
+
+              {%- comment -%} Meta: tag + reading time ── {%- endcomment -%}
+              <div class="bc__card-meta">
+                {%- if article.tags.size > 0 -%}
+                  <span class="bc__card-tag">{{ article.tags.first }}</span>
+                {%- elsif blog_obj.title != blank -%}
+                  <span class="bc__card-tag">{{ blog_obj.title }}</span>
+                {%- endif -%}
+
+                {%- if article.metafields.custom.reading_time != blank -%}
+                  <span class="bc__card-time">{{ article.metafields.custom.reading_time }} min</span>
+                {%- else -%}
+                  {%- assign words = article.content | strip_html | split: ' ' -%}
+                  {%- assign reading_time = words.size | divided_by: 200 | plus: 1 -%}
+                  <span class="bc__card-time">{{ reading_time }} min</span>
+                {%- endif -%}
+              </div>
+
+              {%- comment -%} Title ── {%- endcomment -%}
+              <p class="bc__card-title">{{ article.title }}</p>
+
+              {%- comment -%} CTA ── {%- endcomment -%}
+              <span class="bc__card-cta">
+                {{- section.settings.cta_label | default: 'Read More' -}}
+              </span>
+
+            </div>
+          </a>
+        {%- endfor -%}
+
+      {%- else -%}
+
+        {%- comment -%} Placeholder cards when no blog is selected ── {%- endcomment -%}
+        {%- for i in (1..post_limit) -%}
+          <div class="bc__card">
+            <div class="bc__card-img-wrap">
+              <div class="bc__card-img-placeholder"></div>
+            </div>
+            <div class="bc__card-body">
+              <div class="bc__card-meta">
+                <span class="bc__card-tag">Skin Science</span>
+                <span class="bc__card-time">10 min</span>
+              </div>
+              <p class="bc__card-title">What is the Skin Microbiome – And Why Every Indian Needs to Know</p>
+              <span class="bc__card-cta">{{ section.settings.cta_label | default: 'Read More' }}</span>
+            </div>
+          </div>
+        {%- endfor -%}
+
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Cards",
+  "tag": "section",
+  "class": "blog-cards-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Number of Posts",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Read More Label",
+      "default": "Read More"
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Cards"
+    }
+  ]
+}
+{% endschema %}

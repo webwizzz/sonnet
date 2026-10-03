@@ -1,0 +1,727 @@
+<style>
+  #skin-needs-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: #FFFCF9;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__inner {
+    max-width: 1720px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ── Header ── */
+  #skin-needs-{{ section.id }} .skin-needs__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__heading {
+    font-family: 'Blauer Nue RG';
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    color: #28201F;
+    margin: 0;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__heading em {
+    font-style: italic;
+    font-family: 'Test Tiempos Fine Italic RG';
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__subtitle {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__header-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__header-cta .subtitle {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    color: #28201FCC;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__header-cta a, #skin-needs-{{ section.id }} .mobile-show {
+    font-family: 'Blauer Nue LT';
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -2%;
+    text-decoration: underline;
+    color: #28201F;
+  }
+
+  /* ── Block list ── */
+  #skin-needs-{{ section.id }} .skin-needs__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* ── Each block ── */
+  #skin-needs-{{ section.id }} .skin-needs__block {
+    background-color: {{ section.settings.block_bg_color }};
+    border-radius: {{ section.settings.block_border_radius }}px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.35s ease;
+  }
+
+  /* Desktop hover layout */
+  #skin-needs-{{ section.id }} .skin-needs__block-inner {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 14px;
+    transition: padding 0.35s ease;
+    min-height: 70px;
+  }
+
+  /* Image — hidden by default, shown on hover */
+  #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-img,
+    #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-img-placeholder  {
+    width: 60px;
+    height: 60px;
+  }
+  #skin-needs-{{ section.id }} .skin-needs__block-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__block-img-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d4b8a0;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__block-title {
+    font-family: 'Blauer Nue MD';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -2%;
+    text-transform: uppercase;
+    transition: width 0.35s ease;
+    max-width: 365px;
+    color:#28201F;
+    width: 100%;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__block-desc {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 18px;
+    color: #28201FCC;
+    line-height: 130%;
+    letter-spacing: -2%;
+    flex: 1;
+  }
+  
+  /* Items count — hidden by default */
+  #skin-needs-{{ section.id }} .skin-needs__block-count {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -2%;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    white-space: nowrap;
+  }
+
+  /* CTA button — hidden by default */
+  #skin-needs-{{ section.id }} .skin-needs__block-cta {
+    display: inline-block;
+    padding: 11px 22px;
+    background-color: {{ section.settings.block_cta_bg_color }};
+    color: #FFFFFF;
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-family: 'Blauer Nue RG';
+    border-radius: 40px;
+    white-space: nowrap;
+    text-decoration: none;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.2s ease;
+    pointer-events: none;
+  }
+
+  #skin-needs-{{ section.id }} .skin-needs__block-cta:hover {
+    background-color: color-mix(in srgb, {{ section.settings.block_cta_bg_color }} 85%, black);
+  }
+  /* ── Hover state (desktop) ── */
+  @media (min-width: 769px) {
+    #skin-needs-{{ section.id }} .skin-needs__block-toggle, .mobile-show {
+      display: none;
+    }
+    
+    #skin-needs-{{ section.id }} .skin-needs__accordion-panel {
+      display: none;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-img,
+    #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-img-placeholder {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-count {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block:hover .skin-needs__block-cta {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+  }
+  @media (max-width: 1720px) {
+    #skin-needs-{{ section.id }} .skin-needs__inner {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+  }
+  @media (max-width: 1200px) {
+    #skin-needs-{{ section.id }} .skin-needs__heading {
+      font-size: 36px;
+    }
+  }
+  @media (max-width: 1025px) {
+    #skin-needs-{{ section.id }} .skin-needs__header-cta {
+      max-width: 40%;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__block-title {
+      max-width: 315px;
+    }
+  }
+  @media (max-width: 768px) {
+    #skin-needs-{{ section.id }} .skin-needs__header-cta {
+      max-width: 100%;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__header-left {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: flex-end;
+    }
+    #skin-needs-{{ section.id }} .mobile-show{
+      font-size: 12px;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__header {
+        gap: 14px;
+        margin-bottom: 16px;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__inner {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    #skin-needs-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__header {
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__header-cta {
+      align-items: flex-start;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__header-cta .subtitle {
+      text-align: left;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block {
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block-inner {
+      flex-wrap: nowrap;
+      padding: 20px;
+      min-height: 62px;
+      gap: 12px;
+      align-items: center;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__block-count,
+    #skin-needs-{{ section.id }} .skin-needs__block-desc,
+    #skin-needs-{{ section.id }} .skin-needs__block-cta,
+    #skin-needs-{{ section.id }} .skin-needs__header-cta a {
+      display: none;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block-title {
+      width: auto;
+      flex: 1;
+      font-size: 14px;
+      max-width: 100%;
+    }
+    #skin-needs-{{ section.id }} .is-open .skin-needs__block-img{
+      display: block !important;
+      height: 40px !important;
+      width: 40px !important;
+    }
+    #skin-needs-{{ section.id }} .skin-needs__block-img{
+      display: none;
+      opacity: 1 !important;
+      height: 40px;
+      width: 40px;
+    }
+    #skin-needs-{{ section.id }} .mobile-show{
+      display: block;
+    }
+    #skin-needs-{{ section.id }} .is-open .skin-needs__block-inner {
+        padding-bottom: 12px;
+    }
+    /* Accordion toggle icon */
+    #skin-needs-{{ section.id }} .skin-needs__block-toggle {  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      color: #1a1a1a;
+      transition: transform 0.3s ease;
+      background: #FFF;
+      border-radius: 50%;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block.is-open .skin-needs__block-toggle {
+      transform: rotate(225deg);
+    }
+
+    /* Accordion content panel */
+    #skin-needs-{{ section.id }} .skin-needs__accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 18px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__block.is-open .skin-needs__accordion-panel {
+      max-height: 300px;
+      padding: 0 18px 20px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 90%;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-img-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #d4b8a0;
+      flex-shrink: 0;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-text {
+      flex: 1;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-desc {
+      font-family: 'Blauer Nue TH';
+      font-weight: 200;
+      font-size: 12px;
+      line-height: 130%;
+      letter-spacing: -2%;
+      color: #28201FCC;
+      margin-bottom: 10px;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-count {
+      font-family: 'Blauer Nue TH';
+      font-weight: 200;
+      font-size: 13px;
+      line-height: 130%;
+      letter-spacing: -2%;
+      color: #28201F;
+    }
+
+    #skin-needs-{{ section.id }} .skin-needs__accordion-cta {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: {{ section.settings.block_cta_bg_color }};
+      color: #fff;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: 'Blauer Nue RG';
+      border-radius: 40px;
+      text-decoration: none;
+    }
+  }
+  @media (max-width: 500px) {
+  #skin-needs-{{ section.id }} .skin-needs__heading {
+    max-width: 60%;
+    font-size: 28px;
+  }
+</style>
+
+<div id="skin-needs-{{ section.id }}" class="skin-needs">
+  <div class="skin-needs__inner">
+
+    {%- comment -%} ── Header ── {%- endcomment -%}
+    <div class="skin-needs__header">
+      <div class="skin-needs__header-left">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="skin-needs__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+          <a class="mobile-show" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="skin-needs__header-cta">
+        {%- if section.settings.subtitle != blank -%}
+          <p class="subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+          <a href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} ── Block list ── {%- endcomment -%}
+    <div class="skin-needs__list">
+      {%- for block in section.blocks -%}
+        <div
+          class="skin-needs__block"
+          {{ block.shopify_attributes }}
+          data-block-index="{{ forloop.index0 }}"
+        >
+
+          {%- comment -%} Desktop row {%- endcomment -%}
+          <div class="skin-needs__block-inner">
+
+            {%- if block.settings.image != blank -%}
+              <img class="skin-needs__block-img" src="{{ block.settings.image | image_url }}"alt="{{ block.settings.title | escape }}" loading="lazy">
+            {%- else -%}
+              <div class="skin-needs__block-img-placeholder"></div>
+            {%- endif -%}
+
+            <span class="skin-needs__block-title">{{ block.settings.title }}</span>
+
+            {%- if block.settings.description != blank -%}
+              <p class="skin-needs__block-desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+
+            {%- if block.settings.item_count > 0 -%}
+              <span class="skin-needs__block-count">{{ block.settings.item_count }} Items</span>
+            {%- endif -%}
+
+            {%- if block.settings.cta_label != blank and block.settings.cta_url != blank -%}
+              <a class="skin-needs__block-cta" href="{{ block.settings.cta_url }}">
+                {{ block.settings.cta_label }}
+              </a>
+            {%- endif -%}
+
+            {%- comment -%} Mobile toggle arrow {%- endcomment -%}
+            <button
+              class="skin-needs__block-toggle"
+              aria-label="Toggle {{ block.settings.title }}"
+              aria-expanded="false"
+            >
+             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.5 6.00024L2.5 6.00024M6 2.50024L6 9.50024" stroke="#78563D" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </button>
+          </div>
+
+          {%- comment -%} Mobile accordion panel {%- endcomment -%}
+          <div class="skin-needs__accordion-panel" aria-hidden="true">
+            <div class="skin-needs__accordion-content">
+
+              {% comment %} {%- if block.settings.image != blank -%}
+                <img
+                  class="skin-needs__accordion-img"
+                  src="{{ block.settings.image | image_url: width: 120 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="skin-needs__accordion-img-placeholder"></div>
+              {%- endif -%} {% endcomment %}
+
+              <div class="skin-needs__accordion-text">
+                {%- if block.settings.description != blank -%}
+                  <p class="skin-needs__accordion-desc">{{ block.settings.description }}</p>
+                {%- endif -%}
+
+                <div class="skin-needs__accordion-footer">
+                  {%- if block.settings.item_count > 0 -%}
+                    <span class="skin-needs__accordion-count">{{ block.settings.item_count }} Items</span>
+                  {%- endif -%}
+
+                  {%- if block.settings.cta_label != blank and block.settings.cta_url != blank -%}
+                    <a class="skin-needs__accordion-cta" href="{{ block.settings.cta_url }}">
+                      {{ block.settings.cta_label }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var section = document.getElementById('skin-needs-{{ section.id }}');
+    if (!section) return;
+
+    var blocks = section.querySelectorAll('.skin-needs__block');
+
+    blocks.forEach(function (block) {
+      var toggle = block.querySelector('.skin-needs__block-toggle');
+      var panel  = block.querySelector('.skin-needs__accordion-panel');
+      if (!toggle || !panel) return;
+
+      toggle.addEventListener('click', function () {
+        var isOpen = block.classList.contains('is-open');
+
+        // Close all open blocks first (optional: remove for multi-open)
+        blocks.forEach(function (b) {
+          b.classList.remove('is-open');
+          var p = b.querySelector('.skin-needs__accordion-panel');
+          var t = b.querySelector('.skin-needs__block-toggle');
+          if (p) p.setAttribute('aria-hidden', 'true');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          block.classList.add('is-open');
+          panel.setAttribute('aria-hidden', 'false');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Skin Needs",
+  "tag": "section",
+  "class": "skin-needs-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Know what your <em>skin needs</em></p>"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Explore routines designed to support common skin concerns"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Block Styling"
+    },
+    {
+      "type": "color",
+      "id": "block_bg_color",
+      "label": "Block Background Color",
+      "default": "#ede8e3"
+    },
+    {
+      "type": "color",
+      "id": "block_cta_bg_color",
+      "label": "Block CTA Button Color",
+      "default": "#7a4a30"
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "label": "Block Border Radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "skin_concern",
+      "name": "Skin Concern",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "ACNE & BREAKOUTS"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Helps support clearer-looking skin by maintaining balance"
+        },
+        {
+          "type": "number",
+          "id": "item_count",
+          "label": "Number of Items",
+          "default": 10
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Button Label",
+          "default": "Shop Solution"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skin Needs"
+    }
+  ]
+}
+{% endschema %}

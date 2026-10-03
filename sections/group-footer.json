@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "marquee_bar_hVaUfX": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_CrVgKc": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_xRhwcB": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_EHEm7b": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_qJiCJK": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FDA Approved"
+          }
+        },
+        "item_j6Cagi": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_jKyxPf": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_CrVgKc",
+        "item_xRhwcB",
+        "item_EHEm7b",
+        "item_qJiCJK",
+        "item_j6Cagi",
+        "item_jKyxPf"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "social_x43iMt": {
+          "type": "social",
+          "settings": {
+            "title": "",
+            "text_size": 8,
+            "enable_follow_on_shop": false
+          }
+        },
+        "25519ea0-6102-4846-ba37-c1e490755339": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "customer-support",
+            "title": "Shop",
+            "accordion_default": "accordion-is-open"
+          }
+        },
+        "7598a60e-fe49-438d-9b2b-b06cde4fecaf": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "footer",
+            "title": "COMPANY",
+            "accordion_default": ""
+          }
+        },
+        "linklist_pTNw3r": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "footer",
+            "title": "SUPPORT",
+            "accordion_default": ""
+          }
+        },
+        "newsletter_pmxAgh": {
+          "type": "newsletter",
+          "settings": {
+            "show_image": false,
+            "wh_ratio": 0.5,
+            "newsletter_enable": true,
+            "recaptcha_enabled": false,
+            "kicker": "",
+            "heading": "<p>Join the Microbiome <em>Movement</em></p>",
+            "richtext": "<p>Rituals, science drops & early access — straight to your inbox.</p>",
+            "text_size": 4,
+            "background_color": "#000000",
+            "text_color_value": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "social_x43iMt",
+        "25519ea0-6102-4846-ba37-c1e490755339",
+        "7598a60e-fe49-438d-9b2b-b06cde4fecaf",
+        "linklist_pTNw3r",
+        "newsletter_pmxAgh"
+      ],
+      "settings": {
+        "menu_position": "left",
+        "footer_image": "shopify://shop_images/Group_1321324362.webp",
+        "logo_max_limit": 170,
+        "brand_tagline": "India's first Postbiotic & Prebiotic skincare brand. Nourishing your skin's natural intelligence with science-backed, transparent formulations.",
+        "width": "wrapper",
+        "padding_top": 50,
+        "padding_bottom": 20
+      }
+    },
+    "subfooter": {
+      "type": "subfooter",
+      "settings": {
+        "footer_secondary_linklist": "",
+        "footer_payment_enable": false,
+        "footer_social_enable": true,
+        "show_locale_selector": false,
+        "show_currency_selector": false,
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "marquee_bar_hVaUfX",
+    "footer",
+    "subfooter"
+  ]
+}

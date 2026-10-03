@@ -1,0 +1,120 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "blocks": {
+        "737c0f79-d514-45e4-a79c-a3bfe3a32ff5": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Save 20% on your first order</p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": true,
+            "target_device": "desktop"
+          }
+        },
+        "text_AVMXWg": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Free Shipping | COD Available | 5M+ Trust</p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": true,
+            "target_device": "mobile"
+          }
+        },
+        "568cf691-048a-4b6d-9983-7b3982f618d9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p><strong>COD available                                                                            Free shipping on all orders                                      Trusted by over 5 million people                                      </strong></p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": true,
+            "target_device": "mobile"
+          }
+        }
+      },
+      "block_order": [
+        "737c0f79-d514-45e4-a79c-a3bfe3a32ff5",
+        "text_AVMXWg",
+        "568cf691-048a-4b6d-9983-7b3982f618d9"
+      ],
+      "custom_css": [],
+      "settings": {
+        "text_size": 3,
+        "layout": "slider",
+        "speed": 5,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "collection_block": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "position": "1",
+            "collection": "",
+            "limit": 4,
+            "wide_element": false,
+            "display": "all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block"
+      ],
+      "settings": {
+        "header_style": "logo_center",
+        "logo": "shopify://shop_images/image_2.webp",
+        "logo_max_limit": 85,
+        "logo_padding": 12,
+        "logo_text_size": 5,
+        "main_menu_linklist": "menu-left-tlpc",
+        "right_menu_linklist": "menu-right-tlpc",
+        "mobile_menu_linklist": "",
+        "full_width": false,
+        "underline_current": false,
+        "enable_search": true,
+        "enable_account": true,
+        "use_icons": true,
+        "icons_type": "modern",
+        "cart_icon": "bag",
+        "header_sticky": "static",
+        "transparent_home": false,
+        "transparent_collection": false,
+        "transparent_blog": false,
+        "transparent_article": false,
+        "transparent_page": false,
+        "transparent_text_color": "#ffffff",
+        "show_collection_images": true,
+        "collection_wh_ratio": 2.5
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

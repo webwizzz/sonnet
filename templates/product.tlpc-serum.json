@@ -1,0 +1,373 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": true,
+            "padding_bottom": 20
+          }
+        },
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.vendor }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "<p>{{ product.title }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<span class=\"title\">{{product.title}}</span><br>"
+          }
+        },
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% if product.compare_at_price %}\n  <span class=\"price\">{{ product.price | money}} </span>  <del>{{ product.compare_at_price | money }}</del> <span style=\"color: black;\"></span>\n{% else %}\n  {{ product.price | money}}\n{% endif %}"
+          }
+        },
+        "241165e0-622a-491a-9eaf-7f1831b2881c": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.short_description | metafield_tag }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "quantity_dp4pWb": {
+          "type": "quantity",
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "add_buttons_qhrYHm": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "glo_related_products_upsell_app_block_product_XVzdEN": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "disabled": true,
+          "settings": {
+            "widget": "3",
+            "gashortcode": "<div class=\"globo_widget_15187\"></div>"
+          }
+        },
+        "meroxio_zipcode_checker_availibility_LT4eBi": {
+          "type": "shopify://apps/zip-pin-postal-code-checker/blocks/availibility/b355dba7-d415-49dc-8399-11206b10c9ca",
+          "settings": {
+            "input_placeholder": "Enter your pincode...",
+            "input_border_radius": 6,
+            "input_text_color": "#000000",
+            "button_text": "Check Availability",
+            "button_bg_color": "#182d2c",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 6,
+            "available_text_color": "#4CAF50",
+            "bg-success-msg": "#E8F9F0",
+            "available_text": "Delivery is available in your area!",
+            "not_available_text_color": "#d32f2f",
+            "bg-wrong-msg": "#ff050529",
+            "not_available_text": "Sorry, we do not deliver to your location.",
+            "enable_border": true,
+            "add_to_cart_default_disabled": true,
+            "saved_pincode_text": "Service available"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c",
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5",
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb",
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db",
+        "241165e0-622a-491a-9eaf-7f1831b2881c",
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc",
+        "quantity_dp4pWb",
+        "add_buttons_qhrYHm",
+        "glo_related_products_upsell_app_block_product_XVzdEN",
+        "meroxio_zipcode_checker_availibility_LT4eBi"
+      ],
+      "settings": {
+        "layout": "thumbnails-below@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "whats_inside_YmcM8e": {
+      "type": "Whats_inside",
+      "blocks": {
+        "block_yrgFz6": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_yVf6jH": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_PggaYc": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_iptUyC": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_8zC4R8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_mPHhK7": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_13213217421.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Repairs your barrier, balances your microbiome, and gives skin every probiotic benefit, without the curd.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_yrgFz6",
+        "block_yVf6jH",
+        "block_PggaYc",
+        "block_iptUyC",
+        "block_8zC4R8",
+        "block_mPHhK7"
+      ],
+      "name": "What's inside",
+      "settings": {
+        "custom_class": "",
+        "title": "<p>What's inside, <em>and exactly why.</em></p>",
+        "label": "VIEW ALL",
+        "href": "",
+        "check1": false,
+        "duration": 5,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "color_text": "",
+        "color_background": ""
+      }
+    },
+    "testimonial_section_f9jRrP": {
+      "type": "Testimonial-section",
+      "blocks": {
+        "block_b8wfh8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels repaired.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        },
+        "block_8QeDmV": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels repaired.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        },
+        "block_FCFXxx": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels repaired.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        },
+        "block_nmfqd8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels repaired.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        },
+        "block_ziaw88": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels repaired.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_b8wfh8",
+        "block_8QeDmV",
+        "block_FCFXxx",
+        "block_nmfqd8",
+        "block_ziaw88"
+      ],
+      "name": "Testimonial Section",
+      "settings": {
+        "custom_class": "",
+        "tag1": "Before",
+        "tag2": "After",
+        "title": "<p>Honest skin, <em>honest results</em></p>",
+        "check1": false,
+        "duration": 5,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 120,
+        "color_text": "",
+        "color_background": ""
+      }
+    },
+    "why_section_RtwUgY": {
+      "type": "Why_section",
+      "blocks": {
+        "block_ncbiNh": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R1.webp",
+            "t1": "Fades Dark Spots and Hyperpigmentation",
+            "desc": "<p>Niacinamide inhibits the transfer of melanin to skin cells, the biological process responsible for dark spots, post-acne marks, and uneven tone. It works at the cellular level, not just on the surface.</p>",
+            "title": "68%",
+            "title1": "<p>improvement in hyperpigmentation visibility </p>"
+          }
+        },
+        "block_3VP8XV": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R2.webp",
+            "t1": "Controls Sebum Without Drying SkiN",
+            "desc": "<p>Niacinamide regulates sebaceous gland activity, reducing excess oil at the source. Jojoba Oil simultaneously mimics skin's natural sebum, signalling the skin to stop overproducing oil while keeping it moisturised.</p>",
+            "title": "52%",
+            "title1": "<p>reduction in sebum excretion rate </p>"
+          }
+        },
+        "block_39ea47": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R3.webp",
+            "t1": "Delivers Antioxidant Protection Daily",
+            "desc": "<p>Vitamin E neutralises free radicals generated by UV exposure and environmental pollution, the primary drivers of premature ageing, pigmentation, and barrier damage. Every application is an invisible shield against daily skin stress.</p>",
+            "title": "50%",
+            "title1": "<p>reduction in oxidative stress markers</p>"
+          }
+        },
+        "block_Pzn7rf": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R4.webp",
+            "t1": "Provides Deep, Lasting Hydration",
+            "desc": "<p>Jojoba Oil and Aloe Vera Leaf Juice work together as a humectant-emollient pair, drawing moisture in and sealing it within the skin layers. The result is hydration that doesn't evaporate within hours.</p>",
+            "title": "34–48%",
+            "title1": "<p>increase in skin hydration levels</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_ncbiNh",
+        "block_3VP8XV",
+        "block_39ea47",
+        "block_Pzn7rf"
+      ],
+      "name": "Why Section",
+      "settings": {
+        "custom_class": "",
+        "title": "<p>Why your skin will <em>love Rub It In</em></p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "color_text": "#28201F",
+        "color_background": "#F6F3EE"
+      }
+    },
+  },
+  "order": [
+    "main",
+    "whats_inside_YmcM8e",
+    "testimonial_section_f9jRrP",
+    "why_section_RtwUgY"
+  ]
+}

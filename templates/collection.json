@@ -1,0 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "collection-hero",
+      "settings": {
+        "text_align": "align--middle-center",
+        "show_title": true,
+        "show_title_below": true,
+        "show_description": false,
+        "show_description_below": false,
+        "color_bg": "palette--light bg--neutral",
+        "show_image": true,
+        "bg_position": "center-center",
+        "image_height": "use_image",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "text_color": "text--white",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "width_text": "wrapper",
+        "padding_top_text": 36,
+        "padding_bottom_text": 0
+      }
+    },
+    "subcollections": {
+      "type": "collection-sub",
+      "disabled": true,
+      "settings": {
+        "subcollections": [],
+        "limit": 6,
+        "color_bg": "palette--light bg--neutral",
+        "text_color": "text--white",
+        "text_align": "align--middle-center",
+        "select_image": "collection",
+        "bg_position": "center-center",
+        "wh_ratio": 1.7,
+        "overlay_opacity": 20,
+        "overlay_color": "#000000",
+        "grid_mobile": 1.2,
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "collection",
+      "blocks": {
+        "collections": {
+          "type": "collections",
+          "settings": {
+            "title": "All collections"
+          }
+        },
+        "filters": {
+          "type": "filters",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collections",
+        "filters"
+      ],
+      "settings": {
+        "product_limit": 36,
+        "grid_large": 3,
+        "grid_mobile": "2",
+        "enable_layout_toggle": true,
+        "color_bg": "palette--light bg--neutral",
+        "collection_sorting": true,
+        "hide_sidebar": false,
+        "collapse_filters": false,
+        "show_products_count": true,
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 64
+      }
+    },
+    "section_richtext_ArTCdB": {
+      "type": "section-richtext",
+      "blocks": {
+        "heading_3QMnRt": {
+          "type": "heading",
+          "settings": {
+            "heading": "Buy Skincare Products Online in India – Natural & Microbiome Skincare by Sonnet Wellness",
+            "text_size": 8
+          }
+        },
+        "text_exydNr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Taking care of your skin today is not just about using random products—it’s about choosing the right formulations that support your skin’s natural balance. At Sonnet Wellness, you can buy skincare products online in India that are designed with a modern, science-backed approach. Our products focus on microbiome-first skincare, helping your skin stay healthy, hydrated, and naturally glowing.</p><p>If you are searching for <a href=\"https://sonnetwellness.in/products/rub-it-in-serum\"><span style=\"text-decoration:underline\">skincare products online in India</span></a> that are safe, effective, and suitable for everyday use, Sonnet Wellness offers a curated collection that combines nature and innovation. From natural skincare products online to advanced probiotic solutions, everything is created to deliver long-term skin health.</p><h2>Why Choose Sonnet Wellness Skincare Products?</h2><p>When you choose to buy skincare products online in India, it is important to select products that not only show results but also protect your skin barrier. Sonnet Wellness is built on the philosophy of microbiome skincare, ensuring that your skin remains balanced and resilient.</p><h3>✔ Microbiome First Skincare Approach</h3><p>Our microbiome first skincare range works by supporting the natural ecosystem of your skin. Instead of damaging your skin barrier, these products strengthen it and improve overall skin function.</p><h3>✔ Best Probiotic Skincare in India</h3><p>We offer some of the best probiotic skincare in India, formulated to:</p><ul><li>Improve skin texture</li><li>Reduce irritation and redness</li><li>Maintain skin hydration</li><li>Enhance natural glow</li></ul><h3>✔ Natural Skincare Products Online</h3><p>Our collection includes natural skincare products online that are free from harsh chemicals, parabens, and toxins. These products are gentle yet effective for daily use.</p><h3>✔ Suitable for Indian Skin Types</h3><p>All our skincare products online in India are designed keeping Indian weather conditions and skin concerns in mind, making them suitable for all skin types.</p><h2>Explore Skincare Products Online in India</h2><p>At Sonnet Wellness, you can explore a wide variety of skincare products online in India that cater to different skin concerns and routines.</p><h3>1. Face Care Products</h3><p>Our face care range is designed to target common skin concerns like dullness, pigmentation, and uneven skin tone.</p><ul><li>Skin brightening solutions</li><li>Hydration-focused products</li><li>Barrier-repair skincare</li></ul><p>These products help you achieve healthy, glowing skin without damaging your skin barrier.</p><h3>2. Body Care Products Online in India</h3><p>Your skincare routine shouldn’t stop at your face. We offer body care products online in India that nourish and protect your skin from head to toe.</p><ul><li>Moisturizing body care</li><li>Skin-smoothing formulations</li><li>Gentle everyday essentials</li></ul><h3>3. Probiotic Skincare Range</h3><p>Our best probiotic skincare in India is specially formulated to restore balance to your skin.</p><p>Benefits include:</p><ul><li>Reduced redness and irritation</li><li>Improved skin resilience</li><li>Long-lasting hydration</li></ul><h2>Natural Skincare Brands in India – Why Sonnet Stands Out</h2><p>Among the growing number of natural skincare brands in India, Sonnet Wellness stands out by combining science-backed ingredients with nature-inspired formulations.</p><p>Unlike traditional products that strip your skin, our formulations:</p><ul><li>Work with your skin’s natural barrier</li><li>Promote long-term skin health</li><li>Deliver visible yet gentle results</li></ul><h2>Benefits of Microbiome Skincare</h2><p>Switching to microbiome skincare products in India can completely transform your skin health.</p><h3>Key Benefits:</h3><ul><li>Strengthens your skin barrier</li><li>Prevents breakouts and sensitivity</li><li>Enhances natural glow</li><li>Improves hydration retention</li></ul><p>This makes microbiome-first skincare one of the most advanced and effective approaches in modern skincare.</p><h2>How to Choose the Right Skincare Products Online</h2><p>When you <a href=\"https://sonnetwellness.in/collections/all\"><span style=\"text-decoration:underline\">buy skincare products online in India</span></a>, it’s important to focus on what your skin truly needs.</p><h3>Keep These Points in Mind:</h3><ul><li>Choose products based on your skin type</li><li>Avoid harsh chemicals</li><li>Look for probiotic or microbiome-friendly ingredients</li><li>Stick to a simple, consistent routine</li></ul><p>Sonnet Wellness makes it easier by offering products that are safe, effective, and suitable for everyday use.</p><h2>Shop Skincare Products Online in India with Confidence</h2><p>At <a href=\"https://sonnetwellness.in/\"><span style=\"text-decoration:underline\">Sonnet Wellness</span></a>, we aim to make your skincare journey effortless. Whether you are looking for natural skincare products online, body care products online in India, or probiotic skincare solutions, our collection has everything you need.</p><p>Upgrade your routine with microbiome-first skincare and experience healthier, balanced, and glowing skin.</p><p></p>",
+            "text_size": 6,
+            "text_columns": 1
+          }
+        },
+        "button_m6PApW": {
+          "type": "button",
+          "settings": {
+            "link_text_1": "Shop all",
+            "link_1": "shopify://collections/all",
+            "button_size_1": "btn--medium",
+            "button_style_1": "btn-text-thick-line",
+            "button_color_1": "btn--neutral",
+            "link_text_2": "Learn more",
+            "link_2": "",
+            "button_size_2": "btn--medium",
+            "button_style_2": "btn-text-thick-line",
+            "button_color_2": "btn--neutral",
+            "link_text_3": "",
+            "link_3": "",
+            "button_size_3": "btn--medium",
+            "button_style_3": "btn-text-thick-line",
+            "button_color_3": "btn--neutral"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3QMnRt",
+        "text_exydNr",
+        "button_m6PApW"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "align_text": "text-left",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "content_width": 2000,
+        "width": "wrapper--narrow",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_accordion_XmHebn": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_N8f3xd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the best Vitamin C face serum in India for pigmentation?",
+            "answer": "<p>The best Vitamin C face serum in India for pigmentation is one that helps reduce dark spots, brighten skin and improve overall skin tone. A good serum for pigmentation in India should be gentle and effective for daily use.<br/><br/></p>"
+          }
+        },
+        "faq_item_wLFYqc": {
+          "type": "faq_item",
+          "settings": {
+            "question": " Can this serum help with dark spots and uneven skin tone?",
+            "answer": "<p>Yes, this is one of the best serum for dark spots in India. It helps reduce pigmentation, fade acne marks and improve uneven skin tone with regular use.<br/><br/></p>"
+          }
+        },
+        "faq_item_7fGcKe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this skin brightening serum suitable for oily skin?",
+            "answer": "<p>Yes, this skin brightening serum in India is lightweight and non-greasy, making it suitable as the best brightening serum for oily skin in India. It absorbs quickly and does not clog pores.<br/><br/></p>"
+          }
+        },
+        "faq_item_B8mED3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does it take to see results from this Vitamin C face serum?",
+            "answer": "<p>With consistent use, this Vitamin C face serum in India can show visible improvements in skin brightness and texture within a few weeks. Results may vary depending on skin type and concern.<br/><br/></p>"
+          }
+        },
+        "faq_item_87WrpU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I use this serum daily for better results?",
+            "answer": "<p>Yes, this is one of the best face serum for skin brightening in India and is safe for daily use. Regular application helps improve glow, reduce pigmentation and maintain healthy skin.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_N8f3xd",
+        "faq_item_wLFYqc",
+        "faq_item_7fGcKe",
+        "faq_item_B8mED3",
+        "faq_item_87WrpU"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "heading": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "main",
+    "section_richtext_ArTCdB",
+    "faq_accordion_XmHebn"
+  ]
+}

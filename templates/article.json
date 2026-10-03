@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "article",
+      "custom_css": [],
+      "settings": {
+        "blog_show_meta": true,
+        "tags": true,
+        "social": true,
+        "image_height": "use_screen_one_half",
+        "bg_position": "center-center",
+        "sidebar_tags": true,
+        "recent": true
+      }
+    },
+    "920dd7e7-f2b9-48e2-81d0-adf0ac1ceffb": {
+      "type": "section-recent-products",
+      "settings": {
+        "bg": "palette--light bg--neutral",
+        "product_recently_heading": "Popular Products",
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4
+      }
+    },
+    "a66dd4eb-0ea5-4a1e-bb50-ce0f0eb13b2a": {
+      "type": "section-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": ""
+      }
+    },
+    "d928d265-3ff0-4739-8fb3-c93f16070040": {
+      "type": "section-html",
+      "disabled": true,
+      "settings": {
+        "html": "<head>\n    <style>\n    {\n        box-sizing: border-box;\n    }\n    /* Set additional styling options for the columns*/\n    .column {\n    float: left;\n    width: 50%;\n    }\n\n    .row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n    }\n    </style>\n </head>\n <body>\n    <div class=\"row\">\n        <div class=\"column\" style=\"background-color:#FFB695;\">\n            {{article}}\n            <p>Data..</p>\n        </div>\n        <div class=\"column\" style=\"background-color:#96D1CD;\">\n            <h2>Column 2</h2>\n            <p>Data..</p>\n        </div>\n    </div>\n </body>\n</html>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "920dd7e7-f2b9-48e2-81d0-adf0ac1ceffb",
+    "a66dd4eb-0ea5-4a1e-bb50-ce0f0eb13b2a",
+    "d928d265-3ff0-4739-8fb3-c93f16070040"
+  ]
+}

@@ -1,0 +1,120 @@
+{%- liquid
+  assign badges = nil
+
+  # 1. Try product-specific badges first (metafield: custom.trust_badges)
+  if product and product.metafields.custom.trust_badges != blank
+    assign badges = product.metafields.custom.trust_badges.value
+
+  # 2. Fallback: render nothing (or you can assign a global metaobject list here)
+  endif
+-%}
+
+{% if badges and badges.size > 0 %}
+
+<div class="trust-badges" role="list" aria-label="Product certifications">
+  {%- for badge in badges -%}
+    {%- liquid
+      assign label = badge.label.value | default: badge.label
+      assign icon  = badge.icon.value  | default: badge.icon
+    -%}
+
+    <div class="trust-badge" role="listitem">
+      {%- if icon != blank -%}
+        <span class="trust-badge__icon" aria-hidden="true">
+            <img src="{{ icon | image_url }}" loading= "lazy" alt="">
+        </span>
+      {%- endif -%}
+
+      {%- if label != blank -%}
+        <span class="trust-badge__label">{{ label }}</span>
+      {%- endif -%}
+    </div>
+
+  {%- endfor -%}
+</div>
+
+{% endif %}
+
+
+<style>
+    .trust-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        padding: 0 0 20px;
+        border-bottom: 1px solid #28201F1A;
+        margin-bottom: 32px;
+    }
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    background: #EAE7E2;
+    white-space: nowrap;
+    transition: all .25s linear;
+  }
+
+  .trust-badge:hover {
+    background: #ffffff;
+  }
+  .trust-badge__icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .trust-badge__icon img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .trust-badge__label {
+    font-family: 'Blauer Nue LT';
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -2%;
+    text-transform: uppercase;
+    color: #28201F;
+  }
+
+  @media (max-width: 1750px) and (min-width: 1471px) {
+    .trust-badge {
+      padding: 8px 10px;
+    }
+
+    .trust-badges {
+      gap: 6px;
+    }
+  }
+
+
+  /* Responsive: stack on small screens */
+  @media (max-width: 1470px) {
+    .trust-badges {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+    .trust-badge {
+        min-width: fit-content;
+    }
+  }
+  @media (max-width: 480px) {
+    .trust-badges {
+      gap: 8px;
+    }
+
+    .trust-badge {
+      padding: 6px 11px;
+    }
+
+    .trust-badge__label {
+      font-size: 10px;
+    }
+  }
+</style>

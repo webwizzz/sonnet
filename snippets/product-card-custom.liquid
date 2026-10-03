@@ -1,0 +1,512 @@
+{% comment %}
+  /snippets/product-card-custom.liquid
+
+  Custom product card matching the brand design.
+  Metafields used:
+    - product.metafields.custom.badge        → e.g. "100% Vegan"
+    - product.metafields.custom.volume       → e.g. "30ml"
+    - product.metafields.custom.tagline      → e.g. "Brightening + hydration + scar healing — all in two drops"
+
+  Usage:
+    {% render 'product-card-custom', product: product %}
+
+  Optional params:
+    - variant         {object}  — preselected variant (defaults to first available)
+    - columns_desktop {number}  — passed through for image sizing
+    - columns_mobile  {number}  — passed through for image sizing
+    - eagerload       {boolean} — eagerly load the product image
+{% endcomment %}
+
+{%- liquid
+  assign card_product  = product
+  assign card_variant  = variant | default: card_product.selected_or_first_available_variant
+  assign card_id       = 'pcc-' | append: card_product.id | append: '-' | append: card_variant.id
+
+  assign on_sale   = false
+  if card_product.compare_at_price > card_product.price
+    assign on_sale = true
+  endif
+
+  assign sold_out  = true
+  if card_product.available
+    assign sold_out = false
+  endif
+
+  assign badge_text   = card_product.metafields.custom.badge.value
+  assign volume_text  = card_product.metafields.custom.volume.value
+  assign tagline_text = card_product.metafields.custom.tagline.value
+
+  assign loading_attr = 'lazy'
+  if eagerload
+    assign loading_attr = 'eager'
+  endif
+-%}
+
+<div class="pcc__card" id="{{ card_id }}" data-product-id="{{ card_product.id }}" data-variant-id="{{ card_variant.id }}">
+
+  {%- comment -%} ── Image area ─────────────────────────────── {%- endcomment -%}
+  <div class="pcc__image-wrap">
+
+    {%- if badge_text != blank -%}
+      <span class="pcc__badge">{{ badge_text }}</span>
+    {%- endif -%}
+
+    <a href="{{ card_product.url }}" class="pcc__image-link" tabindex="-1" aria-hidden="true">
+      {% comment %} {%- if card_product.featured_media -%} {% endcomment %}
+        {%- if card_product.metafields.custom.card_image != blank -%}
+        {{
+          card_product.metafields.custom.card_image
+          | image_url: width: 800
+          | image_tag:
+            class: 'pcc__image',
+            loading: loading_attr,
+            widths: '300, 400, 600, 800',
+            alt: card_product.title
+        }}
+      {%- elsif card_product.featured_media -%}
+        {{
+          card_product.featured_media
+          | image_url: width: 800
+          | image_tag:
+            class: 'pcc__image',
+            loading: loading_attr,
+            widths: '300, 400, 600, 800',
+            alt: card_product.title
+        }}
+      {%- endif -%}
+    </a>
+
+  </div>
+
+  {%- comment -%} ── Info area ──────────────────────────────── {%- endcomment -%}
+  <div class="pcc__info">
+
+    {%- comment -%} Title row + volume {%- endcomment -%}
+    <div class="pcc__title-row">
+      <a href="{{ card_product.url }}" class="pcc__title-link">
+        <h3 class="pcc__title">{{ card_product.title | strip_html | upcase }}</h3>
+      </a>
+      {%- if volume_text != blank -%}
+        <span class="pcc__volume">{{ volume_text }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Star rating (reuses Pipeline's existing rating metafield) {%- endcomment -%}
+    {%- if settings.product_grid_show_rating and card_product.metafields.reviews.rating.value != blank -%}
+      <div class="pcc__rating">
+        {% render 'product-rating', product: card_product, show_rating_count: settings.product_grid_show_rating_count %}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Tagline {%- endcomment -%}
+    {%- if tagline_text != blank -%}
+      <p class="pcc__tagline">{{ tagline_text }}</p>
+    {%- endif -%}
+
+    {%- comment -%} ATC row {%- endcomment -%}
+    <div class="pcc__atc-row">
+      <button
+        class="pcc__atc-btn{% if sold_out %} pcc__atc-btn--sold-out{% endif %}"
+        data-pcc-atc
+        data-variant-id="{{ card_variant.id }}"
+        {% if sold_out %}disabled aria-disabled="true"{% endif %}
+      >
+        <span class="pcc__btn-text">
+          {%- if sold_out -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- else -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- endif -%}
+        </span>
+
+        <!-- SVG Loader -->
+        <span class="pcc__loader">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+
+        <div class="pcc__price-wrap">
+        <span class="pcc__price{% if on_sale %} pcc__price--sale{% endif %}">
+          {%- if card_product.price_varies -%}{{ 'products.general.from' | t }} {%- endif -%}
+          {%- if settings.currency_code_enable -%}
+            {{ card_variant.price | money_with_currency }}
+          {%- else -%}
+            ₹{{ card_variant.price | money_without_currency | split: '.' | first}}
+          {%- endif -%}
+        </span>
+        {%- if on_sale and card_variant.compare_at_price != blank -%}
+          <span class="pcc__compare-price">
+            {%- if settings.currency_code_enable -%}
+              {{ card_variant.compare_at_price | money_with_currency }}
+            {%- else -%}
+              ₹{{ card_variant.compare_at_price | money_without_currency | split: '.' | first }}
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{%- comment -%} ── Styles (output once per page via Liquid's dedupe) ─────── {%- endcomment -%}
+{%- unless pcc_styles_rendered -%}
+{%- assign pcc_styles_rendered = true -%}
+<style>
+  .product__rating__value{
+    display: none;
+  }
+  .product__rating__star:before {
+    content: '';
+    background-image: url('/cdn/shop/files/Group_1321321678.webp?v=1773999415');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 64px;
+    height: 12px;
+    display: block;
+}
+  /* ── Card shell ─────────────────────────────── */
+  .pcc__card {
+    --pcc-bg:        #F5F0EA;
+    --pcc-radius:    16px;
+    --pcc-dark:      #1C1712;
+    --pcc-mid:       #6B5E52;
+    --pcc-accent:    #1C1712;
+    --pcc-btn-bg:    #2A2118;
+    --pcc-btn-hover: #3D3026;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  /* ── Image area ─────────────────────────────── */
+    .pcc__image-wrap {
+        position: relative;
+        padding: 0;
+        height: 430px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 2px;
+    }
+
+  .pcc__image-link {
+    display: block;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .pcc__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .pcc__card:hover .pcc__image {
+    transform: scale(1.03);
+  }
+
+  .pcc__image--placeholder {
+    background: #E8E0D6;
+  }
+
+  /* ── Badge ──────────────────────────────────── */
+  .pcc__badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    font-family: 'Blauer Nue RG';
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -2%-;
+    color: #28201FCC;
+    background: #fff;
+    line-height: 100%;
+    padding: 5px 10px;
+    border-radius: 30px;
+  }
+
+  /* ── Info area ──────────────────────────────── */
+  .pcc__info {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    flex: 1;
+    background: #F6F3EE;
+    border-radius: 10px;
+    padding-bottom: 20px;
+  }
+
+  /* ── Title row ──────────────────────────────── */
+.pcc__title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #28201F0F;
+}
+
+  .pcc__title-link {
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pcc__title {
+    font-family: 'Blauer Nue MD';
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -2%;
+    color: #28201F;
+    margin: 0;
+    line-height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pcc__volume {
+    font-family: 'Blauer Nue TH';
+    font-size: 14px;
+    font-weight: 200;
+    color: #000000;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 130%;
+    letter-spacing: -2%;
+  }
+
+  /* ── Rating ─────────────────────────────────── */
+  .pcc__rating {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 0;
+  }
+
+  /* ── Tagline ────────────────────────────────── */
+  .pcc__tagline {
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: -2%;
+    color: #28201F99;
+    line-height:130%;
+    margin: 12px 0 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* ── ATC row ────────────────────────────────── */
+  .pcc__atc-row {
+    background: #78563D;
+    border-radius: 30px;
+    padding: 13px 30px;
+    margin-bottom: 20px;
+    margin: 0 20px;
+  }
+  .pcc__loader {
+    display: none;
+    margin-left: 8px;
+  }
+
+  .pcc__atc-btn.is-loading .pcc__btn-text {
+      display: none;
+    }
+  .pcc__atc-btn.is-loading .pcc__loader {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .pcc__atc-btn.is-loading .pcc__btn-text {
+    opacity: 0.6;
+  }
+
+  .pcc__atc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Blauer Nue RG';
+    font-size: 16px;
+    letter-spacing: -2%-;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+    line-height: 100%;
+    text-align: start;
+  }
+
+  .pcc__atc-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .pcc__atc-row:has(.pcc__atc-btn--sold-out) {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  /* Loading state */
+  .pcc__atc-btn.is-loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* ── Price ──────────────────────────────────── */
+  .pcc__price-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .pcc__price {
+    font-family: 'Blauer Nue RG';
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .pcc__price--sale {
+    color: #fff;
+  }
+
+  .pcc__compare-price {
+    font-family: 'Blauer Nue RG';
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: line-through;
+    white-space: nowrap;
+    margin-left: 5px;
+  }
+  @media(max-width: 900px){
+    .pcc__atc-row {
+        padding: 13px;
+    }
+}
+@media(max-width: 768px){
+    .pcc__badge{
+        font-size: 10px;
+    }
+    .pcc__image-wrap {
+        height: 290px;
+    }
+    .pcc__title{
+        font-size: 13px;
+    }
+    .pcc__volume{
+        font-size: 12px;
+    }
+    .pcc__tagline{
+        font-size: 11px;
+    }
+    .pcc__atc-btn, .pcc__price, .pcc__compare-price{
+        font-size: 14px;
+    }
+    .pcc__atc-row {
+        margin: 0 12px;
+    }
+    .pcc__title-row{
+        padding: 12px;
+    }
+    .pcc__tagline{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .pcc__info{
+        padding-bottom: 12px;
+    }
+}
+</style>
+{%- endunless -%}
+
+{%- unless pcc_script_rendered -%}
+{%- assign pcc_script_rendered = true -%}
+<script>
+(function () {
+  'use strict';
+
+  /* ── Open Pipeline's cart drawer ─────────────────────────────────
+   * Pipeline's Drawer class binds 'theme:drawer:open' on the drawer
+   * element itself (id="drawer-cart"), NOT on window or document.
+   * ──────────────────────────────────────────────────────────────── */
+  function openCartDrawer() {
+    var drawerEl = document.getElementById('drawer-cart');
+    if (drawerEl) {
+      drawerEl.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+    }
+  }
+
+  /* ── Update Pipeline's cart count bubble ─────────────────────────
+   * Pipeline's Totals class listens for 'theme:cart:change' on
+   * document, expecting event.detail.cart = full cart object.
+   * ──────────────────────────────────────────────────────────────── */
+  function updateCartCount(cart) {
+    document.dispatchEvent(new CustomEvent('theme:cart:change', {
+      bubbles: true,
+      detail: { cart: cart }
+    }));
+  }
+
+  /* ── Add to cart ─────────────────────────────────────────────────
+   * Fetches /cart/add.js, then /cart.js, then updates count and
+   * opens the drawer — all in sequence via promise chain.
+   * ──────────────────────────────────────────────────────────────── */
+ function handleAtcClick(btn) {
+  var variantId = btn.getAttribute('data-variant-id');
+  if (!variantId || btn.disabled) return;
+
+  btn.classList.add('is-loading');
+
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
+  })
+  .then(function (res) {
+    if (!res.ok) throw new Error('Add to cart failed: ' + res.status);
+    return res.json();
+  })
+  .then(function () {
+    return fetch('/cart.js').then(function (r) { return r.json(); });
+  })
+  .then(function (cart) {
+    btn.classList.remove('is-loading'); // ✅ only this
+    updateCartCount(cart);
+    openCartDrawer();
+  })
+  .catch(function (err) {
+    console.error('[pcc]', err);
+    btn.classList.remove('is-loading'); // ✅ only this
+  });
+}
+
+  /* ── Delegated click listener ───────────────────────────────────── */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-pcc-atc]');
+    if (btn) {
+      e.preventDefault();
+      handleAtcClick(btn);
+    }
+  });
+})();
+</script>
+{%- endunless -%}

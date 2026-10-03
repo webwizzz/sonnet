@@ -1,0 +1,624 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16576164076e208d41": {
+      "type": "section-columns",
+      "blocks": {
+        "165761640743c27696-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-01_38085ad3-4931-4e2f-8773-b3d934d542af.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": ""
+          }
+        },
+        "165761640743c27696-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-02.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "165761640743c27696-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-03.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "f2975a76-a674-49a3-9dc0-b0539bce67a4": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-04.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "ea956b78-dbb0-4e10-a9f9-e3bf07432847": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-05.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "6f7f3b2e-d03e-4239-b25c-f3e591f6d43b": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Icons-06.png",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        }
+      },
+      "block_order": [
+        "165761640743c27696-0",
+        "165761640743c27696-1",
+        "165761640743c27696-2",
+        "f2975a76-a674-49a3-9dc0-b0539bce67a4",
+        "ea956b78-dbb0-4e10-a9f9-e3bf07432847",
+        "6f7f3b2e-d03e-4239-b25c-f3e591f6d43b"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "WHY WE'RE DIFFERENT",
+        "bg": "palette--dark bg--invert",
+        "align_text": "text-center",
+        "scale_image": true
+      }
+    },
+    "1657191055b7042730": {
+      "type": "section-double",
+      "blocks": {
+        "16571910557538a84b-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_619f131c06b14.webp",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        },
+        "16571910557538a84b-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "Healthy Skin = Happy skin",
+            "title": "AM:PM Skincare Ritual",
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "SHOP NOW",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn btn--long uppercase",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        }
+      },
+      "block_order": [
+        "16571910557538a84b-1",
+        "16571910557538a84b-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "16576217303cfb88b6": {
+      "type": "section-hero",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Screenshot-2020-12-01-at-09.15.59_1.png",
+        "height": "use_pixels_500",
+        "overlay_opacity": 35,
+        "overlay_color": "#8d6a51",
+        "text_align": "align--bottom-center",
+        "text_color": "text--white"
+      }
+    },
+    "hero": {
+      "type": "section-hero",
+      "settings": {
+        "image": "shopify://shop_images/Sonnet-Wellness-Banner-Image.jpg",
+        "height": "use_screen_three_quarters",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "text_align": "align--bottom-center",
+        "text_color": "text--white"
+      }
+    },
+    "164137463882a2bbbd": {
+      "type": "section-announcement",
+      "blocks": {
+        "4e33935c-3b47-4ff2-86db-5e67783e5be9": {
+          "type": "icon_block",
+          "settings": {
+            "text": "<p><strong>HEALTHY SKIN</strong></p>",
+            "icon_name": "icon-leaf",
+            "icon_color": "#aaaaaa",
+            "icon_alt_width": 33
+          }
+        },
+        "f5ea635f-17af-42e1-bfdb-674a908c81c8": {
+          "type": "icon_block",
+          "settings": {
+            "text": "<p><strong>STRONG NAILS</strong></p>",
+            "icon_name": "icon-chat",
+            "icon_color": "#aaaaaa",
+            "icon_alt_width": 33
+          }
+        },
+        "a7dff923-d582-4bfd-b0f3-6f87ef2f4c5d": {
+          "type": "icon_block",
+          "settings": {
+            "text": "<p><strong>SOFT HAIR</strong></p>",
+            "icon_name": "icon-cart-message",
+            "icon_color": "#aaaaaa",
+            "icon_alt_width": 300
+          }
+        }
+      },
+      "block_order": [
+        "4e33935c-3b47-4ff2-86db-5e67783e5be9",
+        "f5ea635f-17af-42e1-bfdb-674a908c81c8",
+        "a7dff923-d582-4bfd-b0f3-6f87ef2f4c5d"
+      ],
+      "settings": {
+        "bg_color": "#f7f7f7",
+        "color": "#000000",
+        "text_size": 8
+      }
+    },
+    "double": {
+      "type": "section-double",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "kicker": "PROBIOTIC & PREBIOTIC SKINCARE FOR THE FIRST TIME IN INDIA",
+            "title": "Welcome to the Good Skincare Club!",
+            "text": "<p>We create lab made, non living probiotic and prebiotic skincare products to transform your skin from inside out. Sonnet Wellness is a new age wellness brand that is constantly working towards bringing the best of products to cater to your overall health.</p>",
+            "text_columns": 1,
+            "align_text": "text-center",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--black",
+            "bg_color": "#f9e0d8"
+          }
+        },
+        "3305abe2-bd83-4674-b32a-f258b988dcf6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/spa-supplies.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "3305abe2-bd83-4674-b32a-f258b988dcf6"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "tabs": {
+      "type": "section-collection-tabs",
+      "blocks": {
+        "tab-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "skincare",
+            "title": "SKINCARE"
+          }
+        },
+        "25e7480f-48cc-411a-8a1c-1839185dc916": {
+          "type": "collection",
+          "settings": {
+            "collection": "gummies",
+            "title": ""
+          }
+        },
+        "abbdf226-cab4-4fa7-9c68-65d961fde11d": {
+          "type": "collection",
+          "settings": {
+            "collection": "combo",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab-0",
+        "25e7480f-48cc-411a-8a1c-1839185dc916",
+        "abbdf226-cab4-4fa7-9c68-65d961fde11d"
+      ],
+      "settings": {
+        "title": "",
+        "limit": 6,
+        "bg": "palette--light bg--accent"
+      }
+    },
+    "1657621449c89f34a4": {
+      "type": "section-gallery",
+      "blocks": {
+        "16576214487f327d15-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-01_38085ad3-4931-4e2f-8773-b3d934d542af.png",
+            "link": ""
+          }
+        },
+        "16576214487f327d15-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-02.png",
+            "link": ""
+          }
+        },
+        "16576214487f327d15-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-03.png",
+            "link": ""
+          }
+        },
+        "d373a780-394b-44a6-8217-b1cab692cf8e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-04.png",
+            "link": ""
+          }
+        },
+        "4ba0c518-ba5c-412c-918f-5e287f3d0cce": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-05.png",
+            "link": ""
+          }
+        },
+        "36450d00-b9ac-4370-9b48-2067284589e2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Icons-06.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "16576214487f327d15-0",
+        "16576214487f327d15-1",
+        "16576214487f327d15-2",
+        "d373a780-394b-44a6-8217-b1cab692cf8e",
+        "4ba0c518-ba5c-412c-918f-5e287f3d0cce",
+        "36450d00-b9ac-4370-9b48-2067284589e2"
+      ],
+      "settings": {
+        "scale_image": true,
+        "bg": "palette--dark bg--invert"
+      }
+    },
+    "16413764704b4ecd00": {
+      "type": "section-double",
+      "blocks": {
+        "164137647041161641-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "Lactobacillus Ferment Lysate - THE HERO",
+            "title": "So What is Probiotic Skincare?",
+            "text": "<p>To up your self care game.</p><p>Rather than trying to fix something that isn't broken. Inspired by the Japanese concept of WABI SABI - Imperfections make things more unique. Centred on the acceptance of transience and the art of imperfect beauty this philosophy teaches us to embrace the flaws.</p>",
+            "text_columns": 1,
+            "align_text": "text-center",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "caps--link",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        },
+        "164137647041161641-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sonnet-Wellness-Image-2.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "164137647041161641-0",
+        "164137647041161641-1"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "borders": false
+      }
+    },
+    "165778751698b0075b": {
+      "type": "section-columns",
+      "blocks": {
+        "1657787515356b4f0c-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "title": "Feature images or videos",
+            "text": "<p>Add a video popup link to show a play button.  Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "1657787515356b4f0c-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "title": "Feature images or videos",
+            "text": "<p>Add a video popup link to show a play button.  Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "1657787515356b4f0c-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "title": "Feature images or videos",
+            "text": "<p>Add a video popup link to show a play button.  Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        }
+      },
+      "block_order": [
+        "1657787515356b4f0c-0",
+        "1657787515356b4f0c-1",
+        "1657787515356b4f0c-2"
+      ],
+      "settings": {
+        "title": "HOW DOES PROBIOTIC SKINCARE WORK",
+        "bg": "palette--light bg--accent",
+        "align_text": "text-center",
+        "scale_image": true
+      }
+    },
+    "1657622406ff165210": {
+      "type": "section-custom-content",
+      "blocks": {
+        "31e536c9-fb4a-4655-95e4-32c5ef7e0b08": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cherrydeck-4p77t8fzGFo-unsplash.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#512f2f",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--black",
+            "link_text": "",
+            "link": "shopify://products/am-pm-skincare-ritual",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        },
+        "16576224050101f8d2-0": {
+          "type": "product",
+          "settings": {
+            "product": "am-pm-skincare-ritual",
+            "kicker": "AM:PM Skincare Kit",
+            "badge_string": "SPECIAL OFFER",
+            "align_text": "text-center",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8",
+            "bg_accent": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "31e536c9-fb4a-4655-95e4-32c5ef7e0b08",
+        "16576224050101f8d2-0"
+      ],
+      "settings": {
+        "height": "use_pixels_650",
+        "borders": false
+      }
+    },
+    "16576180625d9fa507": {
+      "type": "section-columns",
+      "blocks": {
+        "16576180624381cf70-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_1.jpg",
+            "title": "STEP 1 : CLEAN",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "16576180624381cf70-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_3.jpg",
+            "title": "STEP 2 :",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "16576180624381cf70-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_2.jpg",
+            "title": "STEP 3 : SOOTHE",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "0720b208-d830-4460-949a-86975b27cff6": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_4.jpg",
+            "title": "STEP 4 : REPAIR",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "04d23a6d-22ba-42a3-a5e5-9786ee03a01e": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_5.jpg",
+            "title": "STEP 5 : NOURISH",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "52b3c9a5-dabc-49e6-9b7f-df362fa11570": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Artboard_6.jpg",
+            "title": "STEP 6 :",
+            "text": "<p>Add a video popup link to show a play button.</p>",
+            "button_label": "",
+            "button_link": "",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        }
+      },
+      "block_order": [
+        "16576180624381cf70-0",
+        "16576180624381cf70-1",
+        "16576180624381cf70-2",
+        "0720b208-d830-4460-949a-86975b27cff6",
+        "04d23a6d-22ba-42a3-a5e5-9786ee03a01e",
+        "52b3c9a5-dabc-49e6-9b7f-df362fa11570"
+      ],
+      "settings": {
+        "title": "HOW THE AM:PM RITUAL WORKS",
+        "bg": "palette--light bg--neutral",
+        "align_text": "text-center",
+        "scale_image": true
+      }
+    },
+    "1641378610fbfee585": {
+      "type": "section-newsletter",
+      "settings": {
+        "title": "sign up to our Newsletter",
+        "richtext": "<p>Join to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+        "bg": "palette--dark bg--invert"
+      }
+    }
+  },
+  "order": [
+    "16576164076e208d41",
+    "1657191055b7042730",
+    "16576217303cfb88b6",
+    "hero",
+    "164137463882a2bbbd",
+    "double",
+    "tabs",
+    "1657621449c89f34a4",
+    "16413764704b4ecd00",
+    "165778751698b0075b",
+    "1657622406ff165210",
+    "16576180625d9fa507",
+    "1641378610fbfee585"
+  ]
+}

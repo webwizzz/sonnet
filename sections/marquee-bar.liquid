@@ -1,0 +1,393 @@
+{%- liquid
+  assign section_id   = 'marquee-bar-' | append: section.id
+  assign speed        = section.settings.marquee_speed | default: 30
+  assign pt_desktop   = section.settings.padding_top_desktop    | default: 18
+  assign pb_desktop   = section.settings.padding_bottom_desktop | default: 18
+  assign pt_mobile    = section.settings.padding_top_mobile     | default: 14
+  assign pb_mobile    = section.settings.padding_bottom_mobile  | default: 14
+  assign bg_color     = section.settings.background_color
+  assign label        = section.settings.label | default: 'WHY US?'
+  assign block_count  = section.blocks.size
+  assign duration     = block_count | times: speed
+-%}
+
+<style>
+  #{{ section_id }} {
+    background-color: {{ bg_color }};
+    padding-top:    {{ pt_desktop }}px;
+    padding-bottom: {{ pb_desktop }}px;
+    width: 100%;
+}
+#{{ section_id }} .marquee-wrapper{
+  max-width: 1660px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+    #{{ section_id }}.footer-marquee {
+      border-bottom: 1px solid #FFFFFF1A;
+    }
+    #{{ section_id }}.footer-marquee .marquee-wrapper{
+      max-width: 100%;
+    }
+    #{{ section_id }}.footer-marquee .mb-item img {
+      height: 6px;
+      width: 6px;
+    }
+    #{{ section_id }}.footer-marquee .mb-item {
+      gap: 50px;
+    }
+    #{{ section_id }}.footer-marquee .marquee-wrapper .mb-label{
+      color: #C0A58A;
+    }
+    #{{ section_id }}.footer-marquee .marquee-wrapper .mb-item-title{
+      color: #C0A58A;
+    }
+    #{{ section_id }}.footer-marquee .marquee-wrapper .mb-label,
+    #{{ section_id }}.footer-marquee .mb-pipe{
+      display: none;
+    }
+    #{{ section_id }}.footer-marquee .marquee-wrapper .mb-track-wrapper:before,
+    #{{ section_id }}.footer-marquee .marquee-wrapper .mb-track-wrapper:after{
+      content:none;
+    }
+
+  /* ── Label ───────────────────────────────────── */
+  #{{ section_id }} .mb-label {
+    flex-shrink: 0;
+    padding-left: 0;
+    padding-right: 21px;
+    font-family: 'Blauer Nue MD';
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -2%-;
+    text-transform: uppercase;
+    color: #28201F;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Vertical divider after label */
+  #{{ section_id }} .mb-label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 1px;
+    background: rgba(26, 21, 18, 0.22);
+  }
+
+  /* ── Marquee track ───────────────────────────── */
+  #{{ section_id }} .mb-track-wrapper {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+    position: relative;
+  }
+  #{{ section_id }} .mb-track-wrapper:before{
+    content: '';
+    position: absolute;
+    background: linear-gradient(270deg, rgba(245, 238, 230, 0) 0%, #F5EEE6 100%);
+    width: 100px;
+    height: 100%;
+    left: 0px;
+    z-index: 9;
+}
+  #{{ section_id }} .mb-track-wrapper:after{
+    content:'';
+    position: absolute;
+    background: linear-gradient(90deg, rgba(245, 238, 230, 0) 0%, #F5EEE6 100%);
+    width: 100px;
+    height: 100%;
+    right: 0px;
+    top:0;
+    z-index: 9;
+}
+
+  #{{ section_id }} .mb-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: mb-scroll {{ duration }}s linear infinite;
+    will-change: transform;
+  }
+
+  #{{ section_id }} .mb-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes mb-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── Item ────────────────────────────────────── */
+  #{{ section_id }} .mb-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 28px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }} .mb-item-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  #{{ section_id }}.logo-marquee img.mb-item-icon {
+    width: 100% !important;
+    max-width: 185px;
+    height: auto !important;
+    max-height: 40px;
+}
+
+  /* SVG placeholder icon when no image is set */
+  #{{ section_id }} .mb-item-icon-placeholder {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    opacity: 0.55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #{{ section_id }} .mb-item-title {
+    font-family: 'Blauer Nue LT';
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -2%;
+    line-height: 100%;
+    color: #28201F;
+  }
+
+  /* ── Pipe separator ──────────────────────────── */
+  #{{ section_id }} .mb-pipe {
+    flex-shrink: 0;
+    color: #28201F14;
+    font-size: 20px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ── Mobile ──────────────────────────────────── */
+  @media (max-width: 1660px) {
+    #{{ section_id }} .marquee-wrapper{
+      padding-left: 30px;
+    }
+  }
+  @media (max-width: 768px) {
+    #{{ section_id }} .marquee-wrapper{
+      padding-left: 0px;
+    }
+    #{{ section_id }}.logo-marquee img.mb-item-icon {
+      max-width: 100px;
+      max-height: 20px;
+  }
+    #{{ section_id }} {
+      padding-top:    {{ pt_mobile }}px;
+      padding-bottom: {{ pb_mobile }}px;
+    }
+
+    #{{ section_id }} .mb-label {
+      font-size: 13px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    #{{ section_id }} .mb-item {
+      padding: 0 20px;
+      gap: 8px;
+    }
+
+    #{{ section_id }} .mb-item-title {
+      font-size: 13px;
+    }
+
+    #{{ section_id }} .mb-item-icon,
+    #{{ section_id }} .mb-item-icon-placeholder {
+      width: 26px;
+      height: 26px;
+    }
+    #{{ section_id }} .mb-track-wrapper:before, #{{ section_id }} .mb-track-wrapper:after{
+    width: 70px;
+}
+  }
+</style>
+
+<div id="{{ section_id }}" class="{{ section.settings.add_class }}">
+    <div class="marquee-wrapper">
+        {%- if label != blank -%}
+            <span class="mb-label">{{ label }}</span>
+        {%- endif -%}
+
+        <div class="mb-track-wrapper">
+            <div class="mb-track">
+
+            {%- comment -%} Render blocks twice for seamless loop {%- endcomment -%}
+            {%- for _pass in (1..2) -%}
+                {%- for block in section.blocks -%}
+                {%- assign bset = block.settings -%}
+
+                {%- unless forloop.first -%}
+                    <span class="mb-pipe">|</span>
+                {%- endunless -%}
+
+                <div class="mb-item" {{ block.shopify_attributes }}>
+
+                    {%- if bset.icon != blank -%}
+                      <img src="{{ bset.icon | image_url }}" alt="{{ bset.title }}" class="mb-item-icon" >
+                    {%- else -%}
+                    {%- comment -%} Default circle-check SVG placeholder {%- endcomment -%}
+                    <span class="mb-item-icon-placeholder">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="9.5" stroke="#1a1512" stroke-width="1.3"/>
+                        <polyline points="7,11.5 10,14.5 15,8.5" stroke="#1a1512" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                    {%- endif -%}
+
+                    {%- if bset.title != blank -%}
+                    <span class="mb-item-title">{{ bset.title }}</span>
+                    {%- endif -%}
+
+                </div>
+
+                {%- endfor -%}
+
+                {%- comment -%} Pipe between last item of pass 1 and first item of pass 2 {%- endcomment -%}
+                {%- if forloop.index == 1 -%}
+                <span class="mb-pipe">|</span>
+                {%- endif -%}
+
+            {%- endfor -%}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Bar",
+  "tag": "section",
+  "class": "marquee-bar-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "add_class",
+      "label": "Add Class"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label text",
+      "default": "WHY US?"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F3EDE7"
+    },
+    {
+      "type": "header",
+      "content": "Marquee Speed"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Speed (seconds per item — lower = faster)",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top — desktop (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom — desktop (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top — mobile (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom — mobile (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Probiotic + Prebiotic Skincare"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Bar",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Probiotic + Prebiotic Skincare" } },
+        { "type": "item", "settings": { "title": "No Harsh Chemicals" } },
+        { "type": "item", "settings": { "title": "For All Skin Types" } },
+        { "type": "item", "settings": { "title": "100% Vegan & Cruelty Free" } },
+        { "type": "item", "settings": { "title": "No GMO Ingredients" } },
+        { "type": "item", "settings": { "title": "Made In India" } }
+      ]
+    }
+  ],
+  "max_blocks": 20
+}
+{% endschema %}

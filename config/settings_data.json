@@ -1,0 +1,508 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "color_announcement_bg": "#fffcf9",
+    "color_announcement_text": "#28201f",
+    "color_header_bg": "#fffcf9",
+    "color_header_text": "#28201f",
+    "color_nav_border": "#28201f",
+    "color_body_bg": "#fffcf9",
+    "color_body_text": "#28201f",
+    "color_primary": "#000000",
+    "color_secondary": "#616161",
+    "color_bg_light": "#ffffff",
+    "color_bg_inverse": "#182d2c",
+    "color_text_inverse": "#ffffff",
+    "color_primary_inverse": "#afa5c6",
+    "color_secondary_inverse": "#dff3fd",
+    "color_bg_accent_inverse": "#afa5c6",
+    "default_background": "",
+    "color_footer_bg": "#28201f",
+    "color_footer_text": "#ffffff",
+    "color_sub_footer_bg": "#28201f",
+    "color_sub_footer_text": "#fffcf9",
+    "font_heading_family": "avenir_next_n4",
+    "font_body_family": "futura_n4",
+    "font_accent_family": "futura_n4",
+    "type_kicker_uppercase": true,
+    "layout_site_width": 1820,
+    "layout_outer": 17,
+    "animations_scroll_enable": true,
+    "parallax_enable": true,
+    "favicon": "shopify://shop_images/Sonnet_Wellness_Logo-Fav.jpg",
+    "collection_text_alignment": "text-center",
+    "product_grid_image": "crop",
+    "instant_add_enable": true,
+    "quickview_enable": true,
+    "quick_add_button_color": "stain-button-canvas",
+    "swatches_squares": false,
+    "badge_sale": false,
+    "badge_sale_discount": true,
+    "product_grid_show_rating": true,
+    "product_grid_show_rating_count": true,
+    "cart_style": "drawer",
+    "free_shipping_limit": "0",
+    "social_instagram_link": "https://instagram.com/SonnetWellness",
+    "social_facebook_link": "https://facebook.com/SonnetWellness",
+    "social_youtube_link": "#",
+    "social_linkedin_link": "#",
+    "checkout_logo_size": "large",
+    "checkout_accent_color": "#826ab9",
+    "checkout_button_color": "#000000",
+    "sections": {
+      "announcement": {
+        "type": "announcement",
+        "blocks": {
+          "737c0f79-d514-45e4-a79c-a3bfe3a32ff5": {
+            "type": "text",
+            "settings": {
+              "text": "<p><strong>FREE</strong> Shipping On All Orders!</p>",
+              "target_url_enabled": false,
+              "target_url": "",
+              "target_referrer_enabled": false,
+              "target_referrer": "",
+              "target_device_enabled": false,
+              "target_device": "mobile"
+            }
+          },
+          "568cf691-048a-4b6d-9983-7b3982f618d9": {
+            "type": "text",
+            "disabled": true,
+            "settings": {
+              "text": "<p><strong>1% OF ALL SALES</strong> GO BACK TO THE EARTH & CHILDREN IN NEED</p>",
+              "target_url_enabled": false,
+              "target_url": "",
+              "target_referrer_enabled": false,
+              "target_referrer": "",
+              "target_device_enabled": false,
+              "target_device": "mobile"
+            }
+          }
+        },
+        "block_order": [
+          "737c0f79-d514-45e4-a79c-a3bfe3a32ff5",
+          "568cf691-048a-4b6d-9983-7b3982f618d9"
+        ],
+        "settings": {
+          "text_size": 3,
+          "layout": "slider",
+          "speed": 5
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "collection_block": {
+            "type": "collection",
+            "disabled": true,
+            "settings": {
+              "position": "1",
+              "collection": "",
+              "limit": 4
+            }
+          }
+        },
+        "block_order": [
+          "collection_block"
+        ],
+        "settings": {
+          "header_style": "menu_center",
+          "logo": "shopify://shop_images/Sonnet_Wellness_Logo_603e66fb-4c7c-44fa-8905-23669f86c35b.png",
+          "logo_max_limit": 115,
+          "main_menu_linklist": "main-menu",
+          "full_width": false,
+          "underline_current": true,
+          "enable_search": true,
+          "enable_account": true,
+          "use_icons": true,
+          "header_sticky": "static",
+          "transparent_home": false,
+          "transparent_collection": false,
+          "transparent_blog": false,
+          "transparent_article": false,
+          "transparent_page": false,
+          "transparent_text_color": "#ffffff"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "e49eb234-0cbe-4e48-b147-08ae017d3681": {
+            "type": "text",
+            "settings": {
+              "title": "Contact Us",
+              "text": "<p><strong>Location: </strong>Unit 216B, Floor-2, Plot-569, Allied Non-Residential<br/>Industrial, MMC Cross Rd Number 2, Near Khilani School, Central<br/>Government Staff Colony, Mahim, Mumbai, Maharashtra 400016<br/></p><p><strong>Email: </strong>care@sonnetwellness.com<br/></p><p><strong>Phone Number</strong>: +918097836589</p>",
+              "accordion_default": ""
+            }
+          },
+          "7598a60e-fe49-438d-9b2b-b06cde4fecaf": {
+            "type": "linklist",
+            "settings": {
+              "linklist": "footer",
+              "accordion_default": "accordion-is-open"
+            }
+          },
+          "25519ea0-6102-4846-ba37-c1e490755339": {
+            "type": "linklist",
+            "settings": {
+              "linklist": "customer-support",
+              "accordion_default": "accordion-is-open"
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "richtext": "<p>Join to get special offers, free giveaways, and once-in-a-lifetime deals.</p>"
+            }
+          }
+        },
+        "block_order": [
+          "e49eb234-0cbe-4e48-b147-08ae017d3681",
+          "7598a60e-fe49-438d-9b2b-b06cde4fecaf",
+          "25519ea0-6102-4846-ba37-c1e490755339",
+          "newsletter"
+        ],
+        "settings": {}
+      },
+      "popups": {
+        "type": "popups",
+        "blocks": {
+          "cookies": {
+            "type": "cookie",
+            "disabled": true,
+            "settings": {
+              "show_cookies_popup": true,
+              "text_title": "Are Cookies OK?",
+              "text_body": "<p>We use cookies to improve your browsing experience</p>",
+              "text_accept": "Accept",
+              "text_learn": "Learn more",
+              "learn_url": "shopify://policies/privacy-policy",
+              "text_color": "text--neutral",
+              "button_color": "btn--neutral",
+              "button_style": "btn--soft uppercase",
+              "bg": "palette--light bg--neutral",
+              "position": "popup--left"
+            }
+          },
+          "newsletter_signup": {
+            "type": "newsletter",
+            "disabled": true,
+            "settings": {
+              "title": "Join the club",
+              "text": "<p>Enter your email to save 10% on your next order</p>",
+              "success": "Success! Use code CLUB10 to save 10%",
+              "text_color": "text--neutral",
+              "bg": "palette--light bg--neutral",
+              "position": "popup--right",
+              "trigger": "always",
+              "target_url_enabled": false,
+              "target_url": "",
+              "target_referrer_enabled": false,
+              "target_referrer": "",
+              "target_device_enabled": false,
+              "target_device": "mobile"
+            }
+          }
+        },
+        "block_order": [
+          "cookies",
+          "newsletter_signup"
+        ],
+        "settings": {}
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "9144908965052497053": {
+        "type": "shopify://apps/related-products-also-bought/blocks/app-embed/75cf2d86-3988-45e7-8f28-ada23c99704f",
+        "disabled": false,
+        "settings": {}
+      },
+      "judgeme_core_c207020d": {
+        "type": "shopify://apps/judge-me-product-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "1759773598402494664": {
+        "type": "shopify://apps/rt-whatsapp-chat-live-chat/blocks/app-embed/9baee9b7-6929-47af-9935-05bcdc376396",
+        "disabled": false,
+        "settings": {}
+      },
+      "pagefly-page-builder": {
+        "type": "shopify://apps/pagefly-page-builder/blocks/app-embed/83e179f7-59a0-4589-8c66-c0dddf959200",
+        "disabled": false,
+        "settings": {}
+      },
+      "13951170544780599758": {
+        "type": "shopify://apps/tapita-seo-speed/blocks/app-embed/cd37ca7a-40ad-4fdc-afd3-768701482209",
+        "disabled": false,
+        "settings": {}
+      },
+      "2102808784413787648": {
+        "type": "shopify://apps/kbite-back-in-stock-notify-me/blocks/main-app-embed/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
+        "disabled": false,
+        "settings": {}
+      },
+      "14167655181940180261": {
+        "type": "shopify://apps/quinn-shoppable-reel/blocks/app-embed/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+        "disabled": false,
+        "settings": {}
+      },
+      "2766656906679212237": {
+        "type": "shopify://apps/quinn-shoppable-reel/blocks/app-embed-legacy/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+        "disabled": false,
+        "settings": {}
+      },
+      "16033367850703836464": {
+        "type": "shopify://apps/shiprocket-smart-cart/blocks/smart-cart-app-block/16d0c0e3-0cd3-4268-8ed1-80bb3f3d659f",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Pipeline": {
+      "color_announcement_bg": "#f7f7f7",
+      "color_announcement_text": "#222222",
+      "color_header_bg": "#ffffff",
+      "color_header_text": "#222222",
+      "color_nav_border": "#d7d7d7",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#222222",
+      "color_primary": "#f4a482",
+      "color_secondary": "#585e71",
+      "color_bg_light": "#f7f7f7",
+      "color_bg_inverse": "#2e3438",
+      "color_text_inverse": "#ffffff",
+      "color_primary_inverse": "#fcd8c8",
+      "color_secondary_inverse": "#c6dae5",
+      "color_bg_accent_inverse": "#222324",
+      "color_bg_bright": "#d2815f",
+      "color_text_bright": "#ffffff",
+      "color_primary_bright": "#2693cf",
+      "color_secondary_bright": "#f4a482",
+      "color_bg_accent_bright": "#2693cf",
+      "color_footer_bg": "#efefef",
+      "color_footer_text": "#393939",
+      "color_sub_footer_bg": "#e9e9e9",
+      "font_heading_family": "archivo_narrow_n5",
+      "font_body_family": "barlow_n4",
+      "font_accent_family": "archivo_n5",
+      "font_heading_uppercase": true,
+      "font_accent_size": 100,
+      "button_radius": 0,
+      "parallax_enable": true,
+      "collection_text_alignment": "text-center",
+      "product_grid_image": "crop",
+      "swatches_enable": true,
+      "swatches_collection_enable": false,
+      "badge_sale_discount": true,
+      "cart_style": "drawer",
+      "checkout_logo_size": "large",
+      "checkout_accent_color": "#f4a482",
+      "checkout_button_color": "#f4a482",
+      "cart_shipping_enable": true,
+      "cart_notes_enable": true
+    },
+    "Petra": {
+      "color_announcement_bg": "#f7f5f4",
+      "color_announcement_text": "#424242",
+      "color_header_bg": "#ffffff",
+      "color_header_text": "#000000",
+      "color_nav_border": "#f7f5f4",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#424242",
+      "color_primary": "#d2815f",
+      "color_secondary": "#748cab",
+      "color_bg_light": "#f7f5f4",
+      "color_bg_inverse": "#424242",
+      "color_text_inverse": "#ffffff",
+      "color_primary_inverse": "#d2815f",
+      "color_secondary_inverse": "#748cab",
+      "color_bg_accent_inverse": "#1d1d1d",
+      "color_bg_bright": "#d2815f",
+      "color_text_bright": "#ffffff",
+      "color_primary_bright": "#ff763d",
+      "color_secondary_bright": "#3d5aff",
+      "color_bg_accent_bright": "#94553a",
+      "default_background": "",
+      "color_footer_bg": "#424242",
+      "color_footer_text": "#ffffff",
+      "color_sub_footer_bg": "#1d1d1d",
+      "color_sub_footer_text": "#dfdfdf",
+      "high_contrast": false,
+      "font_heading_family": "libre_baskerville_n4",
+      "font_body_family": "poppins_n4",
+      "font_accent_family": "montserrat_n5",
+      "font_scaling_system": "small",
+      "type_nav_font": "accent_bold",
+      "font_heading_uppercase": false,
+      "font_accent_size": 95,
+      "layout_site_width": 1450,
+      "layout_gutter": 24,
+      "layout_outer": 50,
+      "button_radius": 2,
+      "animations_scroll_enable": true,
+      "collection_text_alignment": "text-left",
+      "product_grid_image": "crop",
+      "swatches_squares": true,
+      "swatches_collection_enable": true,
+      "badge_sale_discount": true,
+      "color_badge": "#ffffff",
+      "color_badge_text": "#424242",
+      "product_grid_show_rating": false,
+      "product_grid_show_rating_count": false,
+      "badge_sale_type": "percentage",
+      "cart_style": "drawer",
+      "currency_code_enable": false,
+      "checkout_sidebar_background_color": "#f7f5f4",
+      "checkout_accent_color": "#d2815f",
+      "checkout_button_color": "#d2815f",
+      "cart_shipping_enable": true,
+      "cart_vendor_enable": true,
+      "cart_notes_enable": true,
+      "show_free_shipping_message": true,
+      "cart_custom_message_enable": false,
+      "cart_color_bg": "palette--light bg--neutral",
+      "cart_show_additional_buttons": false,
+      "font_accent_spacing": 100,
+      "type_nav_size": 100,
+      "show_locale_desktop": true,
+      "show_currency_desktop": true
+    },
+    "Pahoa": {
+      "color_announcement_bg": "#f7f5f4",
+      "color_announcement_text": "#2e413d",
+      "color_header_bg": "#ffffff",
+      "color_header_text": "#1d2523",
+      "color_nav_border": "#f7f5f4",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#334641",
+      "color_primary": "#d2815f",
+      "color_secondary": "#567e73",
+      "color_bg_light": "#f7f5f4",
+      "color_bg_inverse": "#2e413d",
+      "color_text_inverse": "#ffffff",
+      "color_primary_inverse": "#ffe5da",
+      "color_secondary_inverse": "#dff3fd",
+      "color_bg_accent_inverse": "#142b26",
+      "color_bg_bright": "#e7caac",
+      "color_text_bright": "#616161",
+      "color_primary_bright": "#ff4b00",
+      "color_secondary_bright": "#3f9f85",
+      "color_bg_accent_bright": "#ff4b00",
+      "default_background": "",
+      "color_footer_bg": "#2e413d",
+      "color_footer_text": "#ffffff",
+      "color_sub_footer_bg": "#000000",
+      "color_sub_footer_text": "#fcfaf7",
+      "high_contrast": false,
+      "font_heading_family": "figtree_n6",
+      "font_body_family": "figtree_n4",
+      "font_accent_family": "figtree_n5",
+      "font_scaling_system": "small",
+      "type_nav_font": "accent_bold",
+      "font_heading_uppercase": false,
+      "font_accent_size": 95,
+      "layout_site_width": 1450,
+      "layout_gutter": 24,
+      "layout_outer": 50,
+      "button_radius": 2,
+      "animations_scroll_enable": true,
+      "collection_text_alignment": "text-left",
+      "product_grid_image": "crop",
+      "swatches_squares": true,
+      "swatches_collection_enable": true,
+      "badge_sale_discount": true,
+      "color_badge": "#ffffff",
+      "color_badge_text": "#424242",
+      "product_grid_show_rating": false,
+      "product_grid_show_rating_count": false,
+      "badge_sale_type": "percentage",
+      "cart_style": "drawer",
+      "currency_code_enable": false,
+      "checkout_sidebar_background_color": "#f7f5f4",
+      "checkout_accent_color": "#d2815f",
+      "checkout_button_color": "#d2815f",
+      "cart_shipping_enable": true,
+      "cart_vendor_enable": true,
+      "cart_notes_enable": true,
+      "show_free_shipping_message": true,
+      "cart_custom_message_enable": false,
+      "cart_color_bg": "palette--light bg--neutral",
+      "cart_show_additional_buttons": false,
+      "font_accent_spacing": 100,
+      "type_nav_size": 100,
+      "show_locale_desktop": true,
+      "show_currency_desktop": true
+    },
+    "Phantom": {
+      "color_announcement_bg": "#000000",
+      "color_announcement_text": "#ffffff",
+      "color_header_bg": "#000000",
+      "color_header_text": "#f1f1f1",
+      "color_nav_border": "#282828",
+      "color_body_bg": "#f7f7f7",
+      "color_body_text": "#000000",
+      "color_primary": "#28a77f",
+      "color_secondary": "#18664e",
+      "color_bg_light": "#eeeeee",
+      "color_bg_inverse": "#151515",
+      "color_text_inverse": "#e9e9e9",
+      "color_primary_inverse": "#28a77f",
+      "color_secondary_inverse": "#78a395",
+      "color_bg_accent_inverse": "#000000",
+      "color_bg_bright": "#ffffff",
+      "color_text_bright": "#28a77f",
+      "color_primary_bright": "#18f4af",
+      "color_secondary_bright": "#18664e",
+      "color_bg_accent_bright": "#18f4af",
+      "default_background": "default--dark",
+      "color_footer_bg": "#040404",
+      "color_footer_text": "#fdfdfd",
+      "color_sub_footer_bg": "#060606",
+      "color_sub_footer_text": "#919191",
+      "high_contrast": false,
+      "font_heading_family": "saira_n4",
+      "font_body_family": "instrument_sans_n4",
+      "font_accent_family": "instrument_sans_n5",
+      "font_scaling_system": "small",
+      "font_heading_uppercase": false,
+      "font_accent_size": 110,
+      "layout_site_width": 1450,
+      "button_radius": 0,
+      "parallax_enable": true,
+      "collection_text_alignment": "text-center",
+      "cycle_images_limit": 5,
+      "product_grid_image": "crop",
+      "swatches_enable": true,
+      "badge_sale_discount": true,
+      "color_badge": "#000000",
+      "color_badge_text": "#ffffff",
+      "badge_sale_type": "dollar",
+      "cart_style": "drawer",
+      "checkout_logo_size": "large",
+      "checkout_accent_color": "#28a77f",
+      "checkout_button_color": "#28a77f"
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "h2.kicker-flourished.mb-7 {font-size: 30px;}",
+      ".price,.title {font-size: 25px;}",
+      ".product__price {font-size: 25px; word-spacing: -21px; font-weight: 800;}",
+      "#shopify-block-3aeac7ea-1458-453c-9d35-f5eb9c55d18b {margin-top: 30px;}",
+      ".price {font-weight: 900;}",
+      ".product__price--off {display: none;}",
+      "@media only screen and (max-width: 720px) {button.spurit-occ3-buy-now-button > span {margin-left: -35px !important; } .section--image.fade-in-child.js-overflow-container.text--white, div.image__hero__frame.fade-in-child.use_image {min-height: 0 !important; }}"
+    ]
+  }
+}

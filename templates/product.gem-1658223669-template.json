@@ -1,0 +1,99 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_rating": true,
+            "show_rating_count": false
+          }
+        },
+        "3e6991f5-bb3a-430d-92d9-194cbbd8e130": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "settings": {
+            "widget": "0",
+            "gashortcode": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "3e6991f5-bb3a-430d-92d9-194cbbd8e130"
+      ],
+      "settings": {
+        "image_width": "half",
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "enable_video_looping": true,
+        "zoom_enable": true
+      }
+    },
+    "1657789670c72b08e6": {
+      "type": "apps",
+      "blocks": {
+        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba": {
+          "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
+          "settings": {
+            "default_tab": "tab",
+            "start_tab_element": "h2",
+            "default_tab_title": "DESCRIPTION",
+            "layout": "breakpoint",
+            "layout_breakpoint": 750,
+            "open_first_tab": true,
+            "allow_multiple_open": false,
+            "pro_tabs": true,
+            "initialize_tabs": "immediate",
+            "custom_scripts": ""
+          }
+        }
+      },
+      "block_order": [
+        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba"
+      ],
+      "settings": {
+        "text_color": "text--black",
+        "bg": "palette--light bg--accent",
+        "width": "wrapper"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {
+        "product_reviews_enable": true,
+        "bg": "palette--light bg--accent"
+      }
+    },
+    "related": {
+      "type": "related",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "bg": "palette--light bg--neutral",
+        "related_products_enable": true,
+        "limit": 6,
+        "product_recommendations_heading": "Related products",
+        "show_recently_viewed": false,
+        "product_recently_limit": 6,
+        "product_recently_minimum": 6,
+        "product_recently_heading": "Recently viewed"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1657789670c72b08e6",
+    "reviews",
+    "related"
+  ]
+}
