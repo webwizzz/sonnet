@@ -1,0 +1,275 @@
+{%- comment -%}
+  Trust badges: "What We / Can Promise" + certification badges.
+  Design: design-specs/clean-it-off/sections/15-trust-badges.md (Figma 203:5679)
+  1920 × 220 white band: heading at x 100 (vertically centred), badges right-aligned to x 1820.
+  Badge = 120px #F6F3EE circle + 20px + Montserrat 600 24/29.26 label; badges separated by
+  50px · 1px × 70px divider (#28201F @10%) · 50px.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign text_color = s.text_color | default: '#28201F'
+  assign divider = text_color | color_modify: 'alpha', 0.1
+  assign label_font = s.label_font
+-%}
+
+{% style %}
+{%- if label_font != blank -%}{{ label_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --tbg-bg: {{ s.color_background }};
+  --tbg-text: {{ text_color }};
+  --tbg-circle: {{ s.circle_color }};
+  --tbg-icon: {{ s.icon_color }};
+  --tbg-divider: {{ divider }};
+  --tbg-h-num: {{ s.heading_size }};
+  --tbg-h: {{ s.heading_size }}px;
+  --tbg-h-m: {{ s.heading_size_mobile }}px;
+  --tbg-label-font: {% if label_font != blank %}{{ label_font.family }}, {{ label_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --tbg-label-weight: {% if label_font != blank %}{{ label_font.weight }}{% else %}600{% endif %};
+  background: var(--tbg-bg);
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.tbg *, .tbg *::before, .tbg *::after { box-sizing: border-box; }
+.tbg__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+/* Heading: Blauer Nue MD 500 58 / 62.62 (108%), italic run Tiempos Fine Italic RG 400 / 63.27 */
+.tbg .tbg__heading {
+  flex: none;
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--tbg-h-m), calc(var(--tbg-h-num) * 100vw / 1920), var(--tbg-h));
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--tbg-text);
+}
+.tbg .tbg__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.tbg .tbg__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.091;
+}
+.tbg--em-break .tbg__heading em { display: block; }
+
+.tbg__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tbg__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, calc(20 * 100vw / 1920), 20px);
+  margin: 0;
+}
+/* 50px · divider · 50px between badges */
+.tbg__item + .tbg__item {
+  margin-left: clamp(24px, calc(101 * 100vw / 1920), 101px);
+}
+.tbg--dividers .tbg__item + .tbg__item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(clamp(24px, calc(101 * 100vw / 1920), 101px) / -2);
+  width: 1px;
+  height: calc(70 / 120 * 100%);
+  transform: translate(-50%, -50%);
+  background: var(--tbg-divider);
+}
+.tbg__circle {
+  position: relative;
+  flex: none;
+  width: clamp(76px, calc(120 * 100vw / 1920), 120px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--tbg-circle);
+  color: var(--tbg-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Icon sizes in Figma, relative to the 120 circle: leaf/rabbit 80, India 64, FDA 66 */
+.tbg__circle svg,
+.tbg__circle img { display: block; width: calc(var(--tbg-icon-size, 80) / 120 * 100%); height: auto; aspect-ratio: 1; object-fit: contain; }
+.tbg__circle img.tbg__custom { border-radius: 50%; }
+/* Montserrat 600 24 / 29.26, -0.02em */
+.tbg__label {
+  font-family: var(--tbg-label-font);
+  font-weight: var(--tbg-label-weight);
+  font-size: clamp(16px, calc(24 * 100vw / 1920), 24px);
+  line-height: 1.219;
+  letter-spacing: -0.02em;
+  color: var(--tbg-text);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1100px) {
+  .tbg__inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .tbg__list { justify-content: flex-start; flex-wrap: wrap; row-gap: 24px; }
+}
+@media screen and (max-width: 900px) {
+  .tbg__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+    width: 100%;
+  }
+  .tbg__item { min-width: 0; }
+  .tbg__item + .tbg__item { margin-left: 0; }
+  .tbg--dividers .tbg__item + .tbg__item::before { display: none; }
+  .tbg__circle { width: 72px; }
+  .tbg__label { font-size: 16px; }
+}
+@media screen and (max-width: 768px) {
+  .tbg__inner { align-items: center; gap: 24px; }
+  .tbg .tbg__heading { font-size: var(--tbg-h-m); text-align: center; }
+  .tbg__item { gap: 10px; }
+  .tbg__circle { width: 60px; }
+  .tbg__label { font-size: 15px; }
+}
+.tbg__empty { margin: 0; font-family: 'Blauer Nue RG', sans-serif; font-size: 15px; color: var(--tbg-text); }
+{% endstyle %}
+
+<div class="tbg{% if s.italic_new_line %} tbg--em-break{% endif %}{% if s.show_dividers %} tbg--dividers{% endif %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}">
+  <div class="main-container">
+    <div class="tbg__inner">
+      {%- if s.heading != blank -%}
+        <h2 class="tbg__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="tbg__list" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              case b.icon
+                when 'vegan'
+                  assign icon_file = 'cio-badge-vegan.svg'
+                  assign icon_size = 80
+                when 'cruelty_free'
+                  assign icon_file = 'cio-badge-cruelty-free.svg'
+                  assign icon_size = 80
+                when 'made_in_india'
+                  assign icon_file = 'cio-badge-made-in-india.svg'
+                  assign icon_size = 64
+                when 'fda'
+                  assign icon_file = 'cio-badge-fda-approved.png'
+                  assign icon_size = 66
+                else
+                  assign icon_file = ''
+                  assign icon_size = 80
+              endcase
+              if b.icon_image != blank
+                assign icon_size = b.icon_size
+              endif
+            -%}
+            <li class="tbg__item" {{ block.shopify_attributes }}>
+              <span class="tbg__circle" style="--tbg-icon-size: {{ icon_size }};" aria-hidden="true">
+                {%- if b.icon_image != blank -%}
+                  {{- b.icon_image | image_url: width: 240 | image_tag: class: 'tbg__custom', widths: '80, 160, 240', sizes: '80px', loading: 'lazy', alt: '' -}}
+                {%- elsif icon_file contains '.png' -%}
+                  <img
+                    src="{{ icon_file | asset_url }}"
+                    width="66"
+                    height="66"
+                    alt=""
+                    loading="lazy"
+                  >
+                {%- elsif icon_file != '' -%}
+                  {{- icon_file | inline_asset_content -}}
+                {%- endif -%}
+              </span>
+              {%- if b.label != blank -%}
+                <span class="tbg__label">{{ b.label | escape | newline_to_br }}</span>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- elsif request.design_mode -%}
+        <p class="tbg__empty">Add badge blocks.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "tbg-section",
+  "settings": [
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>What We <em>Can Promise</em></p>" },
+    { "type": "checkbox", "id": "italic_new_line", "label": "Put italic text on its own line", "default": true },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "font_picker", "id": "label_font", "label": "Badge label font", "info": "Design: Montserrat SemiBold.", "default": "montserrat_n6" },
+    { "type": "checkbox", "id": "show_dividers", "label": "Show dividers between badges", "default": true },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "circle_color", "label": "Badge circle", "default": "#F6F3EE" },
+    { "type": "color", "id": "icon_color", "label": "Icon", "info": "Applies to the built-in line icons.", "default": "#28201F" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Desktop padding top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 47 },
+    { "type": "range", "id": "padding_bottom", "label": "Desktop padding bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 47 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Mobile padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Mobile padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "vegan", "label": "Vegan (leaf)" },
+            { "value": "cruelty_free", "label": "Cruelty-free (rabbit)" },
+            { "value": "made_in_india", "label": "Made in India (map)" },
+            { "value": "fda", "label": "FDA approved (seal)" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "vegan"
+        },
+        { "type": "image_picker", "id": "icon_image", "label": "Custom icon", "info": "Optional. Replaces the icon above." },
+        { "type": "range", "id": "icon_size", "label": "Custom icon size", "info": "Relative to the 120px circle.", "min": 40, "max": 120, "step": 2, "unit": "px", "default": 80 },
+        { "type": "textarea", "id": "label", "label": "Label", "info": "Press Enter for a line break (desktop).", "default": "100%\nVegan" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "vegan", "label": "100%\nVegan" } },
+        { "type": "badge", "settings": { "icon": "cruelty_free", "label": "Cruelty-\nFree" } },
+        { "type": "badge", "settings": { "icon": "made_in_india", "label": "Made\nIn India" } },
+        { "type": "badge", "settings": { "icon": "fda", "label": "FDA\nApproved" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

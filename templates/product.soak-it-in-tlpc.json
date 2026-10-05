@@ -1,0 +1,1543 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": true,
+            "padding_bottom": 20
+          }
+        },
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.vendor }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "<p>{{ product.title }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<span class=\"title\">{{product.title}}</span><br>"
+          }
+        },
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% if product.compare_at_price %}\n  <span class=\"price\">{{ product.price | money}} </span>  <del>{{ product.compare_at_price | money }}</del> <span style=\"color: black;\"></span>\n{% else %}\n  {{ product.price | money}}\n{% endif %}"
+          }
+        },
+        "241165e0-622a-491a-9eaf-7f1831b2881c": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.short_description | metafield_tag }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "quantity_dp4pWb": {
+          "type": "quantity",
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "add_buttons_qhrYHm": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "glo_related_products_upsell_app_block_product_XVzdEN": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "disabled": true,
+          "settings": {
+            "widget": "3",
+            "gashortcode": "<div class=\"globo_widget_15187\"></div>"
+          }
+        },
+        "meroxio_zipcode_checker_availibility_LT4eBi": {
+          "type": "shopify://apps/zip-pin-postal-code-checker/blocks/availibility/b355dba7-d415-49dc-8399-11206b10c9ca",
+          "settings": {
+            "input_placeholder": "Enter your pincode...",
+            "auto_check_length": 6,
+            "box_bg_color": "#eaf6ef",
+            "icon_color": "#2e7d5b",
+            "input_border_radius": 6,
+            "input_text_color": "#000000",
+            "change_text": "Change",
+            "button_bg_color": "#182d2c",
+            "available_text_color": "#4caf50",
+            "bg-success-msg": "#e8f9f0",
+            "available_text": "Delivery is available in your area!",
+            "show_delivery_time": true,
+            "delivery_time_text": "Delivery by {date}",
+            "use_fallback_delivery_time": false,
+            "fallback_delivery_time": "5",
+            "not_available_text_color": "#d32f2f",
+            "bg-wrong-msg": "#ff050529",
+            "not_available_text": "Sorry, we do not deliver to your location.",
+            "enable_border": true,
+            "add_to_cart_default_disabled": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c",
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5",
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb",
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db",
+        "241165e0-622a-491a-9eaf-7f1831b2881c",
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc",
+        "quantity_dp4pWb",
+        "add_buttons_qhrYHm",
+        "glo_related_products_upsell_app_block_product_XVzdEN",
+        "meroxio_zipcode_checker_availibility_LT4eBi"
+      ],
+      "disabled": true,
+      "settings": {
+        "layout": "thumbnails-below@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "product_tlpc_8tB6r7": {
+      "type": "product-tlpc",
+      "blocks": {
+        "title_d8f4NW": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": false,
+            "show_rating_count": false,
+            "padding_bottom": 16
+          }
+        },
+        "text_MwYrmh": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.tagline.value }}</p>",
+            "padding_bottom": 16
+          }
+        },
+        "text_DEkJHD": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "{{ product.description }}",
+            "padding_bottom": 20
+          }
+        },
+        "description_wVpqMG": {
+          "type": "description",
+          "settings": {
+            "style": "none",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "",
+            "icon_name_1": "",
+            "raw_content_1": "",
+            "image_1": "",
+            "title_2": "Details",
+            "icon_name_2": "",
+            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+            "image_2": "",
+            "title_3": "",
+            "icon_name_3": "",
+            "raw_content_3": "",
+            "image_3": "",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 20
+          }
+        },
+        "liquid_ArPK3L": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'benefits-strip' %}"
+          }
+        },
+        "variant_selectors_zYEyb3": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 34,
+            "option_size_radio": 50,
+            "option_space": 30,
+            "padding_bottom": 30
+          }
+        },
+        "price_wMgK3w": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "add_buttons_WB8Rwr": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": false,
+            "enable_gift_card_recipient": false,
+            "padding_bottom": 20
+          }
+        },
+        "liquid_GYcMU3": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'static-text' %}"
+          }
+        },
+        "description_CwzkCw": {
+          "type": "description",
+          "settings": {
+            "style": "accordions",
+            "enable_description": false,
+            "read_more": false,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "INGREDIENTS",
+            "icon_name_1": "",
+            "raw_content_1": "<p>sSas</p>",
+            "image_1": "{% render 'product-ingredients' %}",
+            "title_2": "USAGE GUIDE",
+            "icon_name_2": "",
+            "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
+            "image_2": "",
+            "title_3": "BENEFITS",
+            "icon_name_3": "",
+            "raw_content_3": "{{ product.metafields.custom.benefits_accordion | metafield_tag }}",
+            "image_3": "",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 10
+          }
+        },
+        "liquid_hkkHPA": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'trust-badges' %}"
+          }
+        },
+        "liquid_jWXjdi": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'loved-by-thousands' %}"
+          }
+        },
+        "upsell_UgXWDc": {
+          "type": "upsell",
+          "disabled": true,
+          "settings": {
+            "title": "Complete your ritual",
+            "upsell_type": "product_grouping",
+            "product": "",
+            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
+            "upsell_list_limit": 2,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_d8f4NW",
+        "text_MwYrmh",
+        "text_DEkJHD",
+        "description_wVpqMG",
+        "liquid_ArPK3L",
+        "variant_selectors_zYEyb3",
+        "price_wMgK3w",
+        "add_buttons_WB8Rwr",
+        "liquid_GYcMU3",
+        "description_CwzkCw",
+        "liquid_hkkHPA",
+        "liquid_jWXjdi",
+        "upsell_UgXWDc"
+      ],
+      "name": "Product Tlpc page",
+      "settings": {
+        "layout": "none@single",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--neutral",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": false,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper--full",
+        "padding_top": 20,
+        "padding_bottom": 130
+      }
+    },
+    "marquee_bar_z7LLMg": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_g4eqM6": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_3.webp",
+            "title": "Postbiotic + Prebiotic Skincare"
+          }
+        },
+        "item_y9J3XR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No Harsh Chemicals"
+          }
+        },
+        "item_iELbjW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329697.webp",
+            "title": "For All Skin Types"
+          }
+        },
+        "item_XD396D": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329696.webp",
+            "title": "100% vegan & cruelty free"
+          }
+        },
+        "item_PbUEYP": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No GMO Ingredients"
+          }
+        },
+        "item_LfdJDR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.webp",
+            "title": "Made In India"
+          }
+        }
+      },
+      "block_order": [
+        "item_g4eqM6",
+        "item_y9J3XR",
+        "item_iELbjW",
+        "item_XD396D",
+        "item_PbUEYP",
+        "item_LfdJDR"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "",
+        "label": "WHY US?",
+        "background_color": "#f3ede7",
+        "marquee_speed": 6,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
+      }
+    },
+    "17754664316b6f6fbf": {
+      "type": "apps",
+      "blocks": {
+        "quinn_shoppable_reel_app_cards_block_qhywQD": {
+          "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+          "settings": {
+            "custom_metaobject_handle": "null",
+            "background_color": "#ffffff",
+            "margin_desktop": "10px 0px 0px 0px",
+            "margin_mobile": "5px 0px 0px 0px",
+            "padding_desktop": "10px 10px 10px 10px",
+            "padding_mobile": "10px 5px 10px 5px"
+          }
+        }
+      },
+      "block_order": [
+        "quinn_shoppable_reel_app_cards_block_qhywQD"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "honest_results_d4wnzA": {
+      "type": "honest-results",
+      "blocks": {
+        "testimonial_mQe9DQ": {
+          "type": "testimonial",
+          "settings": {
+            "before_image": "shopify://shop_images/beforee_converted.webp",
+            "after_image": "shopify://shop_images/aafter_converted.webp",
+            "tag": "Sensitive skin",
+            "title": "My skin stopped feeling tight.",
+            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "rating": 4.5,
+            "rating_label": "",
+            "name": "Ananya R",
+            "location": "Bengaluru"
+          }
+        },
+        "testimonial_yJtzp7": {
+          "type": "testimonial",
+          "settings": {
+            "before_image": "shopify://shop_images/before_converted.webp",
+            "after_image": "shopify://shop_images/after_converted.webp",
+            "tag": "Oily skin",
+            "title": "No more afternoon shine.",
+            "review": "<p>I used to blot my T-zone by lunch. Clean It Off lifts sunscreen and oil without that squeaky feel, and now my skin stays fresh and matte well into the evening.</p>",
+            "rating": 5,
+            "rating_label": "",
+            "name": "Priya M",
+            "location": "Mumbai"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_mQe9DQ",
+        "testimonial_yJtzp7"
+      ],
+      "name": "Honest Results",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>Honest skin, <em>honest results</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "tag_font": "montserrat_n5",
+        "before_label": "BEFORE",
+        "after_label": "AFTER",
+        "compare_start": 50,
+        "image_position": "right",
+        "mobile_order": "image_first",
+        "desktop_height": 700,
+        "mobile_aspect_ratio": "1/1",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "color_background": "#fffcf9",
+        "color_card": "#ffffff",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_button": "#f6f3ee",
+        "color_star": "#f69104",
+        "color_compare_ui": "#f5eee6",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48
+      }
+    },
+    "why_love_NU7yVx": {
+      "type": "why-love",
+      "blocks": {
+        "slide_Kw6EWD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1st.png",
+            "label": "Cleanses without stripping the skin",
+            "stat": "17%",
+            "stat_caption": "Cocamidopropyl Betaine — coconut-derived",
+            "body": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        "slide_dpPkbw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1430107054.png",
+            "label": "Keeps skin comfortable after every rinse",
+            "stat": "6%",
+            "stat_caption": "Glycerin — post-rinse skin comfort",
+            "body": "Glycerin draws moisture toward the skin surface during cleansing — actively fighting the drying effect of surfactants so skin feels hydrated, not depleted."
+          }
+        },
+        "slide_N7Y4Ja": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3rd.png",
+            "label": "Soothes skin through the cleansing step",
+            "stat": "5%",
+            "stat_caption": "Aloe Barbadensis Leaf Juice — soothing humectant",
+            "body": "Aloe works during the wash itself. Helps reduce the inflammatory response cleansing triggers on reactive skin — every morning and evening."
+          }
+        },
+        "slide_qDT3bE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/4th.png",
+            "label": "A postbiotic active in every wash",
+            "stat": "1%",
+            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic ingredient",
+            "body": "An inactivated ferment lysate — not a live culture. Helps maintain a comfortable, conditioned skin surface through every cleanse."
+          }
+        }
+      },
+      "block_order": [
+        "slide_Kw6EWD",
+        "slide_dpPkbw",
+        "slide_N7Y4Ja",
+        "slide_qDT3bE"
+      ],
+      "name": "Why Love Slider",
+      "settings": {
+        "custom_class": "",
+        "image_position": "left",
+        "heading": "<p>Why your skin will <em>love Clean It Off</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "show_counter": true,
+        "scroll_length": 100,
+        "zoom_start": 125,
+        "text_animation": "rise",
+        "sticky_offset_mode": "auto",
+        "sticky_offset": 0,
+        "enable_mobile_animation": true,
+        "mobile_image_height": 45,
+        "color_background": "#fffcf9",
+        "color_panel": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_pill_text": "#ffffff",
+        "color_counter_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "whats_inside_carousel_GDxNxB": {
+      "type": "whats-inside-carousel",
+      "blocks": {
+        "ingredient_UJfpeN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "name": "Lactobacillus Ferment Lysate 1%",
+            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+          }
+        },
+        "ingredient_BciJAz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "name": "Cocamidopropyl Betaine 17%",
+            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        "ingredient_Eyfm37": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "name": "Aloe Barbadensis 5%",
+            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+          }
+        },
+        "ingredient_Hg4EBX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "name": "Glycerin 6%",
+            "description": "Helps offset the drying effect of cleansing on skin comfort."
+          }
+        },
+        "ingredient_8WxCii": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "Ingredient name",
+            "description": "Describe what this ingredient does."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_UJfpeN",
+        "ingredient_BciJAz",
+        "ingredient_Eyfm37",
+        "ingredient_Hg4EBX",
+        "ingredient_8WxCii"
+      ],
+      "name": "What's Inside Carousel",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>What's inside, <em>and exactly why.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_progress_ring": true,
+        "active_size": 400,
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_arrow_bg": "#f6f3ee",
+        "color_ring_track": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "comparison_table_87q9dy": {
+      "type": "comparison-table",
+      "blocks": {
+        "feature_T9ez3b": {
+          "type": "feature",
+          "settings": {
+            "label": "Live postbiotic actives",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_PmfwJ3": {
+          "type": "feature",
+          "settings": {
+            "label": "Coconut-Derived Co-Surfactant",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_Q69he9": {
+          "type": "feature",
+          "settings": {
+            "label": "No Parabens or Phthalates",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_djLNVW": {
+          "type": "feature",
+          "settings": {
+            "label": "Dermatologically Tested",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_4kJNAk": {
+          "type": "feature",
+          "settings": {
+            "label": "Microbiome-Friendly Formula",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        }
+      },
+      "block_order": [
+        "feature_T9ez3b",
+        "feature_PmfwJ3",
+        "feature_Q69he9",
+        "feature_djLNVW",
+        "feature_4kJNAk"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "heading": "<p>What makes it <em>different from others</em></p>",
+        "italic_new_line": true,
+        "heading_size": 40,
+        "heading_size_mobile": 28,
+        "footnote": "*Comparison based on leading industry competitors",
+        "brand_image": "shopify://shop_images/sonet-wellness-serum-3-191-495-27x71.webp",
+        "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
+        "brand_name": "Sonnet Wellness",
+        "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
+        "competitor_label": "Other brands",
+        "yes_label": "Included",
+        "no_label": "Not included",
+        "brand_column_label": "Brand",
+        "feature_column_label": "Feature",
+        "color_background": "#fffcf9",
+        "color_card": "#f5eee6",
+        "color_text": "#28201f",
+        "color_check_bg": "#78563d",
+        "color_check_icon": "#ffffff",
+        "color_cross_bg": "#ffffff",
+        "color_cross_icon": "#28201f",
+        "card_radius": 24,
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "science_stats_cEpVm6": {
+      "type": "science-stats",
+      "blocks": {
+        "stat_VApmf4": {
+          "type": "stat",
+          "settings": {
+            "icon": "sun_skin",
+            "value": "6%",
+            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+            "text_width": 221
+          }
+        },
+        "stat_CmcnmV": {
+          "type": "stat",
+          "settings": {
+            "icon": "skin_layers",
+            "value": "17%",
+            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+            "text_width": 216
+          }
+        },
+        "stat_r4yenw": {
+          "type": "stat",
+          "settings": {
+            "icon": "drops",
+            "value": "5%",
+            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
+            "text_width": 204
+          }
+        },
+        "stat_iNkgTr": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield_cross",
+            "value": "1%",
+            "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
+            "text_width": 183
+          }
+        },
+        "stat_JkQBhR": {
+          "type": "stat",
+          "settings": {
+            "icon": "face_glow",
+            "value": "0%",
+            "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
+            "text_width": 190
+          }
+        }
+      },
+      "block_order": [
+        "stat_VApmf4",
+        "stat_CmcnmV",
+        "stat_r4yenw",
+        "stat_iNkgTr",
+        "stat_JkQBhR"
+      ],
+      "name": "Science Stats",
+      "settings": {
+        "heading": "<p>The science behind <em>the results.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
+        "video_on_mobile": true,
+        "background_position": "center center",
+        "overlay_color": "#28201f",
+        "overlay_opacity": 20,
+        "pill_color": "#ffffff",
+        "icon_bg_color": "#f5eee6",
+        "icon_color": "#78563d",
+        "stat_color": "#78563d",
+        "text_color": "#28201f",
+        "text_opacity": 85,
+        "animate_entrance": true,
+        "animate_numbers": true,
+        "color_background": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 100,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 48,
+        "band_padding_top": 132,
+        "band_padding_bottom": 131,
+        "mobile_band_padding_top": 48,
+        "mobile_band_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "ritual_bundle_LwhN88": {
+      "type": "ritual-bundle",
+      "blocks": {
+        "hotspot_yrej3Y": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
+            "tag": "100% VEGAN",
+            "title": "CLEAN IT OFF\nFace Wash 100ml",
+            "description": "Brightening + hydration + scar healing — all in two drops",
+            "pos_x": 60,
+            "pos_y": 14,
+            "mobile_pos_x": 60,
+            "mobile_pos_y": 14
+          }
+        },
+        "hotspot_gEQAHP": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_1.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 2",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 47,
+            "pos_y": 30,
+            "mobile_pos_x": 47,
+            "mobile_pos_y": 30
+          }
+        },
+        "hotspot_U8AAUU": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_2.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 3",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 32,
+            "pos_y": 57,
+            "mobile_pos_x": 32,
+            "mobile_pos_y": 57
+          }
+        },
+        "hotspot_RrijiF": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_4.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 4",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 48,
+            "pos_y": 64,
+            "mobile_pos_x": 48,
+            "mobile_pos_y": 64
+          }
+        },
+        "hotspot_WwpGDC": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_3.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 5",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 62,
+            "pos_y": 56,
+            "mobile_pos_x": 62,
+            "mobile_pos_y": 56
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_yrej3Y",
+        "hotspot_gEQAHP",
+        "hotspot_U8AAUU",
+        "hotspot_RrijiF",
+        "hotspot_WwpGDC"
+      ],
+      "name": "Ritual Bundle",
+      "settings": {
+        "heading": "<p>Five products. <em>one complete ritual.</em></p>",
+        "italic_new_line": true,
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_image": "shopify://shop_images/rectangle-1430107051-191-590-1720x700.webp",
+        "focus_x": 47,
+        "focus_y": 50,
+        "stacked_aspect_ratio": "1 / 1",
+        "stacked_focus_x": 47,
+        "stacked_focus_y": 55,
+        "hotspot_animation": "bling",
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#28201f",
+        "hotspot_active_color": "#78563d",
+        "hotspot_active_text_color": "#ffffff",
+        "accent_font": "montserrat_n7",
+        "detail_card_bg": "#f6f3ee",
+        "show_card_price": false,
+        "show_button": true,
+        "button_label": "ADD BUNDLE",
+        "bundle_discount": 10,
+        "discount_code": "",
+        "show_compare_price": true,
+        "price_format": "money_without_trailing_zeros",
+        "price_override": "Rs. 1,199",
+        "compare_price_override": "Rs. 1,332",
+        "after_add": "drawer",
+        "button_bg": "#ffffff",
+        "button_text_color": "#2a1f19",
+        "adding_label": "Adding…",
+        "added_label": "Bundle added to your cart.",
+        "error_label": "Couldn't add the bundle. Please try again.",
+        "sold_out_label": "Sold out",
+        "price_sr_label": "Bundle price",
+        "compare_sr_label": "Original price",
+        "showing_sr_label": "Showing [title]",
+        "card_bg": "#28201f",
+        "card_radius": 16,
+        "color_background": "#fffcf9",
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "microbiome_compare_kdJJf3": {
+      "type": "microbiome-compare",
+      "disabled": true,
+      "name": "Microbiome Compare",
+      "settings": {
+        "bg_color": "#faf8f5",
+        "heading": "",
+        "subheading": "{{ product.metafields.microbiome_compare.subheading.value }}",
+        "before_image": "{{ product.metafields.microbiome_compare.before_image.value }}",
+        "after_image": "{{ product.metafields.microbiome_compare.after_image.value }}",
+        "before_label": "{{ product.metafields.microbiome_compare.before_label.value }}",
+        "after_label": "{{ product.metafields.microbiome_compare.after_label.value }}",
+        "quote": "{{ product.metafields.microbiome_compare.quote.value }}",
+        "slider_border_radius": 14,
+        "left_label": "{{ product.metafields.microbiome_compare.left_label.value }}",
+        "right_label": "{{ product.metafields.microbiome_compare.right_label.value }}",
+        "panel_border_radius": 12,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "testimonial_section_aTEYNa": {
+      "type": "Testimonial-section",
+      "blocks": {
+        "block_UMMd6d": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/BAAFTER.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>My skin feels support</strong> <strong>.</strong>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "t3": "<p><strong>Priya M. </strong><em>Mumbai</em></p>"
+          }
+        },
+        "block_Q7Ewx3": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_1321324314.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "Sensitive Skin",
+            "t2": "<p><strong>Gentle enough for my reactive skin.</strong>Within 3 weeks my skin was calmer than it's been in years. The serum made the biggest difference to my post-acne marks.</p>",
+            "t3": "<p><strong>Sneha T.</strong> <strong> </strong><em>Pune</em></p>"
+          }
+        },
+        "block_htApMg": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_1321324314_1.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "pigmentation",
+            "t2": "<p><strong>My uneven tone is cured </strong>Dark spots lightened noticeably after a month. Lightweight, absorbs instantly, no residue and zero irritation.</p>",
+            "t3": "<p><strong>Kavya S. </strong><em>Hyderabad</em></p>"
+          }
+        },
+        "block_BLNE4a": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_1321324314_2.webp",
+            "image1": "shopify://shop_images/BlackStat.webp",
+            "t1": "4.5 | 5.0",
+            "t": "DRY SKIN",
+            "t2": "<p><strong>Breakouts reduced & scars faded</strong> No stinging, no redness. After two weeks my skin felt balanced and the redness I wake up with has calmed significantly.</p>",
+            "t3": "<p><strong>Ananya R.</strong> <strong> </strong><em>Bengaluru</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_UMMd6d",
+        "block_Q7Ewx3",
+        "block_htApMg",
+        "block_BLNE4a"
+      ],
+      "disabled": true,
+      "name": "Testimonial Section",
+      "settings": {
+        "custom_class": "",
+        "tag1": "Before",
+        "tag2": "After",
+        "title": "<p>Honest skin, <em>honest results</em></p>",
+        "check1": false,
+        "duration": 5,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 120,
+        "color_text": "",
+        "color_background": "#fffcf9"
+      }
+    },
+    "why_section_pUQnp4": {
+      "type": "Why_section",
+      "blocks": {
+        "block_XcXVRf": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R1.webp",
+            "t1": "Fades Dark Spots and Hyperpigmentation",
+            "desc": "<p>Niacinamide inhibits the transfer of melanin to skin cells, the biological process responsible for dark spots, post-acne marks, and uneven tone. It works at the cellular level, not just on the surface.</p>",
+            "title": "68%",
+            "title1": "<p>improvement in hyperpigmentation visibility </p>"
+          }
+        },
+        "block_6PeaDF": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R2.webp",
+            "t1": "Controls Sebum Without Drying SkiN",
+            "desc": "<p>Niacinamide regulates sebaceous gland activity, reducing excess oil at the source. Jojoba Oil simultaneously mimics skin's natural sebum, signalling the skin to stop overproducing oil while keeping it moisturised.</p>",
+            "title": "52%",
+            "title1": "<p>reduction in sebum excretion rate </p>"
+          }
+        },
+        "block_VF87Rr": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R3.webp",
+            "t1": "Delivers Antioxidant Protection Daily",
+            "desc": "<p>Vitamin E neutralises free radicals generated by UV exposure and environmental pollution, the primary drivers of premature ageing, pigmentation, and barrier damage. Every application is an invisible shield against daily skin stress.</p>",
+            "title": "50%",
+            "title1": "<p>reduction in oxidative stress markers</p>"
+          }
+        },
+        "block_PLceze": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/R4.webp",
+            "t1": "Provides Deep, Lasting Hydration",
+            "desc": "<p>Jojoba Oil and Aloe Vera Leaf Juice work together as a humectant-emollient pair, drawing moisture in and sealing it within the skin layers. The result is hydration that doesn't evaporate within hours.</p>",
+            "title": "34–48%",
+            "title1": "<p>increase in skin hydration levels</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_XcXVRf",
+        "block_6PeaDF",
+        "block_VF87Rr",
+        "block_PLceze"
+      ],
+      "disabled": true,
+      "name": "Why Section",
+      "settings": {
+        "custom_class": "",
+        "title": "<p>Why your skin will <em>love Rub It In</em></p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "color_text": "#28201f",
+        "color_background": "#f6f3ee"
+      }
+    },
+    "whats_inside_mJhDrx": {
+      "type": "Whats_inside",
+      "blocks": {
+        "block_EzQ33f": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_8_1.webp",
+            "image1": "shopify://shop_images/Rectangle_45.webp",
+            "title": "LACTOBACILLUS FERMENT LYSATE",
+            "desc": "<p>The concentrated, purified extract of dahi-like good bacteria. Support your barrier, balances your microbiome, and gives skin every Postbiotic benefit, without the curd.</p>"
+          }
+        },
+        "block_wPHmgb": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_9_1.webp",
+            "image1": "shopify://shop_images/Rectangle_44.webp",
+            "title": "JOJOBA OIL",
+            "desc": "<p>Mimics skin's natural sebum without clogging pores. Deeply moisturises while calming inflammation, ideal for acne-prone skin.</p>"
+          }
+        },
+        "block_CXLaMh": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_8_2.webp",
+            "image1": "shopify://shop_images/Rectangle_45_1.webp",
+            "title": "NIACINAMIDE",
+            "desc": "<p>Fades dark spots, controls sebum, and brightens skin tone. One of the most clinically validated brightening actives available.</p>"
+          }
+        },
+        "block_qc36Mi": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Group_1321321742_3.webp",
+            "image1": "shopify://shop_images/Rectangle_45_2.webp",
+            "title": "vitamin e",
+            "desc": "<p>Neutralises free radical damage from pollution and UV daily. Restores natural glow and supports scar healing.</p>"
+          }
+        },
+        "block_EThaDD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_8_3.webp",
+            "image1": "shopify://shop_images/Rectangle_45_3.webp",
+            "title": "aloe vera",
+            "desc": "<p>Hydrates and soothes simultaneously. Lightens blemish marks and enhances absorption of all other actives.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_EzQ33f",
+        "block_wPHmgb",
+        "block_CXLaMh",
+        "block_qc36Mi",
+        "block_EThaDD"
+      ],
+      "disabled": true,
+      "name": "What's inside",
+      "settings": {
+        "custom_class": "",
+        "title": "<p>What's inside, <em>and exactly why.</em></p>",
+        "label": "",
+        "href": "",
+        "check1": false,
+        "duration": 5,
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "mobile_padding_top": 52,
+        "mobile_padding_bottom": 52,
+        "color_text": "",
+        "color_background": "#fffcf9"
+      }
+    },
+    "section_image_hzLXz4": {
+      "type": "section-image",
+      "disabled": true,
+      "name": "Image",
+      "settings": {
+        "add_class": "pdp-image",
+        "image": "shopify://shop_images/Group_1321324351_1a71fd56-9632-423f-802d-094ee56e5e2a.webp",
+        "mobile_image": "shopify://shop_images/Group_2087329575_c677b2e3-b1cc-440f-83f7-bb91c4947370.webp",
+        "max_width": 100,
+        "x_align": "center",
+        "color_bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "stats_microbiome_q3d8nn": {
+      "type": "stats-microbiome",
+      "blocks": {
+        "stat_pill_mkTgAD": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "68%",
+            "description": "Improvement in hyperpigmentation visibility after 8 weeks",
+            "highlighted": false
+          }
+        },
+        "stat_pill_cEayGN": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "56%",
+            "description": "Stronger skin barrier, less water loss",
+            "highlighted": true
+          }
+        },
+        "stat_pill_MQXLFL": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "52%",
+            "description": "Reduction in excess oil production",
+            "highlighted": false
+          }
+        },
+        "stat_pill_cVLQCQ": {
+          "type": "stat_pill",
+          "settings": {
+            "value": "47%",
+            "description": "Less skin inflammation in 2 weeks",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "stat_pill_mkTgAD",
+        "stat_pill_cEayGN",
+        "stat_pill_MQXLFL",
+        "stat_pill_cVLQCQ"
+      ],
+      "disabled": true,
+      "name": "Stats Section",
+      "settings": {
+        "add_class": "pdp-stats",
+        "heading": "<p>The science behind <em>the results.</em></p>",
+        "trusted_image": "shopify://shop_images/Group_56.webp",
+        "trusetd_text": "Trusted by 10k+ Customers across India",
+        "trusted_reviews": "216 Reviews",
+        "big_stat": "89%",
+        "subtitle": "<p>Reduction in acnes with topical Lactobacillus Ferment Lysate</p>",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "#28201f",
+        "pill_background_color": "#f6f3ee",
+        "pill_active_background_color": "#28201f",
+        "pill_text_color": "#28201f",
+        "section_border_radius": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 120,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 52,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0
+      }
+    },
+    "bundle_section_YebTG3": {
+      "type": "bundle-section",
+      "blocks": {
+        "bundle_item_3NtzXN": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52.webp",
+            "title": "CLEAN IT OFF (Face Wash) 100ml:",
+            "tagline": "Removes impurities. Never strips the skin."
+          }
+        },
+        "bundle_item_eNgTnL": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_1.webp",
+            "title": "DAB IT ON (Toner) 100ml:",
+            "tagline": "Balances pH. Opens skin for deeper absorption."
+          }
+        },
+        "bundle_item_MMMx86": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_2.webp",
+            "title": "RUB IT IN (Serum) 30ml :",
+            "tagline": "Fades spots. Brightens. Controls oil."
+          }
+        },
+        "bundle_item_f8QqDm": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_3.webp",
+            "title": "SOAK IT IN (Moisturiser) 45ml :",
+            "tagline": "Seals hydration. Nourishes and support the barrier."
+          }
+        },
+        "bundle_item_NpxpqK": {
+          "type": "bundle_item",
+          "settings": {
+            "item_image": "shopify://shop_images/image_52_4.webp",
+            "title": "SMEAR IT ON (Clay Mask) 45ml :",
+            "tagline": "Deep cleanses. Weekly microbiome reset."
+          }
+        }
+      },
+      "block_order": [
+        "bundle_item_3NtzXN",
+        "bundle_item_eNgTnL",
+        "bundle_item_MMMx86",
+        "bundle_item_f8QqDm",
+        "bundle_item_NpxpqK"
+      ],
+      "disabled": true,
+      "name": "Product Bundle",
+      "settings": {
+        "bg_image_desktop": "shopify://shop_images/Rectangle_1469.webp",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_1469_2.webp",
+        "overlay_color": "",
+        "section_border_radius": 16,
+        "heading": "<p>Five products.<br/><em>one complete ritual.</em></p>",
+        "bundle_product": "",
+        "margin_top": 0,
+        "margin_bottom": 56,
+        "padding_top": 88,
+        "padding_bottom": 88,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "section_richtext_YChbGR": {
+      "type": "section-richtext",
+      "blocks": {
+        "heading_EiiYQg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Vitamin C Face Serum for Pigmentation, Dark Spots and Skin Brightening in India",
+            "text_size": 8
+          }
+        },
+        "text_ptqCWB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you are looking for the best Vitamin C face serum in India, the Rub It In Serum by <a href=\"https://sonnetwellness.in/collections/all\"><span style=\"text-decoration:underline\"><strong>Sonnet Wellness</strong></span></a><strong> </strong>is designed to target pigmentation, dark spots and uneven skin tone while improving overall skin health. This advanced formula works effectively as a skin brightening serum in India, helping you achieve clearer, smoother and more radiant skin with regular use.</p><p>In today’s environment, skin is constantly exposed to pollution, sun damage and stress, which leads to dullness and pigmentation. Using a high quality serum for pigmentation in India can help restore your skin’s natural glow and improve texture over time. The <a href=\"https://sonnetwellness.in/products/rub-it-in-serum\"><span style=\"text-decoration:underline\"><strong>Rub It In Serum</strong></span></a> is created to deliver visible results without harming your skin barrier, making it suitable for daily skincare routines.</p><h2><strong>Best Vitamin C Face Serum in India for Brightening and Pigmentation</strong></h2><p>Choosing the best face serum for skin brightening in India is important if you want long term results. Many products only provide temporary glow, but this Vitamin C face serum in India works deep within the skin to reduce pigmentation and improve tone.</p><p>This serum is formulated to act as one of the best serum for brightening skin in India by targeting dullness and uneven skin tone at the root. With consistent use, it helps improve clarity and enhances your natural radiance.</p><h2><strong>Effective Solution for Dark Spots and Uneven Skin Tone</strong></h2><p>Dark spots and pigmentation are common concerns caused by sun exposure, acne scars and hormonal changes. Finding the best serum for dark spots in India is essential for achieving even toned skin.</p><p>The Rub It In Serum works as the best face serum for pigmentation in India by gradually reducing dark spots and improving skin clarity. It also performs well as the best face serum for dark spots and pigmentation in India, making it a complete solution for multiple skin concerns.</p><p>For those dealing with stubborn marks, this product acts as the best face serum for pigmented skin in India by helping reduce discoloration and restoring skin balance.</p><h2><strong>Skin Brightening Serum India for Daily Use</strong></h2><p>A good skin brightening serum India should not only improve glow but also maintain skin health. This serum is designed for daily use and works effectively without causing irritation.</p><p>As a skin brightening serum in India, it helps:</p><ul><li>Improve dull and tired skin</li><li>Enhance natural glow</li><li>Even out skin tone</li><li>Support healthy skin texture</li></ul><p>It is suitable for both beginners and advanced skincare users who want visible and long lasting results.</p><h2><strong>Best Brightening Serum for Oily Skin in India</strong></h2><p>Oily skin requires lightweight formulations that do not clog pores. This product is considered among the best brightening serum for oily skin in India because of its fast absorbing and non greasy texture.</p><p>It helps control excess oil while still providing hydration and brightness, making it ideal for acne prone and oily skin types. Unlike heavy creams, this serum works effectively without leaving any sticky residue.</p><h2><strong>Benefits of Using Vitamin C Face Serum in India</strong></h2><p>Adding a Vitamin C face serum in India to your routine can significantly improve your skin over time. It is one of the most effective ingredients for treating pigmentation and enhancing skin brightness.</p><p>Regular use of this serum helps:</p><ul><li>Reduce pigmentation and dark spots</li><li>Improve skin tone and texture</li><li>Boost natural radiance</li><li>Protect skin from environmental damage</li><li>Support long term skin health</li></ul><p>This makes it one of the best serum for pigmentation in India for daily skincare routines.</p><h2><strong>Vitamin C and Vitamin E Benefits for Skin</strong></h2><p>This serum also offers nourishing properties similar to the best vitamin E serum for face in India. The combination of these ingredients helps improve skin health and hydration.</p><p>It can also be considered among the best vitamin E serum in India due to its ability to:</p><ul><li>Strengthen the skin barrier</li><li>Improve moisture retention</li><li>Enhance skin smoothness</li><li>Protect against damage</li></ul><p>This dual benefit makes it a powerful addition to your skincare routine.</p><h2><strong>How to Use This Serum for Best Results</strong></h2><p>To get the best results from this Vitamin C face serum in India, follow a consistent routine.</p><p>Cleanse your face thoroughly<br/> Apply a few drops of serum evenly<br/> Gently massage into the skin<br/> Use daily for better results<br/> Apply sunscreen during the day</p><p>Consistency is important when using the best serum for dark spots in India to see visible improvement.</p><h2><strong>Who Should Use This Product?</strong></h2><p>This serum is suitable for anyone looking for the best face serum for skin brightening in India. It is especially helpful for:</p><p>People with pigmentation and dark spots<br/> Individuals with uneven skin tone<br/> Those looking for glowing and radiant skin<br/> Oily, dry and combination skin types</p><p>If you are searching for the best serum for brightening skin in India, this product is a reliable choice.</p><h2><strong>Why Choose Sonnet Wellness Vitamin C Face Serum</strong></h2><p>Sonnet Wellness focuses on creating <a href=\"https://sonnetwellness.in/products/rub-it-in-serum\"><span style=\"text-decoration:underline\"><strong>skincare products</strong></span></a> that are effective, safe and suitable for Indian skin concerns. The Rub It In Serum is designed to deliver results while maintaining your skin’s natural balance.</p><p>If you want a solution that works as the best face serum for pigmentation in India and also improves overall skin health, this serum is a strong option for your skincare routine.</p>",
+            "text_size": 6,
+            "text_columns": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_EiiYQg",
+        "text_ptqCWB"
+      ],
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "align_text": "text-left",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "content_width": 2000,
+        "width": "wrapper--narrow",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_know_first_rwdfL3": {
+      "type": "faq-know-first",
+      "blocks": {
+        "question_Nkzwn7": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use Clean It Off twice a day?",
+            "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>"
+          }
+        },
+        "question_zcAym6": {
+          "type": "question",
+          "settings": {
+            "question": "Does it remove sunscreen and makeup?",
+            "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>"
+          }
+        },
+        "question_GyjbH9": {
+          "type": "question",
+          "settings": {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>"
+          }
+        },
+        "question_Xy6WJB": {
+          "type": "question",
+          "settings": {
+            "question": "Does it contain sulphates?",
+            "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>"
+          }
+        },
+        "question_6gnMAw": {
+          "type": "question",
+          "settings": {
+            "question": "What is Lactobacillus Ferment Lysate?",
+            "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>"
+          }
+        },
+        "question_YXzpAm": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need the full ritual?",
+            "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_Nkzwn7",
+        "question_zcAym6",
+        "question_GyjbH9",
+        "question_Xy6WJB",
+        "question_6gnMAw",
+        "question_YXzpAm"
+      ],
+      "name": "FAQ Know First",
+      "settings": {
+        "heading": "<p>Everything you want to <em>know first.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "open_first": true,
+        "allow_multiple_open": false,
+        "show_numbers": true,
+        "enable_schema": true,
+        "decor_image": "shopify://shop_images/faq-bubbles-decor-624x544.webp",
+        "show_decor_left": true,
+        "show_decor_right": true,
+        "decor_opacity": 10,
+        "color_background": "#F6F3EE",
+        "heading_color": "#28201F",
+        "card_bg": "#FFFFFF",
+        "card_opacity": 80,
+        "number_color": "#78563D",
+        "question_color": "#010101",
+        "answer_color": "#010101",
+        "toggle_bg": "#78563D",
+        "toggle_icon_color": "#FFFFFF",
+        "content_width": 1060,
+        "color_page": "#FFFCF9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "faq_accordion_qHjRck": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_bXLUMk": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I use Rub It In with other active ingredients like Retinol or AHAs?",
+            "answer": "<p>Rub It In can be layered with other actives, but apply it first and allow 30–60 seconds before adding anything else. If you use retinol, use Rub It In in the morning and retinol at night to avoid over-stimulation. It pairs well with Vitamin C as Niacinamide and Vitamin E enhance its brightening effect.</p>"
+          }
+        },
+        "faq_item_UxVKyX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this serum suitable for sensitive and acne-prone skin?",
+            "answer": "<p>Yes. The formula contains no alcohol, no parabens, no phthalates, and no mineral oil, all common irritants. Lactobacillus Ferment Lysate is specifically calming for reactive skin as it reduces inflammation at the microbiome level rather than triggering it.</p>"
+          }
+        },
+        "faq_item_YDDQcL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does one 30ml bottle last?",
+            "answer": "<p>At 2 drops twice daily, morning and evening, one 30ml bottle lasts approximately 3 months.</p>"
+          }
+        },
+        "faq_item_hqFGCW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I see results?",
+            "answer": "<p>Most users notice improved hydration and a visible glow within the first few days. Deeper results, reduced dark spots, fewer breakouts, refined pores, and improved texture, typically appear within 2–4 weeks of consistent AM and PM use.</p>"
+          }
+        },
+        "faq_item_Np9Tyc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can oily skin types skip the moisturiser and use just the serum?",
+            "answer": "<p>Yes. In hot or humid weather, Rub It In is lightweight enough to function as a standalone moisturiser for oily skin. Its Jojoba Oil base mimics skin's natural sebum, providing sufficient hydration without heaviness or greasiness.</p>"
+          }
+        },
+        "faq_item_6VGL3j": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need to use all 5 products for the serum to work?",
+            "answer": "<p>Rub It In works as a standalone product. However, results are significantly better as part of the full AM:PM system, the Face Wash balances pH, the Toner opens absorption, the Serum delivers actives, and the Moisturiser seals and support the barrier. Each step multiplies the effectiveness of the next.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_bXLUMk",
+        "faq_item_UxVKyX",
+        "faq_item_YDDQcL",
+        "faq_item_hqFGCW",
+        "faq_item_Np9Tyc",
+        "faq_item_6VGL3j"
+      ],
+      "disabled": true,
+      "name": "FAQ Accordion",
+      "settings": {
+        "heading": "<p>Everything you need to know <em>questions</em></p>",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 24
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_tlpc_8tB6r7",
+    "marquee_bar_z7LLMg",
+    "17754664316b6f6fbf",
+    "honest_results_d4wnzA",
+    "why_love_NU7yVx",
+    "whats_inside_carousel_GDxNxB",
+    "comparison_table_87q9dy",
+    "science_stats_cEpVm6",
+    "ritual_bundle_LwhN88",
+    "microbiome_compare_kdJJf3",
+    "testimonial_section_aTEYNa",
+    "why_section_pUQnp4",
+    "whats_inside_mJhDrx",
+    "section_image_hzLXz4",
+    "stats_microbiome_q3d8nn",
+    "bundle_section_YebTG3",
+    "section_richtext_YChbGR",
+    "faq_know_first_rwdfL3",
+    "faq_accordion_qHjRck"
+  ]
+}

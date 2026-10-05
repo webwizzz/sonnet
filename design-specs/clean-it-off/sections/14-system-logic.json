@@ -1,0 +1,699 @@
+{
+ "slug": "14-system-logic",
+ "title": "The System Logic (sticky arc / semi-circular card carousel)",
+ "figmaNodeIds": [
+  "203:6168"
+ ],
+ "frameOffsetY": 0.0,
+ "cropY": [
+  0,
+  960
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "203:6168",
+   "name": "Group 2087330714",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 2081.0,
+   "h": 960.0,
+   "children": [
+    {
+     "id": "203:6169",
+     "name": "Rectangle 1139962777",
+     "type": "RECTANGLE",
+     "x": 161.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 960.0,
+     "fills": [
+      "#F6F3EE"
+     ]
+    },
+    {
+     "id": "203:6170",
+     "name": "d50c2714e2a51acb93af6415ec6d66a4 1",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 104.0,
+     "w": 821.0,
+     "h": 856.0,
+     "rotation": 3.14,
+     "fills": [
+      "IMAGE(ref=1beeab98b72c301ea3cd6326c1c6a81ef1bfbad8, scaleMode=STRETCH)"
+     ]
+    },
+    {
+     "id": "203:6171",
+     "name": "The System Logic",
+     "type": "TEXT",
+     "x": 882.0,
+     "y": 100.0,
+     "w": 478.0,
+     "h": 70.0,
+     "textStyle": {
+      "text": "The System Logic",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 58.0,
+      "lineHeightPx": 69.58,
+      "lineHeight": "INTRINSIC_%",
+      "letterSpacing": -1.16,
+      "align": "LEFT",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#28201F"
+      ],
+      "styledRuns": [
+       {
+        "chars": " ",
+        "fontSize": 58.0
+       },
+       {
+        "chars": "Logic",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 70.2959976196289,
+        "letterSpacing": -1.16,
+        "color": [
+         "#28201F"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "203:6172",
+     "name": "Shared base - 1% Lactobacillus Ferment Lysate (postbiotic) in both steps",
+     "type": "TEXT",
+     "x": 846.0,
+     "y": 190.0,
+     "w": 551.0,
+     "h": 22.0,
+     "textStyle": {
+      "text": "Shared base - 1% Lactobacillus Ferment Lysate (postbiotic) in both steps",
+      "font": "Montserrat",
+      "postscript": "Montserrat-Regular",
+      "weight": 400,
+      "size": 16.0,
+      "lineHeightPx": 22.4,
+      "lineHeight": "140.0%",
+      "letterSpacing": -0.32,
+      "align": "CENTER",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#28201F @ 80%"
+      ]
+     }
+    },
+    {
+     "id": "203:6173",
+     "name": "Frame 1321324084",
+     "type": "FRAME",
+     "x": 161.0,
+     "y": 262.0,
+     "w": 1920.0,
+     "h": 698.0,
+     "clips": true,
+     "children": [
+      {
+       "id": "203:6174",
+       "name": "Group 2087330713",
+       "type": "GROUP",
+       "x": 765.0,
+       "y": -104.0,
+       "w": 2606.7,
+       "h": 1968.09,
+       "rotation": 0.52,
+       "children": [
+        {
+         "id": "203:6175",
+         "name": "Group 2087330707",
+         "type": "GROUP",
+         "x": 946.8,
+         "y": 273.45,
+         "w": 345.27,
+         "h": 420.22,
+         "rotation": -0.52,
+         "children": [
+          {
+           "id": "203:6176",
+           "name": "Rectangle 1430107031",
+           "type": "RECTANGLE",
+           "x": 946.8,
+           "y": 273.45,
+           "w": 345.27,
+           "h": 420.22,
+           "fills": [
+            "IMAGE(ref=ab36657f5ee9801e4ab6d7984820d503115b59f7, scaleMode=FILL)",
+            "GRADIENT_LINEAR(#FFFFFF @ 0% 0%, #FFFFFF 100%)"
+           ],
+           "radius": 16.0
+          },
+          {
+           "id": "203:6177",
+           "name": "Frame 5",
+           "type": "FRAME",
+           "x": 1003.81,
+           "y": 645.48,
+           "w": 231.02,
+           "h": 30.15,
+           "stroke": {
+            "paint": [
+             "#28201F"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 30.0,
+           "autolayout": {
+            "layoutMode": "HORIZONTAL",
+            "itemSpacing": 10.0,
+            "paddingLeft": 10.0,
+            "paddingRight": 10.0,
+            "paddingTop": 5.0,
+            "paddingBottom": 5.0,
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "layoutWrap": "NO_WRAP"
+           },
+           "children": [
+            {
+             "id": "203:6178",
+             "name": "Clean It Off Face Wash",
+             "type": "TEXT",
+             "x": 1013.81,
+             "y": 650.49,
+             "w": 211.01,
+             "h": 20.14,
+             "textStyle": {
+              "text": "Clean It Off Face Wash",
+              "font": "Montserrat",
+              "postscript": "Montserrat-Medium",
+              "weight": 500,
+              "size": 16.0,
+              "lineHeightPx": 19.5,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.32,
+              "align": "LEFT",
+              "valign": "TOP",
+              "case": "UPPER",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#28201F"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:6179",
+         "name": "Group 2087330710",
+         "type": "GROUP",
+         "x": 2081.99,
+         "y": 582.26,
+         "w": 534.32,
+         "h": 543.5,
+         "rotation": 0.17,
+         "children": [
+          {
+           "id": "203:6180",
+           "name": "Rectangle 1430107031",
+           "type": "RECTANGLE",
+           "x": 2081.99,
+           "y": 582.26,
+           "w": 534.32,
+           "h": 543.5,
+           "fills": [
+            "IMAGE(ref=95bd1ef817e24e315c898378fdca6a4eeb2089ea, scaleMode=FILL)",
+            "GRADIENT_LINEAR(#FFFFFF @ 0% 0%, #FFFFFF 100%)"
+           ],
+           "radius": 16.0
+          },
+          {
+           "id": "203:6181",
+           "name": "Frame 5",
+           "type": "FRAME",
+           "x": 2137.21,
+           "y": 903.74,
+           "w": 196.16,
+           "h": 171.57,
+           "stroke": {
+            "paint": [
+             "#28201F"
+            ],
+            "weight": 1.0,
+            "align": "INSIDE"
+           },
+           "radius": 30.0,
+           "autolayout": {
+            "layoutMode": "HORIZONTAL",
+            "itemSpacing": 10.0,
+            "paddingLeft": 10.0,
+            "paddingRight": 10.0,
+            "paddingTop": 5.0,
+            "paddingBottom": 5.0,
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "layoutWrap": "NO_WRAP"
+           },
+           "children": [
+            {
+             "id": "203:6182",
+             "name": "Clean It Off Face Wash",
+             "type": "TEXT",
+             "x": 2148.08,
+             "y": 914.0,
+             "w": 174.41,
+             "h": 151.05,
+             "textStyle": {
+              "text": "Clean It Off Face Wash",
+              "font": "Montserrat",
+              "postscript": "Montserrat-Medium",
+              "weight": 500,
+              "size": 16.0,
+              "lineHeightPx": 19.5,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.32,
+              "align": "LEFT",
+              "valign": "TOP",
+              "case": "UPPER",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#28201F"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:6183",
+         "name": "Group 2087330708",
+         "type": "GROUP",
+         "x": 1343.61,
+         "y": 277.07,
+         "w": 412.92,
+         "h": 473.7,
+         "rotation": -0.35,
+         "children": [
+          {
+           "id": "203:6184",
+           "name": "Group 2087330709",
+           "type": "GROUP",
+           "x": 1343.61,
+           "y": 277.07,
+           "w": 412.92,
+           "h": 473.7,
+           "children": [
+            {
+             "id": "203:6185",
+             "name": "Rectangle 1430107031",
+             "type": "RECTANGLE",
+             "x": 1343.61,
+             "y": 277.07,
+             "w": 412.92,
+             "h": 473.7,
+             "fills": [
+              "IMAGE(ref=9769d39e454a7e2fa7f3dd138cc315c274f3f6e3, scaleMode=STRETCH)",
+              "GRADIENT_LINEAR(#28201F @ 0% 0%, #28201F 100%)"
+             ],
+             "radius": 16.0
+            },
+            {
+             "id": "203:6186",
+             "name": "Group 2087330637",
+             "type": "GROUP",
+             "x": 1533.18,
+             "y": 496.62,
+             "w": 34.77,
+             "h": 34.77,
+             "children": [
+              {
+               "id": "203:6187",
+               "name": "Ellipse 1332",
+               "type": "ELLIPSE",
+               "x": 1533.18,
+               "y": 496.62,
+               "w": 34.77,
+               "h": 34.77,
+               "fills": [
+                "#FFFFFF"
+               ]
+              },
+              {
+               "id": "203:6188",
+               "name": "Polygon 1",
+               "type": "REGULAR_POLYGON",
+               "x": 1545.0,
+               "y": 508.44,
+               "w": 11.13,
+               "h": 11.13,
+               "rotation": 1.57,
+               "fills": [
+                "#78563D"
+               ]
+              }
+             ]
+            },
+            {
+             "id": "203:6189",
+             "name": "Removes buildup",
+             "type": "TEXT",
+             "x": 1431.14,
+             "y": 660.16,
+             "w": 176.5,
+             "h": 54.13,
+             "textStyle": {
+              "text": "Removes buildup",
+              "font": "Montserrat",
+              "postscript": "Montserrat-SemiBold",
+              "weight": 600,
+              "size": 20.0,
+              "lineHeightPx": 24.38,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.4,
+              "align": "LEFT",
+              "valign": "TOP",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#FFFFFF"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:6190",
+         "name": "Group 2087330711",
+         "type": "GROUP",
+         "x": 2378.13,
+         "y": 882.74,
+         "w": 543.5,
+         "h": 534.19,
+         "rotation": 0.35,
+         "children": [
+          {
+           "id": "203:6191",
+           "name": "Group 2087330709",
+           "type": "GROUP",
+           "x": 2378.13,
+           "y": 882.74,
+           "w": 543.5,
+           "h": 534.19,
+           "children": [
+            {
+             "id": "203:6192",
+             "name": "Rectangle 1430107031",
+             "type": "RECTANGLE",
+             "x": 2378.13,
+             "y": 882.74,
+             "w": 543.5,
+             "h": 534.19,
+             "fills": [
+              "IMAGE(ref=39705ebb1da4b335d3787c440256fb011c9a33fc, scaleMode=FILL)",
+              "GRADIENT_LINEAR(#28201F @ 0% 0%, #28201F 100%)"
+             ],
+             "radius": 16.0
+            },
+            {
+             "id": "203:6193",
+             "name": "Group 2087330637",
+             "type": "GROUP",
+             "x": 2629.07,
+             "y": 1129.09,
+             "w": 42.26,
+             "h": 42.26,
+             "children": [
+              {
+               "id": "203:6194",
+               "name": "Ellipse 1332",
+               "type": "ELLIPSE",
+               "x": 2629.07,
+               "y": 1129.09,
+               "w": 42.26,
+               "h": 42.26,
+               "fills": [
+                "#FFFFFF"
+               ]
+              },
+              {
+               "id": "203:6195",
+               "name": "Polygon 1",
+               "type": "REGULAR_POLYGON",
+               "x": 2643.44,
+               "y": 1143.46,
+               "w": 13.52,
+               "h": 13.52,
+               "rotation": 1.57,
+               "fills": [
+                "#78563D"
+               ]
+              }
+             ]
+            },
+            {
+             "id": "203:6196",
+             "name": "Locks in moisture",
+             "type": "TEXT",
+             "x": 2449.58,
+             "y": 1188.11,
+             "w": 131.44,
+             "h": 150.31,
+             "textStyle": {
+              "text": "Locks in moisture",
+              "font": "Montserrat",
+              "postscript": "Montserrat-SemiBold",
+              "weight": 600,
+              "size": 20.0,
+              "lineHeightPx": 24.38,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.4,
+              "align": "LEFT",
+              "valign": "TOP",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#FFFFFF"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:6197",
+         "name": "Group 2087330709",
+         "type": "GROUP",
+         "x": 1722.8,
+         "y": 370.86,
+         "w": 468.02,
+         "h": 512.78,
+         "rotation": -0.17,
+         "children": [
+          {
+           "id": "203:6198",
+           "name": "Group 2087330709",
+           "type": "GROUP",
+           "x": 1722.8,
+           "y": 370.86,
+           "w": 468.02,
+           "h": 512.78,
+           "children": [
+            {
+             "id": "203:6199",
+             "name": "Rectangle 1430107031",
+             "type": "RECTANGLE",
+             "x": 1722.8,
+             "y": 370.86,
+             "w": 468.02,
+             "h": 512.78,
+             "fills": [
+              "IMAGE(ref=b07152bffee04c4ed10dd99f54b8af0cab7b6e31, scaleMode=STRETCH)",
+              "GRADIENT_LINEAR(#28201F @ 0% 0%, #28201F 100%)"
+             ],
+             "radius": 16.0
+            },
+            {
+             "id": "203:6200",
+             "name": "Group 2087330637",
+             "type": "GROUP",
+             "x": 1938.05,
+             "y": 608.19,
+             "w": 38.46,
+             "h": 38.46,
+             "children": [
+              {
+               "id": "203:6201",
+               "name": "Ellipse 1332",
+               "type": "ELLIPSE",
+               "x": 1938.05,
+               "y": 608.19,
+               "w": 38.46,
+               "h": 38.46,
+               "fills": [
+                "#FFFFFF"
+               ]
+              },
+              {
+               "id": "203:6202",
+               "name": "Polygon 1",
+               "type": "REGULAR_POLYGON",
+               "x": 1951.13,
+               "y": 621.27,
+               "w": 12.31,
+               "h": 12.31,
+               "rotation": 1.57,
+               "fills": [
+                "#78563D"
+               ]
+              }
+             ]
+            },
+            {
+             "id": "203:6203",
+             "name": "Won't strip skin",
+             "type": "TEXT",
+             "x": 1819.59,
+             "y": 754.77,
+             "w": 154.78,
+             "h": 76.0,
+             "textStyle": {
+              "text": "Won't strip skin",
+              "font": "Montserrat",
+              "postscript": "Montserrat-SemiBold",
+              "weight": 600,
+              "size": 20.0,
+              "lineHeightPx": 24.38,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.4,
+              "align": "LEFT",
+              "valign": "TOP",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#FFFFFF"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:6204",
+         "name": "Group 2087330712",
+         "type": "GROUP",
+         "x": 2617.53,
+         "y": 1249.89,
+         "w": 536.17,
+         "h": 508.65,
+         "rotation": 0.52,
+         "children": [
+          {
+           "id": "203:6205",
+           "name": "Group 2087330709",
+           "type": "GROUP",
+           "x": 2617.53,
+           "y": 1249.89,
+           "w": 536.17,
+           "h": 508.65,
+           "children": [
+            {
+             "id": "203:6206",
+             "name": "Rectangle 1430107031",
+             "type": "RECTANGLE",
+             "x": 2617.53,
+             "y": 1249.89,
+             "w": 536.17,
+             "h": 508.65,
+             "fills": [
+              "GRADIENT_LINEAR(#28201F @ 0% 0%, #28201F 100%)",
+              "IMAGE(ref=775eb806a85d8199bbae2a5d35c417a07db7dea9, scaleMode=STRETCH)"
+             ],
+             "radius": 16.0
+            },
+            {
+             "id": "203:6207",
+             "name": "Group 2087330637",
+             "type": "GROUP",
+             "x": 2865.38,
+             "y": 1484.16,
+             "w": 40.97,
+             "h": 40.97,
+             "children": [
+              {
+               "id": "203:6208",
+               "name": "Ellipse 1332",
+               "type": "ELLIPSE",
+               "x": 2865.38,
+               "y": 1484.16,
+               "w": 40.97,
+               "h": 40.97,
+               "fills": [
+                "#FFFFFF"
+               ]
+              },
+              {
+               "id": "203:6209",
+               "name": "Polygon 1",
+               "type": "REGULAR_POLYGON",
+               "x": 2879.31,
+               "y": 1498.09,
+               "w": 13.11,
+               "h": 13.11,
+               "rotation": 1.57,
+               "fills": [
+                "#78563D"
+               ]
+              }
+             ]
+            },
+            {
+             "id": "203:6210",
+             "name": "Non-greasy finish",
+             "type": "TEXT",
+             "x": 2679.04,
+             "y": 1510.32,
+             "w": 108.69,
+             "h": 164.46,
+             "textStyle": {
+              "text": "Non-greasy finish",
+              "font": "Montserrat",
+              "postscript": "Montserrat-SemiBold",
+              "weight": 600,
+              "size": 20.0,
+              "lineHeightPx": 24.38,
+              "lineHeight": "INTRINSIC_%",
+              "letterSpacing": -0.4,
+              "align": "LEFT",
+              "valign": "TOP",
+              "autoResize": "WIDTH_AND_HEIGHT",
+              "color": [
+               "#FFFFFF"
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

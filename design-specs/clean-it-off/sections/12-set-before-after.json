@@ -1,0 +1,1033 @@
+{
+ "slug": "12-set-before-after",
+ "title": "Before This Set / After This Set (before-after compare + checklist)",
+ "figmaNodeIds": [
+  "203:5492"
+ ],
+ "frameOffsetY": 0.0,
+ "cropY": [
+  0,
+  700
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "203:5492",
+   "name": "Group 2087330698",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1720.0,
+   "h": 700.0,
+   "children": [
+    {
+     "id": "203:5493",
+     "name": "Group 2087330661",
+     "type": "GROUP",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 850.0,
+     "h": 700.0,
+     "children": [
+      {
+       "id": "203:5494",
+       "name": "Group 2087330688",
+       "type": "GROUP",
+       "x": 0.0,
+       "y": 0.0,
+       "w": 850.0,
+       "h": 700.0,
+       "children": [
+        {
+         "id": "203:5495",
+         "name": "Group 2087330656",
+         "type": "GROUP",
+         "x": 0.0,
+         "y": 0.0,
+         "w": 850.0,
+         "h": 700.0,
+         "children": [
+          {
+           "id": "203:5496",
+           "name": "Group 2087330655",
+           "type": "GROUP",
+           "x": 0.0,
+           "y": 0.0,
+           "w": 850.0,
+           "h": 700.0,
+           "children": [
+            {
+             "id": "203:5497",
+             "name": "Rectangle 1430107052",
+             "type": "RECTANGLE",
+             "x": 0.0,
+             "y": 0.0,
+             "w": 424.5,
+             "h": 700.0,
+             "fills": [
+              "IMAGE(ref=ffec1c3d544d34964c61176614902096f70ad7db, scaleMode=STRETCH)"
+             ],
+             "radii": [
+              16.0,
+              0.0,
+              0.0,
+              16.0
+             ]
+            },
+            {
+             "id": "203:5498",
+             "name": "Rectangle 1430107053",
+             "type": "RECTANGLE",
+             "x": 424.5,
+             "y": 0.0,
+             "w": 425.5,
+             "h": 700.0,
+             "fills": [
+              "IMAGE(ref=bd997791fca8878abad8e0d973d9dbbd58365c97, scaleMode=STRETCH)"
+             ],
+             "radii": [
+              0.0,
+              16.0,
+              16.0,
+              0.0
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5499",
+           "name": "Group 2087329715",
+           "type": "GROUP",
+           "x": 406.0,
+           "y": 0.0,
+           "w": 38.0,
+           "h": 700.0,
+           "children": [
+            {
+             "id": "203:5500",
+             "name": "Line 11",
+             "type": "LINE",
+             "x": 425.0,
+             "y": 0.0,
+             "w": 0.0,
+             "h": 700.0,
+             "rotation": 1.57,
+             "stroke": {
+              "paint": [
+               "#F5EEE6"
+              ],
+              "weight": 1.5,
+              "align": "CENTER"
+             }
+            },
+            {
+             "id": "203:5501",
+             "name": "Group 1321321720",
+             "type": "GROUP",
+             "x": 406.0,
+             "y": 318.0,
+             "w": 38.0,
+             "h": 65.0,
+             "children": [
+              {
+               "id": "203:5502",
+               "name": "Rectangle 29",
+               "type": "RECTANGLE",
+               "x": 406.0,
+               "y": 318.0,
+               "w": 38.0,
+               "h": 65.0,
+               "fills": [
+                "#F5EEE6"
+               ],
+               "radius": 50.0
+              },
+              {
+               "id": "203:5503",
+               "name": "Group 1321321719",
+               "type": "GROUP",
+               "x": 418.0,
+               "y": 345.79,
+               "w": 13.69,
+               "h": 7.65,
+               "children": [
+                {
+                 "id": "203:5504",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 424.85,
+                 "y": 345.79,
+                 "w": 6.85,
+                 "h": 7.65,
+                 "rotation": 0.84,
+                 "stroke": {
+                  "paint": [
+                   "#28201F"
+                  ],
+                  "weight": 1.25,
+                  "align": "CENTER"
+                 }
+                },
+                {
+                 "id": "203:5505",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 418.0,
+                 "y": 345.79,
+                 "w": 6.85,
+                 "h": 7.65,
+                 "rotation": 2.3,
+                 "stroke": {
+                  "paint": [
+                   "#28201F"
+                  ],
+                  "weight": 1.25,
+                  "align": "CENTER"
+                 }
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": "203:5506",
+         "name": "Frame 3",
+         "type": "FRAME",
+         "x": 13.98,
+         "y": 14.0,
+         "w": 86.0,
+         "h": 29.0,
+         "fills": [
+          "#28201F"
+         ],
+         "radius": 30.0,
+         "autolayout": {
+          "layoutMode": "HORIZONTAL",
+          "itemSpacing": 10.0,
+          "paddingLeft": 12.0,
+          "paddingRight": 12.0,
+          "paddingTop": 5.0,
+          "paddingBottom": 5.0,
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "layoutWrap": "NO_WRAP"
+         },
+         "children": [
+          {
+           "id": "203:5507",
+           "name": "BEFORE",
+           "type": "TEXT",
+           "x": 25.98,
+           "y": 19.0,
+           "w": 62.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "BEFORE",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Regular",
+            "weight": 400,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#FFFFFF"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5508",
+         "name": "Frame 4",
+         "type": "FRAME",
+         "x": 758.11,
+         "y": 14.0,
+         "w": 78.0,
+         "h": 29.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 30.0,
+         "autolayout": {
+          "layoutMode": "HORIZONTAL",
+          "itemSpacing": 10.0,
+          "paddingLeft": 12.0,
+          "paddingRight": 12.0,
+          "paddingTop": 5.0,
+          "paddingBottom": 5.0,
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "layoutWrap": "NO_WRAP"
+         },
+         "children": [
+          {
+           "id": "203:5509",
+           "name": "AFTER",
+           "type": "TEXT",
+           "x": 770.11,
+           "y": 19.0,
+           "w": 54.0,
+           "h": 19.0,
+           "textStyle": {
+            "text": "AFTER",
+            "font": "Blauer Nue",
+            "postscript": "BlauerNue-Regular",
+            "weight": 400,
+            "size": 16.0,
+            "lineHeightPx": 19.2,
+            "lineHeight": "INTRINSIC_%",
+            "letterSpacing": -0.32,
+            "align": "LEFT",
+            "valign": "TOP",
+            "autoResize": "WIDTH_AND_HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "203:5510",
+     "name": "Group 2087330697",
+     "type": "GROUP",
+     "x": 870.0,
+     "y": 0.0,
+     "w": 850.0,
+     "h": 700.0,
+     "children": [
+      {
+       "id": "203:5511",
+       "name": "Group 2087330660",
+       "type": "GROUP",
+       "x": 870.0,
+       "y": 0.0,
+       "w": 850.0,
+       "h": 700.0,
+       "radius": 16.0,
+       "children": [
+        {
+         "id": "203:5512",
+         "name": "Rectangle 1430107051",
+         "type": "RECTANGLE",
+         "x": 870.0,
+         "y": 0.0,
+         "w": 850.0,
+         "h": 700.0,
+         "fills": [
+          "#FFFFFF"
+         ],
+         "radius": 16.0
+        },
+        {
+         "id": "203:5513",
+         "name": "Before This Set After This Set",
+         "type": "TEXT",
+         "x": 1082.0,
+         "y": 50.0,
+         "w": 427.0,
+         "h": 140.0,
+         "textStyle": {
+          "text": "Before This Set\nAfter This Set",
+          "font": "Blauer Nue",
+          "postscript": "BlauerNue-Medium",
+          "weight": 500,
+          "size": 58.0,
+          "lineHeightPx": 69.58,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -1.16,
+          "align": "CENTER",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ],
+          "styledRuns": [
+           {
+            "chars": "After This Set",
+            "fontFamily": "Test Tiempos Fine",
+            "fontWeight": 400,
+            "italic": true,
+            "fontSize": 58.0,
+            "lineHeightPx": 70.2959976196289,
+            "letterSpacing": -1.16,
+            "color": [
+             "#28201F"
+            ]
+           }
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "id": "203:5514",
+       "name": "Group 2087330696",
+       "type": "GROUP",
+       "x": 1300.0,
+       "y": 230.0,
+       "w": 331.0,
+       "h": 396.0,
+       "children": [
+        {
+         "id": "203:5515",
+         "name": "Rectangle 1430107057",
+         "type": "RECTANGLE",
+         "x": 1300.0,
+         "y": 230.0,
+         "w": 331.0,
+         "h": 396.0,
+         "fills": [
+          "#F5EEE6"
+         ],
+         "radius": 10.0
+        },
+        {
+         "id": "203:5516",
+         "name": "Group 2087330689",
+         "type": "GROUP",
+         "x": 1334.0,
+         "y": 260.0,
+         "w": 264.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5517",
+           "name": "Group 2087330621",
+           "type": "GROUP",
+           "x": 1450.0,
+           "y": 260.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5518",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1450.0,
+             "y": 260.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#228761"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5519",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1460.0,
+             "y": 265.0,
+             "w": 12.0,
+             "h": 10.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5520",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1460.19,
+               "y": 265.0,
+               "w": 11.63,
+               "h": 10.0,
+               "fills": [
+                "#FFFFFF"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5521",
+           "name": "2-step routine, morning and night",
+           "type": "TEXT",
+           "x": 1334.0,
+           "y": 286.0,
+           "w": 264.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "2-step routine, morning \nand night",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5522",
+         "name": "Group 2087330690",
+         "type": "GROUP",
+         "x": 1334.0,
+         "y": 388.0,
+         "w": 264.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5523",
+           "name": "Group 2087330624",
+           "type": "GROUP",
+           "x": 1450.0,
+           "y": 388.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5524",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1450.0,
+             "y": 388.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#228761"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5525",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1460.0,
+             "y": 393.0,
+             "w": 12.0,
+             "h": 10.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5526",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1460.19,
+               "y": 393.0,
+               "w": 11.63,
+               "h": 10.0,
+               "fills": [
+                "#FFFFFF"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5527",
+           "name": "Niacinamide + postbiotic moisture, twice daily",
+           "type": "TEXT",
+           "x": 1334.0,
+           "y": 414.0,
+           "w": 264.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "Niacinamide + postbiotic moisture, twice daily",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5528",
+         "name": "Group 2087330691",
+         "type": "GROUP",
+         "x": 1334.0,
+         "y": 516.0,
+         "w": 264.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5529",
+           "name": "Group 2087330625",
+           "type": "GROUP",
+           "x": 1450.0,
+           "y": 516.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5530",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1450.0,
+             "y": 516.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#228761"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5531",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1460.0,
+             "y": 521.0,
+             "w": 12.0,
+             "h": 10.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5532",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 1460.19,
+               "y": 521.0,
+               "w": 11.63,
+               "h": 10.0,
+               "fills": [
+                "#FFFFFF"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5533",
+           "name": "Comfortable, hydrated after rinsing - not tight or stripped",
+           "type": "TEXT",
+           "x": 1334.0,
+           "y": 542.0,
+           "w": 264.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "Comfortable, hydrated after rinsing - not tight or stripped",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5534",
+         "name": "Line 170",
+         "type": "LINE",
+         "x": 1333.0,
+         "y": 362.0,
+         "w": 266.0,
+         "h": 0.0,
+         "rotation": 0.0,
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "CENTER"
+         }
+        },
+        {
+         "id": "203:5535",
+         "name": "Line 171",
+         "type": "LINE",
+         "x": 1333.0,
+         "y": 490.0,
+         "w": 266.0,
+         "h": 0.0,
+         "rotation": 0.0,
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "CENTER"
+         }
+        }
+       ]
+      },
+      {
+       "id": "203:5536",
+       "name": "Group 2087330695",
+       "type": "GROUP",
+       "x": 959.0,
+       "y": 230.0,
+       "w": 331.0,
+       "h": 396.0,
+       "children": [
+        {
+         "id": "203:5537",
+         "name": "Rectangle 1430107058",
+         "type": "RECTANGLE",
+         "x": 959.0,
+         "y": 230.0,
+         "w": 331.0,
+         "h": 396.0,
+         "fills": [
+          "#F5EEE6"
+         ],
+         "radius": 10.0
+        },
+        {
+         "id": "203:5538",
+         "name": "Group 2087330692",
+         "type": "GROUP",
+         "x": 1027.0,
+         "y": 260.0,
+         "w": 196.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5539",
+           "name": "Group 1321322485",
+           "type": "GROUP",
+           "x": 1109.0,
+           "y": 260.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5540",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1109.0,
+             "y": 260.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#F00009"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5541",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1119.0,
+             "y": 264.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5542",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1119.99,
+               "y": 266.25,
+               "w": 10.05,
+               "h": 8.2,
+               "children": [
+                {
+                 "id": "203:5543",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 1119.99,
+                 "y": 266.25,
+                 "w": 10.05,
+                 "h": 8.2,
+                 "fills": [
+                  "#FFFFFF"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5544",
+           "name": "No consistent AM/PM cleanse",
+           "type": "TEXT",
+           "x": 1027.0,
+           "y": 286.0,
+           "w": 196.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "No consistent AM/PM\ncleanse",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5545",
+         "name": "Group 2087330693",
+         "type": "GROUP",
+         "x": 1027.0,
+         "y": 388.0,
+         "w": 196.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5546",
+           "name": "Group 2087330622",
+           "type": "GROUP",
+           "x": 1109.0,
+           "y": 388.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5547",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1109.0,
+             "y": 388.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#F00009"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5548",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1119.0,
+             "y": 392.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5549",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1119.99,
+               "y": 394.25,
+               "w": 10.05,
+               "h": 8.2,
+               "children": [
+                {
+                 "id": "203:5550",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 1119.99,
+                 "y": 394.25,
+                 "w": 10.05,
+                 "h": 8.2,
+                 "fills": [
+                  "#FFFFFF"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5551",
+           "name": "No leave-on moisture step",
+           "type": "TEXT",
+           "x": 1027.0,
+           "y": 414.0,
+           "w": 196.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "No leave-on moisture\nstep",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5552",
+         "name": "Group 2087330694",
+         "type": "GROUP",
+         "x": 1021.0,
+         "y": 516.0,
+         "w": 208.0,
+         "h": 76.0,
+         "children": [
+          {
+           "id": "203:5553",
+           "name": "Group 2087330623",
+           "type": "GROUP",
+           "x": 1109.0,
+           "y": 516.0,
+           "w": 32.0,
+           "h": 20.0,
+           "children": [
+            {
+             "id": "203:5554",
+             "name": "Rectangle 1976",
+             "type": "RECTANGLE",
+             "x": 1109.0,
+             "y": 516.0,
+             "w": 32.0,
+             "h": 20.0,
+             "fills": [
+              "#F00009"
+             ],
+             "radius": 50.0
+            },
+            {
+             "id": "203:5555",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1119.0,
+             "y": 520.0,
+             "w": 12.0,
+             "h": 12.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5556",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1119.99,
+               "y": 522.25,
+               "w": 10.05,
+               "h": 8.2,
+               "children": [
+                {
+                 "id": "203:5557",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 1119.99,
+                 "y": 522.25,
+                 "w": 10.05,
+                 "h": 8.2,
+                 "fills": [
+                  "#FFFFFF"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": "203:5558",
+           "name": "Skin can feel tight after washing",
+           "type": "TEXT",
+           "x": 1021.0,
+           "y": 542.0,
+           "w": 208.0,
+           "h": 50.0,
+           "textStyle": {
+            "text": "Skin can feel tight after washing",
+            "font": "Montserrat",
+            "postscript": "Montserrat-Regular",
+            "weight": 400,
+            "size": 18.0,
+            "lineHeightPx": 25.2,
+            "lineHeight": "140.0%",
+            "letterSpacing": -0.36,
+            "align": "CENTER",
+            "valign": "TOP",
+            "autoResize": "HEIGHT",
+            "color": [
+             "#28201F"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "id": "203:5559",
+         "name": "Line 172",
+         "type": "LINE",
+         "x": 992.0,
+         "y": 362.0,
+         "w": 266.0,
+         "h": 0.0,
+         "rotation": 0.0,
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "CENTER"
+         }
+        },
+        {
+         "id": "203:5560",
+         "name": "Line 173",
+         "type": "LINE",
+         "x": 992.0,
+         "y": 490.0,
+         "w": 266.0,
+         "h": 0.0,
+         "rotation": 0.0,
+         "stroke": {
+          "paint": [
+           "#28201F @ 10%"
+          ],
+          "weight": 1.0,
+          "align": "CENTER"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

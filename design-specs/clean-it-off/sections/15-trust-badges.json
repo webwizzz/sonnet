@@ -1,0 +1,587 @@
+{
+ "slug": "15-trust-badges",
+ "title": "Trust badges strip (certifications)",
+ "figmaNodeIds": [
+  "203:5679"
+ ],
+ "frameOffsetY": 0.0,
+ "cropY": [
+  0,
+  220
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "203:5679",
+   "name": "Group 2087329736",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 220.0,
+   "children": [
+    {
+     "id": "203:5680",
+     "name": "Rectangle 1139962785",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 220.0,
+     "fills": [
+      "#FFFFFF"
+     ]
+    },
+    {
+     "id": "203:5681",
+     "name": "What We Can Promise",
+     "type": "TEXT",
+     "x": 100.0,
+     "y": 47.0,
+     "w": 305.0,
+     "h": 126.0,
+     "textStyle": {
+      "text": "What We\nCan Promise",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 58.0,
+      "lineHeightPx": 62.62,
+      "lineHeight": "107.97%",
+      "letterSpacing": -1.16,
+      "align": "LEFT",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#28201F"
+      ],
+      "styledRuns": [
+       {
+        "chars": "What We\n",
+        "lineHeightPx": 61.171875
+       },
+       {
+        "chars": "Can Promise",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 63.266395568847656,
+        "letterSpacing": -1.16,
+        "color": [
+         "#28201F"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "203:5682",
+     "name": "Group 2087329735",
+     "type": "GROUP",
+     "x": 580.0,
+     "y": 50.0,
+     "w": 1240.0,
+     "h": 120.0,
+     "children": [
+      {
+       "id": "203:5683",
+       "name": "Group 2087329734",
+       "type": "GROUP",
+       "x": 580.0,
+       "y": 50.0,
+       "w": 217.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "203:5684",
+         "name": "100% Vegan",
+         "type": "TEXT",
+         "x": 720.0,
+         "y": 82.0,
+         "w": 77.0,
+         "h": 58.0,
+         "textStyle": {
+          "text": "100%\nVegan",
+          "font": "Montserrat",
+          "postscript": "Montserrat-SemiBold",
+          "weight": 600,
+          "size": 24.0,
+          "lineHeightPx": 29.26,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.48,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5685",
+         "name": "Group 2087329731",
+         "type": "GROUP",
+         "x": 580.0,
+         "y": 50.0,
+         "w": 120.0,
+         "h": 120.0,
+         "children": [
+          {
+           "id": "203:5686",
+           "name": "Ellipse 1325",
+           "type": "ELLIPSE",
+           "x": 580.0,
+           "y": 50.0,
+           "w": 120.0,
+           "h": 120.0,
+           "fills": [
+            "#F6F3EE"
+           ]
+          },
+          {
+           "id": "203:5687",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 600.0,
+           "y": 70.0,
+           "w": 80.0,
+           "h": 80.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "203:5688",
+             "name": "Group",
+             "type": "GROUP",
+             "x": 608.0,
+             "y": 78.0,
+             "w": 63.92,
+             "h": 63.92,
+             "children": [
+              {
+               "id": "203:5689",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 608.0,
+               "y": 78.0,
+               "w": 63.92,
+               "h": 63.92,
+               "fills": [
+                "#28201F"
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5690",
+       "name": "Group 2087329733",
+       "type": "GROUP",
+       "x": 897.0,
+       "y": 50.0,
+       "w": 235.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "203:5691",
+         "name": "Cruelty- Free",
+         "type": "TEXT",
+         "x": 1037.0,
+         "y": 82.0,
+         "w": 95.0,
+         "h": 58.0,
+         "textStyle": {
+          "text": "Cruelty-\nFree",
+          "font": "Montserrat",
+          "postscript": "Montserrat-SemiBold",
+          "weight": 600,
+          "size": 24.0,
+          "lineHeightPx": 29.26,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.48,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5692",
+         "name": "Group 2087329730",
+         "type": "GROUP",
+         "x": 897.0,
+         "y": 50.0,
+         "w": 120.0,
+         "h": 120.0,
+         "children": [
+          {
+           "id": "203:5693",
+           "name": "Ellipse 1326",
+           "type": "ELLIPSE",
+           "x": 897.0,
+           "y": 50.0,
+           "w": 120.0,
+           "h": 120.0,
+           "fills": [
+            "#F6F3EE"
+           ]
+          },
+          {
+           "id": "203:5694",
+           "name": "Frame",
+           "type": "FRAME",
+           "x": 917.0,
+           "y": 71.0,
+           "w": 80.0,
+           "h": 80.0,
+           "clips": true,
+           "children": [
+            {
+             "id": "203:5695",
+             "name": "Group",
+             "type": "GROUP",
+             "x": 925.04,
+             "y": 79.0,
+             "w": 63.92,
+             "h": 63.92,
+             "children": [
+              {
+               "id": "203:5696",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 939.54,
+               "y": 87.33,
+               "w": 34.91,
+               "h": 41.31,
+               "fills": [
+                "#28201F"
+               ]
+              },
+              {
+               "id": "203:5697",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 961.95,
+               "y": 112.18,
+               "w": 1.48,
+               "h": 1.99,
+               "fills": [
+                "#28201F"
+               ]
+              },
+              {
+               "id": "203:5698",
+               "name": "Vector",
+               "type": "VECTOR",
+               "x": 925.04,
+               "y": 79.0,
+               "w": 63.92,
+               "h": 63.92,
+               "fills": [
+                "#28201F"
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5699",
+       "name": "Group 2087329732",
+       "type": "GROUP",
+       "x": 1232.0,
+       "y": 50.0,
+       "w": 230.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "203:5700",
+         "name": "Made In India",
+         "type": "TEXT",
+         "x": 1372.0,
+         "y": 82.0,
+         "w": 90.0,
+         "h": 58.0,
+         "textStyle": {
+          "text": "Made In India",
+          "font": "Montserrat",
+          "postscript": "Montserrat-SemiBold",
+          "weight": 600,
+          "size": 24.0,
+          "lineHeightPx": 29.26,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.48,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5701",
+         "name": "Group 2087329729",
+         "type": "GROUP",
+         "x": 1232.0,
+         "y": 50.0,
+         "w": 120.0,
+         "h": 120.0,
+         "children": [
+          {
+           "id": "203:5702",
+           "name": "Ellipse 1327",
+           "type": "ELLIPSE",
+           "x": 1232.0,
+           "y": 50.0,
+           "w": 120.0,
+           "h": 120.0,
+           "fills": [
+            "#F6F3EE"
+           ]
+          },
+          {
+           "id": "203:5703",
+           "name": "Group 2087329728",
+           "type": "GROUP",
+           "x": 1260.0,
+           "y": 78.0,
+           "w": 64.0,
+           "h": 64.0,
+           "children": [
+            {
+             "id": "203:5704",
+             "name": "Ellipse 1328",
+             "type": "ELLIPSE",
+             "x": 1260.0,
+             "y": 78.0,
+             "w": 64.0,
+             "h": 64.0,
+             "fills": [
+              "#F6F3EE"
+             ],
+             "stroke": {
+              "paint": [
+               "#28201F"
+              ],
+              "weight": 1.5,
+              "align": "INSIDE"
+             }
+            },
+            {
+             "id": "203:5705",
+             "name": "Frame",
+             "type": "FRAME",
+             "x": 1274.0,
+             "y": 88.0,
+             "w": 46.0,
+             "h": 46.0,
+             "clips": true,
+             "children": [
+              {
+               "id": "203:5706",
+               "name": "Group",
+               "type": "GROUP",
+               "x": 1277.78,
+               "y": 89.44,
+               "w": 38.42,
+               "h": 43.12,
+               "children": [
+                {
+                 "id": "203:5707",
+                 "name": "Vector",
+                 "type": "VECTOR",
+                 "x": 1277.78,
+                 "y": 89.44,
+                 "w": 38.42,
+                 "h": 43.12,
+                 "fills": [
+                  "#28201F"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5708",
+       "name": "Group 2087329735",
+       "type": "GROUP",
+       "x": 1562.0,
+       "y": 50.0,
+       "w": 258.0,
+       "h": 120.0,
+       "children": [
+        {
+         "id": "203:5709",
+         "name": "FDA Approved",
+         "type": "TEXT",
+         "x": 1702.0,
+         "y": 82.0,
+         "w": 118.0,
+         "h": 58.0,
+         "textStyle": {
+          "text": "FDA Approved",
+          "font": "Montserrat",
+          "postscript": "Montserrat-SemiBold",
+          "weight": 600,
+          "size": 24.0,
+          "lineHeightPx": 29.26,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.48,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5710",
+         "name": "Group 2087329729",
+         "type": "GROUP",
+         "x": 1562.0,
+         "y": 50.0,
+         "w": 120.0,
+         "h": 120.0,
+         "children": [
+          {
+           "id": "203:5711",
+           "name": "Ellipse 1327",
+           "type": "ELLIPSE",
+           "x": 1562.0,
+           "y": 50.0,
+           "w": 120.0,
+           "h": 120.0,
+           "fills": [
+            "#F6F3EE"
+           ]
+          },
+          {
+           "id": "203:5712",
+           "name": "Rectangle 1430107029",
+           "type": "RECTANGLE",
+           "x": 1589.0,
+           "y": 77.0,
+           "w": 66.0,
+           "h": 66.0,
+           "fills": [
+            "#28201F"
+           ],
+           "radius": 35.5
+          },
+          {
+           "id": "203:5713",
+           "name": "Mask group",
+           "type": "GROUP",
+           "x": 1590.0,
+           "y": 78.0,
+           "w": 64.0,
+           "h": 64.0,
+           "children": [
+            {
+             "id": "203:5714",
+             "name": "fda-approved-seal-vector-31936562 1",
+             "type": "RECTANGLE",
+             "x": 1590.0,
+             "y": 78.0,
+             "w": 64.0,
+             "h": 64.0,
+             "fills": [
+              "IMAGE(ref=c9a6099fc9a55edcef080b5da8909c65b2884955, scaleMode=FILL)"
+             ],
+             "mask": true
+            },
+            {
+             "id": "203:5715",
+             "name": "Rectangle 1430107028",
+             "type": "RECTANGLE",
+             "x": 1590.0,
+             "y": 78.0,
+             "w": 64.0,
+             "h": 64.0,
+             "fills": [
+              "#FFFFFF"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5716",
+       "name": "Line 166",
+       "type": "LINE",
+       "x": 847.0,
+       "y": 75.0,
+       "w": 0.0,
+       "h": 70.0,
+       "rotation": 1.57,
+       "stroke": {
+        "paint": [
+         "#28201F @ 10%"
+        ],
+        "weight": 1.0,
+        "align": "CENTER"
+       }
+      },
+      {
+       "id": "203:5717",
+       "name": "Line 167",
+       "type": "LINE",
+       "x": 1182.0,
+       "y": 75.0,
+       "w": 0.0,
+       "h": 70.0,
+       "rotation": 1.57,
+       "stroke": {
+        "paint": [
+         "#28201F @ 10%"
+        ],
+        "weight": 1.0,
+        "align": "CENTER"
+       }
+      },
+      {
+       "id": "203:5718",
+       "name": "Line 168",
+       "type": "LINE",
+       "x": 1512.0,
+       "y": 75.0,
+       "w": 0.0,
+       "h": 70.0,
+       "rotation": 1.57,
+       "stroke": {
+        "paint": [
+         "#28201F @ 10%"
+        ],
+        "weight": 1.0,
+        "align": "CENTER"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

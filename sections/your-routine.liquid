@@ -1,0 +1,610 @@
+{%- comment -%}
+  Your Routine: AM / PM toggle + step cards with video.
+  Design: design-specs/clean-it-off/sections/13-your-routine.md (Figma 203:5587)
+  Full-bleed #F6F3EE band (1920 × 778): heading at 100, AM/PM toggle 18px below,
+  4 cards (415 × 432, gap 20) 30px below that, 100px bottom.
+  Card: 415 × 340 image (radius 16) + 30px play button, then 10px, number (Tiempos 500 italic 26)
+  + 8px + title (Montserrat 700 20 uppercase), description (Montserrat 400 16/22.4 @80%).
+  Default view shows every step (as in Figma); AM / PM filter the cards. Numbers count per routine.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign text_color = s.text_color | default: '#28201F'
+  assign desc_color = text_color | color_modify: 'alpha', 0.8
+  assign title_font = s.title_font
+  assign body_font = s.body_font
+  assign toggle_font = s.toggle_font
+  assign am_n = 0
+  assign pm_n = 0
+-%}
+
+{% style %}
+{%- if title_font != blank -%}{{ title_font | font_face: font_display: 'swap' }}{%- endif -%}
+{%- if body_font != blank -%}{{ body_font | font_face: font_display: 'swap' }}{%- endif -%}
+{%- if toggle_font != blank -%}{{ toggle_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --yrt-band: {{ s.color_band }};
+  --yrt-text: {{ text_color }};
+  --yrt-desc: {{ desc_color }};
+  --yrt-accent: {{ s.accent_color }};
+  --yrt-play: {{ s.play_bg }};
+  --yrt-play-icon: {{ s.play_icon }};
+  --yrt-h-num: {{ s.heading_size }};
+  --yrt-h: {{ s.heading_size }}px;
+  --yrt-h-m: {{ s.heading_size_mobile }}px;
+  --yrt-title-font: {% if title_font != blank %}{{ title_font.family }}, {{ title_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --yrt-title-weight: {% if title_font != blank %}{{ title_font.weight }}{% else %}700{% endif %};
+  --yrt-body-font: {% if body_font != blank %}{{ body_font.family }}, {{ body_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --yrt-body-weight: {% if body_font != blank %}{{ body_font.weight }}{% else %}400{% endif %};
+  --yrt-toggle-font: {% if toggle_font != blank %}{{ toggle_font.family }}, {{ toggle_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --yrt-toggle-weight: {% if toggle_font != blank %}{{ toggle_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_page }};
+  padding-top: {{ s.spacing_top }}px;
+  padding-bottom: {{ s.spacing_bottom }}px;
+}
+#shopify-section-{{ section.id }} .yrt__band {
+  padding-top: clamp(56px, calc({{ s.padding_top }} * 100vw / 1920), {{ s.padding_top }}px);
+  padding-bottom: clamp(56px, calc({{ s.padding_bottom }} * 100vw / 1920), {{ s.padding_bottom }}px);
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} { padding-top: {{ s.mobile_spacing_top }}px; padding-bottom: {{ s.mobile_spacing_bottom }}px; }
+  #shopify-section-{{ section.id }} .yrt__band { padding-top: {{ s.mobile_padding_top }}px; padding-bottom: {{ s.mobile_padding_bottom }}px; }
+}
+{% endstyle %}
+
+{% style %}
+.yrt *, .yrt *::before, .yrt *::after { box-sizing: border-box; }
+.yrt__band { background: var(--yrt-band); overflow: hidden; }
+
+/* Heading: Blauer Nue MD 500 58/69.58, italic run Tiempos Fine Italic RG 400 */
+.yrt .yrt__heading {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--yrt-h-m), calc(var(--yrt-h-num) * 100vw / 1920), var(--yrt-h));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--yrt-text);
+}
+.yrt .yrt__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.yrt .yrt__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.212;
+}
+
+/* AM / PM toggle: icon 24px + Montserrat 500 20/28, 20px between options */
+.yrt__toggle {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 18px 0 30px;
+}
+.yrt__opt {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--yrt-text);
+  font-family: var(--yrt-toggle-font);
+  font-weight: var(--yrt-toggle-weight);
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition: color 0.25s ease, opacity 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.yrt__opt svg { display: block; width: 24px; height: 24px; flex: none; }
+.yrt__opt::after {
+  content: '';
+  position: absolute;
+  left: 30px;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--yrt-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.yrt__opt[aria-pressed='true'] { color: var(--yrt-accent); }
+.yrt__opt[aria-pressed='true']::after { transform: scaleX(1); }
+.yrt--filtered .yrt__opt[aria-pressed='false'] { opacity: 0.55; }
+@media (hover: hover) and (pointer: fine) {
+  .yrt__opt:hover { color: var(--yrt-accent); opacity: 1; }
+}
+.yrt__opt:focus-visible { outline: 2px solid var(--yrt-accent); outline-offset: 4px; border-radius: 4px; }
+
+/* Cards: 4 × 415 with 20px gaps (1720 content); filtered views stay centred */
+.yrt__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.yrt__card {
+  position: relative;   /* contains the visually-hidden text (else it widens the page in the swipe row) */
+  flex: 0 0 calc((100% - 60px) / 4);
+  min-width: 0;
+  margin: 0;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.yrt__card[hidden] { display: none; }
+.yrt__card.is-out { opacity: 0; transform: translateY(12px) scale(0.98); }
+.yrt__card.is-in { animation: yrt-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: calc(var(--d, 0) * 70ms); }
+@keyframes yrt-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+.yrt__media {
+  position: relative;
+  aspect-ratio: 415 / 340;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #E9E1D8;
+  isolation: isolate;
+}
+.yrt__media img,
+.yrt__media .yrt__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.yrt__media .yrt__ph { fill: rgba(40, 32, 31, 0.2); }
+@media (hover: hover) and (pointer: fine) {
+  .yrt__card:hover .yrt__media img { transform: scale(1.04); }
+  .yrt__card:hover .yrt__play { transform: translate(-50%, -50%) scale(1.12); }
+}
+/* Play: 30px white circle, #78563D triangle (9.6px) */
+.yrt__play {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--yrt-play);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.yrt__play::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin: -4.8px 0 0 -3px;
+  border-style: solid;
+  border-width: 4.8px 0 4.8px 8.3px;
+  border-color: transparent transparent transparent var(--yrt-play-icon);
+}
+/* Soft pulse so the play button invites a click */
+.yrt__play::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--yrt-play);
+  opacity: 0;
+  animation: yrt-pulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes yrt-pulse { 0% { transform: scale(1); opacity: 0.8; } 70%, 100% { transform: scale(2.1); opacity: 0; } }
+.yrt__play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.yrt__player { position: absolute; inset: 0; z-index: 3; background: #000; }
+.yrt__player video,
+.yrt__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.yrt__media.is-playing .yrt__play { display: none; }
+
+.yrt__meta { margin-top: 10px; }
+.yrt__row { display: flex; align-items: flex-start; gap: 8px; min-height: 38px; }   /* Figma number box 31 × 38 */
+/* Number: Test Tiempos Fine 500 italic 26/31.51, #78563D */
+.yrt__num {
+  flex: none;
+  min-width: 31px;
+  font-family: 'Test Tiempos Fine Italic', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.212;
+  letter-spacing: -0.02em;
+  color: var(--yrt-accent);
+  font-variant-numeric: lining-nums;
+}
+/* Title: Montserrat 700 20/24.38 uppercase, 4px lower than the number box */
+.yrt .yrt__title {
+  margin: 4px 0 0;
+  min-width: 0;
+  font-family: var(--yrt-title-font);
+  font-weight: var(--yrt-title-weight);
+  font-size: clamp(16px, calc(20 * 100vw / 1920), 20px);
+  line-height: 1.219;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--yrt-text);
+}
+.yrt .yrt__title a { color: inherit; text-decoration: none; }
+.yrt .yrt__title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* Description: Montserrat 400 16/22.4, 80% */
+.yrt__desc {
+  margin: 0;
+  max-width: calc(371 / 415 * 100%);
+  font-family: var(--yrt-body-font);
+  font-weight: var(--yrt-body-weight);
+  font-size: clamp(14px, calc(16 * 100vw / 1920), 16px);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--yrt-desc);
+}
+.yrt__sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ≤1199: 2 per row. ≤768: swipe row */
+@media screen and (max-width: 1199px) {
+  .yrt__card { flex-basis: calc((100% - 20px) / 2); }
+}
+@media screen and (max-width: 768px) {
+  .yrt .yrt__heading { font-size: var(--yrt-h-m); }
+  .yrt__toggle { margin: 14px 0 22px; }
+  .yrt__opt { font-size: 17px; }
+  .yrt__opt svg { width: 20px; height: 20px; }
+  .yrt__opt::after { left: 26px; }
+  .yrt__grid {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -16px;
+    padding-inline: 16px;
+    scroll-padding-inline: 16px;
+  }
+  .yrt__grid::-webkit-scrollbar { display: none; }
+  .yrt__card { flex: 0 0 78%; scroll-snap-align: start; }
+  .yrt__num { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .yrt__card, .yrt__card.is-in, .yrt__media img, .yrt__play { transition: none; animation: none; }
+  .yrt__play::after { animation: none; }
+}
+.yrt__empty { margin: 0; text-align: center; font-family: 'Blauer Nue RG', sans-serif; font-size: 15px; color: var(--yrt-text); }
+{% endstyle %}
+
+<div class="yrt{% if s.default_view != 'all' %} yrt--filtered{% endif %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}" data-yrt data-default="{{ s.default_view }}">
+  <div class="yrt__band">
+    <div class="main-container">
+      {%- if s.heading != blank -%}
+        <h2 class="yrt__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+
+      {%- if s.show_toggle -%}
+        <div class="yrt__toggle" role="group" aria-label="{{ s.toggle_label | escape }}">
+          <button type="button" class="yrt__opt" data-yrt-opt="am" aria-pressed="{% if s.default_view == 'am' %}true{% else %}false{% endif %}">
+            {{- 'cio-sun.svg' | inline_asset_content -}}<span>{{ s.am_label | escape }}</span>
+          </button>
+          <button type="button" class="yrt__opt" data-yrt-opt="pm" aria-pressed="{% if s.default_view == 'pm' %}true{% else %}false{% endif %}">
+            {{- 'cio-moon.svg' | inline_asset_content -}}<span>{{ s.pm_label | escape }}</span>
+          </button>
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="yrt__grid" role="list" data-yrt-grid>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              if b.routine == 'pm'
+                assign pm_n = pm_n | plus: 1
+                assign n = pm_n
+              else
+                assign am_n = am_n | plus: 1
+                assign n = am_n
+              endif
+              assign num = n | prepend: '0' | slice: -2, 2
+              if b.number_override != blank
+                assign num = b.number_override
+              endif
+              assign title = b.title
+              if title == blank and b.product != blank
+                assign title = b.product.title
+              endif
+              assign link = b.link
+              if link == blank and b.product != blank
+                assign link = b.product.url
+              endif
+              assign shot = b.image
+              if shot == blank and b.video != blank
+                assign shot = b.video.preview_image
+              endif
+              assign has_video = false
+              if b.video != blank or b.video_url != blank
+                assign has_video = true
+              endif
+              assign hide = false
+              if s.default_view != 'all' and s.default_view != b.routine
+                assign hide = true
+              endif
+              assign routine_label = s.am_label
+              if b.routine == 'pm'
+                assign routine_label = s.pm_label
+              endif
+            -%}
+            <li class="yrt__card" data-routine="{{ b.routine }}" {% if hide %}hidden{% endif %} {{ block.shopify_attributes }}>
+              <div class="yrt__media" data-yrt-media>
+                {%- if shot != blank -%}
+                  {{- shot | image_url: width: 900 | image_tag: widths: '300, 450, 600, 900', sizes: '(min-width: 1200px) 22vw, (min-width: 769px) 46vw, 78vw', loading: 'lazy', alt: title -}}
+                {%- else -%}
+                  {{- 'lifestyle-1' | placeholder_svg_tag: 'yrt__ph' -}}
+                {%- endif -%}
+                {%- if has_video -%}
+                  <button type="button" class="yrt__play" data-yrt-play aria-label="{{ s.play_label | escape }}: {{ title | escape }}"></button>
+                  <template data-yrt-tpl>
+                    <div class="yrt__player">
+                      {%- if b.video != blank -%}
+                        {{- b.video | video_tag: autoplay: true, controls: true, playsinline: true, preload: 'auto', image_size: '900x' -}}
+                      {%- elsif b.video_url.type == 'youtube' -%}
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ b.video_url.id }}?autoplay=1&rel=0&playsinline=1" title="{{ title | escape }}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif b.video_url.type == 'vimeo' -%}
+                        <iframe src="https://player.vimeo.com/video/{{ b.video_url.id }}?autoplay=1&dnt=1" title="{{ title | escape }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                      {%- endif -%}
+                    </div>
+                  </template>
+                {%- endif -%}
+              </div>
+              <div class="yrt__meta">
+                <div class="yrt__row">
+                  <span class="yrt__num"><span class="yrt__sr">{{ routine_label | escape }} </span>{{ num }}</span>
+                  <h3 class="yrt__title">
+                    {%- if link != blank -%}<a href="{{ link }}">{{ title | escape }}</a>{%- else -%}{{ title | escape }}{%- endif -%}
+                  </h3>
+                </div>
+                {%- if b.description != blank -%}
+                  <p class="yrt__desc">{{ b.description | escape }}</p>
+                {%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- elsif request.design_mode -%}
+        <p class="yrt__empty">Add step blocks and choose AM or PM for each.</p>
+      {%- endif -%}
+      <p class="yrt__sr" aria-live="polite" data-yrt-live></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var MSG = { all: {{ s.showing_all_label | json }}, am: {{ s.am_label | json }}, pm: {{ s.pm_label | json }}, showing: {{ s.showing_label | json }} };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function stopPlayers(root, except) {
+      root.querySelectorAll('[data-yrt-media].is-playing').forEach(function (m) {
+        if (m === except) return;
+        var pl = m.querySelector('.yrt__player');
+        if (pl) pl.remove();
+        m.classList.remove('is-playing');
+      });
+    }
+
+    function init(root) {
+      if (!root || root._yrtInit) return;
+      root._yrtInit = true;
+      var cards = Array.prototype.slice.call(root.querySelectorAll('.yrt__card'));
+      var opts = Array.prototype.slice.call(root.querySelectorAll('[data-yrt-opt]'));
+      var live = root.querySelector('[data-yrt-live]');
+      // Read the current state from the DOM (it survives editor re-inits), else the default.
+      var pressedOpt = root.querySelector('[data-yrt-opt][aria-pressed="true"]');
+      var view = pressedOpt ? pressedOpt.getAttribute('data-yrt-opt') : 'all';
+      var timer = null;
+
+      function apply(next, announce) {
+        view = next;
+        root.classList.toggle('yrt--filtered', view !== 'all');
+        opts.forEach(function (o) { o.setAttribute('aria-pressed', o.getAttribute('data-yrt-opt') === view ? 'true' : 'false'); });
+        stopPlayers(root);
+        var show = cards.filter(function (c) { return view === 'all' || c.getAttribute('data-routine') === view; });
+        var hideList = cards.filter(function (c) { return show.indexOf(c) === -1 && !c.hidden; });
+        clearTimeout(timer);
+        var swap = function () {
+          cards.forEach(function (c) { c.classList.remove('is-out', 'is-in'); c.hidden = show.indexOf(c) === -1; });
+          if (!reduce.matches) show.forEach(function (c, i) { c.style.setProperty('--d', i); void c.offsetWidth; c.classList.add('is-in'); });
+        };
+        if (reduce.matches || !hideList.length) { swap(); }
+        else {
+          cards.forEach(function (c) { if (!c.hidden) c.classList.add('is-out'); });
+          timer = setTimeout(swap, 260);
+        }
+        if (announce && live) {
+          live.textContent = view === 'all' ? MSG.all : MSG.showing.replace('[routine]', MSG[view]);
+        }
+      }
+
+      function onClick(e) {
+        var opt = e.target.closest('[data-yrt-opt]');
+        if (opt && root.contains(opt)) {
+          var v = opt.getAttribute('data-yrt-opt');
+          apply(view === v ? 'all' : v, true);
+          return;
+        }
+        var play = e.target.closest('[data-yrt-play]');
+        if (play && root.contains(play)) {
+          var media = play.closest('[data-yrt-media]');
+          var tpl = media.querySelector('[data-yrt-tpl]');
+          if (!tpl) return;
+          stopPlayers(root, media);
+          media.appendChild(tpl.content.cloneNode(true));
+          media.classList.add('is-playing');
+          var v2 = media.querySelector('.yrt__player video');
+          if (v2) {
+            var pr = v2.play(); if (pr && pr.catch) pr.catch(function () {});
+            v2.focus();
+          } else {
+            var fr = media.querySelector('.yrt__player iframe'); if (fr) fr.focus();
+          }
+        }
+      }
+      root.addEventListener('click', onClick);
+
+      // Stop playback when the section scrolls away
+      var io = null;
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function (en) { if (!en[en.length - 1].isIntersecting) stopPlayers(root); });
+        io.observe(root);
+      }
+
+      root._yrtShow = function (card) {
+        var r = card.getAttribute('data-routine');
+        if (view !== 'all' && view !== r) apply('all', false);
+        if (card.scrollIntoView && window.matchMedia('(max-width: 768px)').matches) card.scrollIntoView({ block: 'nearest', inline: 'start' });
+      };
+      root._yrtCleanup = function () {
+        root.removeEventListener('click', onClick);
+        if (io) io.disconnect();
+        clearTimeout(timer);
+        stopPlayers(root);
+        root._yrtInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-yrt]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__yrtEditorBound) {
+      window.__yrtEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._yrtCleanup) r._yrtCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        var card = e.target && e.target.closest ? e.target.closest('.yrt__card') : null;
+        if (r && r._yrtShow && card) r._yrtShow(card);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Your Routine",
+  "tag": "section",
+  "class": "yrt-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Your <em>Routine</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "header", "content": "AM / PM toggle" },
+    { "type": "checkbox", "id": "show_toggle", "label": "Show AM / PM toggle", "default": true },
+    {
+      "type": "select",
+      "id": "default_view",
+      "label": "Show on load",
+      "info": "Clicking AM or PM filters the steps; clicking it again shows all.",
+      "options": [
+        { "value": "all", "label": "All steps" },
+        { "value": "am", "label": "AM steps" },
+        { "value": "pm", "label": "PM steps" }
+      ],
+      "default": "all"
+    },
+    { "type": "text", "id": "am_label", "label": "AM label", "default": "AM" },
+    { "type": "text", "id": "pm_label", "label": "PM label", "default": "PM" },
+    { "type": "header", "content": "Fonts" },
+    { "type": "font_picker", "id": "title_font", "label": "Step title", "info": "Design: Montserrat Bold.", "default": "montserrat_n7" },
+    { "type": "font_picker", "id": "body_font", "label": "Step description", "info": "Design: Montserrat Regular.", "default": "montserrat_n4" },
+    { "type": "font_picker", "id": "toggle_font", "label": "AM / PM toggle", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_band", "label": "Band background", "default": "#F6F3EE" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "accent_color", "label": "Numbers and active toggle", "default": "#78563D" },
+    { "type": "color", "id": "play_bg", "label": "Play button", "default": "#FFFFFF" },
+    { "type": "color", "id": "play_icon", "label": "Play icon", "default": "#78563D" },
+    { "type": "header", "content": "Accessibility" },
+    { "type": "text", "id": "toggle_label", "label": "Toggle group name", "default": "Routine time" },
+    { "type": "text", "id": "play_label", "label": "Play button", "default": "Play video" },
+    { "type": "text", "id": "showing_label", "label": "Announcement when filtered", "info": "[routine] is replaced by AM or PM.", "default": "Showing [routine] steps" },
+    { "type": "text", "id": "showing_all_label", "label": "Announcement when showing all", "default": "Showing all steps" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "color", "id": "color_page", "label": "Page background around the band", "default": "#FFFCF9" },
+    { "type": "range", "id": "spacing_top", "label": "Space above band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "spacing_bottom", "label": "Space below band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_spacing_top", "label": "Space above band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_spacing_bottom", "label": "Space below band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Band padding top (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Band padding bottom (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Band padding top (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Band padding bottom (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "select",
+          "id": "routine",
+          "label": "Routine",
+          "options": [ { "value": "am", "label": "AM" }, { "value": "pm", "label": "PM" } ],
+          "default": "am"
+        },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "415 × 340 in the design. Falls back to the video's cover image." },
+        { "type": "video", "id": "video", "label": "Video", "info": "Plays in the card when the play button is pressed." },
+        { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
+        { "type": "text", "id": "title", "label": "Title", "info": "Shown in capitals. Falls back to the product title.", "default": "Clean It Off Face Wash" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Removes overnight sebum and surface impurities" },
+        { "type": "product", "id": "product", "label": "Linked product", "info": "Optional. The title links to it." },
+        { "type": "url", "id": "link", "label": "Title link", "info": "Optional. Overrides the product link." },
+        { "type": "text", "id": "number_override", "label": "Number", "info": "Leave empty to number steps automatically within AM and PM (01, 02…)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Your Routine",
+      "blocks": [
+        { "type": "step", "settings": { "routine": "am", "title": "Clean It Off Face Wash", "description": "Removes overnight sebum and surface impurities" } },
+        { "type": "step", "settings": { "routine": "am", "title": "Soak It In Face Cream", "description": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50" } },
+        { "type": "step", "settings": { "routine": "pm", "title": "Clean It Off Face Wash", "description": "Removes overnight sebum and surface impurities" } },
+        { "type": "step", "settings": { "routine": "pm", "title": "Soak It In Face Cream", "description": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+<svg aria-hidden="true" focusable="false" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#cio_cio_badge_check_glyph)">
+<path d="M11.8183 0C9.35186 2.36964 5.34418 8.60921 4.9864 9.17171C4.62866 9.73421 4.45269 9.94971 3.93977 9.99725C3.42685 10.0448 3.06952 9.46098 3.06952 9.46098C3.06952 9.46098 0.325214 5.03875 0.207904 4.66021C0.0905942 4.28167 0.517403 4.09772 0.517403 4.09772C1.75623 3.46679 2.51957 4.72862 2.51957 4.72862L4.00925 7.25234C4.00925 7.25234 7.42078 2.33113 11.7454 0.0360527L11.8183 0Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="cio_cio_badge_check_glyph">
+<rect width="12" height="10" fill="currentColor"/>
+</clipPath>
+</defs>
+</svg>

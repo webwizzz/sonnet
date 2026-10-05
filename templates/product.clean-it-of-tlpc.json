@@ -1,0 +1,340 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": true,
+            "padding_bottom": 20
+          }
+        },
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.vendor }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "<p>{{ product.title }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<span class=\"title\">{{product.title}}</span><br>"
+          }
+        },
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% if product.compare_at_price %}\n  <span class=\"price\">{{ product.price | money}} </span>  <del>{{ product.compare_at_price | money }}</del> <span style=\"color: black;\"></span>\n{% else %}\n  {{ product.price | money}}\n{% endif %}"
+          }
+        },
+        "241165e0-622a-491a-9eaf-7f1831b2881c": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.short_description | metafield_tag }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "quantity_dp4pWb": {
+          "type": "quantity",
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "add_buttons_qhrYHm": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "glo_related_products_upsell_app_block_product_XVzdEN": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "disabled": true,
+          "settings": {
+            "widget": "3",
+            "gashortcode": "<div class=\"globo_widget_15187\"></div>"
+          }
+        },
+        "meroxio_zipcode_checker_availibility_LT4eBi": {
+          "type": "shopify://apps/zip-pin-postal-code-checker/blocks/availibility/b355dba7-d415-49dc-8399-11206b10c9ca",
+          "settings": {
+            "input_placeholder": "Enter your pincode...",
+            "input_border_radius": 6,
+            "input_text_color": "#000000",
+            "button_bg_color": "#182d2c",
+            "available_text_color": "#4CAF50",
+            "bg-success-msg": "#E8F9F0",
+            "available_text": "Delivery is available in your area!",
+            "not_available_text_color": "#d32f2f",
+            "bg-wrong-msg": "#ff050529",
+            "not_available_text": "Sorry, we do not deliver to your location.",
+            "enable_border": true,
+            "add_to_cart_default_disabled": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c",
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5",
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb",
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db",
+        "241165e0-622a-491a-9eaf-7f1831b2881c",
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc",
+        "quantity_dp4pWb",
+        "add_buttons_qhrYHm",
+        "glo_related_products_upsell_app_block_product_XVzdEN",
+        "meroxio_zipcode_checker_availibility_LT4eBi"
+      ],
+      "settings": {
+        "layout": "thumbnails-below@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "1657789670c72b08e6": {
+      "type": "apps",
+      "blocks": {
+        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba": {
+          "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
+          "settings": {
+            "default_tab": "tab",
+            "start_tab_element": "h2",
+            "default_tab_title": "DESCRIPTION",
+            "layout": "breakpoint",
+            "layout_breakpoint": 750,
+            "open_first_tab": true,
+            "allow_multiple_open": false,
+            "pro_tabs": true,
+            "initialize_tabs": "immediate",
+            "custom_scripts": ""
+          }
+        }
+      },
+      "block_order": [
+        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba"
+      ],
+      "settings": {
+        "text_color": "text--black",
+        "bg": "palette--light bg--accent",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1be5d3ec-3ab7-41b9-99b9-82226956d58e": {
+      "type": "section-recent-products",
+      "custom_css": [
+        "h2 {font-size: 25px;}",
+        ".product__badge.product__badge--custom {display: none;}",
+        ".ga-label.ga-label_sale {display: none !important;}"
+      ],
+      "settings": {
+        "bg": "palette--light bg--neutral",
+        "product_recently_heading": "Recently viewed products",
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4,
+        "grid_large": 4,
+        "grid_medium": 3,
+        "grid_small": 1.2,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1678991990f8c28e98": {
+      "type": "apps",
+      "blocks": {
+        "b10a4a81-3a79-4485-8363-52455ad72d6b": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "settings": {
+            "widget": "0",
+            "gashortcode": ""
+          }
+        }
+      },
+      "block_order": [
+        "b10a4a81-3a79-4485-8363-52455ad72d6b"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--accent",
+        "width": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1660034676aa97e6d5": {
+      "type": "section-double",
+      "blocks": {
+        "16600346769a5615ee-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "Probotic & Prebiotic Skincare",
+            "title": "Sonnet Wellness",
+            "text": "<p>Sonnet Wellness is a new age wellness brand that is constantly working towards bringing the best of products to cater to your overall health. We leverage the latest wellness technology from around the world and solid craftsmanship to create products so you get only the best of concoctions that increase your overall wellbeing. Our skincare aims to enhance and repair your skin, not to make it filtered & picture perfect.<br/></p>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-center",
+            "button_text": "LEARN MORE",
+            "button_url": "shopify://pages/about-us",
+            "button_color": "btn--neutral",
+            "button_style": "btn--outline btn--long uppercase",
+            "text_color": "text--neutral",
+            "bg_color": "#f9e0d8"
+          }
+        },
+        "07a1c3af-bcb4-41bc-b88b-b9e62228a1d1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cherrydeck-4p77t8fzGFo-unsplash.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "16600346769a5615ee-0",
+        "07a1c3af-bcb4-41bc-b88b-b9e62228a1d1"
+      ],
+      "settings": {
+        "height": "use_pixels_500",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "product_reviews_enable": true,
+        "bg": "palette--light bg--accent",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related": {
+      "type": "related",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "bg": "palette--light bg--neutral",
+        "grid_large": 4,
+        "grid_medium": 3,
+        "grid_small": 1.2,
+        "related_products_enable": true,
+        "limit": 6,
+        "product_recommendations_heading": "Related products",
+        "show_recently_viewed": false,
+        "product_recently_limit": 6,
+        "product_recently_minimum": 6,
+        "product_recently_heading": "Recently viewed",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "166357253247f147d5": {
+      "type": "apps",
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "judgeme_section_review_widget_c103": {
+      "type": "apps",
+      "blocks": {
+        "judgeme_review_widget_87e0eabf": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judgeme_review_widget_87e0eabf"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1657789670c72b08e6",
+    "1be5d3ec-3ab7-41b9-99b9-82226956d58e",
+    "1678991990f8c28e98",
+    "1660034676aa97e6d5",
+    "reviews",
+    "related",
+    "166357253247f147d5",
+    "judgeme_section_review_widget_c103"
+  ]
+}

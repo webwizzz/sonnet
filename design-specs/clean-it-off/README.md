@@ -2,7 +2,7 @@
 
 Source: Figma file `575q58qifMXTxdfNw09mjq`, frame **"CLEAN IT OFF" (node 191:36)**, desktop 1920 × 10294 px.
 Link: https://www.figma.com/design/575q58qifMXTxdfNw09mjq/Untitled?node-id=191-36
-Extracted 2026-10-03. Everything needed to build the sections is stored here, so building them should not need more Figma API calls.
+Extracted 2026-10-03; sections 12–14 added 2026-10-05 (14 from node 203:6168, `figma-raw-node-203-6168.json`) from nodes 203:5492 and 203:5587 (`figma-raw-nodes-203-5492-203-5587.json`). Everything needed to build the sections is stored here, so building them should not need more Figma API calls.
 
 **Ignored on purpose** (per the brief): `Rectangle 1139962724` (191:37), `Group 1321324248` (191:624), `Group 2087329716` (191:947).
 
@@ -37,6 +37,10 @@ Coordinates in `sections/*.md`: **x** is from the 1920 frame's left edge, **y** 
 | 09 | "The science behind the results", % stats | 191:540 | 5244 | `screenshots/09-science.png` |
 | 10 | "Five products. one complete ritual", bundle builder | 191:589 | 6191 | `screenshots/10-bundle-ritual.png` |
 | 11 | "Everything you want to know first", FAQ | 191:886 | 8150 | `screenshots/11-faq.png` |
+| 12 | "Before This Set / After This Set": before/after compare + checklist card (separate frame) | 203:5492 | — | `screenshots/12-set-before-after.png` |
+| 13 | "Your Routine": AM/PM toggle + step cards with play buttons (separate frame) | 203:5587 | — | `screenshots/13-your-routine.png` |
+| 14 | "The System Logic": sticky scroll arc carousel (6 cards, R≈2480px, 10° step; card 4 label in Figma is a copy error → Soak It In Face Cream) | 203:6168 | — | `screenshots/14-system-logic.png` |
+| 15 | "What We Can Promise": trust badges strip (Vegan, Cruelty-free, Made in India, FDA) | 203:5679 | — | `screenshots/15-trust-badges.png` |
 
 ## Page-level tokens
 
@@ -95,6 +99,9 @@ Single-color icons built for recoloring (`currentColor`): `cio-star-filled`, `ci
 | Comparison | cio-check-circle-filled, cio-cross-circle |
 | Science | cio-science-sun-skin, -skin-layers, -drops, -shield-cross, -face-glow |
 | FAQ | cio-faq-plus-circle, cio-faq-minus-circle |
+| Set before/after (12) | cio-badge-x-glyph, cio-badge-check-glyph (currentColor) |
+| Your routine (13) | cio-sun, cio-moon (currentColor) |
+| Trust badges (15) | cio-badge-vegan, cio-badge-cruelty-free, cio-badge-made-in-india (currentColor SVG), cio-badge-fda-approved.png |
 
 ## Images for the customizer (WebP)
 

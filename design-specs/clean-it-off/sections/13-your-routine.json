@@ -1,0 +1,830 @@
+{
+ "slug": "13-your-routine",
+ "title": "Your Routine (AM/PM toggle + step cards with video)",
+ "figmaNodeIds": [
+  "203:5587"
+ ],
+ "frameOffsetY": 0.0,
+ "cropY": [
+  0,
+  778
+ ],
+ "coordsNote": "x relative to 1920px frame left edge; y relative to the top of this section group (frameOffsetY within the full 1920×10294 page frame)",
+ "nodes": [
+  {
+   "id": "203:5587",
+   "name": "Group 2087330705",
+   "type": "GROUP",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1920.0,
+   "h": 778.0,
+   "children": [
+    {
+     "id": "203:5588",
+     "name": "Rectangle 1139962776",
+     "type": "RECTANGLE",
+     "x": 0.0,
+     "y": 0.0,
+     "w": 1920.0,
+     "h": 778.0,
+     "fills": [
+      "#F6F3EE"
+     ]
+    },
+    {
+     "id": "203:5589",
+     "name": "Your Routine",
+     "type": "TEXT",
+     "x": 796.0,
+     "y": 100.0,
+     "w": 329.0,
+     "h": 70.0,
+     "textStyle": {
+      "text": "Your Routine",
+      "font": "Blauer Nue",
+      "postscript": "BlauerNue-Medium",
+      "weight": 500,
+      "size": 58.0,
+      "lineHeightPx": 69.58,
+      "lineHeight": "INTRINSIC_%",
+      "letterSpacing": -1.16,
+      "align": "CENTER",
+      "valign": "TOP",
+      "autoResize": "WIDTH_AND_HEIGHT",
+      "color": [
+       "#28201F"
+      ],
+      "styledRuns": [
+       {
+        "chars": " ",
+        "fontSize": 58.0
+       },
+       {
+        "chars": "Routine",
+        "fontFamily": "Test Tiempos Fine",
+        "fontWeight": 400,
+        "italic": true,
+        "fontSize": 58.0,
+        "lineHeightPx": 70.2959976196289,
+        "letterSpacing": -1.16,
+        "color": [
+         "#28201F"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "203:5590",
+     "name": "Group 2087330701",
+     "type": "GROUP",
+     "x": 100.0,
+     "y": 246.0,
+     "w": 415.0,
+     "h": 432.0,
+     "children": [
+      {
+       "id": "203:5591",
+       "name": "Rectangle 1430107059",
+       "type": "RECTANGLE",
+       "x": 100.0,
+       "y": 246.0,
+       "w": 415.0,
+       "h": 340.0,
+       "fills": [
+        "IMAGE(ref=1a2bc3491ed27972f299f06056d82ef45b0824a8, scaleMode=STRETCH)"
+       ],
+       "radius": 16.0
+      },
+      {
+       "id": "203:5592",
+       "name": "Group 2087330637",
+       "type": "GROUP",
+       "x": 293.0,
+       "y": 401.0,
+       "w": 30.0,
+       "h": 30.0,
+       "children": [
+        {
+         "id": "203:5593",
+         "name": "Ellipse 1332",
+         "type": "ELLIPSE",
+         "x": 293.0,
+         "y": 401.0,
+         "w": 30.0,
+         "h": 30.0,
+         "fills": [
+          "#FFFFFF"
+         ]
+        },
+        {
+         "id": "203:5594",
+         "name": "Polygon 1",
+         "type": "REGULAR_POLYGON",
+         "x": 303.2,
+         "y": 411.2,
+         "w": 9.6,
+         "h": 9.6,
+         "rotation": 1.57,
+         "fills": [
+          "#78563D"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5595",
+       "name": "Group 2087330700",
+       "type": "GROUP",
+       "x": 100.0,
+       "y": 596.0,
+       "w": 371.0,
+       "h": 82.0,
+       "children": [
+        {
+         "id": "203:5596",
+         "name": "Clean It Off Face Wash",
+         "type": "TEXT",
+         "x": 139.0,
+         "y": 600.0,
+         "w": 269.0,
+         "h": 22.0,
+         "textStyle": {
+          "text": "Clean It Off Face Wash",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Bold",
+          "weight": 700,
+          "size": 20.0,
+          "lineHeightPx": 24.38,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.4,
+          "align": "CENTER",
+          "valign": "TOP",
+          "case": "UPPER",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5597",
+         "name": "Removes overnight sebum and surface impurities",
+         "type": "TEXT",
+         "x": 100.0,
+         "y": 634.0,
+         "w": 371.0,
+         "h": 44.0,
+         "textStyle": {
+          "text": "Removes overnight sebum and surface impurities",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Regular",
+          "weight": 400,
+          "size": 16.0,
+          "lineHeightPx": 22.4,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "HEIGHT",
+          "color": [
+           "#28201F @ 80%"
+          ]
+         }
+        },
+        {
+         "id": "203:5598",
+         "name": "01",
+         "type": "TEXT",
+         "x": 100.0,
+         "y": 596.0,
+         "w": 31.0,
+         "h": 38.0,
+         "textStyle": {
+          "text": "01",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-MediumItalic",
+          "weight": 500,
+          "italic": true,
+          "size": 26.0,
+          "lineHeightPx": 31.51,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.52,
+          "align": "LEFT",
+          "valign": "TOP",
+          "color": [
+           "#78563D"
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "203:5599",
+     "name": "Group 2087330703",
+     "type": "GROUP",
+     "x": 970.0,
+     "y": 246.0,
+     "w": 415.0,
+     "h": 432.0,
+     "children": [
+      {
+       "id": "203:5600",
+       "name": "Rectangle 1430107059",
+       "type": "RECTANGLE",
+       "x": 970.0,
+       "y": 246.0,
+       "w": 415.0,
+       "h": 340.0,
+       "fills": [
+        "IMAGE(ref=1a2bc3491ed27972f299f06056d82ef45b0824a8, scaleMode=STRETCH)"
+       ],
+       "radius": 16.0
+      },
+      {
+       "id": "203:5601",
+       "name": "Group 2087330637",
+       "type": "GROUP",
+       "x": 1163.0,
+       "y": 401.0,
+       "w": 30.0,
+       "h": 30.0,
+       "children": [
+        {
+         "id": "203:5602",
+         "name": "Ellipse 1332",
+         "type": "ELLIPSE",
+         "x": 1163.0,
+         "y": 401.0,
+         "w": 30.0,
+         "h": 30.0,
+         "fills": [
+          "#FFFFFF"
+         ]
+        },
+        {
+         "id": "203:5603",
+         "name": "Polygon 1",
+         "type": "REGULAR_POLYGON",
+         "x": 1173.2,
+         "y": 411.2,
+         "w": 9.6,
+         "h": 9.6,
+         "rotation": 1.57,
+         "fills": [
+          "#78563D"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5604",
+       "name": "Group 2087330700",
+       "type": "GROUP",
+       "x": 970.0,
+       "y": 596.0,
+       "w": 371.0,
+       "h": 82.0,
+       "children": [
+        {
+         "id": "203:5605",
+         "name": "Clean It Off Face Wash",
+         "type": "TEXT",
+         "x": 1009.0,
+         "y": 600.0,
+         "w": 269.0,
+         "h": 22.0,
+         "textStyle": {
+          "text": "Clean It Off Face Wash",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Bold",
+          "weight": 700,
+          "size": 20.0,
+          "lineHeightPx": 24.38,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.4,
+          "align": "CENTER",
+          "valign": "TOP",
+          "case": "UPPER",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5606",
+         "name": "Removes overnight sebum and surface impurities",
+         "type": "TEXT",
+         "x": 970.0,
+         "y": 634.0,
+         "w": 371.0,
+         "h": 44.0,
+         "textStyle": {
+          "text": "Removes overnight sebum and surface impurities",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Regular",
+          "weight": 400,
+          "size": 16.0,
+          "lineHeightPx": 22.4,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "HEIGHT",
+          "color": [
+           "#28201F @ 80%"
+          ]
+         }
+        },
+        {
+         "id": "203:5607",
+         "name": "01",
+         "type": "TEXT",
+         "x": 970.0,
+         "y": 596.0,
+         "w": 31.0,
+         "h": 38.0,
+         "textStyle": {
+          "text": "01",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-MediumItalic",
+          "weight": 500,
+          "italic": true,
+          "size": 26.0,
+          "lineHeightPx": 31.51,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.52,
+          "align": "LEFT",
+          "valign": "TOP",
+          "color": [
+           "#78563D"
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "203:5608",
+     "name": "Group 2087330702",
+     "type": "GROUP",
+     "x": 535.0,
+     "y": 246.0,
+     "w": 415.0,
+     "h": 432.0,
+     "children": [
+      {
+       "id": "203:5609",
+       "name": "Rectangle 1430107059",
+       "type": "RECTANGLE",
+       "x": 535.0,
+       "y": 246.0,
+       "w": 415.0,
+       "h": 340.0,
+       "fills": [
+        "IMAGE(ref=2b9aef68d477ec6bad3084bfb42194c1495a1ae7, scaleMode=STRETCH)"
+       ],
+       "radius": 16.0
+      },
+      {
+       "id": "203:5610",
+       "name": "Group 2087330637",
+       "type": "GROUP",
+       "x": 728.0,
+       "y": 401.0,
+       "w": 30.0,
+       "h": 30.0,
+       "children": [
+        {
+         "id": "203:5611",
+         "name": "Ellipse 1332",
+         "type": "ELLIPSE",
+         "x": 728.0,
+         "y": 401.0,
+         "w": 30.0,
+         "h": 30.0,
+         "fills": [
+          "#FFFFFF"
+         ]
+        },
+        {
+         "id": "203:5612",
+         "name": "Polygon 1",
+         "type": "REGULAR_POLYGON",
+         "x": 738.2,
+         "y": 411.2,
+         "w": 9.6,
+         "h": 9.6,
+         "rotation": 1.57,
+         "fills": [
+          "#78563D"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5613",
+       "name": "Group 2087330700",
+       "type": "GROUP",
+       "x": 535.0,
+       "y": 596.0,
+       "w": 367.0,
+       "h": 82.0,
+       "children": [
+        {
+         "id": "203:5614",
+         "name": "Soak It In Face Cream",
+         "type": "TEXT",
+         "x": 574.0,
+         "y": 600.0,
+         "w": 269.0,
+         "h": 22.0,
+         "textStyle": {
+          "text": "Soak It In Face Cream",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Bold",
+          "weight": 700,
+          "size": 20.0,
+          "lineHeightPx": 24.38,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.4,
+          "align": "LEFT",
+          "valign": "TOP",
+          "case": "UPPER",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5615",
+         "name": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 634.0,
+         "w": 367.0,
+         "h": 44.0,
+         "textStyle": {
+          "text": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Regular",
+          "weight": 400,
+          "size": 16.0,
+          "lineHeightPx": 22.4,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "HEIGHT",
+          "color": [
+           "#28201F @ 80%"
+          ]
+         }
+        },
+        {
+         "id": "203:5616",
+         "name": "02",
+         "type": "TEXT",
+         "x": 535.0,
+         "y": 596.0,
+         "w": 31.0,
+         "h": 38.0,
+         "textStyle": {
+          "text": "02",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-MediumItalic",
+          "weight": 500,
+          "italic": true,
+          "size": 26.0,
+          "lineHeightPx": 31.51,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.52,
+          "align": "LEFT",
+          "valign": "TOP",
+          "color": [
+           "#78563D"
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "203:5617",
+     "name": "Group 2087330704",
+     "type": "GROUP",
+     "x": 1405.0,
+     "y": 246.0,
+     "w": 415.0,
+     "h": 432.0,
+     "children": [
+      {
+       "id": "203:5618",
+       "name": "Rectangle 1430107059",
+       "type": "RECTANGLE",
+       "x": 1405.0,
+       "y": 246.0,
+       "w": 415.0,
+       "h": 340.0,
+       "fills": [
+        "IMAGE(ref=2b9aef68d477ec6bad3084bfb42194c1495a1ae7, scaleMode=STRETCH)"
+       ],
+       "radius": 16.0
+      },
+      {
+       "id": "203:5619",
+       "name": "Group 2087330637",
+       "type": "GROUP",
+       "x": 1598.0,
+       "y": 401.0,
+       "w": 30.0,
+       "h": 30.0,
+       "children": [
+        {
+         "id": "203:5620",
+         "name": "Ellipse 1332",
+         "type": "ELLIPSE",
+         "x": 1598.0,
+         "y": 401.0,
+         "w": 30.0,
+         "h": 30.0,
+         "fills": [
+          "#FFFFFF"
+         ]
+        },
+        {
+         "id": "203:5621",
+         "name": "Polygon 1",
+         "type": "REGULAR_POLYGON",
+         "x": 1608.2,
+         "y": 411.2,
+         "w": 9.6,
+         "h": 9.6,
+         "rotation": 1.57,
+         "fills": [
+          "#78563D"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5622",
+       "name": "Group 2087330700",
+       "type": "GROUP",
+       "x": 1405.0,
+       "y": 596.0,
+       "w": 367.0,
+       "h": 82.0,
+       "children": [
+        {
+         "id": "203:5623",
+         "name": "Soak It In Face Cream",
+         "type": "TEXT",
+         "x": 1444.0,
+         "y": 600.0,
+         "w": 269.0,
+         "h": 22.0,
+         "textStyle": {
+          "text": "Soak It In Face Cream",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Bold",
+          "weight": 700,
+          "size": 20.0,
+          "lineHeightPx": 24.38,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.4,
+          "align": "LEFT",
+          "valign": "TOP",
+          "case": "UPPER",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5624",
+         "name": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
+         "type": "TEXT",
+         "x": 1405.0,
+         "y": 634.0,
+         "w": 367.0,
+         "h": 44.0,
+         "textStyle": {
+          "text": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Regular",
+          "weight": 400,
+          "size": 16.0,
+          "lineHeightPx": 22.4,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.32,
+          "align": "LEFT",
+          "valign": "TOP",
+          "autoResize": "HEIGHT",
+          "color": [
+           "#28201F @ 80%"
+          ]
+         }
+        },
+        {
+         "id": "203:5625",
+         "name": "02",
+         "type": "TEXT",
+         "x": 1405.0,
+         "y": 596.0,
+         "w": 31.0,
+         "h": 38.0,
+         "textStyle": {
+          "text": "02",
+          "font": "Test Tiempos Fine",
+          "postscript": "TestTiemposFine-MediumItalic",
+          "weight": 500,
+          "italic": true,
+          "size": 26.0,
+          "lineHeightPx": 31.51,
+          "lineHeight": "INTRINSIC_%",
+          "letterSpacing": -0.52,
+          "align": "LEFT",
+          "valign": "TOP",
+          "color": [
+           "#78563D"
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "203:5626",
+     "name": "Group 2087329720",
+     "type": "GROUP",
+     "x": 887.0,
+     "y": 188.0,
+     "w": 146.0,
+     "h": 28.0,
+     "children": [
+      {
+       "id": "203:5627",
+       "name": "Group 2087329718",
+       "type": "GROUP",
+       "x": 887.0,
+       "y": 188.0,
+       "w": 64.0,
+       "h": 28.0,
+       "children": [
+        {
+         "id": "203:5628",
+         "name": "AM",
+         "type": "TEXT",
+         "x": 917.0,
+         "y": 188.0,
+         "w": 34.0,
+         "h": 28.0,
+         "textStyle": {
+          "text": "AM",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Medium",
+          "weight": 500,
+          "size": 20.0,
+          "lineHeightPx": 28.0,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.4,
+          "align": "CENTER",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5629",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 887.0,
+         "y": 190.0,
+         "w": 24.0,
+         "h": 24.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "203:5630",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 887.0,
+           "y": 190.0,
+           "w": 24.0,
+           "h": 22.33,
+           "children": [
+            {
+             "id": "203:5631",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 887.0,
+             "y": 190.0,
+             "w": 24.0,
+             "h": 16.8,
+             "fills": [
+              "#28201F"
+             ]
+            },
+            {
+             "id": "203:5632",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 887.0,
+             "y": 206.19,
+             "w": 24.0,
+             "h": 6.14,
+             "fills": [
+              "#28201F"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "203:5633",
+       "name": "Group 2087329719",
+       "type": "GROUP",
+       "x": 971.0,
+       "y": 188.0,
+       "w": 62.0,
+       "h": 28.0,
+       "children": [
+        {
+         "id": "203:5634",
+         "name": "PM",
+         "type": "TEXT",
+         "x": 1000.0,
+         "y": 188.0,
+         "w": 33.0,
+         "h": 28.0,
+         "textStyle": {
+          "text": "PM",
+          "font": "Montserrat",
+          "postscript": "Montserrat-Medium",
+          "weight": 500,
+          "size": 20.0,
+          "lineHeightPx": 28.0,
+          "lineHeight": "140.0%",
+          "letterSpacing": -0.4,
+          "align": "CENTER",
+          "valign": "TOP",
+          "autoResize": "WIDTH_AND_HEIGHT",
+          "color": [
+           "#28201F"
+          ]
+         }
+        },
+        {
+         "id": "203:5635",
+         "name": "Frame",
+         "type": "FRAME",
+         "x": 971.0,
+         "y": 190.0,
+         "w": 24.0,
+         "h": 24.0,
+         "clips": true,
+         "children": [
+          {
+           "id": "203:5636",
+           "name": "Group",
+           "type": "GROUP",
+           "x": 974.31,
+           "y": 193.0,
+           "w": 17.38,
+           "h": 18.0,
+           "children": [
+            {
+             "id": "203:5637",
+             "name": "Vector",
+             "type": "VECTOR",
+             "x": 974.31,
+             "y": 193.0,
+             "w": 17.38,
+             "h": 18.0,
+             "fills": [
+              "#28201F"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
