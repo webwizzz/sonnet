@@ -1,0 +1,547 @@
+{%- comment -%}
+  Comparison table: "What makes it different from others"
+  Design: design-specs/clean-it-off/sections/08-comparison.md (Figma 191:484)
+  Desktop (>1440): Figma layout, heading in the first column.
+  1101–1440: heading above the table, tighter columns.
+  ≤1100: transposed list (one row per feature, brand + competitor columns).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign feature_count = section.blocks.size
+  assign text_color = s.color_text | default: '#28201F'
+  assign tint_divider = text_color | color_modify: 'alpha', 0.1
+  assign tint_footnote = text_color | color_modify: 'alpha', 0.75
+  assign heading_id = 'Cmp-heading-' | append: section.id
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --cmp-n: {{ feature_count | at_least: 1 }};
+  --cmp-bg: {{ s.color_background }};
+  --cmp-card: {{ s.color_card }};
+  --cmp-text: {{ text_color }};
+  --cmp-divider: {{ tint_divider }};
+  --cmp-footnote: {{ tint_footnote }};
+  --cmp-yes-bg: {{ s.color_check_bg }};
+  --cmp-yes-icon: {{ s.color_check_icon }};
+  --cmp-no-bg: {{ s.color_cross_bg }};
+  --cmp-no-icon: {{ s.color_cross_icon }};
+  --cmp-radius: {{ s.card_radius }}px;
+  --cmp-h-num: {{ s.heading_size }};
+  --cmp-h: {{ s.heading_size }}px;
+  --cmp-h-m: {{ s.heading_size_mobile }}px;
+  background-color: var(--cmp-bg);
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.cmp { color: var(--cmp-text); }
+.cmp *, .cmp *::before, .cmp *::after { box-sizing: border-box; }
+.cmp__card {
+  background: var(--cmp-card);
+  border-radius: var(--cmp-radius);
+  padding:
+    clamp(48px, calc(75 * 100vw / 1920), 75px)
+    clamp(32px, calc(100 * 100vw / 1920), 100px)
+    clamp(40px, calc(77 * 100vw / 1920), 77px);
+}
+.cmp__sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Heading: Blauer Nue MD 500 40/48 -0.02em; italic run Tiempos Fine Italic RG 400 */
+.cmp .cmp__heading {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--cmp-h-m), calc(var(--cmp-h-num) * 100vw / 1920), var(--cmp-h));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--cmp-text);
+  text-transform: none;
+}
+.cmp .cmp__heading p { margin: 0; font: inherit; letter-spacing: inherit; }
+.cmp .cmp__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.212;
+}
+.cmp--em-break .cmp__heading em { display: block; }
+
+/* ---------- Desktop table ---------- */
+.cmp__table {
+  --cmp-col: 140px;
+  --cmp-first-min: 340px;
+  --cmp-gap: clamp(24px, calc(70 * 100vw / 1920), 70px);
+}
+.cmp__head,
+.cmp__row {
+  display: grid;
+  /* Feature columns are 140px (Figma) but give way before the brand/heading column does */
+  grid-template-columns: minmax(var(--cmp-first-min), 1fr) repeat(var(--cmp-n), minmax(0, var(--cmp-col)));
+  column-gap: var(--cmp-gap);
+}
+.cmp__head { align-items: end; }
+.cmp__head-title {
+  align-self: start;
+  padding-bottom: 20px;
+}
+.cmp__label {
+  padding-bottom: 40px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-align: center;
+  hyphens: manual;
+}
+.cmp__row:first-child { border-top: 1px solid var(--cmp-divider); }
+.cmp__row {
+  align-items: center;
+  min-height: 119px;
+  border-bottom: 1px solid var(--cmp-divider);
+}
+.cmp__cell { display: flex; justify-content: center; align-items: center; }
+
+/* Brand cells */
+.cmp__brand { display: flex; align-items: center; min-width: 0; }
+.cmp__brand--ours { gap: 35px; padding-left: 19px; }
+.cmp__brand--theirs { gap: 7px; }
+.cmp__tube {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  height: 71px;
+}
+.cmp__tube img { position: relative; z-index: 1; display: block; height: 71px; width: auto; }
+/* Soft floor shadow under the tube (Figma Ellipse 1334: radial gradient @40%, layer blur 4) */
+.cmp__tube::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: 3px;
+  bottom: 1px;
+  width: 22px;
+  height: 7.4px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.4));
+  filter: blur(4px);
+}
+.cmp__logo { flex: none; display: block; width: 110px; height: 59px; object-fit: contain; }
+.cmp__brand-name {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.cmp__bottle { flex: none; display: block; width: 65px; height: 65px; object-fit: cover; }
+/* Figma: bottle sits 23px from the row top and 31px from the bottom (4px above centre) */
+.cmp__brand--theirs .cmp__bottle { transform: translateY(-4px); }
+.cmp__competitor {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Status icons: 28px circles; check stroke 1.5, cross stroke 1 (as designed) */
+.cmp__icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+}
+.cmp__icon svg { display: block; width: 100%; height: 100%; }
+.cmp__icon--yes { background: var(--cmp-yes-bg); color: var(--cmp-yes-icon); }
+.cmp__icon--no { background: var(--cmp-no-bg); color: var(--cmp-no-icon); }
+
+.cmp .cmp__footnote {
+  margin: 16px 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--cmp-footnote);
+}
+
+/* ---------- Transposed list (≤1100) ---------- */
+.cmp__list { display: none; }
+.cmp__list-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--cmp-lcol) var(--cmp-lcol);
+  column-gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--cmp-divider);
+}
+.cmp__list { --cmp-lcol: 132px; }
+.cmp__list-head { padding-bottom: 16px; align-items: end; }
+.cmp__list-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  text-align: center;
+  min-width: 0;
+}
+.cmp__list-brand img { display: block; max-width: 100%; }
+.cmp__list-logo { width: 100px; height: 54px; object-fit: contain; }
+.cmp__list-tube { height: 54px; width: auto; }
+.cmp__list-bottle { width: 54px; height: 54px; object-fit: cover; }
+.cmp__list-brand .cmp__competitor,
+.cmp__list-brand .cmp__brand-name { font-size: 13px; }
+.cmp__list-body .cmp__list-row { min-height: 64px; }
+.cmp__list-label {
+  padding: 12px 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Breakpoints ---------- */
+@media screen and (max-width: 1440px) {
+  .cmp__table { --cmp-col: 120px; --cmp-first-min: 200px; --cmp-gap: clamp(16px, calc(48 * 100vw / 1920), 48px); }
+  .cmp__head-title { grid-column: 1 / -1; padding-bottom: 32px; }
+  .cmp__head .cmp__label:nth-child(2) { grid-column-start: 2; }
+  .cmp__label { font-size: 14px; padding-bottom: 24px; }
+}
+/* 6 features need more room: switch layouts earlier */
+@media screen and (min-width: 1441px) and (max-width: 1700px) {
+  .cmp--many .cmp__table { --cmp-col: 120px; --cmp-first-min: 200px; --cmp-gap: clamp(16px, calc(48 * 100vw / 1920), 48px); }
+  .cmp--many .cmp__head-title { grid-column: 1 / -1; padding-bottom: 32px; }
+  .cmp--many .cmp__head .cmp__label:nth-child(2) { grid-column-start: 2; }
+  .cmp--many .cmp__label { font-size: 14px; padding-bottom: 24px; }
+}
+@media screen and (min-width: 1101px) and (max-width: 1280px) {
+  .cmp--many .cmp__table { display: none; }
+  .cmp--many .cmp__list { display: block; }
+  .cmp--many .cmp__list-heading { margin-bottom: 32px; }
+}
+@media screen and (max-width: 1100px) {
+  .cmp__table { display: none; }
+  .cmp__list { display: block; }
+  .cmp__list-heading { margin-bottom: 32px; }
+}
+@media screen and (max-width: 768px) {
+  .cmp__card {
+    border-radius: min(var(--cmp-radius), 16px);
+    padding: 32px 16px 28px;
+  }
+  .cmp .cmp__heading { font-size: var(--cmp-h-m); }
+  .cmp__list { --cmp-lcol: 76px; }
+  .cmp__list-row { column-gap: 8px; }
+  .cmp__list-heading { margin-bottom: 24px; }
+  .cmp__list-logo { width: 76px; height: 41px; }
+  .cmp__list-tube { height: 44px; }
+  .cmp__list-bottle { width: 44px; height: 44px; }
+  .cmp__list-brand .cmp__competitor,
+  .cmp__list-brand .cmp__brand-name { font-size: 11px; }
+  .cmp__list-body .cmp__list-row { min-height: 56px; }
+  .cmp__list-label { font-size: 14px; }
+  .cmp__list .cmp__icon { width: 24px; height: 24px; }
+  .cmp .cmp__footnote { font-size: 12px; }
+}
+.cmp__empty {
+  padding: 24px;
+  border: 1px dashed var(--cmp-divider);
+  border-radius: 12px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+{% endstyle %}
+
+{%- capture icon_yes -%}
+  <span class="cmp__icon cmp__icon--yes">{{ 'cio-check-glyph.svg' | inline_asset_content }}</span><span class="cmp__sr">{{ s.yes_label | escape }}</span>
+{%- endcapture -%}
+{%- capture icon_no -%}
+  <span class="cmp__icon cmp__icon--no">{{ 'cio-cross-glyph.svg' | inline_asset_content }}</span><span class="cmp__sr">{{ s.no_label | escape }}</span>
+{%- endcapture -%}
+
+{%- liquid
+  assign brand_alt = s.brand_name | escape
+-%}
+
+{%- capture heading_html -%}
+  {%- if s.heading != blank -%}
+    <h2 class="cmp__heading" id="{{ heading_id }}">{{ s.heading }}</h2>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture brand_ours -%}
+  {%- if s.brand_image != blank -%}
+    <span class="cmp__tube">
+      {{- s.brand_image | image_url: width: 180 | image_tag: widths: '60, 120, 180', sizes: '27px', loading: 'lazy', alt: brand_alt -}}
+    </span>
+  {%- endif -%}
+  {%- if s.brand_logo != blank -%}
+    {{- s.brand_logo | image_url: width: 330 | image_tag: class: 'cmp__logo', widths: '110, 220, 330', sizes: '110px', loading: 'lazy', alt: brand_alt -}}
+  {%- elsif s.brand_name != blank -%}
+    <span class="cmp__brand-name">{{ s.brand_name | escape }}</span>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture brand_theirs -%}
+  {%- if s.competitor_image != blank -%}
+    {{- s.competitor_image | image_url: width: 195 | image_tag: class: 'cmp__bottle', widths: '65, 130, 195', sizes: '65px', loading: 'lazy', alt: '' -}}
+  {%- endif -%}
+  {%- if s.competitor_label != blank -%}
+    <span class="cmp__competitor">{{ s.competitor_label | escape }}</span>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if feature_count > 0 -%}
+<div class="cmp{% if s.italic_new_line %} cmp--em-break{% endif %}{% if feature_count > 5 %} cmp--many{% endif %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}">
+  <div class="main-container">
+    <div class="cmp__card">
+
+      {%- comment -%} Desktop / tablet table {%- endcomment -%}
+      <div class="cmp__table" role="table"{% if s.heading != blank %} aria-labelledby="{{ heading_id }}"{% endif %}>
+        <div class="cmp__head" role="row">
+          <div class="cmp__head-title" role="columnheader">
+            {{ heading_html }}
+            <span class="cmp__sr">{{ s.brand_column_label | escape }}</span>
+          </div>
+          {%- for block in section.blocks -%}
+            <div class="cmp__label" role="columnheader" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</div>
+          {%- endfor -%}
+        </div>
+        <div class="cmp__body" role="rowgroup">
+          <div class="cmp__row" role="row">
+            <div class="cmp__brand cmp__brand--ours" role="rowheader">
+              {{ brand_ours }}
+              {%- if s.brand_logo != blank or s.brand_image != blank -%}<span class="cmp__sr">{{ s.brand_name | escape }}</span>{%- endif -%}
+            </div>
+            {%- for block in section.blocks -%}
+              <div class="cmp__cell" role="cell">{% if block.settings.brand_has %}{{ icon_yes }}{% else %}{{ icon_no }}{% endif %}</div>
+            {%- endfor -%}
+          </div>
+          <div class="cmp__row" role="row">
+            <div class="cmp__brand cmp__brand--theirs" role="rowheader">{{ brand_theirs }}</div>
+            {%- for block in section.blocks -%}
+              <div class="cmp__cell" role="cell">{% if block.settings.competitor_has %}{{ icon_yes }}{% else %}{{ icon_no }}{% endif %}</div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Transposed list for ≤1100px (the table above is display:none there) {%- endcomment -%}
+      <div class="cmp__list">
+        {%- if s.heading != blank -%}
+          <div class="cmp__list-heading">
+            <h2 class="cmp__heading" id="{{ heading_id }}-m">{{ s.heading }}</h2>
+          </div>
+        {%- endif -%}
+        <div role="table"{% if s.heading != blank %} aria-labelledby="{{ heading_id }}-m"{% endif %}>
+          <div class="cmp__list-row cmp__list-head" role="row">
+            <span role="columnheader"><span class="cmp__sr">{{ s.feature_column_label | escape }}</span></span>
+            <div class="cmp__list-brand" role="columnheader">
+              {%- if s.brand_logo != blank -%}
+                {{- s.brand_logo | image_url: width: 300 | image_tag: class: 'cmp__list-logo', widths: '100, 200, 300', sizes: '100px', loading: 'lazy', alt: brand_alt -}}
+              {%- elsif s.brand_image != blank -%}
+                {{- s.brand_image | image_url: width: 120 | image_tag: class: 'cmp__list-tube', widths: '40, 80, 120', sizes: '21px', loading: 'lazy', alt: brand_alt -}}
+              {%- else -%}
+                <span class="cmp__brand-name">{{ s.brand_name | escape }}</span>
+              {%- endif -%}
+            </div>
+            <div class="cmp__list-brand" role="columnheader">
+              {%- if s.competitor_image != blank -%}
+                {{- s.competitor_image | image_url: width: 162 | image_tag: class: 'cmp__list-bottle', widths: '54, 108, 162', sizes: '54px', loading: 'lazy', alt: '' -}}
+              {%- endif -%}
+              <span class="cmp__competitor">{{ s.competitor_label | escape }}</span>
+            </div>
+          </div>
+          <div class="cmp__list-body" role="rowgroup">
+            {%- for block in section.blocks -%}
+              <div class="cmp__list-row" role="row">
+                <div class="cmp__list-label" role="rowheader">{{ block.settings.label | escape }}</div>
+                <div class="cmp__cell" role="cell">{% if block.settings.brand_has %}{{ icon_yes }}{% else %}{{ icon_no }}{% endif %}</div>
+                <div class="cmp__cell" role="cell">{% if block.settings.competitor_has %}{{ icon_yes }}{% else %}{{ icon_no }}{% endif %}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+
+      {%- if s.footnote != blank -%}
+        <p class="cmp__footnote">{{ s.footnote | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{%- elsif request.design_mode -%}
+<div class="cmp">
+  <div class="main-container">
+    <div class="cmp__card">
+      {{ heading_html }}
+      <p class="cmp__empty">Add a feature block to build the comparison table.</p>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "tag": "section",
+  "class": "cmp-section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use italic for the serif part, e.g. \"different from others\".",
+      "default": "<p>What makes it <em>different from others</em></p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "italic_new_line",
+      "label": "Put italic text on its own line",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    { "type": "text", "id": "footnote", "label": "Footnote", "default": "*Comparison based on leading industry competitors" },
+    { "type": "header", "content": "Your brand row" },
+    { "type": "image_picker", "id": "brand_image", "label": "Product image", "info": "Tall product shot with a transparent background, shown at 71px high." },
+    { "type": "image_picker", "id": "brand_logo", "label": "Logo", "info": "Shown at 110 × 59px. Crop it to the artwork." },
+    { "type": "text", "id": "brand_name", "label": "Brand name", "info": "Used as alt text, and shown when no logo is set.", "default": "Sonnet Wellness" },
+    { "type": "header", "content": "Competitor row" },
+    { "type": "image_picker", "id": "competitor_image", "label": "Competitor image", "info": "Shown at 65 × 65px." },
+    { "type": "text", "id": "competitor_label", "label": "Competitor label", "default": "Other brands" },
+    { "type": "header", "content": "Accessibility" },
+    { "type": "text", "id": "yes_label", "label": "Screen reader text for a check", "default": "Included" },
+    { "type": "text", "id": "no_label", "label": "Screen reader text for a cross", "default": "Not included" },
+    { "type": "text", "id": "brand_column_label", "label": "Screen reader name of the brand column", "default": "Brand" },
+    { "type": "text", "id": "feature_column_label", "label": "Screen reader name of the feature column (mobile)", "default": "Feature" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Section background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_card", "label": "Card background", "default": "#F5EEE6" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_check_bg", "label": "Check circle", "default": "#78563D" },
+    { "type": "color", "id": "color_check_icon", "label": "Check mark", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_cross_bg", "label": "Cross circle", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_cross_icon", "label": "Cross mark", "default": "#28201F" },
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Feature", "default": "Live postbiotic actives" },
+        { "type": "checkbox", "id": "brand_has", "label": "Your brand has it", "default": true },
+        { "type": "checkbox", "id": "competitor_has", "label": "Competitors have it", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        { "type": "feature", "settings": { "label": "Live postbiotic actives" } },
+        { "type": "feature", "settings": { "label": "Coconut-Derived Co-Surfactant" } },
+        { "type": "feature", "settings": { "label": "No Parabens or Phthalates" } },
+        { "type": "feature", "settings": { "label": "Dermatologically Tested" } },
+        { "type": "feature", "settings": { "label": "Microbiome-Friendly Formula" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

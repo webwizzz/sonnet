@@ -85,9 +85,12 @@
   --wly-u: clamp(0.5px, min(calc(100vw / 1920), calc(var(--wly-vh) / 960)), 1px);
   --wly-px: calc(130 * var(--wly-u));
   --wly-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  /* Incoming element i starts at in + i*stagger; outgoing element i is fully transparent by then. */
-  --wly-in: 180ms;
-  --wly-stagger: 65ms;
+  /* Text swap, sequenced: every outgoing element fades (out + i * out-stagger) before the first
+     incoming element starts at --wly-in (= out + 3 * out-stagger), so the two never overlap. */
+  --wly-out: 200ms;
+  --wly-out-stagger: 30ms;
+  --wly-in: 290ms;
+  --wly-stagger: 60ms;
   color: var(--wly-text);
   background-color: var(--wly-bg);
 }
@@ -111,6 +114,14 @@
   height: var(--wly-vh);
   overflow: hidden;
   isolation: isolate;
+}
+/* Header set to "sticky only when scrolling up" (auto offset): the theme keeps --menu-height-sticky at 0,
+   so we pin at the top and move down with the header (same timing as theme.css) while it is shown.
+   Only `top` changes: the track height and the scroll-progress maths stay the same. */
+.wly--hdr-dir .wly__sticky { transition: top 0.2s linear; }
+.wly--hdr-dir.wly--hdr-in .wly__sticky {
+  top: calc(var(--wly-top) + var(--menu-height, 0px));
+  transition: top 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 /* Full-bleed 50/50 split */
@@ -398,20 +409,20 @@
   transform: translate3d(0, 0, 0);
   filter: blur(0);
   transition:
-    opacity 0.5s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
-    transform 0.6s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
-    filter 0.5s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger));
+    opacity 0.45s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
+    transform 0.55s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger)),
+    filter 0.45s var(--wly-ease) calc(var(--wly-in) + var(--i) * var(--wly-stagger));
 }
-/* Out: ease-out travel so most of the 16px happens while the element is still visible; opacity is
-   gone within --wly-in, so outgoing and incoming text never overlap (no double exposure). */
+/* Out: ease-out travel, so most of the 16px happens while the element is still visible, and an
+   ease-in fade that is complete before --wly-in (no double exposure with the incoming text). */
 .wly .wly__slide.is-leaving > * {
   opacity: 0;
   transform: translate3d(0, -16px, 0);
   filter: blur(4px);
   transition:
-    opacity 0.18s cubic-bezier(0.4, 0, 1, 1) calc(var(--i) * var(--wly-stagger)),
-    transform 0.3s var(--wly-ease) calc(var(--i) * var(--wly-stagger)),
-    filter 0.18s ease calc(var(--i) * var(--wly-stagger));
+    opacity var(--wly-out) cubic-bezier(0.4, 0, 0.9, 0.6) calc(var(--i) * var(--wly-out-stagger)),
+    transform 0.32s var(--wly-ease) calc(var(--i) * var(--wly-out-stagger)),
+    filter var(--wly-out) ease-in calc(var(--i) * var(--wly-out-stagger));
 }
 /* Scrolling back up: mirror the motion (incoming drops in from above, outgoing leaves downward). */
 .wly--back:not(.wly--text-fade):not(.wly--rm) .wly__slide:not(.is-active):not(.is-leaving) > * { transform: translate3d(0, -24px, 0); }
@@ -665,7 +676,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wly { --wly-in: 150ms; --wly-stagger: 0ms; }
+  .wly { --wly-out: 150ms; --wly-out-stagger: 0ms; --wly-in: 150ms; --wly-stagger: 0ms; }
   .wly .wly__slide > *,
   .wly .wly__slide.is-active > *,
   .wly .wly__slide.is-leaving > * {
@@ -673,7 +684,7 @@
     filter: none;
   }
   .wly .wly__slide.is-active > * { transition: opacity 0.35s ease var(--wly-in); }
-  .wly .wly__slide.is-leaving > * { transition: opacity 0.15s linear; }
+  .wly .wly__slide.is-leaving > * { transition: opacity var(--wly-out) linear; }
   .wly .wly__num { transition: none; }
   .wly .wly__badge { transition: none; }
 }
@@ -720,7 +731,8 @@
   data-section-id="{{ section.id }}"
   data-zoom="{{ s.zoom_start | default: 125 }}"
   data-mobile-anim="{{ s.enable_mobile_animation }}"
-  {% if is_scroll %}role="region" aria-roledescription="carousel" aria-label="{{ heading_label | default: 'Slides' }}"{% endif %}
+  data-offset-mode="{{ s.sticky_offset_mode | default: 'auto' | escape }}"
+  {% if is_scroll %}role="region" aria-roledescription="carousel" aria-label="{{ heading_text | default: 'Slides' | escape }}"{% endif %}
 >
   <div class="wly__track" data-wly-track>
     <div class="wly__sticky" data-wly-sticky>
@@ -731,7 +743,7 @@
             {%- if block_count == 0 -%}
               <div class="wly__layer" data-wly-layer style="--i: 0">
                 {%- if s.image != blank -%}
-                  {{- s.image | image_url: width: 1920 | image_tag: widths: image_widths, sizes: image_sizes, loading: 'lazy', alt: heading_label, draggable: 'false' -}}
+                  {{- s.image | image_url: width: 1920 | image_tag: widths: image_widths, sizes: image_sizes, loading: 'lazy', alt: heading_text, draggable: 'false' -}}
                 {%- else -%}
                   {{- 'lifestyle-1' | placeholder_svg_tag: 'wly-placeholder' -}}
                 {%- endif -%}
@@ -753,7 +765,7 @@
                 if b_img.presentation.focal_point != blank
                   assign fp_style = 'object-position: ' | append: b_img.presentation.focal_point
                 endif
-                assign alt_text = b_img.alt | default: block.settings.label | default: heading_label
+                assign alt_text = b_img.alt | default: block.settings.label | default: heading_text
               -%}
               <div
                 class="wly__layer"
@@ -909,6 +921,7 @@
         this.count = this.slides.length;
         this.zoom = clamp((parseFloat(root.getAttribute('data-zoom')) || 125) / 100, 1, 1.5);
         this.mobileList = root.getAttribute('data-mobile-anim') === 'false';
+        this.autoOffset = root.getAttribute('data-offset-mode') !== 'custom';
         this.index = 0;
         this.rp = 0; // rendered progress
         this.target = 0; // progress from the scroll position
@@ -976,11 +989,32 @@
         this.offs.push(onMq(this.mqShort, function () { self.applyMode(); }));
         if (this.badge) this.on(this.badge, 'click', function () { self.next(); });
         // Theme editor: sections moved / another section re-rendered can shift us without a resize.
-        var relayout = function () { self.remeasure(); };
+        var relayout = function () { self.hookHeader(); self.remeasure(); };
         this.on(D, 'shopify:section:reorder', relayout);
         this.on(D, 'shopify:section:load', relayout);
         this.on(D, 'shopify:section:unload', relayout);
         this.hookLenis();
+        this.hookHeader();
+      };
+
+      // Directional header ("sticky only when scrolling up"): follow its shown / hidden state, which the
+      // theme toggles with a class on the header wrapper. Event-driven (MutationObserver), not per frame.
+      WLY.prototype.hookHeader = function () {
+        var self = this;
+        if (this.hmo) { this.hmo.disconnect(); this.hmo = null; }
+        var hdr = this.autoOffset ? D.querySelector('[data-header-sticky="directional"]') : null;
+        this.hdr = hdr;
+        this.root.classList.toggle('wly--hdr-dir', !!hdr);
+        this.syncHeader();
+        if (hdr && 'MutationObserver' in W) {
+          this.hmo = new MutationObserver(function () { self.syncHeader(); });
+          this.hmo.observe(hdr, { attributes: true, attributeFilter: ['class'] });
+        }
+      };
+
+      WLY.prototype.syncHeader = function () {
+        var shown = !!(this.hdr && this.mode === 'scroll' && this.hdr.classList.contains('js__header__stuck--trigger-animation'));
+        this.root.classList.toggle('wly--hdr-in', shown);
       };
 
       // window.lenis is created by a deferred script in layout/theme.liquid, possibly after we boot.
@@ -1017,6 +1051,10 @@
 
       WLY.prototype.measure = function () {
         var top = parseFloat(W.getComputedStyle(this.sticky).top);
+        if (this.root.classList.contains('wly--hdr-dir')) {
+          // Progress uses the resting offset, not the (possibly transitioning) one of the directional header.
+          top = parseFloat(W.getComputedStyle(this.root).getPropertyValue('--wly-top'));
+        }
         var r = this.track.getBoundingClientRect();
         var th = this.track.offsetHeight;
         var sh = this.sticky.offsetHeight;
@@ -1259,6 +1297,7 @@
         this.reduce = !!(this.mqReduce && this.mqReduce.matches);
         this.root.classList.toggle('wly--rm', this.reduce);
         this.mode = mode;
+        this.syncHeader();
         if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
         this.resetLayers();
         if (mode === 'list') {
@@ -1344,6 +1383,8 @@
         if (this.ro) this.ro.disconnect();
         if (this.io) this.io.disconnect();
         if (this.pio) this.pio.disconnect();
+        if (this.hmo) this.hmo.disconnect();
+        this.root.classList.remove('wly--hdr-in', 'wly--hdr-dir');
         self.raf = self.mrq = 0;
       };
 
@@ -1520,7 +1561,7 @@
         { "value": "custom", "label": "Custom offset" }
       ],
       "default": "auto",
-      "info": "Automatic uses the header height when the header is set to sticky, otherwise 0."
+      "info": "Automatic pins below the header when it is set to sticky. With 'sticky only when scrolling up', the slides move down with the header while it is shown. Otherwise 0."
     },
     {
       "type": "range",
@@ -1696,28 +1737,28 @@
         {
           "type": "slide",
           "settings": {
-            "label": "Offsets the drying effect of cleansing",
+            "label": "Keeps skin comfortable after every rinse",
             "stat": "6%",
-            "stat_caption": "Glycerin",
-            "body": "Glycerin helps offset the drying effect of cleansing on skin comfort."
+            "stat_caption": "Glycerin — post-rinse skin comfort",
+            "body": "Glycerin draws moisture toward the skin surface during cleansing — actively fighting the drying effect of surfactants so skin feels hydrated, not depleted."
           }
         },
         {
           "type": "slide",
           "settings": {
-            "label": "Soothed and comfortable skin",
+            "label": "Soothes skin through the cleansing step",
             "stat": "5%",
-            "stat_caption": "Aloe Barbadensis",
-            "body": "Aloe Barbadensis helps skin feel soothed and comfortable in the cleansing step."
+            "stat_caption": "Aloe Barbadensis Leaf Juice — soothing humectant",
+            "body": "Aloe works during the wash itself. Helps reduce the inflammatory response cleansing triggers on reactive skin — every morning and evening."
           }
         },
         {
           "type": "slide",
           "settings": {
-            "label": "A postbiotic in every wash",
+            "label": "A postbiotic active in every wash",
             "stat": "1%",
-            "stat_caption": "Lactobacillus Ferment Lysate",
-            "body": "Lactobacillus Ferment Lysate is a postbiotic active, present in every wash."
+            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic ingredient",
+            "body": "An inactivated ferment lysate — not a live culture. Helps maintain a comfortable, conditioned skin surface through every cleanse."
           }
         }
       ]

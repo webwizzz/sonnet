@@ -82,7 +82,11 @@
   --wis-u: clamp(0.5px, calc(100vw / 1920), 1px);
   /* Active circle: S at 1920 -> 0.75 S at 990 (400 -> ~344 at 1400 -> 300 at 990) */
   --wis-a: clamp(calc(var(--wis-s) * 0.75px), calc(var(--wis-s) * 0.75px + (100vw - 990px) * var(--wis-s) / 3720), calc(var(--wis-s) * 1px));
-  --wis-pitch: calc(var(--wis-a) * 1.2); /* 480 at 1920 (Figma 468 / 492) */
+  --wis-pitch: calc(var(--wis-a) * 1.2); /* 480 at 1920 */
+  /* Slot offsets from the centre. Neighbours: 492.5 at 1920 (Figma centres 468 / 1453).
+     Outer: centred on the section edge like Figma (0 / 1920), but never closer than 2.16 x active. */
+  --wis-near: calc(var(--wis-pitch) * 1.0260417);
+  --wis-outer: max(50vw, calc(var(--wis-a) * 2.16));
   --wis-ring-w: 6.15; /* ring thickness in ring-viewBox units (410 box) */
   --wis-move: 760ms;
   --wis-ease: cubic-bezier(0.65, 0, 0.35, 1);
@@ -96,6 +100,9 @@
   color: var(--wis-text);
   background-color: var(--wis-bg);
 }
+@supports (width: 1cqw) {
+  .wis { --wis-outer: max(50cqw, calc(var(--wis-a) * 2.16)); } /* stage width, excludes the scrollbar */
+}
 .wis *,
 .wis *::before,
 .wis *::after { box-sizing: border-box; }
@@ -108,7 +115,7 @@
   font-weight: 500;
   font-style: normal;
   font-size: max(32px, calc(var(--wis-h) * var(--wis-u)));
-  line-height: 1.2;
+  line-height: 1.207; /* 70 / 58: Figma's line box (the italic run is 70.3) */
   letter-spacing: -0.02em;
   text-align: center;
   text-transform: none;
@@ -136,6 +143,7 @@
 .wis__stage {
   position: relative;
   height: calc(var(--wis-a) * 1.025); /* ring box: 410 for a 400 image */
+  container-type: inline-size;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -149,7 +157,8 @@
   list-style: none;
 }
 .wis__item {
-  --o: 0;
+  --o: 0; /* signed slot offset (parked items: +-reach+1) */
+  --step: calc((var(--wis-outer) + var(--wis-pitch)) / 3); /* parked: just beyond the outer slot */
   --sc: 0.6;
   position: absolute;
   z-index: 0;
@@ -158,7 +167,7 @@
   width: var(--wis-a);
   height: var(--wis-a);
   border-radius: 50%;
-  transform: translate3d(calc(var(--o) * var(--wis-pitch)), 0, 0) scale(var(--sc));
+  transform: translate3d(calc(var(--o) * var(--step)), 0, 0) scale(var(--sc));
   transform-origin: 50% 50%;
   opacity: 0;
   visibility: hidden;
@@ -181,8 +190,8 @@
     visibility 0s linear 0s;
 }
 .wis__item[data-slot="0"] { --sc: 1; z-index: 3; pointer-events: none; }
-.wis__item[data-slot="1"] { --sc: 0.75; z-index: 2; }
-.wis__item[data-slot="2"] { --sc: 0.6; z-index: 1; }
+.wis__item[data-slot="1"] { --sc: 0.75; --step: var(--wis-near); z-index: 2; }
+.wis__item[data-slot="2"] { --sc: 0.6; --step: calc(var(--wis-outer) / 2); z-index: 1; }
 .wis__item.is-jump,
 .wis--instant .wis__item { transition: none !important; }
 
@@ -239,7 +248,8 @@
   .wis__item[data-slot="2"]:hover .wis__media { filter: brightness(1.06); }
 }
 
-/* Progress ring: one SVG over the active slot. The bar draws clockwise from -94deg (Figma arc start). */
+/* Progress ring: one SVG over the active slot. The bar draws clockwise from exactly 12 o'clock
+   (Figma's static 40% arc starts 4deg earlier, at -94deg; the timer starts at the top). */
 .wis__ring {
   position: absolute;
   z-index: 4;
@@ -249,7 +259,7 @@
   width: calc(var(--wis-a) * 1.025);
   height: calc(var(--wis-a) * 1.025);
   overflow: visible;
-  transform: rotate(-94deg);
+  transform: rotate(-90deg);
   pointer-events: none;
   opacity: 1;
   transition: opacity 240ms ease;
@@ -455,6 +465,7 @@
   .wis {
     --wis-a: calc(var(--wis-s) * 0.55px); /* 220 */
     --wis-pitch: min(calc(50vw + 40px), calc(var(--wis-a) * 1.2)); /* neighbours peek at the edges */
+    --wis-near: var(--wis-pitch);
     --wis-ring-w: 7.3; /* ~4px at 220 */
     --wis-arrow: 40px;
     --wis-desc-w: min(280px, 100%);
@@ -674,7 +685,7 @@
         this.bar = root.querySelector('[data-wis-bar]');
         this.live = root.querySelector('[data-wis-live]');
         this.toggleBtn = root.querySelector('[data-wis-toggle]');
-        this.items = Array.prototype.slice.call(root.querySelectorAll('[data-wis-item]'));
+        this.items = Array.prototype.slice.call(root.querySelectorAll('[data-wis-item]:not([data-wis-clone])'));
         this.slides = Array.prototype.slice.call(root.querySelectorAll('[data-wis-slide]'));
         this.count = this.items.length;
         this.reach = parseInt(root.getAttribute('data-reach'), 10) || 1;
@@ -1052,7 +1063,7 @@
             if (current.root === root) return current;
             this.unmount(sectionId);
           }
-          if (!root || !root.querySelector('[data-wis-track]') || root.querySelectorAll('[data-wis-item]').length < 2) return null;
+          if (!root || !root.querySelector('[data-wis-track]') || root.querySelectorAll('[data-wis-item]:not([data-wis-clone])').length < 2) return null;
           var inst = new WIS(root);
           this.instances[sectionId] = inst;
           if (this.last[sectionId] != null && window.Shopify && window.Shopify.designMode) {

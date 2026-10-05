@@ -90,10 +90,7 @@
             "input_placeholder": "Enter your pincode...",
             "input_border_radius": 6,
             "input_text_color": "#000000",
-            "button_text": "Check Availability",
             "button_bg_color": "#182d2c",
-            "button_text_color": "#ffffff",
-            "button_border_radius": 6,
             "available_text_color": "#4CAF50",
             "bg-success-msg": "#E8F9F0",
             "available_text": "Delivery is available in your area!",
@@ -101,8 +98,7 @@
             "bg-wrong-msg": "#ff050529",
             "not_available_text": "Sorry, we do not deliver to your location.",
             "enable_border": true,
-            "add_to_cart_default_disabled": true,
-            "saved_pincode_text": "Service available"
+            "add_to_cart_default_disabled": true
           }
         }
       },
@@ -362,7 +358,7 @@
         "color_text": "#28201F",
         "color_background": "#F6F3EE"
       }
-    },
+    }
   },
   "order": [
     "main",

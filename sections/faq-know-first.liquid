@@ -1,0 +1,462 @@
+{%- comment -%}
+  FAQ: "Everything you want to know first."
+  Design: design-specs/clean-it-off/sections/11-faq.md (Figma 191:886)
+  Full-bleed #F6F3EE band, centred 1059px column of pill-shaped accordion cards.
+  Closed card: 120px tall, radius 60. Open card: radius 36, answer revealed with a
+  height animation (grid-template-rows 0fr → 1fr); radius, paddings and the plus→minus
+  icon animate together so nothing snaps.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign card_alpha = s.card_opacity | times: 0.01
+  assign card_bg = s.card_bg | color_modify: 'alpha', card_alpha
+  assign answer_color = s.answer_color | color_modify: 'alpha', 0.75
+  assign toggle_stroke = s.question_color | color_modify: 'alpha', 0.1
+  assign decor_alpha = s.decor_opacity | times: 0.01
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --kfq-band: {{ s.color_background }};
+  --kfq-heading: {{ s.heading_color }};
+  --kfq-card: {{ card_bg }};
+  --kfq-num: {{ s.number_color }};
+  --kfq-q: {{ s.question_color }};
+  --kfq-a: {{ answer_color }};
+  --kfq-toggle: {{ s.toggle_bg }};
+  --kfq-toggle-icon: {{ s.toggle_icon_color }};
+  --kfq-toggle-stroke: {{ toggle_stroke }};
+  --kfq-decor-alpha: {{ decor_alpha }};
+  --kfq-width: {{ s.content_width }}px;
+  --kfq-h-num: {{ s.heading_size }};
+  --kfq-h: {{ s.heading_size }}px;
+  --kfq-h-m: {{ s.heading_size_mobile }}px;
+  background-color: {{ s.color_page }};
+  padding-top: {{ s.spacing_top }}px;
+  padding-bottom: {{ s.spacing_bottom }}px;
+}
+#shopify-section-{{ section.id }} .kfq__band {
+  padding-top: clamp(56px, calc({{ s.padding_top }} * 100vw / 1920), {{ s.padding_top }}px);
+  padding-bottom: clamp(56px, calc({{ s.padding_bottom }} * 100vw / 1920), {{ s.padding_bottom }}px);
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ s.mobile_spacing_top }}px;
+    padding-bottom: {{ s.mobile_spacing_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .kfq__band {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.kfq *, .kfq *::before, .kfq *::after { box-sizing: border-box; }
+.kfq__band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--kfq-band);
+}
+
+/* Decorative bubbles (Figma: same image twice, 10% opacity, rotated 180°; visible cluster 312 × 272) */
+.kfq__decor {
+  position: absolute;
+  z-index: -1;
+  width: clamp(160px, calc(312 * 100vw / 1920), 312px);
+  aspect-ratio: 312 / 272;
+  opacity: var(--kfq-decor-alpha);
+  pointer-events: none;
+}
+.kfq__decor img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.kfq__decor--tl { left: -5px; top: calc(115 / 1160 * 100%); }
+.kfq__decor--br { right: 6px; bottom: calc(118 / 1160 * 100%); }
+
+.kfq__inner { position: relative; max-width: var(--kfq-width); margin: 0 auto; }
+
+/* Heading: Blauer Nue MD 500 58/69.58, italic run Tiempos Fine Italic RG 400 */
+.kfq .kfq__heading {
+  margin: 0 0 clamp(28px, calc(40 * 100vw / 1920), 40px);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--kfq-h-m), calc(var(--kfq-h-num) * 100vw / 1920), var(--kfq-h));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--kfq-heading);
+}
+.kfq .kfq__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.kfq .kfq__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.212;
+}
+
+.kfq__list { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; }
+
+/* ---- Card ----
+   Closed (Figma): 120px tall, question at +45, number at +48, toggle centred (+32).
+   Open (Figma):   question/number at +32, toggle at +29, answer 16px below, 38px bottom. */
+.kfq__item {
+  --pt: 45px; --pb: 45px; --num-mt: 3px; --tog-top: calc(50% - 28px);
+  position: relative;
+  margin: 0;
+  border-radius: 60px;
+  background: var(--kfq-card);
+  transition: border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+.kfq__item.is-open { --pt: 32px; --pb: 0px; --num-mt: 0px; --tog-top: 29px; border-radius: 36px; }
+.kfq .kfq__q-wrap { margin: 0; font: inherit; }
+.kfq__trigger {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: var(--pt) 113px var(--pb) 50px;   /* 113 = 33 right padding + 56 toggle + 24 gap */
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  white-space: normal;   /* theme buttons are nowrap; questions must wrap */
+  cursor: pointer;
+  border-radius: inherit;
+  transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.kfq__trigger:focus-visible { outline: 2px solid var(--kfq-toggle); outline-offset: 3px; }
+/* Number: Tiempos Fine 600 italic in Figma (not loaded) -> 500 italic, 20/25.2 */
+.kfq__num {
+  flex: 0 0 54px;
+  margin-top: var(--num-mt);
+  font-family: 'Test Tiempos Fine Italic', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.26;
+  letter-spacing: 0;
+  color: var(--kfq-num);
+  font-variant-numeric: lining-nums;
+  transition: margin-top 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Question: Blauer Nue RG 400 24/30.24, #010101, letter-spacing 0 */
+.kfq__q {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.26;
+  letter-spacing: 0;
+  color: var(--kfq-q);
+}
+/* Toggle: 56px #78563D circle, 1px inside #010101 @10% stroke, 14px × 2px white bars */
+.kfq__toggle {
+  position: absolute;
+  right: 33px;
+  top: var(--tog-top);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--kfq-toggle);
+  box-shadow: inset 0 0 0 1px var(--kfq-toggle-stroke);
+  pointer-events: none;
+  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease, transform 0.25s ease;
+}
+.kfq__toggle::before,
+.kfq__toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  border-radius: 2px;
+  background: var(--kfq-toggle-icon);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+.kfq__toggle::after { transform: rotate(90deg); }
+.kfq__item.is-open .kfq__toggle::after { transform: rotate(180deg); opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .kfq__trigger:hover ~ .kfq__toggle,
+  .kfq__item:hover .kfq__toggle { transform: scale(1.06); }
+}
+
+/* Answer: Blauer Nue LT 300 18/27, #010101 @75%, 786px column at +104 */
+.kfq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.45s;
+}
+.kfq__item.is-open .kfq__panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+}
+.kfq__panel-in { min-height: 0; overflow: hidden; }
+.kfq__a {
+  max-width: calc(786px + 104px + 24px);   /* 786px text column (Figma) + left indent + right padding */
+  padding: 16px 24px 38px 104px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--kfq-a);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+.kfq__item.is-open .kfq__a { opacity: 1; transform: none; transition: opacity 0.4s ease 0.1s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s; }
+.kfq__a > :first-child { margin-top: 0; }
+.kfq__a > :last-child { margin-bottom: 0; }
+.kfq__a p { margin: 0 0 0.6em; font: inherit; color: inherit; letter-spacing: inherit; }
+.kfq__a a { color: var(--kfq-toggle); text-decoration: underline; }
+.kfq--no-num .kfq__num { display: none; }
+.kfq--no-num .kfq__a { padding-left: 50px; }
+
+/* ---- Responsive ---- */
+@media screen and (max-width: 990px) {
+  .kfq__item { --pt: 34px; --pb: 34px; }
+  .kfq__item.is-open { --pt: 26px; --tog-top: 20px; }
+  .kfq__trigger { padding-left: 32px; padding-right: 96px; }
+  .kfq__q { font-size: 20px; }
+  .kfq__num { flex-basis: 46px; font-size: 18px; }
+  .kfq__toggle { width: 48px; height: 48px; right: 24px; --tog-half: 24px; }
+  .kfq__item:not(.is-open) .kfq__toggle { top: calc(50% - 24px); }
+  .kfq__a { padding: 12px 24px 30px 78px; font-size: 16px; }
+  .kfq--no-num .kfq__a { padding-left: 32px; }
+  .kfq__decor { width: 190px; }
+}
+@media screen and (max-width: 768px) {
+  .kfq .kfq__heading { font-size: var(--kfq-h-m); margin-bottom: 24px; }
+  .kfq__list { gap: 10px; }
+  .kfq__item { --pt: 22px; --pb: 22px; --num-mt: 2px; border-radius: 30px; }
+  .kfq__item.is-open { --pt: 20px; --tog-top: 14px; border-radius: 20px; }
+  .kfq__trigger { padding-left: 18px; padding-right: 64px; }
+  .kfq__num { flex-basis: 32px; font-size: 16px; }
+  .kfq__q { font-size: 16px; line-height: 1.3; }
+  .kfq__toggle { width: 36px; height: 36px; right: 14px; }
+  .kfq__item:not(.is-open) .kfq__toggle { top: calc(50% - 18px); }
+  .kfq__toggle::before, .kfq__toggle::after { width: 12px; margin-left: -6px; }
+  .kfq__a { padding: 8px 18px 22px 50px; font-size: 15px; }
+  .kfq--no-num .kfq__a { padding-left: 18px; }
+  .kfq__decor { width: 120px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kfq__item, .kfq__trigger, .kfq__num, .kfq__toggle, .kfq__toggle::before, .kfq__toggle::after,
+  .kfq__panel, .kfq__item.is-open .kfq__panel, .kfq__a, .kfq__item.is-open .kfq__a { transition: none !important; }
+}
+.kfq__empty { margin: 0; text-align: center; font-family: 'Blauer Nue RG', sans-serif; font-size: 15px; color: var(--kfq-q); }
+{% endstyle %}
+
+<div class="kfq{% unless s.show_numbers %} kfq--no-num{% endunless %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}" data-kfq data-multiple="{{ s.allow_multiple_open }}">
+  <div class="kfq__band">
+    {%- if s.decor_image != blank -%}
+      {%- if s.show_decor_left -%}
+        <div class="kfq__decor kfq__decor--tl" aria-hidden="true">
+          {{- s.decor_image | image_url: width: 624 | image_tag: widths: '312, 624', sizes: '312px', loading: 'lazy', alt: '' -}}
+        </div>
+      {%- endif -%}
+      {%- if s.show_decor_right -%}
+        <div class="kfq__decor kfq__decor--br" aria-hidden="true">
+          {{- s.decor_image | image_url: width: 624 | image_tag: widths: '312, 624', sizes: '312px', loading: 'lazy', alt: '' -}}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="main-container">
+      <div class="kfq__inner">
+        {%- if s.heading != blank -%}
+          <h2 class="kfq__heading">{{ s.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="kfq__list" role="list">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign open = false
+                if forloop.first and s.open_first
+                  assign open = true
+                endif
+                assign num = forloop.index | prepend: '0' | slice: -2, 2
+                if forloop.index > 99
+                  assign num = forloop.index
+                endif
+              -%}
+              <li class="kfq__item{% if open %} is-open{% endif %}" data-kfq-item {{ block.shopify_attributes }}>
+                <h3 class="kfq__q-wrap">
+                  <button
+                    type="button"
+                    class="kfq__trigger"
+                    id="Kfq-q-{{ block.id }}"
+                    aria-expanded="{{ open }}"
+                    aria-controls="Kfq-a-{{ block.id }}"
+                    data-kfq-trigger
+                  >
+                    <span class="kfq__num" aria-hidden="true">{{ num }}</span>
+                    <span class="kfq__q">{{ block.settings.question | escape }}</span>
+                  </button>
+                </h3>
+                <span class="kfq__toggle" aria-hidden="true"></span>
+                <div class="kfq__panel" id="Kfq-a-{{ block.id }}" role="region" aria-labelledby="Kfq-q-{{ block.id }}">
+                  <div class="kfq__panel-in">
+                    <div class="kfq__a">{{ block.settings.answer }}</div>
+                  </div>
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- elsif request.design_mode -%}
+          <p class="kfq__empty">Add a question block to build the FAQ.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if s.enable_schema and section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | strip_html | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | strip | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+
+    function setOpen(item, open) {
+      var btn = item.querySelector('[data-kfq-trigger]');
+      item.classList.toggle('is-open', open);
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function init(root) {
+      if (!root || root._kfqInit) return;
+      root._kfqInit = true;
+      var multiple = root.getAttribute('data-multiple') === 'true';
+      var items = Array.prototype.slice.call(root.querySelectorAll('[data-kfq-item]'));
+      function onClick(e) {
+        var btn = e.target.closest('[data-kfq-trigger]');
+        if (!btn || !root.contains(btn)) return;
+        var item = btn.closest('[data-kfq-item]');
+        var open = !item.classList.contains('is-open');
+        if (open && !multiple) items.forEach(function (it) { if (it !== item) setOpen(it, false); });
+        setOpen(item, open);
+      }
+      root.addEventListener('click', onClick);
+      root._kfqOpen = function (item) {
+        if (!multiple) items.forEach(function (it) { if (it !== item) setOpen(it, false); });
+        setOpen(item, true);
+      };
+      root._kfqCleanup = function () { root.removeEventListener('click', onClick); root._kfqInit = false; };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-kfq]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__kfqEditorBound) {
+      window.__kfqEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._kfqCleanup) r._kfqCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        var item = e.target && e.target.closest ? e.target.closest('[data-kfq-item]') : null;
+        if (r && r._kfqOpen && item) r._kfqOpen(item);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Know First",
+  "tag": "section",
+  "class": "kfq-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Everything you want to <em>know first.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "header", "content": "Behaviour" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true },
+    { "type": "checkbox", "id": "allow_multiple_open", "label": "Allow several questions open at once", "default": false },
+    { "type": "checkbox", "id": "show_numbers", "label": "Show numbers", "default": true },
+    { "type": "checkbox", "id": "enable_schema", "label": "Add FAQ structured data for Google", "info": "Only use once per page.", "default": true },
+    { "type": "header", "content": "Decorative bubbles" },
+    { "type": "image_picker", "id": "decor_image", "label": "Bubble image", "info": "Transparent PNG/WebP, shown top-left and bottom-right (312 × 272 at desktop)." },
+    { "type": "checkbox", "id": "show_decor_left", "label": "Show top-left", "default": true },
+    { "type": "checkbox", "id": "show_decor_right", "label": "Show bottom-right", "default": true },
+    { "type": "range", "id": "decor_opacity", "label": "Bubble opacity", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 10 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Band background", "default": "#F6F3EE" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#28201F" },
+    { "type": "color", "id": "card_bg", "label": "Card", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_opacity", "label": "Card opacity", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 80 },
+    { "type": "color", "id": "number_color", "label": "Number", "default": "#78563D" },
+    { "type": "color", "id": "question_color", "label": "Question", "default": "#010101" },
+    { "type": "color", "id": "answer_color", "label": "Answer", "info": "Shown at 75% opacity.", "default": "#010101" },
+    { "type": "color", "id": "toggle_bg", "label": "Toggle button", "default": "#78563D" },
+    { "type": "color", "id": "toggle_icon_color", "label": "Toggle icon", "default": "#FFFFFF" },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "content_width", "label": "Column width", "min": 700, "max": 1400, "step": 10, "unit": "px", "default": 1060 },
+    { "type": "color", "id": "color_page", "label": "Page background around the band", "default": "#FFFCF9" },
+    { "type": "range", "id": "spacing_top", "label": "Space above band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "spacing_bottom", "label": "Space below band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_spacing_top", "label": "Space above band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_spacing_bottom", "label": "Space below band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Band padding top (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Band padding bottom (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Band padding top (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Band padding bottom (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Can I use Clean It Off twice a day?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Know First",
+      "blocks": [
+        { "type": "question", "settings": { "question": "Can I use Clean It Off twice a day?", "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>" } },
+        { "type": "question", "settings": { "question": "Does it remove sunscreen and makeup?", "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>" } },
+        { "type": "question", "settings": { "question": "Is it suitable for sensitive skin?", "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>" } },
+        { "type": "question", "settings": { "question": "Does it contain sulphates?", "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>" } },
+        { "type": "question", "settings": { "question": "What is Lactobacillus Ferment Lysate?", "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>" } },
+        { "type": "question", "settings": { "question": "Do I need the full ritual?", "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

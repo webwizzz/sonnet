@@ -1,0 +1,575 @@
+{%- comment -%}
+  Science stats: "The science behind the results."
+  Design: design-specs/clean-it-off/sections/09-science.md (Figma 191:540)
+  Full-bleed image band (+20% overlay) with a row of joined white capsules (313 × 450).
+  Capsule internals scale with the capsule width via container query units (cqi),
+  so the Figma proportions hold at every size.
+  ≥1200px: joined row. <1200px: separate capsules in a swipeable scroll-snap row.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign text_color = s.text_color | default: '#28201F'
+  assign text_alpha = s.text_opacity | times: 0.01
+  assign text_tint = text_color | color_modify: 'alpha', text_alpha
+  assign overlay_alpha = s.overlay_opacity | times: 0.01
+  assign overlay = s.overlay_color | color_modify: 'alpha', overlay_alpha
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --sci-heading: {{ s.heading_color }};
+  --sci-overlay: {{ overlay }};
+  --sci-pill: {{ s.pill_color }};
+  --sci-icon-bg: {{ s.icon_bg_color }};
+  --sci-icon: {{ s.icon_color }};
+  --sci-stat: {{ s.stat_color }};
+  --sci-text: {{ text_tint }};
+  --sci-h-num: {{ s.heading_size }};
+  --sci-h: {{ s.heading_size }}px;
+  --sci-h-m: {{ s.heading_size_mobile }}px;
+  --sci-band-pt: {{ s.band_padding_top }};
+  --sci-band-pb: {{ s.band_padding_bottom }};
+  background-color: {{ s.color_background }};
+  padding-top: {{ s.spacing_top }}px;
+  padding-bottom: {{ s.spacing_bottom }}px;
+}
+#shopify-section-{{ section.id }} .sci__bg img,
+#shopify-section-{{ section.id }} .sci__bg video { object-position: {{ s.background_position }}; }
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ s.mobile_spacing_top }}px;
+    padding-bottom: {{ s.mobile_spacing_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .sci__band {
+    padding-top: {{ s.mobile_band_padding_top }}px;
+    padding-bottom: {{ s.mobile_band_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.sci *, .sci *::before, .sci *::after { box-sizing: border-box; }
+.sci__band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: clamp(64px, calc(var(--sci-band-pt) * 100vw / 1920), calc(var(--sci-band-pt) * 1px));
+  padding-bottom: clamp(64px, calc(var(--sci-band-pb) * 100vw / 1920), calc(var(--sci-band-pb) * 1px));
+  background: #B9AC9C;
+}
+.sci__bg,
+.sci__bg img,
+.sci__bg svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.sci__bg { z-index: -2; }
+.sci__bg img { object-fit: cover; }
+.sci__bg svg { fill: rgba(255, 255, 255, 0.25); background: #B9AC9C; }
+.sci__bg--mobile { display: none; }
+/* Background video sits above the image (the image is the fallback while it loads) */
+.sci__bg video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.sci__bg--video-mobile { display: none; }
+/* Figma: #28201F @ 20% sits above the photo */
+.sci__band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--sci-overlay);
+  pointer-events: none;
+}
+
+/* Heading: Blauer Nue MD 500 58/63.8 (110%) -0.02em, italic run Tiempos Fine Italic RG 400 */
+.sci .sci__heading {
+  margin: 0 auto clamp(32px, calc(70 * 100vw / 1920), 70px);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--sci-h-m), calc(var(--sci-h-num) * 100vw / 1920), var(--sci-h));
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--sci-heading);
+}
+.sci .sci__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.sci .sci__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Capsule row: 313px capsules, 0 gap so the straight sides touch (Figma union shape) */
+.sci__track {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sci__pill {
+  container-type: inline-size;
+  flex: 0 1 313px;
+  min-width: 0;
+  margin: 0;                          /* theme.css gives every li a 4px bottom margin */
+  aspect-ratio: 313 / 450;
+  border-radius: 999px;
+  background: var(--sci-pill);
+}
+/* All internals in cqi: 1cqi = 1% of the capsule width (313px in Figma).
+   cqi only resolves against an ancestor container, hence the inner wrapper. */
+.sci__pill-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding-top: 25.56cqi;              /* 80px */
+}
+.sci__icon {
+  position: relative;
+  flex: none;
+  width: 28.75cqi;                    /* 90px */
+  height: 28.75cqi;
+  border-radius: 50%;
+  background: var(--sci-icon-bg);
+  color: var(--sci-icon);
+}
+.sci__icon svg,
+.sci__icon img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sci__icon img { object-fit: contain; border-radius: 50%; }
+.sci__icon-bgstroke { stroke: var(--sci-icon-bg); }
+.sci__value {
+  margin: 9.58cqi 0 0;                /* 30px */
+  font-family: 'Test Tiempos Fine Italic', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18.53cqi;                /* 58px */
+  line-height: 1.212;                 /* 70.3px */
+  letter-spacing: -0.02em;
+  color: var(--sci-stat);
+  font-variant-numeric: lining-nums;
+  white-space: nowrap;
+}
+.sci__text {
+  margin: 5.43cqi 0 0;                /* 17px */
+  max-width: calc(var(--sci-tw) / 313 * 100cqi);
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(13px, 5.75cqi);      /* 18px */
+  line-height: 1.4;                   /* 25.2px */
+  letter-spacing: -0.02em;
+  color: var(--sci-text);
+}
+
+/* Entrance: capsules rise in one after another (only when JS has armed it) */
+.sci--anim .sci__pill {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.sci--anim.sci--in .sci__pill { opacity: 1; transform: none; }
+.sci--prep .sci__pill { transition: none !important; }
+
+/* <1200: separate capsules in a swipeable row */
+@media screen and (max-width: 1199px) {
+  .sci__track {
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -50px;
+    padding-inline: 50px;
+    scroll-padding-inline: 50px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sci__track::-webkit-scrollbar { display: none; }
+  .sci__pill { flex: 0 0 260px; scroll-snap-align: start; }
+  .sci__track--fits { justify-content: center; }
+}
+@media screen and (max-width: 768px) {
+  .sci__track { margin-inline: -16px; padding-inline: 16px; scroll-padding-inline: 16px; gap: 10px; }
+  .sci__pill { flex-basis: 240px; }
+  .sci .sci__heading { font-size: var(--sci-h-m); margin-bottom: 32px; }
+  .sci__bg--mobile { display: block; }
+  .sci__bg--mobile + .sci__bg--desktop { display: none; }
+  .sci__bg--video-mobile { display: block; }
+  .sci__bg--video-mobile + .sci__bg--video-desktop { display: none; }
+  .sci--no-mobile-video .sci__bg--video { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sci--anim .sci__pill { opacity: 1; transform: none; transition: none; }
+}
+{% endstyle %}
+
+{%- capture bg_desktop -%}
+  {%- if s.background_image != blank -%}
+    {{- s.background_image | image_url: width: 3840 | image_tag: widths: '750, 1100, 1500, 1920, 2560, 3840', sizes: '100vw', loading: 'lazy', alt: '' -}}
+  {%- elsif s.background_video == blank -%}
+    {{- 'lifestyle-2' | placeholder_svg_tag -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+<div class="sci{% unless s.video_on_mobile %} sci--no-mobile-video{% endunless %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}" data-sci data-animate-entrance="{{ s.animate_entrance }}" data-animate-numbers="{{ s.animate_numbers }}">
+  <div class="sci__band">
+    {%- if s.mobile_background_image != blank -%}
+      <div class="sci__bg sci__bg--mobile" aria-hidden="true">
+        {{- s.mobile_background_image | image_url: width: 1500 | image_tag: widths: '375, 750, 1100, 1500', sizes: '100vw', loading: 'lazy', alt: '' -}}
+      </div>
+    {%- endif -%}
+    <div class="sci__bg sci__bg--desktop" aria-hidden="true">{{ bg_desktop }}</div>
+    {%- if s.mobile_background_video != blank -%}
+      <div class="sci__bg sci__bg--video sci__bg--video-mobile" aria-hidden="true" data-sci-video>
+        {{- s.mobile_background_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '1100x' -}}
+      </div>
+    {%- endif -%}
+    {%- if s.background_video != blank -%}
+      <div class="sci__bg sci__bg--video sci__bg--video-desktop" aria-hidden="true" data-sci-video>
+        {{- s.background_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '1920x' -}}
+      </div>
+    {%- endif -%}
+
+    <div class="main-container">
+      {%- if s.heading != blank -%}
+        <h2 class="sci__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="sci__track" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              case b.icon
+                when 'sun_skin'
+                  assign icon_file = 'cio-science-sun-skin.svg'
+                when 'skin_layers'
+                  assign icon_file = 'cio-science-skin-layers.svg'
+                when 'drops'
+                  assign icon_file = 'cio-science-drops.svg'
+                when 'shield_cross'
+                  assign icon_file = 'cio-science-shield-cross.svg'
+                when 'face_glow'
+                  assign icon_file = 'cio-science-face-glow.svg'
+                else
+                  assign icon_file = ''
+              endcase
+            -%}
+            <li class="sci__pill" style="--i: {{ forloop.index0 }}; --sci-tw: {{ b.text_width }};" {{ block.shopify_attributes }}><div class="sci__pill-in">
+              {%- if b.icon_image != blank -%}
+                <span class="sci__icon">
+                  {{- b.icon_image | image_url: width: 270 | image_tag: widths: '90, 180, 270', sizes: '90px', loading: 'lazy', alt: '' -}}
+                </span>
+              {%- elsif icon_file != '' -%}
+                {%- comment -%} The Figma SVGs include their #F5EEE6 circle; strip it and recolour so the colour settings apply {%- endcomment -%}
+                <span class="sci__icon" aria-hidden="true">
+                  {{- icon_file | inline_asset_content | remove: '<circle cx="45" cy="45" r="45" fill="#F5EEE6"/>' | replace: 'stroke="#F5EEE6"', 'class="sci__icon-bgstroke"' | replace: '#78563D', 'currentColor' -}}
+                </span>
+              {%- endif -%}
+              {%- if b.value != blank -%}
+                <p class="sci__value" data-sci-value="{{ b.value | escape }}">{{ b.value | escape }}</p>
+              {%- endif -%}
+              {%- if b.text != blank -%}
+                <p class="sci__text">{{ b.text | escape | newline_to_br }}</p>
+              {%- endif -%}
+            </div></li>
+          {%- endfor -%}
+        </ul>
+      {%- elsif request.design_mode -%}
+        <p class="sci__text" style="--sci-tw: 600; margin: 0 auto; text-align: center; color: var(--sci-heading); font-size: 16px;">Add a stat block to show the capsules.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+
+    function countUp(el, reduce) {
+      var raw = el.getAttribute('data-sci-value') || '';
+      var m = raw.match(/^(\D*)(\d+(?:[.,]\d+)?)(.*)$/);
+      if (!m || reduce) return null;
+      var prefix = m[1], target = parseFloat(m[2].replace(',', '.')), suffix = m[3];
+      var decimals = (m[2].split(/[.,]/)[1] || '').length;
+      if (!(target > 0)) return null;
+      el.textContent = prefix + (0).toFixed(decimals) + suffix;
+      return function start(delay) {
+        var t0 = null, dur = 1400;
+        function frame(t) {
+          if (t0 === null) t0 = t + delay;
+          var k = Math.min(1, Math.max(0, (t - t0) / dur));
+          var e = 1 - Math.pow(1 - k, 3);
+          el.textContent = prefix + (target * e).toFixed(decimals) + suffix;
+          if (k < 1) el._sciRaf = requestAnimationFrame(frame);
+          else el.textContent = raw;
+        }
+        el._sciRaf = requestAnimationFrame(frame);
+      };
+    }
+
+    function init(root) {
+      if (!root || root._sciInit) return;
+      root._sciInit = true;
+      var track = root.querySelector('.sci__track');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var designMode = window.Shopify && Shopify.designMode;
+
+      // Background video: play only while on screen and visible at this breakpoint;
+      // never for reduced-motion visitors (the poster/image stays).
+      var videos = Array.prototype.slice.call(root.querySelectorAll('[data-sci-video] video'));
+      var videoIo = null, videoInView = true, mqls = [];
+      function syncVideos() {
+        videos.forEach(function (v) {
+          var shown = getComputedStyle(v.parentNode).display !== 'none';
+          if (!reduce && videoInView && shown) {
+            v.muted = true;
+            var pr = v.play();
+            if (pr && pr.catch) pr.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }
+      if (videos.length) {
+        videos.forEach(function (v) {
+          v.muted = true; v.setAttribute('muted', ''); v.playsInline = true;
+          if (reduce) { v.removeAttribute('autoplay'); v.autoplay = false; v.pause(); }
+        });
+        if ('IntersectionObserver' in window) {
+          videoIo = new IntersectionObserver(function (entries) {
+            videoInView = entries[entries.length - 1].isIntersecting;
+            syncVideos();
+          }, { rootMargin: '200px 0px' });
+          videoIo.observe(root);
+        }
+        ['(max-width: 768px)'].forEach(function (q) {
+          var m = window.matchMedia(q);
+          var h = function () { syncVideos(); };
+          if (m.addEventListener) m.addEventListener('change', h); else m.addListener(h);
+          mqls.push([m, h]);
+        });
+        syncVideos();
+      }
+      function stopVideos() {
+        if (videoIo) videoIo.disconnect();
+        mqls.forEach(function (x) { if (x[0].removeEventListener) x[0].removeEventListener('change', x[1]); else x[0].removeListener(x[1]); });
+        videos.forEach(function (v) { v.pause(); });
+      }
+
+      // Centre the swipe row when every capsule already fits
+      function fit() {
+        if (!track) return;
+        track.classList.remove('sci__track--fits');
+        if (track.scrollWidth <= track.clientWidth + 1) track.classList.add('sci__track--fits');
+      }
+      fit();
+      var ro = 'ResizeObserver' in window ? new ResizeObserver(fit) : null;
+      if (ro && track) ro.observe(track);
+
+      var entrance = root.getAttribute('data-animate-entrance') === 'true' && !reduce && !designMode;
+      var numbers = root.getAttribute('data-animate-numbers') === 'true' && !reduce && !designMode;
+      var starters = [];
+      if (numbers) {
+        root.querySelectorAll('[data-sci-value]').forEach(function (el, i) {
+          var st = countUp(el, reduce);
+          if (st) starters.push([st, el, i]);
+        });
+      }
+      if (!entrance && !starters.length) { root._sciCleanup = function () { if (ro) ro.disconnect(); stopVideos(); root._sciInit = false; }; return; }
+
+      var rect = root.getBoundingClientRect();
+      var alreadyVisible = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+      if (entrance && !alreadyVisible) {
+        // Hide without animating the hide itself, then re-enable transitions for the reveal
+        root.classList.add('sci--prep', 'sci--anim');
+        void root.offsetHeight;
+        root.classList.remove('sci--prep');
+      }
+
+      function play() {
+        root.classList.add('sci--in');
+        starters.forEach(function (s) { s[0](entrance ? 250 + s[2] * 90 : s[2] * 90); });
+        starters = [];
+      }
+
+      var io = null;
+      if (alreadyVisible || !('IntersectionObserver' in window)) {
+        play();
+      } else {
+        io = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { play(); io.disconnect(); io = null; }
+        }, { threshold: 0.25 });
+        io.observe(track || root);
+      }
+
+      root._sciCleanup = function () {
+        if (io) io.disconnect();
+        if (ro) ro.disconnect();
+        stopVideos();
+        root.querySelectorAll('[data-sci-value]').forEach(function (el) {
+          if (el._sciRaf) cancelAnimationFrame(el._sciRaf);
+          el.textContent = el.getAttribute('data-sci-value');
+        });
+        root.classList.remove('sci--anim', 'sci--in');
+        root._sciInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-sci]');
+    }
+    function boot() { init(rootFor(SECTION_ID)); }
+
+    // The script sits right after the markup, so arm the entrance state before first paint
+    if (rootFor(SECTION_ID)) boot();
+    else document.addEventListener('DOMContentLoaded', boot);
+
+    if (!window.__sciEditorBound) {
+      window.__sciEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._sciCleanup) r._sciCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (!r) return;
+        r.classList.add('sci--in');
+        var el = e.target;
+        if (el && el.scrollIntoView && el.closest('.sci__track')) {
+          el.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Science Stats",
+  "tag": "section",
+  "class": "sci-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Italic text uses the serif italic font.",
+      "default": "<p>The science behind <em>the results.</em></p>"
+    },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#FFFFFF" },
+    { "type": "header", "content": "Background" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "Full-width band, 1920 × 847 in the design. Use at least 2400px wide." },
+    { "type": "image_picker", "id": "mobile_background_image", "label": "Mobile background image", "info": "Optional. Used at 768px and below." },
+    { "type": "video", "id": "background_video", "label": "Background video", "info": "Plays muted on loop behind the capsules. The background image shows while it loads and for visitors who prefer reduced motion. MP4, under 10 MB recommended." },
+    { "type": "video", "id": "mobile_background_video", "label": "Mobile background video", "info": "Optional (768px and below). A lighter, portrait-friendly file is best." },
+    { "type": "checkbox", "id": "video_on_mobile", "label": "Play video on mobile", "info": "Turn off to show the image on phones and save data.", "default": true },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background focus",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center 64%", "label": "Lower middle (uncropped Figma photo)" },
+        { "value": "center bottom", "label": "Bottom" }
+      ],
+      "default": "center center"
+    },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#28201F" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 20 },
+    { "type": "header", "content": "Capsules" },
+    { "type": "color", "id": "pill_color", "label": "Capsule", "default": "#FFFFFF" },
+    { "type": "color", "id": "icon_bg_color", "label": "Icon circle", "default": "#F5EEE6" },
+    { "type": "color", "id": "icon_color", "label": "Icon", "default": "#78563D" },
+    { "type": "color", "id": "stat_color", "label": "Stat number", "default": "#78563D" },
+    { "type": "color", "id": "text_color", "label": "Description text", "default": "#28201F" },
+    { "type": "range", "id": "text_opacity", "label": "Description text opacity", "min": 40, "max": 100, "step": 1, "unit": "%", "default": 85 },
+    { "type": "header", "content": "Animation" },
+    { "type": "checkbox", "id": "animate_entrance", "label": "Capsules rise in when scrolled into view", "default": true },
+    { "type": "checkbox", "id": "animate_numbers", "label": "Count up the numbers", "default": true },
+    { "type": "header", "content": "Spacing" },
+    { "type": "color", "id": "color_background", "label": "Page background around the band", "default": "#FFFCF9" },
+    { "type": "range", "id": "spacing_top", "label": "Space above band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "spacing_bottom", "label": "Space below band (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_spacing_top", "label": "Space above band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_spacing_bottom", "label": "Space below band (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "band_padding_top", "label": "Band inner padding top (desktop)", "min": 40, "max": 140, "step": 1, "unit": "px", "default": 132 },
+    { "type": "range", "id": "band_padding_bottom", "label": "Band inner padding bottom (desktop)", "min": 40, "max": 140, "step": 1, "unit": "px", "default": 131 },
+    { "type": "range", "id": "mobile_band_padding_top", "label": "Band inner padding top (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_band_padding_bottom", "label": "Band inner padding bottom (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sun_skin", "label": "Skin and sun" },
+            { "value": "skin_layers", "label": "Skin layers" },
+            { "value": "drops", "label": "Drops" },
+            { "value": "shield_cross", "label": "Shield" },
+            { "value": "face_glow", "label": "Face glow" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "sun_skin"
+        },
+        { "type": "image_picker", "id": "icon_image", "label": "Custom icon", "info": "Optional. Replaces the icon above. Shown at 90 × 90px in a circle." },
+        { "type": "text", "id": "value", "label": "Stat", "info": "Numbers count up when the section appears.", "default": "6%" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Glycerin — helps offset the drying effect of cleansing on skin comfort" },
+        {
+          "type": "range",
+          "id": "text_width",
+          "label": "Description width",
+          "info": "Controls line breaks. Measured at desktop size; scales with the capsule.",
+          "min": 150,
+          "max": 250,
+          "step": 1,
+          "unit": "px",
+          "default": 221
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "icon": "sun_skin", "value": "6%", "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort", "text_width": 221 } },
+        { "type": "stat", "settings": { "icon": "skin_layers", "value": "17%", "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile", "text_width": 216 } },
+        { "type": "stat", "settings": { "icon": "drops", "value": "5%", "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step", "text_width": 204 } },
+        { "type": "stat", "settings": { "icon": "shield_cross", "value": "1%", "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash", "text_width": 183 } },
+        { "type": "stat", "settings": { "icon": "face_glow", "value": "0%", "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol", "text_width": 190 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

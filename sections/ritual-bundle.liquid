@@ -1,0 +1,971 @@
+{%- comment -%}
+  Ritual bundle: "Five products. one complete ritual."
+  Design: design-specs/clean-it-off/sections/10-bundle-ritual.md (Figma 191:589)
+  - Background photo of the products with numbered hotspots (% positions, kept on the
+    products by JS even when the photo is cropped by object-fit: cover).
+  - Hover / focus / tap a number -> the product card on the right switches to that product
+    (image + copy from the customizer, linked to the chosen product).
+  - ADD BUNDLE adds every linked product in one /cart/add.js call.
+  Desktop layout ≥1200px; stacked layout ≤1199px.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign discount = s.bundle_discount
+  assign keep_pct = 100 | minus: discount
+  assign compare_total = 0
+  assign variant_ids = ''
+  assign any_unavailable = false
+  for block in section.blocks
+    assign p = block.settings.product
+    if p != blank and block.settings.include_in_bundle
+      assign v = p.selected_or_first_available_variant
+      if v.available
+        assign compare_total = compare_total | plus: v.price
+        if variant_ids != ''
+          assign variant_ids = variant_ids | append: ','
+        endif
+        assign variant_ids = variant_ids | append: v.id
+      else
+        assign any_unavailable = true
+      endif
+    endif
+  endfor
+  assign bundle_total = compare_total | times: keep_pct | divided_by: 100
+
+  if s.price_format == 'money'
+    assign price_text = bundle_total | money
+    assign compare_text = compare_total | money
+  else
+    assign price_text = bundle_total | money_without_trailing_zeros
+    assign compare_text = compare_total | money_without_trailing_zeros
+  endif
+  if compare_total == 0
+    assign price_text = s.price_override | escape
+    assign compare_text = s.compare_price_override | escape
+  endif
+
+  assign accent_font = s.accent_font
+  assign heading_id = 'Rit-heading-' | append: section.id
+-%}
+
+{% style %}
+{%- if accent_font != blank -%}
+  {{ accent_font | font_face: font_display: 'swap' }}
+{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --rit-bg: {{ s.card_bg }};
+  --rit-heading: {{ s.heading_color }};
+  --rit-btn-bg: {{ s.button_bg }};
+  --rit-btn-text: {{ s.button_text_color }};
+  --rit-detail-bg: {{ s.detail_card_bg }};
+  --rit-dot: {{ s.hotspot_color }};
+  --rit-dot-text: {{ s.hotspot_text_color }};
+  --rit-dot-active: {{ s.hotspot_active_color }};
+  --rit-dot-active-text: {{ s.hotspot_active_text_color }};
+  --rit-radius: {{ s.card_radius }}px;
+  --rit-h-num: {{ s.heading_size }};
+  --rit-h: {{ s.heading_size }}px;
+  --rit-h-m: {{ s.heading_size_mobile }}px;
+  --rit-accent-font: {% if accent_font != blank %}{{ accent_font.family }}, {{ accent_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --rit-accent-weight: {% if accent_font != blank %}{{ accent_font.weight }}{% else %}700{% endif %};
+  --rit-stacked-ratio: {{ s.stacked_aspect_ratio }};
+  background-color: {{ s.color_background }};
+  padding-top: {{ s.padding_top }}px;
+  padding-bottom: {{ s.padding_bottom }}px;
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.rit *, .rit *::before, .rit *::after { box-sizing: border-box; }
+.rit { overflow-x: clip; }
+.rit__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--rit-radius);
+  background: var(--rit-bg);
+  /* Figma ratio 1720 × 700, never shorter than 520px. (aspect-ratio + min-height would
+     turn the min-height into a min-width and push the card off-screen.) */
+  height: max(520px, calc(100cqi * 700 / 1720));
+}
+.rit > .main-container { container-type: inline-size; }
+
+/* ---- Media (photo + hotspot layer) ---- */
+.rit__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.rit__media img,
+.rit__media .rit__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--rit-fx, 50%) var(--rit-fy, 50%);
+}
+.rit__media .rit__ph { fill: rgba(255, 255, 255, 0.12); }
+.rit__img--mobile { display: none; }
+/* The layer matches the photo's rendered (cover) box so % positions stay on the products */
+.rit__layer { position: absolute; inset: 0; pointer-events: none; }
+
+/* ---- Hotspot: 28px dot, Montserrat 700 20/24.38 ---- */
+.rit__dot {
+  position: absolute;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--rit-dot);
+  color: var(--rit-dot-text);
+  font-family: var(--rit-accent-font);
+  font-weight: var(--rit-accent-weight);
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.rit__dot span { position: relative; z-index: 1; transform: translateY(1px); }
+.rit__dot.is-active {
+  background: var(--rit-dot-active);
+  color: var(--rit-dot-active-text);
+  box-shadow: inset 0 0 0 1px #000;   /* Figma: 1px inside #000 stroke on the active dot */
+}
+.rit__dot.is-off { visibility: hidden; }
+@media (hover: hover) and (pointer: fine) {
+  .rit__dot:hover { transform: scale(1.18); }
+}
+.rit__dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Bling: two soft rings pulse out of every dot, staggered so the dots twinkle in turn */
+.rit--bling .rit__dot::before,
+.rit--bling .rit__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--rit-dot);
+  opacity: 0;
+  animation: rit-ring 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: calc(var(--i, 0) * 0.45s);
+  pointer-events: none;
+}
+.rit--bling .rit__dot::after { animation-delay: calc(var(--i, 0) * 0.45s + 0.5s); }
+.rit--bling .rit__dot.is-active::before,
+.rit--bling .rit__dot.is-active::after { border-color: var(--rit-dot-active); }
+.rit--bling .rit__dot span { animation: rit-glint 2.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * 0.45s); }
+@keyframes rit-ring {
+  0% { transform: scale(1); opacity: 0.85; }
+  70%, 100% { transform: scale(2.3); opacity: 0; }
+}
+@keyframes rit-glint {
+  0%, 100% { text-shadow: none; }
+  12% { text-shadow: 0 0 6px rgba(255, 255, 255, 0.9); }
+  24% { text-shadow: none; }
+}
+/* Pop in one after another when the section enters the screen */
+.rit--prep .rit__dot { transition: none !important; }
+.rit--pop .rit__dot { transform: scale(0); }
+.rit--pop.rit--in .rit__dot {
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i, 0) * 110ms), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---- Left column: heading + ADD BUNDLE ---- */
+.rit__intro {
+  position: absolute;
+  z-index: 2;
+  left: clamp(40px, calc(90 * 100vw / 1920), 90px);
+  top: clamp(40px, calc(70 * 100vw / 1920), 70px);
+  max-width: 44%;
+}
+.rit .rit__heading {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--rit-h-m), calc(var(--rit-h-num) * 100vw / 1920), var(--rit-h));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--rit-heading);
+  text-transform: none;
+}
+.rit .rit__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.rit .rit__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.212;
+}
+.rit--em-break .rit__heading em { display: block; }
+
+.rit__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin-top: clamp(28px, calc(50 * 100vw / 1920), 50px);
+  min-height: 54px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--rit-btn-bg);
+  color: var(--rit-btn-text);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .rit__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+}
+.rit__btn:focus-visible { outline: 2px solid var(--rit-btn-bg); outline-offset: 3px; }
+.rit__btn[aria-disabled='true'] { cursor: default; }
+.rit__btn[aria-disabled='true']:hover { transform: none; box-shadow: none; }
+.rit__btn.is-soldout { opacity: 0.6; cursor: not-allowed; }
+.rit__btn[aria-busy='true'] { opacity: 0.75; cursor: progress; }
+.rit__btn-label {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.rit__btn-price { display: inline-flex; align-items: center; margin-left: 23px; white-space: nowrap; }
+.rit__price {
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #28201F;
+}
+.rit__compare {
+  margin-left: 5px;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.5);
+  text-decoration: line-through;
+}
+.rit__badge {
+  margin-left: 6px;
+  padding: 3px 7px 3px 8px;
+  border-radius: 10px;
+  background: rgba(0, 128, 0, 0.1);
+  color: #008000;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.rit__status {
+  margin: 10px 0 0;
+  min-height: 1.3em;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--rit-heading);
+}
+.rit__status:empty { display: none; }
+
+/* ---- Product card (right) ---- */
+.rit__details {
+  position: absolute;
+  z-index: 2;
+  right: clamp(32px, calc(120 * 100vw / 1920), 120px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(250px, calc(313 * 100vw / 1920), 313px);
+  display: grid;
+}
+.rit__item {
+  grid-area: 1 / 1;
+  container-type: inline-size;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+.rit__item.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease 0.12s, visibility 0s;
+}
+.rit__item-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 9.9cqi;              /* 31px */
+  border-radius: 10px;
+  background: var(--rit-detail-bg);
+  color: #28201F;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+a.rit__item-in:focus-visible { outline: 2px solid var(--rit-dot-active); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  a.rit__item-in:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25); }
+}
+.rit__tag {
+  align-self: flex-start;
+  margin: 3.2cqi 0 0 3.2cqi;           /* 10px */
+  padding: 5px 10px;
+  box-shadow: inset 0 0 0 1px #28201F;   /* Figma: 1px inside stroke, adds no height */
+  border-radius: 30px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.8);
+  white-space: nowrap;
+}
+.rit__shot {
+  width: 100%;
+  height: 82.1cqi;                     /* 257px */
+  display: flex;
+  justify-content: center;
+}
+.rit__tag + .rit__shot { margin-top: 0; }
+.rit__shot--notag { margin-top: 10.86cqi; }
+.rit__shot img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 80%;
+  object-fit: contain;
+  /* Figma: three visible drop shadows on the cut-out (drop-shadow blur ≈ half the Figma blur) */
+  filter: drop-shadow(18.06px 13.24px 11.4px rgba(0, 0, 0, 0.17)) drop-shadow(39.73px 31.3px 15.05px rgba(0, 0, 0, 0.1)) drop-shadow(71.03px 55.38px 18.06px rgba(0, 0, 0, 0.03));
+}
+.rit__item.is-active .rit__shot img { animation: rit-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rit__item.is-active .rit__title,
+.rit__item.is-active .rit__desc,
+.rit__item.is-active .rit__item-price { animation: rit-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+@keyframes rit-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.rit__title {
+  margin: 6.7cqi 0 0;                  /* 21px */
+  max-width: 62cqi;                    /* 194px box */
+  font-family: var(--rit-accent-font);
+  font-weight: var(--rit-accent-weight);
+  font-size: max(16px, 6.39cqi);       /* 20px */
+  line-height: 1.219;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.rit__desc {
+  margin: 2.56cqi 0 0;                 /* 8px */
+  padding: 0 10.86cqi;                 /* 34px */
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(14px, 5.11cqi);       /* 16px */
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.6);
+}
+.rit__copy { display: flex; flex-direction: column; align-items: center; }
+.rit__item-price {
+  margin: 8px 0 0;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-size: 15px;
+  color: #28201F;
+}
+
+.rit__sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Stacked layout (≤1199) ---- */
+@media screen and (max-width: 1199px) {
+  .rit__card {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .rit__intro {
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: none;
+    order: 1;
+    padding: 40px 32px 28px;
+  }
+  .rit__media {
+    position: relative;
+    inset: auto;
+    order: 2;
+    aspect-ratio: var(--rit-stacked-ratio);
+    max-height: 75svh;   /* tablets: keep the photo within the screen; hotspots follow the crop */
+  }
+  .rit__details {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    order: 3;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px 24px 28px;
+  }
+  /* Horizontal product card: shot on the left; tag, title, description on the right */
+  .rit__item-in {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas: 'shot tag' 'shot copy';
+    grid-template-rows: auto 1fr;
+    column-gap: 16px;
+    row-gap: 8px;
+    align-items: start;
+    text-align: left;
+    padding: 14px 16px 14px 12px;
+  }
+  .rit__tag { grid-area: tag; margin: 0; justify-self: start; }
+  .rit__shot, .rit__shot--notag { grid-area: shot; width: 72px; height: 120px; margin: 0; align-self: center; }
+  .rit__shot img { max-width: 100%; filter: drop-shadow(6px 5px 6px rgba(0, 0, 0, 0.18)); }
+  .rit__copy { grid-area: copy; align-items: flex-start; }
+  .rit__shot--notag + .rit__copy { grid-row: 1 / -1; align-self: center; }
+  .rit__title { margin: 0; max-width: none; font-size: 17px; }
+  .rit__desc { margin: 4px 0 0; padding: 0; font-size: 14px; }
+}
+@media screen and (max-width: 768px) {
+  .rit__img--mobile { display: block; }
+  .rit__img--mobile + .rit__img--desktop { display: none; }
+  .rit__intro { padding: 32px 20px 24px; }
+  .rit .rit__heading { font-size: var(--rit-h-m); }
+  .rit__btn { width: 100%; min-height: 50px; padding: 0 20px; justify-content: space-between; }
+  .rit__btn-price { margin-left: 12px; }
+  .rit__details { padding: 16px 16px 20px; }
+  .rit__dot { width: 26px; height: 26px; margin: -13px 0 0 -13px; font-size: 16px; }
+}
+@media screen and (max-width: 480px) {
+  .rit__compare { display: none; }
+  .rit__btn { padding: 0 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rit--bling .rit__dot::before,
+  .rit--bling .rit__dot::after,
+  .rit--bling .rit__dot span { animation: none; }
+  .rit--pop .rit__dot { transform: none; }
+  .rit__item, .rit__item.is-active { transition: none; }
+  .rit__item.is-active .rit__shot img,
+  .rit__item.is-active .rit__title,
+  .rit__item.is-active .rit__desc,
+  .rit__item.is-active .rit__item-price { animation: none; }
+}
+.rit__empty {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 24px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-size: 14px;
+  color: var(--rit-heading);
+}
+{% endstyle %}
+
+<div
+  class="rit{% if s.italic_new_line %} rit--em-break{% endif %}{% if s.hotspot_animation == 'bling' %} rit--bling{% endif %}{% if s.custom_class != blank %} {{ s.custom_class | escape }}{% endif %}"
+  data-rit
+  data-focus-x="{{ s.focus_x }}" data-focus-y="{{ s.focus_y }}"
+  data-stacked-focus-x="{{ s.stacked_focus_x }}" data-stacked-focus-y="{{ s.stacked_focus_y }}"
+  data-after-add="{{ s.after_add }}"
+  data-discount-code="{{ s.discount_code | escape }}"
+  data-cart-add-url="{{ routes.cart_add_url }}.js"
+  data-cart-url="{{ routes.cart_url }}"
+  data-cart-json-url="{{ routes.cart_url }}.js"
+  data-root-url="{{ routes.root_url }}"
+>
+  <div class="main-container">
+    <div class="rit__card">
+
+      <div class="rit__intro">
+        {%- if s.heading != blank -%}
+          <h2 class="rit__heading" id="{{ heading_id }}">{{ s.heading }}</h2>
+        {%- endif -%}
+        {%- if s.show_button -%}
+          <button
+            type="button"
+            class="rit__btn{% if variant_ids == '' and any_unavailable %} is-soldout{% endif %}"
+            data-rit-add
+            data-variants="{{ variant_ids }}"
+            data-label="{{ s.button_label | escape }}"
+            {% if variant_ids == '' and any_unavailable %}disabled{% elsif variant_ids == '' %}aria-disabled="true"{% endif %}
+          >
+            <span class="rit__btn-label" data-rit-btn-label>{% if variant_ids == '' and any_unavailable %}{{ s.sold_out_label | escape }}{% else %}{{ s.button_label | escape }}{% endif %}</span>
+            {%- if price_text != blank -%}
+              <span class="rit__btn-price">
+                <span class="rit__price"><span class="rit__sr">{{ s.price_sr_label | escape }}</span>{{ price_text }}</span>
+                {%- if s.show_compare_price and compare_text != blank and discount > 0 -%}
+                  <s class="rit__compare"><span class="rit__sr">{{ s.compare_sr_label | escape }}</span>{{ compare_text }}</s>
+                {%- endif -%}
+                {%- if discount > 0 -%}
+                  <span class="rit__badge">-{{ discount }}%</span>
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+          </button>
+          <p class="rit__status" role="status" aria-live="polite" data-rit-status></p>
+        {%- endif -%}
+      </div>
+
+      <div class="rit__media" data-ratio="{{ s.background_image.aspect_ratio | default: 2.457 }}" data-ratio-mobile="{{ s.mobile_background_image.aspect_ratio }}">
+        {%- if s.mobile_background_image != blank -%}
+          {{- s.mobile_background_image | image_url: width: 1500 | image_tag: class: 'rit__img--mobile', widths: '375, 750, 1100, 1500', sizes: '100vw', loading: 'lazy', alt: '' -}}
+        {%- endif -%}
+        {%- if s.background_image != blank -%}
+          {%- assign bg_alt = s.background_image.alt | escape -%}
+          {{- s.background_image | image_url: width: 3440 | image_tag: class: 'rit__img--desktop', widths: '800, 1200, 1720, 2400, 3440', sizes: '(min-width: 1200px) 90vw, 100vw', loading: 'lazy', alt: bg_alt -}}
+        {%- else -%}
+          {{- 'collection-2' | placeholder_svg_tag: 'rit__ph rit__img--desktop' -}}
+        {%- endif -%}
+
+        <div class="rit__layer" data-rit-layer>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign title = b.title | strip
+              if title == blank and b.product != blank
+                assign title = b.product.title
+              endif
+              assign title_plain = title | newline_to_br | replace: '<br />', ' ' | strip_html | escape
+              assign pos_x = b.pos_x
+              assign pos_y = b.pos_y
+              assign mob_x = b.mobile_pos_x
+              assign mob_y = b.mobile_pos_y
+            -%}
+            <button
+              type="button"
+              class="rit__dot{% if forloop.first %} is-active{% endif %}"
+              style="--i: {{ forloop.index0 }}; left: {{ pos_x }}%; top: {{ pos_y }}%;"
+              data-rit-dot="{{ forloop.index0 }}"
+              data-x="{{ pos_x }}" data-y="{{ pos_y }}" data-mx="{{ mob_x }}" data-my="{{ mob_y }}"
+              aria-controls="Rit-item-{{ block.id }}"
+              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-label="{{ forloop.index }}: {{ title_plain }}"
+              {{ block.shopify_attributes }}
+            ><span aria-hidden="true">{{ forloop.index }}</span></button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="rit__details" data-rit-details>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign p = b.product
+              assign title = b.title | strip
+              if title == blank and p != blank
+                assign title = p.title
+              endif
+              assign link = b.link
+              if link == blank and p != blank
+                assign link = p.url
+              endif
+              assign shot = b.image
+              if shot == blank and p != blank
+                assign shot = p.featured_media.preview_image
+              endif
+              assign shot_alt = title | newline_to_br | replace: '<br />', ' ' | strip_html | escape
+            -%}
+            <div
+              class="rit__item{% if forloop.first %} is-active{% endif %}"
+              id="Rit-item-{{ block.id }}"
+              data-rit-item="{{ forloop.index0 }}"
+              {% unless forloop.first %}aria-hidden="true" inert{% endunless %}
+            >
+              {%- if link != blank -%}<a class="rit__item-in" href="{{ link }}">{%- else -%}<div class="rit__item-in">{%- endif -%}
+                {%- if b.tag != blank -%}<span class="rit__tag">{{ b.tag | escape }}</span>{%- endif -%}
+                <span class="rit__shot{% if b.tag == blank %} rit__shot--notag{% endif %}">
+                  {%- if shot != blank -%}
+                    {{- shot | image_url: width: 600 | image_tag: widths: '200, 400, 600', sizes: '(min-width: 1200px) 120px, 72px', loading: 'lazy', alt: shot_alt -}}
+                  {%- endif -%}
+                </span>
+                <span class="rit__copy">
+                  {%- if title != blank -%}
+                    <span class="rit__title" style="display:block">{{ title | escape | newline_to_br }}</span>
+                  {%- endif -%}
+                  {%- if b.description != blank -%}
+                    <span class="rit__desc" style="display:block">{{ b.description | escape | newline_to_br }}</span>
+                  {%- endif -%}
+                  {%- if s.show_card_price and p != blank -%}
+                    <span class="rit__item-price" style="display:block">
+                      {%- if s.price_format == 'money' -%}{{ p.price | money }}{%- else -%}{{ p.price | money_without_trailing_zeros }}{%- endif -%}
+                    </span>
+                  {%- endif -%}
+                </span>
+              {%- if link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- elsif request.design_mode -%}
+        <p class="rit__empty">Add product hotspot blocks to place numbered dots on the photo.</p>
+      {%- endif -%}
+    </div>
+  </div>
+  <p class="rit__sr" aria-live="polite" data-rit-live></p>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var MSG = {
+      adding: {{ s.adding_label | json }},
+      added: {{ s.added_label | json }},
+      error: {{ s.error_label | json }},
+      showing: {{ s.showing_sr_label | json }}
+    };
+    var hoverFine = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var stacked = window.matchMedia('(max-width: 1199px)');
+    var mobile = window.matchMedia('(max-width: 768px)');
+
+    function init(root) {
+      if (!root || root._ritInit) return;
+      root._ritInit = true;
+      var dots = Array.prototype.slice.call(root.querySelectorAll('[data-rit-dot]'));
+      var items = Array.prototype.slice.call(root.querySelectorAll('[data-rit-item]'));
+      var media = root.querySelector('.rit__media');
+      var layer = root.querySelector('[data-rit-layer]');
+      var live = root.querySelector('[data-rit-live]');
+      var active = 0;
+      var cleanups = [];
+      function on(el, ev, fn, opts) { el.addEventListener(ev, fn, opts); cleanups.push(function () { el.removeEventListener(ev, fn, opts); }); }
+
+      // ---------- activate a hotspot ----------
+      function activate(i, announce) {
+        if (!items[i]) return;
+        if (announce && live) {
+          var label = (dots[i].getAttribute('aria-label') || '').replace(/^\d+:\s*/, '');
+          live.textContent = MSG.showing.replace('[title]', label);
+        }
+        if (i === active) return;
+        active = i;
+        dots.forEach(function (d, k) {
+          d.classList.toggle('is-active', k === i);
+          d.setAttribute('aria-pressed', k === i ? 'true' : 'false');
+        });
+        items.forEach(function (it, k) {
+          var on_ = k === i;
+          it.classList.toggle('is-active', on_);
+          if (on_) { it.removeAttribute('aria-hidden'); it.inert = false; it.removeAttribute('inert'); }
+          else { it.setAttribute('aria-hidden', 'true'); it.inert = true; it.setAttribute('inert', ''); }
+        });
+      }
+      dots.forEach(function (d, i) {
+        on(d, 'pointerenter', function (e) { if (e.pointerType === 'mouse' && hoverFine.matches) activate(i, false); });
+        on(d, 'click', function () { activate(i, true); });
+        on(d, 'focus', function () { if (d.matches(':focus-visible')) activate(i, true); });
+        on(d, 'keydown', function (e) {
+          var k = e.key, n = dots.length, j = null;
+          if (k === 'ArrowRight' || k === 'ArrowDown') j = (i + 1) % n;
+          else if (k === 'ArrowLeft' || k === 'ArrowUp') j = (i - 1 + n) % n;
+          if (j !== null) { e.preventDefault(); dots[j].focus(); activate(j, true); }
+        });
+      });
+
+      // ---------- keep the hotspot layer on the photo's cover box ----------
+      function visibleImg() {
+        var imgs = media ? media.querySelectorAll('img, svg.rit__ph') : [];
+        for (var k = 0; k < imgs.length; k++) if (getComputedStyle(imgs[k]).display !== 'none') return imgs[k];
+        return null;
+      }
+      function layout() {
+        if (!media || !layer) return;
+        var img = visibleImg();
+        var useMobileImg = !!(img && img.classList.contains('rit__img--mobile'));
+        var fx = parseFloat(root.getAttribute(stacked.matches ? 'data-stacked-focus-x' : 'data-focus-x')) / 100;
+        var fy = parseFloat(root.getAttribute(stacked.matches ? 'data-stacked-focus-y' : 'data-focus-y')) / 100;
+        if (useMobileImg) { fx = 0.5; fy = 0.5; }
+        media.style.setProperty('--rit-fx', (fx * 100) + '%');
+        media.style.setProperty('--rit-fy', (fy * 100) + '%');
+        var w = media.clientWidth, h = media.clientHeight;
+        var ratio = parseFloat(media.getAttribute(useMobileImg ? 'data-ratio-mobile' : 'data-ratio'));
+        var lw = w, lh = h, lx = 0, ly = 0;
+        if (ratio > 0 && w > 0 && h > 0) {
+          if (ratio > w / h) { lh = h; lw = h * ratio; } else { lw = w; lh = w / ratio; }
+          lx = (w - lw) * fx; ly = (h - lh) * fy;
+        }
+        layer.style.left = lx + 'px'; layer.style.top = ly + 'px';
+        layer.style.width = lw + 'px'; layer.style.height = lh + 'px';
+        dots.forEach(function (d) {
+          var x = parseFloat(d.getAttribute(useMobileImg ? 'data-mx' : 'data-x'));
+          var y = parseFloat(d.getAttribute(useMobileImg ? 'data-my' : 'data-y'));
+          d.style.left = x + '%'; d.style.top = y + '%';
+          var px = lx + lw * x / 100, py = ly + lh * y / 100;
+          d.classList.toggle('is-off', px < 8 || px > w - 8 || py < 8 || py > h - 8);
+        });
+      }
+      layout();
+      var ro = 'ResizeObserver' in window ? new ResizeObserver(layout) : null;
+      if (ro && media) ro.observe(media);
+      else on(window, 'resize', layout);
+      if (media) media.querySelectorAll('img').forEach(function (im) { if (!im.complete) on(im, 'load', layout); });
+
+      // ---------- pop-in when entering the screen ----------
+      var io = null;
+      if (!reduce.matches && !(window.Shopify && Shopify.designMode) && 'IntersectionObserver' in window) {
+        var r = root.getBoundingClientRect();
+        if (!(r.top < window.innerHeight * 0.85 && r.bottom > 0)) {
+          root.classList.add('rit--prep', 'rit--pop');
+          void root.offsetHeight;
+          root.classList.remove('rit--prep');
+          io = new IntersectionObserver(function (entries) {
+            if (entries.some(function (e) { return e.isIntersecting; })) {
+              root.classList.add('rit--in');
+              io.disconnect(); io = null;
+            }
+          }, { threshold: 0.3 });
+          io.observe(media || root);
+        }
+      }
+
+      // ---------- ADD BUNDLE ----------
+      var btn = root.querySelector('[data-rit-add]');
+      var status = root.querySelector('[data-rit-status]');
+      var labelEl = root.querySelector('[data-rit-btn-label]');
+      function setStatus(t) { if (status) status.textContent = t || ''; }
+      if (btn) on(btn, 'click', function () {
+        var ids = (btn.getAttribute('data-variants') || '').split(',').filter(Boolean);
+        if (!ids.length || btn.getAttribute('aria-busy') === 'true') return;
+        btn.setAttribute('aria-busy', 'true');
+        if (labelEl) labelEl.textContent = MSG.adding;
+        setStatus('');
+        var items_ = ids.map(function (id) { return { id: parseInt(id, 10), quantity: 1 }; });
+        fetch(root.getAttribute('data-cart-add-url'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+          body: JSON.stringify({ items: items_ })
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              if (!res.ok) throw new Error(data && (data.description || data.message) || ('HTTP ' + res.status));
+              return data;
+            });
+          })
+          .then(function () {
+            var code = root.getAttribute('data-discount-code');
+            if (code) {
+              return fetch(root.getAttribute('data-root-url').replace(/\/?$/, '/') + 'discount/' + encodeURIComponent(code), { credentials: 'same-origin' }).catch(function () {});
+            }
+          })
+          .then(function () {
+            var mode = root.getAttribute('data-after-add');
+            if (mode === 'checkout') { window.location.href = '/checkout'; return; }
+            if (mode === 'cart') { window.location.href = root.getAttribute('data-cart-url'); return; }
+            return fetch(root.getAttribute('data-cart-json-url'), { headers: { 'Accept': 'application/json' } })
+              .then(function (r) { return r.json(); })
+              .then(function (cart) {
+                document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true, detail: { cart: cart } }));
+                var drawer = document.getElementById('drawer-cart');
+                if (drawer) drawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+                else window.location.href = root.getAttribute('data-cart-url');
+                setStatus(MSG.added);
+              });
+          })
+          .catch(function (err) {
+            setStatus(MSG.error + (err && err.message ? ' (' + err.message + ')' : ''));
+          })
+          .then(function () {
+            btn.removeAttribute('aria-busy');
+            if (labelEl) labelEl.textContent = btn.getAttribute('data-label');
+          });
+      });
+
+      root._ritActivate = function (i) { activate(i, false); };
+      root._ritCleanup = function () {
+        cleanups.forEach(function (fn) { fn(); });
+        if (ro) ro.disconnect();
+        if (io) io.disconnect();
+        root.classList.remove('rit--pop', 'rit--in', 'rit--prep');
+        root._ritInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-rit]');
+    }
+    function boot() { init(rootFor(SECTION_ID)); }
+    if (rootFor(SECTION_ID)) boot();
+    else document.addEventListener('DOMContentLoaded', boot);
+
+    if (!window.__ritEditorBound) {
+      window.__ritEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._ritCleanup) r._ritCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (!r || !r._ritActivate) return;
+        var dot = e.target && e.target.closest ? e.target.closest('[data-rit-dot]') : null;
+        if (dot) r._ritActivate(parseInt(dot.getAttribute('data-rit-dot'), 10));
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ritual Bundle",
+  "tag": "section",
+  "class": "rit-section",
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Five products. <em>one complete ritual.</em></p>"
+    },
+    { "type": "checkbox", "id": "italic_new_line", "label": "Put italic text on its own line", "default": true },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#FFFFFF" },
+    { "type": "header", "content": "Photo" },
+    { "type": "image_picker", "id": "background_image", "label": "Products photo", "info": "1720 × 700 in the design (2400px+ wide recommended). Hotspots are placed in % of this photo." },
+    { "type": "range", "id": "focus_x", "label": "Desktop crop focus (horizontal)", "info": "Used when the card is narrower than the photo's shape.", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 47 },
+    { "type": "range", "id": "focus_y", "label": "Desktop crop focus (vertical)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+    {
+      "type": "select",
+      "id": "stacked_aspect_ratio",
+      "label": "Photo shape on tablet and mobile",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "4 / 3", "label": "Landscape" },
+        { "value": "16 / 9", "label": "Wide" }
+      ],
+      "default": "1 / 1"
+    },
+    { "type": "range", "id": "stacked_focus_x", "label": "Tablet and mobile crop focus (horizontal)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 47 },
+    { "type": "range", "id": "stacked_focus_y", "label": "Tablet and mobile crop focus (vertical)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 55 },
+    { "type": "image_picker", "id": "mobile_background_image", "label": "Mobile photo", "info": "Optional (768px and below). Uses each hotspot's mobile position." },
+    { "type": "header", "content": "Hotspots" },
+    {
+      "type": "select",
+      "id": "hotspot_animation",
+      "label": "Hotspot animation",
+      "options": [
+        { "value": "bling", "label": "Pulse rings" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "bling"
+    },
+    { "type": "color", "id": "hotspot_color", "label": "Dot", "default": "#FFFFFF" },
+    { "type": "color", "id": "hotspot_text_color", "label": "Dot number", "default": "#28201F" },
+    { "type": "color", "id": "hotspot_active_color", "label": "Active dot", "default": "#78563D" },
+    { "type": "color", "id": "hotspot_active_text_color", "label": "Active dot number", "default": "#FFFFFF" },
+    { "type": "font_picker", "id": "accent_font", "label": "Number and product title font", "info": "Design uses Montserrat Bold.", "default": "montserrat_n7" },
+    { "type": "header", "content": "Product card" },
+    { "type": "color", "id": "detail_card_bg", "label": "Card background", "default": "#F6F3EE" },
+    { "type": "checkbox", "id": "show_card_price", "label": "Show product price on the card", "default": false },
+    { "type": "header", "content": "Bundle button" },
+    { "type": "checkbox", "id": "show_button", "label": "Show bundle button", "default": true },
+    { "type": "text", "id": "button_label", "label": "Label", "default": "ADD BUNDLE" },
+    { "type": "range", "id": "bundle_discount", "label": "Bundle discount shown", "info": "Display only. Create the matching automatic discount or discount code in Shopify admin.", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 10 },
+    { "type": "text", "id": "discount_code", "label": "Discount code to apply", "info": "Optional. Applied to the cart after the bundle is added." },
+    { "type": "checkbox", "id": "show_compare_price", "label": "Show original price", "default": true },
+    {
+      "type": "select",
+      "id": "price_format",
+      "label": "Price format",
+      "options": [
+        { "value": "money_without_trailing_zeros", "label": "Rs. 1,199" },
+        { "value": "money", "label": "Rs. 1,199.00" }
+      ],
+      "default": "money_without_trailing_zeros"
+    },
+    { "type": "text", "id": "price_override", "label": "Price text without products", "info": "Shown only when no hotspot has a product linked.", "default": "Rs. 1,199" },
+    { "type": "text", "id": "compare_price_override", "label": "Original price text without products", "default": "Rs. 1,332" },
+    {
+      "type": "select",
+      "id": "after_add",
+      "label": "After adding",
+      "options": [
+        { "value": "drawer", "label": "Open cart drawer" },
+        { "value": "cart", "label": "Go to cart page" },
+        { "value": "checkout", "label": "Go to checkout" }
+      ],
+      "default": "drawer"
+    },
+    { "type": "color", "id": "button_bg", "label": "Button background", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_text_color", "label": "Button label", "default": "#2A1F19" },
+    { "type": "header", "content": "Messages" },
+    { "type": "text", "id": "adding_label", "label": "While adding", "default": "Adding…" },
+    { "type": "text", "id": "added_label", "label": "Added", "default": "Bundle added to your cart." },
+    { "type": "text", "id": "error_label", "label": "Error", "default": "Couldn't add the bundle. Please try again." },
+    { "type": "text", "id": "sold_out_label", "label": "Sold out", "default": "Sold out" },
+    { "type": "text", "id": "price_sr_label", "label": "Screen reader: price", "default": "Bundle price " },
+    { "type": "text", "id": "compare_sr_label", "label": "Screen reader: original price", "default": "Original price " },
+    { "type": "text", "id": "showing_sr_label", "label": "Screen reader: product shown", "info": "[title] is replaced by the product name.", "default": "Showing [title]" },
+    { "type": "header", "content": "Layout" },
+    { "type": "color", "id": "card_bg", "label": "Card background (behind photo)", "default": "#28201F" },
+    { "type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "color_background", "label": "Page background", "default": "#FFFCF9" },
+    { "type": "range", "id": "padding_top", "label": "Desktop padding top", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Desktop padding bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Mobile padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Mobile padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Product hotspot",
+      "limit": 8,
+      "settings": [
+        { "type": "product", "id": "product", "label": "Linked product", "info": "Card links here, and it is added by the bundle button." },
+        { "type": "checkbox", "id": "include_in_bundle", "label": "Include in bundle", "default": true },
+        { "type": "url", "id": "link", "label": "Card link (optional)", "info": "Overrides the product link." },
+        { "type": "header", "content": "Card content" },
+        { "type": "image_picker", "id": "image", "label": "Card image", "info": "Transparent cut-out works best. Falls back to the product image." },
+        { "type": "text", "id": "tag", "label": "Tag", "default": "100% VEGAN" },
+        { "type": "textarea", "id": "title", "label": "Title", "info": "Shown in capitals. Falls back to the product title.", "default": "CLEAN IT OFF\nFace Wash 100ml" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Brightening + hydration + scar healing — all in two drops" },
+        { "type": "header", "content": "Position on the photo" },
+        { "type": "range", "id": "pos_x", "label": "Horizontal", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 60 },
+        { "type": "range", "id": "pos_y", "label": "Vertical", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 14 },
+        { "type": "range", "id": "mobile_pos_x", "label": "Horizontal on mobile photo", "info": "Only used when a mobile photo is set.", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 60 },
+        { "type": "range", "id": "mobile_pos_y", "label": "Vertical on mobile photo", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 14 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ritual Bundle",
+      "blocks": [
+        { "type": "hotspot", "settings": { "pos_x": 60, "pos_y": 14, "mobile_pos_x": 60, "mobile_pos_y": 14 } },
+        { "type": "hotspot", "settings": { "pos_x": 47, "pos_y": 30, "mobile_pos_x": 47, "mobile_pos_y": 30, "title": "Product 2", "description": "Add this product's details in the customizer." } },
+        { "type": "hotspot", "settings": { "pos_x": 32, "pos_y": 57, "mobile_pos_x": 32, "mobile_pos_y": 57, "title": "Product 3", "description": "Add this product's details in the customizer." } },
+        { "type": "hotspot", "settings": { "pos_x": 48, "pos_y": 64, "mobile_pos_x": 48, "mobile_pos_y": 64, "title": "Product 4", "description": "Add this product's details in the customizer." } },
+        { "type": "hotspot", "settings": { "pos_x": 62, "pos_y": 56, "mobile_pos_x": 62, "mobile_pos_y": 56, "title": "Product 5", "description": "Add this product's details in the customizer." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
