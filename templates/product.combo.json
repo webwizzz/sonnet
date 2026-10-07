@@ -426,7 +426,7 @@
         "slide_k4cQQt": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/combo_rev.png",
+            "image": "shopify://shop_images/combo_rev_converted.webp",
             "label": "Face Cream",
             "stat": "2%",
             "stat_caption": "Supports Even-Looking Tone",
@@ -436,7 +436,7 @@
         "slide_ePwiUP": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/combo_rev_2.png",
+            "image": "shopify://shop_images/combo_rev_2_converted.webp",
             "label": "Both Products",
             "stat": "1%",
             "stat_caption": "Postbiotic In Both Steps",
@@ -446,7 +446,7 @@
         "slide_9AHF4w": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/combo_rev_3.png",
+            "image": "shopify://shop_images/combo_rev_3_converted.webp",
             "label": "Face Wash",
             "stat": "6+5%",
             "stat_caption": "Won't Strip Or Tighten",
@@ -456,7 +456,7 @@
         "slide_8jnKMq": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/combo_rev_4.png",
+            "image": "shopify://shop_images/combo_rev_4_converted.webp",
             "label": "Face Cream",
             "stat": "2-Step",
             "stat_caption": "Lasting, Non-Greasy Moisture",
@@ -473,6 +473,7 @@
       "name": "Why Love Slider",
       "settings": {
         "custom_class": "",
+        "image": "shopify://shop_images/combo_rev_converted.webp",
         "image_position": "right",
         "heading": "<p>What <em>This Set Does</em></p>",
         "heading_size": 58,
@@ -648,7 +649,8 @@
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/step-face-cream-415x340.webp",
+            "image": "shopify://shop_images/Rectangle_1430107059.png",
+            "video": "shopify://files/videos/Removes buildup gif.mp4",
             "video_url": "",
             "title": "Clean It Off Face Wash",
             "description": "Removes overnight sebum and surface impurities",
@@ -661,7 +663,8 @@
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/step-face-wash-415x340.webp",
+            "image": "shopify://shop_images/2am.png",
+            "video": "shopify://files/videos/Locks in moisture gif.mp4",
             "video_url": "",
             "title": "Soak It In Face Cream",
             "description": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
@@ -674,7 +677,8 @@
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/step-face-cream-415x340.webp",
+            "image": "shopify://shop_images/123.png",
+            "video": "shopify://files/videos/Wont strip skin gif.mp4",
             "video_url": "",
             "title": "Clean It Off Face Wash",
             "description": "Removes overnight sebum and surface impurities",
@@ -687,7 +691,8 @@
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/step-face-wash-415x340.webp",
+            "image": "shopify://shop_images/Soak_It_In_Face_Cream_PM_f1.png",
+            "video": "shopify://files/videos/Non-greasy finish gif.mp4",
             "video_url": "",
             "title": "Soak It In Face Cream",
             "description": "Niacinamide 2% and lasting moisture; follow with SPF 30 to 50",
