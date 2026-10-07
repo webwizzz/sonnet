@@ -420,6 +420,84 @@
         "padding_bottom": 36
       }
     },
+    "why_love_dCAtMf": {
+      "type": "why-love",
+      "blocks": {
+        "slide_k4cQQt": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/combo_rev.png",
+            "label": "Face Cream",
+            "stat": "2%",
+            "stat_caption": "Supports Even-Looking Tone",
+            "body": "2% Niacinamide helps support a\nvisibly more even-looking skin tone\nand helps minimise the look of pores\nwith regular use."
+          }
+        },
+        "slide_ePwiUP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/combo_rev_2.png",
+            "label": "Both Products",
+            "stat": "1%",
+            "stat_caption": "Postbiotic In Both Steps",
+            "body": "1% Lactobacillus Ferment Lysate\nhelps maintain a comfortable,\nconditioned skin surface, in the face\nwash and the face cream."
+          }
+        },
+        "slide_9AHF4w": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/combo_rev_3.png",
+            "label": "Face Wash",
+            "stat": "6+5%",
+            "stat_caption": "Won't Strip Or Tighten",
+            "body": "Formulated with 6% Glycerin and 5%\nAloe Vera to help skin feel\ncomfortable and hydrated after\nrinsing, not tight or stripped."
+          }
+        },
+        "slide_8jnKMq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/combo_rev_4.png",
+            "label": "Face Cream",
+            "stat": "2-Step",
+            "stat_caption": "Lasting, Non-Greasy Moisture",
+            "body": "Provides lasting daily moisture with a\ncushioned, non-greasy finish."
+          }
+        }
+      },
+      "block_order": [
+        "slide_k4cQQt",
+        "slide_ePwiUP",
+        "slide_9AHF4w",
+        "slide_8jnKMq"
+      ],
+      "name": "Why Love Slider",
+      "settings": {
+        "custom_class": "",
+        "image_position": "right",
+        "heading": "<p>What <em>This Set Does</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "show_counter": true,
+        "scroll_length": 100,
+        "zoom_start": 125,
+        "text_animation": "rise",
+        "sticky_offset_mode": "auto",
+        "sticky_offset": 0,
+        "enable_mobile_animation": true,
+        "mobile_image_height": 45,
+        "color_background": "#fffcf9",
+        "color_panel": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_pill_text": "#ffffff",
+        "color_counter_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
     "why_section_gbUtQL": {
       "type": "Why_section",
       "blocks": {
@@ -470,10 +548,11 @@
         "block_APzLt7",
         "block_KLNVfz"
       ],
+      "disabled": true,
       "name": "Why Section",
       "settings": {
         "custom_class": "",
-        "title": "",
+        "title": "<p>Why your skin will <em>love Rub It In</em></p>",
         "padding_top": 80,
         "padding_bottom": 80,
         "mobile_padding_top": 40,
@@ -629,7 +708,7 @@
         "heading": "<p>Your <em>Routine</em></p>",
         "heading_size": 58,
         "heading_size_mobile": 28,
-        "show_toggle": false,
+        "show_toggle": true,
         "default_view": "all",
         "am_label": "AM",
         "pm_label": "PM",
@@ -727,93 +806,6 @@
         "padding_bottom": 100,
         "mobile_padding_top": 50,
         "mobile_padding_bottom": 50
-      }
-    },
-    "science_stats_cEpVm6": {
-      "type": "science-stats",
-      "blocks": {
-        "stat_VApmf4": {
-          "type": "stat",
-          "settings": {
-            "icon": "sun_skin",
-            "value": "6%",
-            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
-            "text_width": 221
-          }
-        },
-        "stat_CmcnmV": {
-          "type": "stat",
-          "settings": {
-            "icon": "skin_layers",
-            "value": "17%",
-            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
-            "text_width": 216
-          }
-        },
-        "stat_r4yenw": {
-          "type": "stat",
-          "settings": {
-            "icon": "drops",
-            "value": "5%",
-            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
-            "text_width": 204
-          }
-        },
-        "stat_iNkgTr": {
-          "type": "stat",
-          "settings": {
-            "icon": "shield_cross",
-            "value": "1%",
-            "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
-            "text_width": 183
-          }
-        },
-        "stat_JkQBhR": {
-          "type": "stat",
-          "settings": {
-            "icon": "face_glow",
-            "value": "0%",
-            "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
-            "text_width": 190
-          }
-        }
-      },
-      "block_order": [
-        "stat_VApmf4",
-        "stat_CmcnmV",
-        "stat_r4yenw",
-        "stat_iNkgTr",
-        "stat_JkQBhR"
-      ],
-      "name": "Science Stats",
-      "settings": {
-        "heading": "<p>The science behind <em>the results.</em></p>",
-        "heading_size": 58,
-        "heading_size_mobile": 28,
-        "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
-        "video_on_mobile": true,
-        "background_position": "center center",
-        "overlay_color": "#28201f",
-        "overlay_opacity": 20,
-        "pill_color": "#ffffff",
-        "icon_bg_color": "#f5eee6",
-        "icon_color": "#78563d",
-        "stat_color": "#78563d",
-        "text_color": "#28201f",
-        "text_opacity": 85,
-        "animate_entrance": true,
-        "animate_numbers": true,
-        "color_background": "#fffcf9",
-        "spacing_top": 0,
-        "spacing_bottom": 100,
-        "mobile_spacing_top": 0,
-        "mobile_spacing_bottom": 48,
-        "band_padding_top": 132,
-        "band_padding_bottom": 131,
-        "mobile_band_padding_top": 48,
-        "mobile_band_padding_bottom": 48,
-        "custom_class": ""
       }
     },
     "system_logic_arc_FGrVXw": {
@@ -936,6 +928,86 @@
         "custom_class": ""
       }
     },
+    "science_stats_cEpVm6": {
+      "type": "science-stats",
+      "blocks": {
+        "stat_VApmf4": {
+          "type": "stat",
+          "settings": {
+            "icon": "sun_skin",
+            "icon_image": "shopify://shop_images/Group_2087330668.svg",
+            "value": "1%",
+            "text": "Lactobacillus Ferment Lysate, both products",
+            "text_width": 221
+          }
+        },
+        "stat_CmcnmV": {
+          "type": "stat",
+          "settings": {
+            "icon": "skin_layers",
+            "icon_image": "shopify://shop_images/Group_2087330669.svg",
+            "value": "2%",
+            "text": "Niacinamide in Soak It In Face Cream",
+            "text_width": 216
+          }
+        },
+        "stat_r4yenw": {
+          "type": "stat",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/Group_2087330673.svg",
+            "value": "6%+5%",
+            "text": "Glycerin + Aloe Vera in Clean It Off",
+            "text_width": 204
+          }
+        },
+        "stat_iNkgTr": {
+          "type": "stat",
+          "settings": {
+            "icon": "face_glow",
+            "value": "2",
+            "text": "Steps to a complete daily routine",
+            "text_width": 183
+          }
+        }
+      },
+      "block_order": [
+        "stat_VApmf4",
+        "stat_CmcnmV",
+        "stat_r4yenw",
+        "stat_iNkgTr"
+      ],
+      "name": "Science Stats",
+      "settings": {
+        "heading": "<p>The science behind <em>the results.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
+        "video_on_mobile": true,
+        "background_position": "center center",
+        "overlay_color": "#28201f",
+        "overlay_opacity": 20,
+        "pill_color": "#ffffff",
+        "icon_bg_color": "#f5eee6",
+        "icon_color": "#78563d",
+        "stat_color": "#78563d",
+        "text_color": "#28201f",
+        "text_opacity": 85,
+        "animate_entrance": true,
+        "animate_numbers": true,
+        "color_background": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 100,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 48,
+        "band_padding_top": 132,
+        "band_padding_bottom": 131,
+        "mobile_band_padding_top": 48,
+        "mobile_band_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
     "trust_badges_XGitCm": {
       "type": "trust-badges",
       "blocks": {
@@ -986,10 +1058,10 @@
         "heading_size_mobile": 28,
         "label_font": "montserrat_n6",
         "show_dividers": true,
-        "color_background": "#FFFFFF",
-        "text_color": "#28201F",
-        "circle_color": "#F6F3EE",
-        "icon_color": "#28201F",
+        "color_background": "#ffffff",
+        "text_color": "#28201f",
+        "circle_color": "#f6f3ee",
+        "icon_color": "#28201f",
         "padding_top": 47,
         "padding_bottom": 47,
         "mobile_padding_top": 40,
@@ -1708,6 +1780,73 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 24
       }
+    },
+    "marquee_bar_K9WLgV": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_wpGrLf": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_JYamad": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_DrKT6k": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_Vwawc3": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FDA Approved"
+          }
+        },
+        "item_6qYzTR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_qnTthh": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_wpGrLf",
+        "item_JYamad",
+        "item_DrKT6k",
+        "item_Vwawc3",
+        "item_6qYzTR",
+        "item_qnTthh"
+      ],
+      "disabled": true,
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      }
     }
   },
   "order": [
@@ -1715,12 +1854,13 @@
     "product_tlpc_8tB6r7",
     "marquee_bar_z7LLMg",
     "17754664316b6f6fbf",
+    "why_love_dCAtMf",
     "why_section_gbUtQL",
     "set_before_after_aeVtai",
     "your_routine_HUmmJP",
     "whats_inside_carousel_GDxNxB",
-    "science_stats_cEpVm6",
     "system_logic_arc_FGrVXw",
+    "science_stats_cEpVm6",
     "trust_badges_XGitCm",
     "ritual_bundle_LwhN88",
     "microbiome_compare_kdJJf3",
@@ -1732,6 +1872,7 @@
     "bundle_section_YebTG3",
     "section_richtext_YChbGR",
     "faq_know_first_rwdfL3",
-    "faq_accordion_qHjRck"
+    "faq_accordion_qHjRck",
+    "marquee_bar_K9WLgV"
   ]
 }

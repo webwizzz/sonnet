@@ -88,12 +88,20 @@
           "type": "shopify://apps/zip-pin-postal-code-checker/blocks/availibility/b355dba7-d415-49dc-8399-11206b10c9ca",
           "settings": {
             "input_placeholder": "Enter your pincode...",
+            "auto_check_length": 6,
+            "box_bg_color": "#eaf6ef",
+            "icon_color": "#2e7d5b",
             "input_border_radius": 6,
             "input_text_color": "#000000",
+            "change_text": "Change",
             "button_bg_color": "#182d2c",
-            "available_text_color": "#4CAF50",
-            "bg-success-msg": "#E8F9F0",
+            "available_text_color": "#4caf50",
+            "bg-success-msg": "#e8f9f0",
             "available_text": "Delivery is available in your area!",
+            "show_delivery_time": true,
+            "delivery_time_text": "Delivery by {date}",
+            "use_fallback_delivery_time": false,
+            "fallback_delivery_time": "5",
             "not_available_text_color": "#d32f2f",
             "bg-wrong-msg": "#ff050529",
             "not_available_text": "Sorry, we do not deliver to your location.",
@@ -133,130 +141,754 @@
         "padding_bottom": 36
       }
     },
-    "1657789670c72b08e6": {
-      "type": "apps",
+    "marquee_bar_BK3y6m": {
+      "type": "marquee-bar",
       "blocks": {
-        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba": {
-          "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
+        "item_C8zFfq": {
+          "type": "item",
           "settings": {
-            "default_tab": "tab",
-            "start_tab_element": "h2",
-            "default_tab_title": "DESCRIPTION",
-            "layout": "breakpoint",
-            "layout_breakpoint": 750,
-            "open_first_tab": true,
-            "allow_multiple_open": false,
-            "pro_tabs": true,
-            "initialize_tabs": "immediate",
-            "custom_scripts": ""
+            "icon": "shopify://shop_images/Group_1321321668.png",
+            "title": "Dermatologically Tested"
+          }
+        },
+        "item_wUVmRz": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_1_565b7b0c-de56-48be-abbe-a421b11047d7.webp",
+            "title": "Postbiotic Formula"
+          }
+        },
+        "item_FzrLBV": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_1.png",
+            "title": "100% Vegan & Clean"
+          }
+        },
+        "item_TVmTmX": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.png",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_jUCdhT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_3.png",
+            "title": "Made In India"
+          }
+        },
+        "item_Uap6Pc": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321669.webp",
+            "title": "No Parabens"
+          }
+        },
+        "item_3xWyJU": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
+            "title": "All Skin Types"
           }
         }
       },
       "block_order": [
-        "e3488a29-9f39-4c7a-b1f7-3c903bdc63ba"
+        "item_C8zFfq",
+        "item_wUVmRz",
+        "item_FzrLBV",
+        "item_TVmTmX",
+        "item_jUCdhT",
+        "item_Uap6Pc",
+        "item_3xWyJU"
       ],
+      "name": "Marquee Bar",
       "settings": {
-        "text_color": "text--black",
-        "bg": "palette--light bg--accent",
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "add_class": "",
+        "label": "WHY US?",
+        "background_color": "#f3ede7",
+        "marquee_speed": 6,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
       }
     },
-    "1be5d3ec-3ab7-41b9-99b9-82226956d58e": {
-      "type": "section-recent-products",
-      "custom_css": [
-        "h2 {font-size: 25px;}",
-        ".product__badge.product__badge--custom {display: none;}",
-        ".ga-label.ga-label_sale {display: none !important;}"
-      ],
-      "settings": {
-        "bg": "palette--light bg--neutral",
-        "product_recently_heading": "Recently viewed products",
-        "product_recently_limit": 6,
-        "product_recently_minimum": 4,
-        "grid_large": 4,
-        "grid_medium": 3,
-        "grid_small": 1.2,
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "1678991990f8c28e98": {
-      "type": "apps",
+    "honest_results_VFQtqQ": {
+      "type": "honest-results",
       "blocks": {
-        "b10a4a81-3a79-4485-8363-52455ad72d6b": {
-          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+        "testimonial_39GnzQ": {
+          "type": "testimonial",
           "settings": {
-            "widget": "0",
-            "gashortcode": ""
+            "before_image": "shopify://shop_images/beforee_converted.webp",
+            "after_image": "shopify://shop_images/aafter_converted.webp",
+            "tag": "Sensitive skin",
+            "title": "My skin stopped feeling tight.",
+            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "rating": 4.5,
+            "rating_label": "",
+            "avatar": "shopify://shop_images/Ellipse_1337.webp",
+            "name": "Ananya R",
+            "location": "Bengaluru"
+          }
+        },
+        "testimonial_xY6XGY": {
+          "type": "testimonial",
+          "settings": {
+            "before_image": "shopify://shop_images/before_converted.webp",
+            "after_image": "shopify://shop_images/after_converted.webp",
+            "tag": "SENSITIVE SKIN",
+            "title": "Calming & lightweight",
+            "review": "<p>Absolutely in loveee with this one. Found a facewash after long that was affordable and satisfying in terms of quality and results both!</p>",
+            "rating": 4.5,
+            "rating_label": "",
+            "avatar": "shopify://shop_images/Ellipse_1337_1.webp",
+            "name": "Misbah P",
+            "location": "Bengaluru"
           }
         }
       },
       "block_order": [
-        "b10a4a81-3a79-4485-8363-52455ad72d6b"
+        "testimonial_39GnzQ",
+        "testimonial_xY6XGY"
+      ],
+      "name": "Honest Results",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>Honest skin, <em>honest results</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "tag_font": "montserrat_n5",
+        "before_label": "BEFORE",
+        "after_label": "AFTER",
+        "compare_start": 50,
+        "image_position": "right",
+        "mobile_order": "image_first",
+        "desktop_height": 700,
+        "mobile_aspect_ratio": "1/1",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "color_background": "#fffcf9",
+        "color_card": "#ffffff",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_button": "#f6f3ee",
+        "color_star": "#f69104",
+        "color_compare_ui": "#f5eee6",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48
+      }
+    },
+    "why_love_eGpM33": {
+      "type": "why-love",
+      "blocks": {
+        "slide_krGDwB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1st.png",
+            "label": "Cleanses without stripping the skin",
+            "stat": "17%",
+            "stat_caption": "Cocamidopropyl Betaine — coconut-derived",
+            "body": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        "slide_dpW84a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1430107054.png",
+            "label": "Keeps skin comfortable after every rinse",
+            "stat": "6%",
+            "stat_caption": "Glycerin — post-rinse skin comfort",
+            "body": "Glycerin draws moisture toward the skin surface during cleansing — actively fighting the drying effect of surfactants so skin feels hydrated, not depleted."
+          }
+        },
+        "slide_UWMYL3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3rd.png",
+            "label": "Soothes skin through the cleansing step",
+            "stat": "5%",
+            "stat_caption": "Aloe Barbadensis Leaf Juice — soothing humectant",
+            "body": "Aloe works during the wash itself. Helps reduce the inflammatory response cleansing triggers on reactive skin — every morning and evening."
+          }
+        },
+        "slide_fEdXpb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/4th.png",
+            "label": "A postbiotic active in every wash",
+            "stat": "1%",
+            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic ingredient",
+            "body": "An inactivated ferment lysate — not a live culture. Helps maintain a comfortable, conditioned skin surface through every cleanse."
+          }
+        }
+      },
+      "block_order": [
+        "slide_krGDwB",
+        "slide_dpW84a",
+        "slide_UWMYL3",
+        "slide_fEdXpb"
+      ],
+      "name": "Why Love Slider",
+      "settings": {
+        "custom_class": "",
+        "image_position": "left",
+        "heading": "<p>Why your skin will <em>love Clean It Off</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "show_counter": true,
+        "scroll_length": 100,
+        "zoom_start": 125,
+        "text_animation": "rise",
+        "sticky_offset_mode": "auto",
+        "sticky_offset": 0,
+        "enable_mobile_animation": true,
+        "mobile_image_height": 45,
+        "color_background": "#fffcf9",
+        "color_panel": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_pill_text": "#ffffff",
+        "color_counter_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "whats_inside_carousel_7yKjkn": {
+      "type": "whats-inside-carousel",
+      "blocks": {
+        "ingredient_YTjpCq": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "name": "LACTOBACILLUS FERMENT LYSATE · 1%",
+            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+          }
+        },
+        "ingredient_jjyC8a": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "name": "GLYCERIN · 6%",
+            "description": "A proven humectant that draws moisture to the skin surface, helping offset cleansing-related dryness."
+          }
+        },
+        "ingredient_7wfwhh": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "name": "COCAMIDOPROPYL BETAINE · 17%",
+            "description": "Coconut-derived co-surfactant that lifts impurities and creates foam with a gentler cleansing profile."
+          }
+        },
+        "ingredient_3n3U8P": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "name": "Glycerin 6%",
+            "description": "Helps offset the drying effect of cleansing on skin comfort."
+          }
+        },
+        "ingredient_QgKec3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "ALOE BARBADENSIS LEAF JUICE · 5%",
+            "description": "Helps hydrate and soothe during cleansing for a comfortable, non-tight finish."
+          }
+        },
+        "ingredient_DYBTNG": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "POLYQUATERNIUM-7 · 2%",
+            "description": "A conditioning polymer that leaves skin feeling smooth and soft after rinsing."
+          }
+        },
+        "ingredient_4DKJCj": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "MENTHOL · 0.03%",
+            "description": "A low-level sensory ingredient that provides a light, refreshing cooling finish."
+          }
+        },
+        "ingredient_K6DDLg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "GLYCOLIC ACID · 0.1%",
+            "description": "Used as a pH adjuster at this concentration — not an exfoliant."
+          }
+        },
+        "ingredient_J9EYVw": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "SODIUM LAURETH SULFATE · 28%",
+            "description": "The primary cleansing and foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_YTjpCq",
+        "ingredient_jjyC8a",
+        "ingredient_7wfwhh",
+        "ingredient_3n3U8P",
+        "ingredient_QgKec3",
+        "ingredient_DYBTNG",
+        "ingredient_4DKJCj",
+        "ingredient_K6DDLg",
+        "ingredient_J9EYVw"
+      ],
+      "name": "What's Inside Carousel",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>What's inside, <em>and exactly why.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_progress_ring": true,
+        "active_size": 400,
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_arrow_bg": "#f6f3ee",
+        "color_ring_track": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "comparison_table_q3J9NW": {
+      "type": "comparison-table",
+      "blocks": {
+        "feature_VgcTwg": {
+          "type": "feature",
+          "settings": {
+            "label": "Live Postbiotic Actives",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_Thdn8c": {
+          "type": "feature",
+          "settings": {
+            "label": "Coconut-Derived Co-Surfactant",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_hVyHHD": {
+          "type": "feature",
+          "settings": {
+            "label": "No Parabens or Phthalates",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_YWjfiV": {
+          "type": "feature",
+          "settings": {
+            "label": "Dermatologically Tested",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        },
+        "feature_QXx8Hk": {
+          "type": "feature",
+          "settings": {
+            "label": "Microbiome-Friendly Formula",
+            "brand_has": true,
+            "competitor_has": false
+          }
+        }
+      },
+      "block_order": [
+        "feature_VgcTwg",
+        "feature_Thdn8c",
+        "feature_hVyHHD",
+        "feature_YWjfiV",
+        "feature_QXx8Hk"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "heading": "<p>What makes it <em>different from others</em></p>",
+        "italic_new_line": true,
+        "heading_size": 40,
+        "heading_size_mobile": 28,
+        "footnote": "*Comparison based on leading industry competitors",
+        "brand_image": "shopify://shop_images/sonet-wellness-serum-3-191-495-27x71.webp",
+        "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
+        "brand_name": "Sonnet Wellness",
+        "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
+        "competitor_label": "Other brands",
+        "yes_label": "Included",
+        "no_label": "Not included",
+        "brand_column_label": "Brand",
+        "feature_column_label": "Feature",
+        "color_background": "#fffcf9",
+        "color_card": "#f5eee6",
+        "color_text": "#28201f",
+        "color_check_bg": "#78563d",
+        "color_check_icon": "#ffffff",
+        "color_cross_bg": "#ffffff",
+        "color_cross_icon": "#28201f",
+        "card_radius": 24,
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "science_stats_FRLgMQ": {
+      "type": "science-stats",
+      "blocks": {
+        "stat_JWhhRw": {
+          "type": "stat",
+          "settings": {
+            "icon": "sun_skin",
+            "value": "6%",
+            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+            "text_width": 221
+          }
+        },
+        "stat_n4M8FC": {
+          "type": "stat",
+          "settings": {
+            "icon": "skin_layers",
+            "value": "17%",
+            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+            "text_width": 216
+          }
+        },
+        "stat_FjfLxe": {
+          "type": "stat",
+          "settings": {
+            "icon": "drops",
+            "value": "5%",
+            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
+            "text_width": 204
+          }
+        },
+        "stat_Ewangd": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield_cross",
+            "value": "1%",
+            "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
+            "text_width": 183
+          }
+        },
+        "stat_DqYwKP": {
+          "type": "stat",
+          "settings": {
+            "icon": "face_glow",
+            "value": "0%",
+            "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
+            "text_width": 190
+          }
+        }
+      },
+      "block_order": [
+        "stat_JWhhRw",
+        "stat_n4M8FC",
+        "stat_FjfLxe",
+        "stat_Ewangd",
+        "stat_DqYwKP"
+      ],
+      "name": "Science Stats",
+      "settings": {
+        "heading": "<p>The science behind <em>the results.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
+        "video_on_mobile": true,
+        "background_position": "center center",
+        "overlay_color": "#28201f",
+        "overlay_opacity": 20,
+        "pill_color": "#ffffff",
+        "icon_bg_color": "#f5eee6",
+        "icon_color": "#78563d",
+        "stat_color": "#78563d",
+        "text_color": "#28201f",
+        "text_opacity": 85,
+        "animate_entrance": true,
+        "animate_numbers": true,
+        "color_background": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 100,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 48,
+        "band_padding_top": 132,
+        "band_padding_bottom": 131,
+        "mobile_band_padding_top": 48,
+        "mobile_band_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "ritual_bundle_3YtgcX": {
+      "type": "ritual-bundle",
+      "blocks": {
+        "hotspot_4zrpnh": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
+            "tag": "100% VEGAN",
+            "title": "CLEAN IT OFF\nFace Wash 100ml",
+            "description": "Brightening + hydration + scar healing — all in two drops",
+            "pos_x": 60,
+            "pos_y": 14,
+            "mobile_pos_x": 60,
+            "mobile_pos_y": 14
+          }
+        },
+        "hotspot_c3eYQe": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_1.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 2",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 47,
+            "pos_y": 30,
+            "mobile_pos_x": 47,
+            "mobile_pos_y": 30
+          }
+        },
+        "hotspot_UrQqkx": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_2.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 3",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 32,
+            "pos_y": 57,
+            "mobile_pos_x": 32,
+            "mobile_pos_y": 57
+          }
+        },
+        "hotspot_6zeTyR": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_4.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 4",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 48,
+            "pos_y": 64,
+            "mobile_pos_x": 48,
+            "mobile_pos_y": 64
+          }
+        },
+        "hotspot_HXfp7L": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_3.webp",
+            "tag": "100% VEGAN",
+            "title": "Product 5",
+            "description": "Add this product's details in the customizer.",
+            "pos_x": 62,
+            "pos_y": 56,
+            "mobile_pos_x": 62,
+            "mobile_pos_y": 56
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_4zrpnh",
+        "hotspot_c3eYQe",
+        "hotspot_UrQqkx",
+        "hotspot_6zeTyR",
+        "hotspot_HXfp7L"
+      ],
+      "name": "Ritual Bundle",
+      "settings": {
+        "heading": "<p>Five products. <em>one complete ritual.</em></p>",
+        "italic_new_line": true,
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_image": "shopify://shop_images/rectangle-1430107051-191-590-1720x700.webp",
+        "focus_x": 47,
+        "focus_y": 50,
+        "stacked_aspect_ratio": "1 / 1",
+        "stacked_focus_x": 47,
+        "stacked_focus_y": 55,
+        "hotspot_animation": "bling",
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#28201f",
+        "hotspot_active_color": "#78563d",
+        "hotspot_active_text_color": "#ffffff",
+        "accent_font": "montserrat_n7",
+        "detail_card_bg": "#f6f3ee",
+        "show_card_price": false,
+        "show_button": true,
+        "button_label": "ADD BUNDLE",
+        "bundle_discount": 10,
+        "discount_code": "",
+        "show_compare_price": true,
+        "price_format": "money_without_trailing_zeros",
+        "price_override": "Rs. 1,199",
+        "compare_price_override": "Rs. 1,332",
+        "after_add": "drawer",
+        "button_bg": "#ffffff",
+        "button_text_color": "#2a1f19",
+        "adding_label": "Adding…",
+        "added_label": "Bundle added to your cart.",
+        "error_label": "Couldn't add the bundle. Please try again.",
+        "sold_out_label": "Sold out",
+        "price_sr_label": "Bundle price",
+        "compare_sr_label": "Original price",
+        "showing_sr_label": "Showing [title]",
+        "card_bg": "#28201f",
+        "card_radius": 16,
+        "color_background": "#fffcf9",
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "17911943963effc742": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_Mp4kXa": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_Mp4kXa"
       ],
       "settings": {
         "text_color": "text--neutral",
-        "bg": "palette--light bg--accent",
-        "width": "",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "1660034676aa97e6d5": {
-      "type": "section-double",
+    "faq_know_first_Ynncyf": {
+      "type": "faq-know-first",
       "blocks": {
-        "16600346769a5615ee-0": {
-          "type": "text",
+        "question_XjwAHp": {
+          "type": "question",
           "settings": {
-            "kicker": "Probotic & Prebiotic Skincare",
-            "title": "Sonnet Wellness",
-            "text": "<p>Sonnet Wellness is a new age wellness brand that is constantly working towards bringing the best of products to cater to your overall health. We leverage the latest wellness technology from around the world and solid craftsmanship to create products so you get only the best of concoctions that increase your overall wellbeing. Our skincare aims to enhance and repair your skin, not to make it filtered & picture perfect.<br/></p>",
-            "font_size": 5,
-            "text_columns": 1,
-            "align_text": "text-center",
-            "button_text": "LEARN MORE",
-            "button_url": "shopify://pages/about-us",
-            "button_color": "btn--neutral",
-            "button_style": "btn--outline btn--long uppercase",
-            "text_color": "text--neutral",
-            "bg_color": "#f9e0d8"
+            "question": "Can I use Clean It Off twice a day?",
+            "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>"
           }
         },
-        "07a1c3af-bcb4-41bc-b88b-b9e62228a1d1": {
-          "type": "image",
+        "question_iRmtFn": {
+          "type": "question",
           "settings": {
-            "image": "shopify://shop_images/cherrydeck-4p77t8fzGFo-unsplash.jpg",
-            "overlay_opacity": 15,
-            "overlay_color": "#000000",
-            "enable_overlay_text": false,
-            "kicker": "",
-            "title": "",
-            "richtext": "",
-            "text_align": "align--middle-center",
-            "text_color": "text--white",
-            "link_text": "",
-            "link": "",
-            "button_color": "btn--white",
-            "button_style": "btn uppercase"
+            "question": "Does it remove sunscreen and makeup?",
+            "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>"
+          }
+        },
+        "question_e7r8VH": {
+          "type": "question",
+          "settings": {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>"
+          }
+        },
+        "question_X6iaAV": {
+          "type": "question",
+          "settings": {
+            "question": "Does it contain sulphates?",
+            "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>"
+          }
+        },
+        "question_4iJAeB": {
+          "type": "question",
+          "settings": {
+            "question": "What is Lactobacillus Ferment Lysate?",
+            "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>"
+          }
+        },
+        "question_bir9dW": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need the full ritual?",
+            "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>"
           }
         }
       },
       "block_order": [
-        "16600346769a5615ee-0",
-        "07a1c3af-bcb4-41bc-b88b-b9e62228a1d1"
+        "question_XjwAHp",
+        "question_iRmtFn",
+        "question_e7r8VH",
+        "question_X6iaAV",
+        "question_4iJAeB",
+        "question_bir9dW"
       ],
+      "name": "FAQ Know First",
       "settings": {
-        "height": "use_pixels_500",
-        "brick_gutter": 0,
-        "borders": false,
-        "bg_color": "",
-        "preload_image": false,
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "<p>Everything you want to <em>know first.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "open_first": true,
+        "allow_multiple_open": false,
+        "show_numbers": true,
+        "enable_schema": true,
+        "decor_image": "shopify://shop_images/faq-bubbles-decor-624x544.webp",
+        "show_decor_left": true,
+        "show_decor_right": true,
+        "decor_opacity": 10,
+        "color_background": "#f6f3ee",
+        "heading_color": "#28201f",
+        "card_bg": "#ffffff",
+        "card_opacity": 80,
+        "number_color": "#78563d",
+        "question_color": "#010101",
+        "answer_color": "#010101",
+        "toggle_bg": "#78563d",
+        "toggle_icon_color": "#ffffff",
+        "content_width": 1060,
+        "color_page": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
       }
     },
     "reviews": {
@@ -291,50 +923,110 @@
         "padding_bottom": 36
       }
     },
-    "166357253247f147d5": {
-      "type": "apps",
-      "settings": {
-        "text_color": "text--neutral",
-        "bg": "palette--light bg--neutral",
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "judgeme_section_review_widget_c103": {
-      "type": "apps",
+    "marquee_bar_g7n4tP": {
+      "type": "marquee-bar",
       "blocks": {
-        "judgeme_review_widget_87e0eabf": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "item_a3eCYA": {
+          "type": "item",
           "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "POSTBIOTIC SKINCARE"
+          }
+        },
+        "item_KMPzEE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "DERMATOLOGICALLY TESTED"
+          }
+        },
+        "item_6bJRGJ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% VEGAN & CRUELTY-FREE"
+          }
+        },
+        "item_HPzMjX": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "MICROBIOME-FRIENDLY FORMULA"
+          }
+        },
+        "item_BmntKC": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "ALL SKIN TYPES"
+          }
+        },
+        "item_XXn8Wr": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "NO PARABENS"
+          }
+        },
+        "item_E7rTcm": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "MADE IN INDIA"
+          }
+        },
+        "item_zKBqR8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FORMULATED WITHOUT ALCOHOL"
+          }
+        },
+        "item_jdkJLR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "COCONUT-DERIVED SURFACTANTS"
           }
         }
       },
       "block_order": [
-        "judgeme_review_widget_87e0eabf"
+        "item_a3eCYA",
+        "item_KMPzEE",
+        "item_6bJRGJ",
+        "item_HPzMjX",
+        "item_BmntKC",
+        "item_XXn8Wr",
+        "item_E7rTcm",
+        "item_zKBqR8",
+        "item_jdkJLR"
       ],
+      "name": "Marquee Bar",
       "settings": {
-        "text_color": "text--neutral",
-        "bg": "palette--light bg--neutral",
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
       }
     }
   },
   "order": [
     "main",
-    "1657789670c72b08e6",
-    "1be5d3ec-3ab7-41b9-99b9-82226956d58e",
-    "1678991990f8c28e98",
-    "1660034676aa97e6d5",
+    "marquee_bar_BK3y6m",
+    "honest_results_VFQtqQ",
+    "why_love_eGpM33",
+    "whats_inside_carousel_7yKjkn",
+    "comparison_table_q3J9NW",
+    "science_stats_FRLgMQ",
+    "ritual_bundle_3YtgcX",
+    "17911943963effc742",
+    "faq_know_first_Ynncyf",
     "reviews",
     "related",
-    "166357253247f147d5",
-    "judgeme_section_review_widget_c103"
+    "marquee_bar_g7n4tP"
   ]
 }

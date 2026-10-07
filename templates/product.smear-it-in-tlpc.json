@@ -331,13 +331,6 @@
     "marquee_bar_z7LLMg": {
       "type": "marquee-bar",
       "blocks": {
-        "item_y9J3XR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "Dermatologically Tested"
-          }
-        },
         "item_g4eqM6": {
           "type": "item",
           "settings": {
@@ -345,18 +338,32 @@
             "title": "Postbiotic Formula"
           }
         },
-        "item_XD396D": {
+        "item_y9J3XR": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_2087329696.webp",
-            "title": "100% Vegan & Clean"
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No Harsh Chemicals"
           }
         },
         "item_iELbjW": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_2087329697.webp",
-            "title": "Cruelty Free"
+            "title": "For All Skin Types"
+          }
+        },
+        "item_XD396D": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329696.webp",
+            "title": "100% vegan & cruelty free"
+          }
+        },
+        "item_PbUEYP": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No GMO Ingredients"
           }
         },
         "item_LfdJDR": {
@@ -365,30 +372,15 @@
             "icon": "shopify://shop_images/Group_1321321668.webp",
             "title": "Made In India"
           }
-        },
-        "item_PBMgzR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321669.webp",
-            "title": "No Parabens"
-          }
-        },
-        "item_6V6Hnh": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
-            "title": "All Skin Types"
-          }
         }
       },
       "block_order": [
-        "item_y9J3XR",
         "item_g4eqM6",
-        "item_XD396D",
+        "item_y9J3XR",
         "item_iELbjW",
-        "item_LfdJDR",
-        "item_PBMgzR",
-        "item_6V6Hnh"
+        "item_XD396D",
+        "item_PbUEYP",
+        "item_LfdJDR"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -431,52 +423,36 @@
     "honest_results_d4wnzA": {
       "type": "honest-results",
       "blocks": {
-        "testimonial_z6bCKd": {
-          "type": "testimonial",
-          "settings": {
-            "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_43_19_PM_1_converted.webp",
-            "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_49_52_PM_1_1_converted.webp",
-            "tag": "Sensitive skin",
-            "title": "My skinfeels repaired.",
-            "review": "<p>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
-            "rating": 4.5,
-            "rating_label": "",
-            "avatar": "shopify://shop_images/Ellipse_1337.webp",
-            "name": "Priya M.",
-            "location": "Mumbai"
-          }
-        },
         "testimonial_mQe9DQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_16_07_PM_1_converted.webp",
-            "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_17_07_PM_1_converted.webp",
-            "tag": "Sensitive skin",
-            "title": "My skin stopped feeling tight.",
-            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "before_image": "shopify://shop_images/Group_2087330656.webp",
+            "after_image": "shopify://shop_images/Rectangle_1430107053.webp",
+            "tag": "Oily/Congested skin",
+            "title": "Relaxing yet so effective",
+            "review": "<p>Absolutely loveeee this product. So so relaxing to my skin. A literal spa at home. Could literally feel toxins being pulled out of my skin and end result very soft, supple and hydrated!</p>",
             "rating": 4.5,
             "rating_label": "",
-            "name": "Ananya R",
-            "location": "Bengaluru"
+            "name": "Vinayaka Agarwal",
+            "location": "Mumbai"
           }
         },
         "testimonial_yJtzp7": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_04_40_PM_1_converted.webp",
-            "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_07_27_PM_1_converted.webp",
-            "tag": "Oily skin",
-            "title": "No more afternoon shine.",
-            "review": "<p>I used to blot my T-zone by lunch. Clean It Off lifts sunscreen and oil without that squeaky feel, and now my skin stays fresh and matte well into the evening.</p>",
+            "before_image": "shopify://shop_images/before_converted.webp",
+            "after_image": "shopify://shop_images/after_converted.webp",
+            "tag": "Oily / Congested Skin",
+            "title": "My skin looks visibly clearer",
+            "review": "<p>\"Smear It On helps skin looks visibly cleaner and more refined after rinsing, impressive.\"</p>",
             "rating": 5,
             "rating_label": "",
-            "name": "Priya M",
+            "name": "Payal Lahoti",
             "location": "Mumbai"
           }
         }
       },
       "block_order": [
-        "testimonial_z6bCKd",
         "testimonial_mQe9DQ",
         "testimonial_yJtzp7"
       ],
@@ -516,41 +492,41 @@
         "slide_Kw6EWD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/rub_converted.webp",
-            "label": "Provides Deep, Lasting Hydration",
-            "stat": "34 – 48%",
-            "stat_caption": "increase in skin hydration levels",
-            "body": "Jojoba Oil and Aloe Vera Leaf Juice work together as a humectant-emollient pair, drawing moisture in and sealing it within the skin layers. The result is hydration that doesn't evaporate within hours."
+            "image": "shopify://shop_images/1st.png",
+            "label": "HELPS LIFT OIL & DEBRIS",
+            "stat": "20%",
+            "stat_caption": "Kaolin Clay in every application",
+            "body": "Kaolin Clay absorbs excess surface oil and lifts pore debris, the foundation of every masking session."
           }
         },
         "slide_dpPkbw": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/rub1_converted.webp",
-            "label": "Fades Dark Spots and Hyperpigmentation",
-            "stat": "68%",
-            "stat_caption": "improvement in hyperpigmentation visibility",
-            "body": "Niacinamide inhibits the transfer of melanin to skin cells, the biological process responsible for dark spots, post-acne marks, and uneven tone. It works at the cellular level, not just on the surface."
+            "image": "shopify://shop_images/Rectangle_1430107054.png",
+            "label": "FOR A SMOOTHER-LOOKING TEXTURE",
+            "stat": "4%",
+            "stat_caption": "Glycerin — post-rinse skin comfort",
+            "body": "The smallest AHA molecule, formulated to loosen dead surface cells without over-exfoliating skin."
           }
         },
         "slide_N7Y4Ja": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/rub2_converted.webp",
-            "label": "Controls Sebum Without Drying SkiN",
-            "stat": "52%",
-            "stat_caption": "reduction in sebum excretion rate",
-            "body": "Niacinamide regulates sebaceous gland activity, reducing excess oil at the source. Jojoba Oil simultaneously mimics skin's natural sebum, signalling the skin to stop overproducing oil while keeping it moisturised."
+            "image": "shopify://shop_images/3rd.png",
+            "label": "LONG ENOUGH TO WORK",
+            "stat": "10 - 15",
+            "stat_caption": "Minutes wear time",
+            "body": "Just enough time for clay and acid to do their job, without pushing skin past comfortable."
           }
         },
         "slide_qDT3bE": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/rub3_converted.webp",
-            "label": "Delivers Antioxidant Protection Daily",
-            "stat": "50%",
-            "stat_caption": "reduction in oxidative stress markers",
-            "body": "Vitamin E neutralises free radicals generated by UV exposure and environmental pollution, the primary drivers of premature ageing, pigmentation, and barrier damage. Every application is an invisible shield against daily skin stress."
+            "image": "shopify://shop_images/4th.png",
+            "label": "NO DRYNESS, NO CRACKING",
+            "stat": "0",
+            "stat_caption": "Cracking or hardening",
+            "body": "Magnesium Aluminium Silicate, Glycerine and Aloe Vera keep the mask spreadable, start to finish."
           }
         }
       },
@@ -564,7 +540,7 @@
       "settings": {
         "custom_class": "",
         "image_position": "left",
-        "heading": "<p>Why your skin will <em>love Rub It In</em></p>",
+        "heading": "<p><strong>Why your skin will </strong><em><strong>love Smear It On</strong></em></p>",
         "heading_size": 58,
         "heading_size_mobile": 28,
         "show_divider": true,
@@ -595,40 +571,40 @@
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-467-400x400.webp",
-            "name": "Lactobacillus Ferment Lysate 1%",
-            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+            "name": "KAOLIN CLAY",
+            "description": "A naturally occurring mineral clay that absorbs excess surface oil and lifts pore debris during masking."
           }
         },
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-471-300x300.webp",
-            "name": "Cocamidopropyl Betaine 17%",
-            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+            "name": "GLYCOLIC ACID",
+            "description": "The smallest AHA molecule. Helps loosen dead surface cells for a smoother-looking texture, in a rinse-off format."
           }
         },
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
-            "name": "Aloe Barbadensis 5%",
-            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+            "name": "GREEN TEA EXTRACT",
+            "description": "Provides antioxidant support at the skin surface during the masking period."
           }
         },
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
-            "name": "Glycerin 6%",
-            "description": "Helps offset the drying effect of cleansing on skin comfort."
+            "name": "ALOE VERA",
+            "description": "Helps keep skin comfortable during masking and hydrated after rinsing."
           }
         },
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "Ingredient name",
-            "description": "Describe what this ingredient does."
+            "name": "LACTOBACILLUS",
+            "description": "An inactivated postbiotic extract that helps maintain a conditioned skin surface."
           }
         }
       },
@@ -666,7 +642,7 @@
         "feature_T9ez3b": {
           "type": "feature",
           "settings": {
-            "label": "Live postbiotic actives",
+            "label": "1% Lactobacillus Ferment Lysate",
             "brand_has": true,
             "competitor_has": false
           }
@@ -682,7 +658,7 @@
         "feature_Q69he9": {
           "type": "feature",
           "settings": {
-            "label": "No sulfates or parabens",
+            "label": "Dermatologically tested",
             "brand_has": true,
             "competitor_has": false
           }
@@ -690,7 +666,7 @@
         "feature_djLNVW": {
           "type": "feature",
           "settings": {
-            "label": "Clinically tested",
+            "label": "Non-cracking, full-wear comfort",
             "brand_has": true,
             "competitor_has": false
           }
@@ -698,7 +674,7 @@
         "feature_4kJNAk": {
           "type": "feature",
           "settings": {
-            "label": "Treats root cause (microbiome)",
+            "label": "Made in India",
             "brand_has": true,
             "competitor_has": false
           }
@@ -749,8 +725,8 @@
           "type": "stat",
           "settings": {
             "icon": "sun_skin",
-            "value": "89%",
-            "text": "reduction in C. acnes with topical Lactobacillus Ferment Lysate",
+            "value": "20%",
+            "text": "Kaolin Clay\nAbsorbs excess oil & lifts pore debris.",
             "text_width": 221
           }
         },
@@ -758,8 +734,8 @@
           "type": "stat",
           "settings": {
             "icon": "skin_layers",
-            "value": "68%",
-            "text": "Improvement in hyperpigmentation visibility after 8 weeks",
+            "value": "4%",
+            "text": "Glycolic Acid\nHelps smooth & refine skin texture.",
             "text_width": 216
           }
         },
@@ -767,8 +743,8 @@
           "type": "stat",
           "settings": {
             "icon": "drops",
-            "value": "56%",
-            "text": "Stronger skin barrier, less water loss",
+            "value": "10 - 15 min",
+            "text": "Wear Time\nDeep-cleanses without overstaying on skin.",
             "text_width": 204
           }
         },
@@ -776,8 +752,8 @@
           "type": "stat",
           "settings": {
             "icon": "shield_cross",
-            "value": "52%",
-            "text": "Reduction in excess oil production",
+            "value": "0",
+            "text": "Cracking or Hardening\nStays smooth & comfortable throughout wear.",
             "text_width": 183
           }
         },
@@ -785,8 +761,8 @@
           "type": "stat",
           "settings": {
             "icon": "face_glow",
-            "value": "47%",
-            "text": "Less skin inflammation in 2 weeks",
+            "value": "2 - 3×",
+            "text": "Weekly Use\nDeep-cleanse regularly without overdoing it.",
             "text_width": 190
           }
         }
@@ -1394,43 +1370,43 @@
         "question_Nkzwn7": {
           "type": "question",
           "settings": {
-            "question": "Can I use Clean It Off twice a day?",
-            "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>"
+            "question": "How often should I use Smear It On?",
+            "answer": "<p>Two to three times a week is the sweet spot for this mask. Because the formula contains 4% Glycolic Acid, using it more often than that isn't recommended, the mask is designed to work within that rhythm, not beyond it.</p>"
           }
         },
         "question_zcAym6": {
           "type": "question",
           "settings": {
-            "question": "Does it remove sunscreen and makeup?",
-            "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>"
+            "question": "Won't a clay mask dry out or crack on my skin?",
+            "answer": "<p>Not this one. Magnesium Aluminium Silicate, 3% Glycerine and 5% Aloe Vera keep it comfortable and spreadable for the entire 10 to 15 minute wear time, so it stays soft on your skin instead of tightening and cracking the way traditional clay masks can.</p>"
           }
         },
         "question_GyjbH9": {
           "type": "question",
           "settings": {
-            "question": "Is it suitable for sensitive skin?",
-            "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>"
+            "question": "I have sensitive skin — can I still use a glycolic acid mask?",
+            "answer": "<p>Start carefully: patch test on your inner forearm first, and try a shorter five-minute wear time for your first few uses. Avoid it on any damaged or broken skin, and make sunscreen a daily habit while you're using it.</p>"
           }
         },
         "question_Xy6WJB": {
           "type": "question",
           "settings": {
-            "question": "Does it contain sulphates?",
-            "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>"
+            "question": "Do I really need sunscreen if I'm just using this a few times a week?",
+            "answer": "<p>Yes, alpha hydroxy acids like glycolic acid can make skin more sensitive to sunlight, so a broad-spectrum SPF 30 to 50 matters every day you're using this product, and for a week after your last use too.</p>"
           }
         },
         "question_6gnMAw": {
           "type": "question",
           "settings": {
-            "question": "What is Lactobacillus Ferment Lysate?",
-            "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>"
+            "question": "Can I use Smear It On on the same day as Rub It In serum?",
+            "answer": "<p>Directionally: mask first, rinse, then continue with the rest of your routine as normal.</p>"
           }
         },
         "question_YXzpAm": {
           "type": "question",
           "settings": {
-            "question": "Do I need the full ritual?",
-            "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>"
+            "question": "How long does one tube last?",
+            "answer": "<p>Calculable from frequency and fill size, but needs sign-off before it's stated as a specific figure on-page.</p>"
           }
         }
       },
@@ -1541,61 +1517,60 @@
         "padding_bottom_mobile": 24
       }
     },
-    "marquee_bar_NzxPPn": {
+    "marquee_bar_7mAqMC": {
       "type": "marquee-bar",
       "blocks": {
-        "item_aUzx7W": {
+        "item_HGMqkp": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome Friendly"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
-        "item_FUg9VM": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan"
-          }
-        },
-        "item_Hc86hi": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Cruelty Free"
-          }
-        },
-        "item_yVarNg": {
+        "item_BqPXqR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "FDA Approved"
           }
         },
-        "item_zeBtf7": {
+        "item_4JMWnT": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Made in India"
+            "title": "Dermatologically Tested"
           }
         },
-        "item_wBgage": {
+        "item_KA8J3Q": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Science-Backed"
+            "title": "100% Vegan & Cruelty-Free"
+          }
+        },
+        "item_nBAKKk": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome-Balanced Formula"
+          }
+        },
+        "item_Kkf3Kg": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "All Skin Types"
           }
         }
       },
       "block_order": [
-        "item_aUzx7W",
-        "item_FUg9VM",
-        "item_Hc86hi",
-        "item_yVarNg",
-        "item_zeBtf7",
-        "item_wBgage"
+        "item_HGMqkp",
+        "item_BqPXqR",
+        "item_4JMWnT",
+        "item_KA8J3Q",
+        "item_nBAKKk",
+        "item_Kkf3Kg"
       ],
-      "disabled": true,
       "name": "Marquee Bar",
       "settings": {
         "add_class": "footer-marquee",
@@ -1630,6 +1605,6 @@
     "section_richtext_YChbGR",
     "faq_know_first_rwdfL3",
     "faq_accordion_qHjRck",
-    "marquee_bar_NzxPPn"
+    "marquee_bar_7mAqMC"
   ]
 }

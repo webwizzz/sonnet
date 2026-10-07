@@ -65,6 +65,7 @@
         "item_j6Cagi",
         "item_jKyxPf"
       ],
+      "disabled": true,
       "name": "Marquee Bar",
       "settings": {
         "add_class": "footer-marquee",

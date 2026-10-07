@@ -195,6 +195,72 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
+    },
+    "marquee_bar_8ataxw": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_K7ThgY": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_38znk7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_EbkFnG": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_wiEkxD": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FDA Approved"
+          }
+        },
+        "item_r4RBFU": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_7DMtjE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_K7ThgY",
+        "item_38znk7",
+        "item_EbkFnG",
+        "item_wiEkxD",
+        "item_r4RBFU",
+        "item_7DMtjE"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      }
     }
   },
   "order": [
@@ -202,6 +268,7 @@
     "subcollections",
     "main",
     "section_richtext_ArTCdB",
-    "faq_accordion_XmHebn"
+    "faq_accordion_XmHebn",
+    "marquee_bar_8ataxw"
   ]
 }

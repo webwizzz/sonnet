@@ -15,20 +15,32 @@
         "height": "use_screen_one_fifth",
         "overlay_opacity": 50,
         "overlay_color": "#000",
+        "enable_overlay_text": false,
+        "preload_image": false,
+        "content_width": 2000,
         "text_align": "align--middle-center",
-        "text_color": "text--white"
+        "text_color": "text--white",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "main": {
       "type": "page",
       "settings": {
         "kicker": "",
+        "kicker_size": 3,
         "show_title": false,
+        "title_size": 8,
         "show_content": true,
+        "content_size": 5,
         "align_text": "text-left",
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
-        "width": "wrapper"
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "custom-content-1": {
@@ -59,6 +71,7 @@
             "kicker": "Quality first",
             "title": "",
             "text": "<p>We started making the products we wanted to see in the world and we did this with an uncompromising approach to sustainability.</p>",
+            "font_size": 5,
             "text_columns": 1,
             "align_text": "text-left",
             "button_text": "",
@@ -76,7 +89,13 @@
       ],
       "settings": {
         "height": "use_screen_one_half",
-        "borders": false
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "custom-content-2": {
@@ -88,6 +107,7 @@
             "kicker": "Humble beginnings",
             "title": "",
             "text": "<p>Our story begins in a small shop with a small team. With nothing but passion and a dream our brand was born. </p>",
+            "font_size": 5,
             "text_columns": 1,
             "align_text": "text-left",
             "button_text": "",
@@ -124,7 +144,13 @@
       ],
       "settings": {
         "height": "use_screen_one_half",
-        "borders": false
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "icons": {
@@ -134,27 +160,33 @@
           "type": "icon_block",
           "settings": {
             "icon_name": "icon-basket-return",
-            "icon_color": "#AAAAAA",
+            "icon_color": "#aaaaaa",
             "title": "Free returns",
-            "text": "<p>Returns within 30 days receive a full refund.</p>"
+            "text": "<p>Returns within 30 days receive a full refund.</p>",
+            "link_text": "",
+            "link_url": ""
           }
         },
         "icons-1": {
           "type": "icon_block",
           "settings": {
             "icon_name": "icon-shipment-world",
-            "icon_color": "#AAAAAA",
+            "icon_color": "#aaaaaa",
             "title": "Worldwide shipping",
-            "text": "<p>Ship anywhere, rates available at checkout.</p>"
+            "text": "<p>Ship anywhere, rates available at checkout.</p>",
+            "link_text": "",
+            "link_url": ""
           }
         },
         "icons-2": {
           "type": "icon_block",
           "settings": {
             "icon_name": "icon-phone",
-            "icon_color": "#AAAAAA",
+            "icon_color": "#aaaaaa",
             "title": "24/7 support",
-            "text": "<p>Call us anytime at 1(800) 555-1234.</p>"
+            "text": "<p>Call us anytime at 1(800) 555-1234.</p>",
+            "link_text": "",
+            "link_url": ""
           }
         }
       },
@@ -166,8 +198,79 @@
       "settings": {
         "title": "",
         "bg": "palette--light bg--accent",
+        "icons_size": 30,
         "icon_alignment": "icon--top",
-        "align_text": "text-left"
+        "layout": "grid--stacked",
+        "align_text": "text-left",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "marquee_bar_yhTVrb": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_tyMAyN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_QyCK3L": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_FLdLgh": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_AmwzPQ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FDA Approved"
+          }
+        },
+        "item_7PzErq": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_tp8QW9": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_tyMAyN",
+        "item_QyCK3L",
+        "item_FLdLgh",
+        "item_AmwzPQ",
+        "item_7PzErq",
+        "item_tp8QW9"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
       }
     }
   },
@@ -176,6 +279,7 @@
     "main",
     "custom-content-1",
     "custom-content-2",
-    "icons"
+    "icons",
+    "marquee_bar_yhTVrb"
   ]
 }

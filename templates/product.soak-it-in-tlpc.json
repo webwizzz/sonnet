@@ -184,7 +184,7 @@
             "image_1": "",
             "title_2": "Details",
             "icon_name_2": "",
-            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product. &nbsp;Use tabs to highlight unique features, sizing information, or other sales information.</p>",
             "image_2": "",
             "title_3": "",
             "icon_name_3": "",
@@ -335,35 +335,41 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_3.webp",
-            "title": "Postbiotic + Prebiotic Skincare"
+            "title": "Dermatologically Tested"
           }
         },
         "item_y9J3XR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No Harsh Chemicals"
+            "title": "Postbiotic Formula"
           }
         },
         "item_iELbjW": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_2087329697.webp",
-            "title": "For All Skin Types"
+            "title": "100% Vegan & Clean"
           }
         },
         "item_XD396D": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_2087329696.webp",
-            "title": "100% vegan & cruelty free"
+            "title": "Cruelty Free"
           }
         },
         "item_PbUEYP": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No GMO Ingredients"
+            "title": "Made In India"
+          }
+        },
+        "item_xefDH3": {
+          "type": "item",
+          "settings": {
+            "title": "No Parabens"
           }
         },
         "item_LfdJDR": {
@@ -380,6 +386,7 @@
         "item_iELbjW",
         "item_XD396D",
         "item_PbUEYP",
+        "item_xefDH3",
         "item_LfdJDR"
       ],
       "name": "Marquee Bar",
@@ -429,12 +436,12 @@
             "before_image": "shopify://shop_images/beforee_converted.webp",
             "after_image": "shopify://shop_images/aafter_converted.webp",
             "tag": "Sensitive skin",
-            "title": "My skin stopped feeling tight.",
-            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "title": "SKIN THAT STAYSSOFT ALL DAY.",
+            "review": "<p>I used to reapply moisturiser twice a day. Within 10 days of Soak It In, my skin stayed comfortable from morning to night. No tight feeling. No dry patches. Just balanced skin.</p>",
             "rating": 4.5,
             "rating_label": "",
-            "name": "Ananya R",
-            "location": "Bengaluru"
+            "name": "Priya M.",
+            "location": "Mumbai"
           }
         },
         "testimonial_yJtzp7": {
@@ -442,9 +449,9 @@
           "settings": {
             "before_image": "shopify://shop_images/before_converted.webp",
             "after_image": "shopify://shop_images/after_converted.webp",
-            "tag": "Oily skin",
-            "title": "No more afternoon shine.",
-            "review": "<p>I used to blot my T-zone by lunch. Clean It Off lifts sunscreen and oil without that squeaky feel, and now my skin stays fresh and matte well into the evening.</p>",
+            "tag": "DRY SKIN",
+            "title": "SKIN THAT STAYS SOFT ALL DAY",
+            "review": "<p>&nbsp;I used to reapply moisturiser twice a day. Within 10 days of Soak It In, my skin stayed comfortable from morning to night. No tight feeling. No dry patches. Just balanced skin.</p>",
             "rating": 5,
             "rating_label": "",
             "name": "Priya M",
@@ -493,40 +500,40 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/1st.png",
-            "label": "Cleanses without stripping the skin",
-            "stat": "17%",
-            "stat_caption": "Cocamidopropyl Betaine — coconut-derived",
-            "body": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+            "label": "SEALS YOUR ROUTINE",
+            "stat": "4",
+            "stat_caption": "Step 4 of 4 - The step that locks everything in",
+            "body": "Most moisturisers sit on the surface and evaporate. Applied over Rub It In Serum, Soak It In acts as a seal — holding the serum's Niacinamide and postbiotic actives at the skin surface so they can work through the day rather than dispersing within hours."
           }
         },
         "slide_dpPkbw": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Rectangle_1430107054.png",
-            "label": "Keeps skin comfortable after every rinse",
-            "stat": "6%",
-            "stat_caption": "Glycerin — post-rinse skin comfort",
-            "body": "Glycerin draws moisture toward the skin surface during cleansing — actively fighting the drying effect of surfactants so skin feels hydrated, not depleted."
+            "label": "CUSHIONED TEXTURE. ZERO GREASINESS.",
+            "stat": "5%",
+            "stat_caption": "Isopropyl Myristate — primary emollient for non-greasy finish",
+            "body": "Isopropyl Myristate at 5% is the emollient responsible for Soak It In's signature texture, rich on the fingers, quick-absorbing on skin. It gives the cream its spreadability and slip while leaving no greasy film. Suitable for morning and evening wear on normal, dry and combination skin."
           }
         },
         "slide_N7Y4Ja": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/3rd.png",
-            "label": "Soothes skin through the cleansing step",
-            "stat": "5%",
-            "stat_caption": "Aloe Barbadensis Leaf Juice — soothing humectant",
-            "body": "Aloe works during the wash itself. Helps reduce the inflammatory response cleansing triggers on reactive skin — every morning and evening."
+            "label": "NIACINAMIDE WORKS HERE TOO",
+            "stat": "2%",
+            "stat_caption": "Niacinamide — tone-evening and pore-refining active",
+            "body": "This is not just a moisturiser. At 2%, Niacinamide in Soak It In helps support a visibly more even-looking skin tone and helps minimise the look of enlarged pores with consistent use — layered after the serum's 5% for a complete Vitamin B3 routine across two steps."
           }
         },
         "slide_qDT3bE": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/4th.png",
-            "label": "A postbiotic active in every wash",
+            "label": "CONDITIONING FROM WITHIN THE BASE.",
             "stat": "1%",
-            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic ingredient",
-            "body": "An inactivated ferment lysate — not a live culture. Helps maintain a comfortable, conditioned skin surface through every cleanse."
+            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic active maintaining conditioned skin surface",
+            "body": "Kokum Butter — Garcinia Indica Seed Butter, from the seeds of the kokum tree — is naturally rich in stearic acid. Alongside Jojoba Seed Oil, a liquid wax close in structure to skin's own sebum, it conditions the skin's lipid layer without clogging pores. Moisture that holds because the base itself is intelligent."
           }
         }
       },
@@ -540,7 +547,7 @@
       "settings": {
         "custom_class": "",
         "image_position": "left",
-        "heading": "<p>Why your skin will <em>love Clean It Off</em></p>",
+        "heading": "<p>Why your skin will<br/><em>love Soak It In</em></p>",
         "heading_size": 58,
         "heading_size_mobile": 28,
         "show_divider": true,
@@ -571,40 +578,48 @@
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-467-400x400.webp",
-            "name": "Lactobacillus Ferment Lysate 1%",
-            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+            "name": "NIACINAMIDE · 2%",
+            "description": "Vitamin B3. Helps support a visibly more even-looking skin tone and helps minimise the look of enlarged pores with consistent use"
           }
         },
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-471-300x300.webp",
-            "name": "Cocamidopropyl Betaine 17%",
-            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+            "name": "LACTOBACILLUS FERMENT LYSATE · 1%",
+            "description": "Postbiotic active — inactivated ferment lysate, not a live culture. Helps maintain a conditioned skin surface after application"
           }
         },
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
-            "name": "Aloe Barbadensis 5%",
-            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+            "name": "ISOPROPYL MYRISTATE · 5%",
+            "description": "Primary emollient giving the cream its spreadability and quick-absorbing, non-greasy finish"
           }
         },
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
-            "name": "Glycerin 6%",
-            "description": "Helps offset the drying effect of cleansing on skin comfort."
+            "name": "GARCINIA INDICA SEED BUTTER (KOKUM)",
+            "description": "Conditioning emollient from the seeds of the kokum tree — naturally rich in stearic acid, non-pore-clogging"
           }
         },
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
             "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "Ingredient name",
-            "description": "Describe what this ingredient does."
+            "name": "SIMMONDSIA CHINENSIS SEED OIL (JOJOBA)",
+            "description": "Liquid wax ester close in structure to skin's own sebum — light, conditioning, absorbs cleanly"
+          }
+        },
+        "ingredient_3rTr6i": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "ALOE BARBADENSIS LEAF JUICE · 5%",
+            "description": "Hydrates and helps skin feel comfortable and soothed after application"
           }
         }
       },
@@ -613,7 +628,8 @@
         "ingredient_BciJAz",
         "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
-        "ingredient_8WxCii"
+        "ingredient_8WxCii",
+        "ingredient_3rTr6i"
       ],
       "name": "What's Inside Carousel",
       "settings": {
@@ -642,7 +658,7 @@
         "feature_T9ez3b": {
           "type": "feature",
           "settings": {
-            "label": "Live postbiotic actives",
+            "label": "Postbiotic Active",
             "brand_has": true,
             "competitor_has": false
           }
@@ -650,7 +666,7 @@
         "feature_PmfwJ3": {
           "type": "feature",
           "settings": {
-            "label": "Coconut-Derived Co-Surfactant",
+            "label": "Niacinamide 2%",
             "brand_has": true,
             "competitor_has": false
           }
@@ -674,7 +690,7 @@
         "feature_4kJNAk": {
           "type": "feature",
           "settings": {
-            "label": "Microbiome-Friendly Formula",
+            "label": "Kokum Butter Base",
             "brand_has": true,
             "competitor_has": false
           }
@@ -694,7 +710,7 @@
         "heading_size": 40,
         "heading_size_mobile": 28,
         "footnote": "*Comparison based on leading industry competitors",
-        "brand_image": "shopify://shop_images/sonet-wellness-serum-3-191-495-27x71.webp",
+        "brand_image": "shopify://shop_images/image_41_797b74c2-6fbb-45d6-bc4f-5239b40f314f.webp",
         "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
         "brand_name": "Sonnet Wellness",
         "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
@@ -725,8 +741,8 @@
           "type": "stat",
           "settings": {
             "icon": "sun_skin",
-            "value": "6%",
-            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+            "value": "2%",
+            "text": "Niacinamide — helps support a visibly more even-looking skin tone with regular use",
             "text_width": 221
           }
         },
@@ -734,8 +750,8 @@
           "type": "stat",
           "settings": {
             "icon": "skin_layers",
-            "value": "17%",
-            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+            "value": "5%",
+            "text": "Aloe Barbadensis Leaf Juice — hydrates and helps skin feel comfortable and soothed",
             "text_width": 216
           }
         },
@@ -744,7 +760,7 @@
           "settings": {
             "icon": "drops",
             "value": "5%",
-            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
+            "text": "Isopropyl Myristate — non-greasy emollient that absorbs without heaviness",
             "text_width": 204
           }
         },
@@ -753,7 +769,7 @@
           "settings": {
             "icon": "shield_cross",
             "value": "1%",
-            "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
+            "text": "Lactobacillus Ferment Lysate — postbiotic active in every application",
             "text_width": 183
           }
         },
@@ -762,7 +778,7 @@
           "settings": {
             "icon": "face_glow",
             "value": "0%",
-            "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
+            "text": "Parabens - Phthalates - Alcohol - Mineral Oil - Petrolatum - Propylene Glycol",
             "text_width": 190
           }
         }
@@ -1370,43 +1386,43 @@
         "question_Nkzwn7": {
           "type": "question",
           "settings": {
-            "question": "Can I use Clean It Off twice a day?",
-            "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>"
+            "question": "Can I use this face cream if I have oily skin?",
+            "answer": "<p>Yes, though evening use is recommended for oily skin, or daytime use in cooler and less humid conditions. The cream absorbs without a greasy finish — the Isopropyl Myristate base gives richness without leaving a film.</p>"
           }
         },
         "question_zcAym6": {
           "type": "question",
           "settings": {
-            "question": "Does it remove sunscreen and makeup?",
-            "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>"
+            "question": "Do I still need sunscreen if I use this moisturiser?",
+            "answer": "<p>Yes. Soak It In Face Cream contains no SPF. Always apply a broad-spectrum SPF 30–50 as your final morning step.</p>"
           }
         },
         "question_GyjbH9": {
           "type": "question",
           "settings": {
-            "question": "Is it suitable for sensitive skin?",
-            "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>"
+            "question": "Should moisturiser go on before or after serum?",
+            "answer": "<p>After. Apply Rub It In Serum first and allow 30–60 seconds to absorb. Then apply Soak It In Face Cream over the top to seal the routine.</p>"
           }
         },
         "question_Xy6WJB": {
           "type": "question",
           "settings": {
-            "question": "Does it contain sulphates?",
-            "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>"
+            "question": "What is Kokum Butter?",
+            "answer": "<p>Garcinia Indica Seed Butter — from the seeds of the kokum tree. Naturally rich in stearic acid and used as a conditioning emollient in the base. Non-pore-clogging.</p>"
           }
         },
         "question_6gnMAw": {
           "type": "question",
           "settings": {
-            "question": "What is Lactobacillus Ferment Lysate?",
-            "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>"
+            "question": "Can I use it around my eyes?",
+            "answer": "<p>Soak It In is formulated for the face and neck. Avoid direct contact with the eyes and the immediate eye area.</p>"
           }
         },
         "question_YXzpAm": {
           "type": "question",
           "settings": {
-            "question": "Do I need the full ritual?",
-            "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>"
+            "question": "Do I need all 5 products for this to work?",
+            "answer": "<p>Soak It In works as a standalone daily moisturiser. As Step 4 of the AM:PM ritual, moisture retention and tone results are stronger — each step before it prepares the skin to absorb and hold what follows.</p>"
           }
         }
       },
@@ -1431,17 +1447,17 @@
         "show_decor_left": true,
         "show_decor_right": true,
         "decor_opacity": 10,
-        "color_background": "#F6F3EE",
-        "heading_color": "#28201F",
-        "card_bg": "#FFFFFF",
+        "color_background": "#f6f3ee",
+        "heading_color": "#28201f",
+        "card_bg": "#ffffff",
         "card_opacity": 80,
-        "number_color": "#78563D",
+        "number_color": "#78563d",
         "question_color": "#010101",
         "answer_color": "#010101",
-        "toggle_bg": "#78563D",
-        "toggle_icon_color": "#FFFFFF",
+        "toggle_bg": "#78563d",
+        "toggle_icon_color": "#ffffff",
         "content_width": 1060,
-        "color_page": "#FFFCF9",
+        "color_page": "#fffcf9",
         "spacing_top": 0,
         "spacing_bottom": 0,
         "mobile_spacing_top": 0,
@@ -1516,6 +1532,88 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 24
       }
+    },
+    "marquee_bar_9tAQcR": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_XfGNGE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "POSTBIOTIC SKINCARE"
+          }
+        },
+        "item_mAEEkV": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "DERMATOLOGICALLY TESTED"
+          }
+        },
+        "item_czkRkt": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% VEGAN & CRUELTY-FREE"
+          }
+        },
+        "item_Ghyp8d": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "MICROBIOME-FRIENDLY FORMULA"
+          }
+        },
+        "item_JNwBbH": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "ALL SKIN TYPES"
+          }
+        },
+        "item_WPhA4J": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "NO PARABENS"
+          }
+        },
+        "item_VUVJR8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "MADE IN INDIA"
+          }
+        },
+        "item_XbkG9d": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "NON-GREASY FORMULA"
+          }
+        }
+      },
+      "block_order": [
+        "item_XfGNGE",
+        "item_mAEEkV",
+        "item_czkRkt",
+        "item_Ghyp8d",
+        "item_JNwBbH",
+        "item_WPhA4J",
+        "item_VUVJR8",
+        "item_XbkG9d"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      }
     }
   },
   "order": [
@@ -1538,6 +1636,7 @@
     "bundle_section_YebTG3",
     "section_richtext_YChbGR",
     "faq_know_first_rwdfL3",
-    "faq_accordion_qHjRck"
+    "faq_accordion_qHjRck",
+    "marquee_bar_9tAQcR"
   ]
 }

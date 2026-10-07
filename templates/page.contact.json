@@ -13,12 +13,17 @@
       "type": "page",
       "settings": {
         "kicker": "",
+        "kicker_size": 3,
         "show_title": false,
+        "title_size": 8,
         "show_content": true,
+        "content_size": 5,
         "align_text": "text-center",
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
-        "width": "wrapper--narrow"
+        "width": "wrapper--narrow",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "contact": {
@@ -58,14 +63,86 @@
       "settings": {
         "title": "fill the form below to reach out to us",
         "align_text": "text-center",
+        "button_size": "btn--long",
+        "button_color": "btn--neutral",
+        "button_style": "btn--outline",
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
-        "width": "wrapper--narrow"
+        "width": "wrapper--narrow",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "marquee_bar_AQhCGB": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_RETkn3": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_HxXGwX": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_zAwrKA": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_aMUWQJ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "FDA Approved"
+          }
+        },
+        "item_MkUUhU": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_chphyE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_RETkn3",
+        "item_HxXGwX",
+        "item_zAwrKA",
+        "item_aMUWQJ",
+        "item_MkUUhU",
+        "item_chphyE"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
       }
     }
   },
   "order": [
     "main",
-    "contact"
+    "contact",
+    "marquee_bar_AQhCGB"
   ]
 }

@@ -1037,7 +1037,7 @@
         }
         // Lenis already smooths the scroll, so follow it more tightly when it is active.
         var f = this.lenis ? 0.24 : 0.12;
-        if (this.edge > 0) f = Math.max(f, 0.3); // the target is clamped: close the gap within the dwell
+        if (this.edge > 0) f += (Math.max(f, 0.3) - f) * this.edge; // in a dwell: catch up faster towards the pin edge
         this.rp += d * (1 - Math.pow(1 - f, dt / 16.667));
         if (this.bound() && this.rp === this.target) {
           this.settle();
