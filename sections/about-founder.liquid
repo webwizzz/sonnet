@@ -1,0 +1,177 @@
+{%- comment -%}
+  About founder quote: 50 / 50 split, portrait left (960 × 960, cover), #F6F3EE panel right.
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:378 (About Us page).
+  Panel content is centred both ways: filled "OUR STORY" tag (140 × 40, Blauer Nue MD italic 16),
+  quote Blauer Nue MD 48 (663 wide) 40px under it, body Blauer Nue LT 20/30 @80% (650 wide) 40px under,
+  name Blauer Nue 600 24 80px under, role Blauer Nue LT 18 @80%.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --afo-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --afo-panel: {{ s.color_panel }};
+  --afo-text: {{ s.color_text }};
+  --afo-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --afo-tag-bg: {{ s.color_tag }};
+  --afo-tag-text: {{ s.color_tag_text }};
+  --afo-quote: {{ s.quote_size }};
+  background-color: {{ s.color_panel }};
+}
+{% endstyle %}
+
+{% style %}
+.afo *, .afo *::before, .afo *::after { box-sizing: border-box; }
+.afo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--afo-panel);
+  color: var(--afo-text);
+}
+.afo__media { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #d9d9d9; }
+.afo__media img,
+.afo__media .placeholder-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.afo__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(40px, calc(100 * var(--afo-u))) max(24px, calc(80 * var(--afo-u)));
+  text-align: center;
+}
+.afo .afo__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max(120px, calc(140 * var(--afo-u)));
+  height: max(34px, calc(40 * var(--afo-u)));
+  margin: 0;
+  padding: 0 18px;
+  border-radius: 50px;
+  background: var(--afo-tag-bg);
+  color: var(--afo-tag-text);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: max(13px, calc(16 * var(--afo-u)));
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.afo .afo__quote {
+  margin: max(24px, calc(40 * var(--afo-u))) 0 0;
+  max-width: max(300px, calc(663 * var(--afo-u) + 2px));
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(26px, calc(var(--afo-quote) * var(--afo-u)));
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--afo-text);
+  quotes: none;
+  padding: 0;
+  border: 0;
+}
+.afo .afo__body {
+  margin: max(20px, calc(40 * var(--afo-u))) 0 0;
+  max-width: max(300px, calc(650 * var(--afo-u) + 2px));
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(16px, calc(20 * var(--afo-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--afo-muted);
+}
+.afo .afo__body p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.afo__author { margin-top: max(36px, calc(80 * var(--afo-u))); }
+.afo .afo__name {
+  display: block;
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: max(20px, calc(24 * var(--afo-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--afo-text);
+}
+.afo .afo__role {
+  display: block;
+  margin: max(6px, calc(11 * var(--afo-u))) 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(15px, calc(18 * var(--afo-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--afo-muted);
+}
+.afo--reverse .afo__media { order: 2; }
+
+@media screen and (max-width: 768px) {
+  .afo { grid-template-columns: 1fr; }
+  .afo--reverse .afo__media { order: 0; }
+  .afo__content { padding: 48px 20px 56px; }
+}
+{% endstyle %}
+
+<div class="afo{% if s.image_position == 'right' %} afo--reverse{% endif %} {{ s.custom_class | escape }}">
+  <div class="afo__media">
+    {%- if s.image != blank -%}
+      {{ s.image | image_url: width: 1920 | image_tag: loading: 'lazy', sizes: '(min-width: 769px) 50vw, 100vw', widths: '480, 720, 960, 1440, 1920', alt: s.image.alt }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <figure class="afo__content" style="margin: 0;">
+    {%- if s.tag != blank -%}
+      <p class="afo__tag">{{ s.tag | escape }}</p>
+    {%- endif -%}
+    {%- if s.quote != blank -%}
+      <blockquote class="afo__quote">{{ s.quote | escape }}</blockquote>
+    {%- endif -%}
+    {%- if s.text != blank -%}
+      <div class="afo__body">{{ s.text }}</div>
+    {%- endif -%}
+    {%- if s.name != blank or s.role != blank -%}
+      <figcaption class="afo__author">
+        {%- if s.name != blank -%}<cite class="afo__name">{{ s.name | escape }}</cite>{%- endif -%}
+        {%- if s.role != blank -%}<span class="afo__role">{{ s.role | escape }}</span>{%- endif -%}
+      </figcaption>
+    {%- endif -%}
+  </figure>
+</div>
+
+{% schema %}
+{
+  "name": "About founder quote",
+  "tag": "section",
+  "class": "about-founder-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Portrait", "info": "Square crop. Design export: 03-founder-portrait.webp." },
+    { "type": "select", "id": "image_position", "label": "Portrait position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Our story" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "“We started Sonnet Wellness because we believed skincare could work with skin, not against it.”" },
+    { "type": "range", "id": "quote_size", "label": "Quote size (desktop)", "min": 28, "max": 64, "step": 1, "unit": "px", "default": 48 },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Rather than stripping everything away and starting from scratch, we wanted to help skin maintain its own natural balance.</p>" },
+    { "type": "text", "id": "name", "label": "Name", "default": "Cameron Williamson" },
+    { "type": "text", "id": "role", "label": "Role", "default": "Founder for Sonnet Welness" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_panel", "label": "Panel background", "default": "#F6F3EE" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_tag", "label": "Tag background", "default": "#78563D" },
+    { "type": "color", "id": "color_tag_text", "label": "Tag text", "default": "#FFFFFF" },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "presets": [ { "name": "About founder quote" } ]
+}
+{% endschema %}

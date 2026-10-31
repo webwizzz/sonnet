@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "main": {
+      "type": "collection-tlpc",
+      "blocks": {
+        "tile_all": {
+          "type": "tile",
+          "settings": {
+            "collection": "all",
+            "label": "Shop all",
+            "image": "shopify://shop_images/02-collection-products.webp"
+          }
+        },
+        "tile_singles": {
+          "type": "tile",
+          "settings": {
+            "collection": "skincare",
+            "label": "Singles",
+            "image": "shopify://shop_images/03-tile-singles.webp"
+          }
+        },
+        "tile_combos": {
+          "type": "tile",
+          "settings": {
+            "collection": "combo",
+            "label": "Combos",
+            "image": "shopify://shop_images/04-tile-combos.webp"
+          }
+        }
+      },
+      "block_order": [
+        "tile_all",
+        "tile_singles",
+        "tile_combos"
+      ],
+      "settings": {
+        "show_hero": true,
+        "hero_image": "shopify://shop_images/01-collection-hero-bg.webp",
+        "hero_products": "shopify://shop_images/02-collection-products.webp",
+        "heading_prefix": "Shop",
+        "heading_size": 68,
+        "keep_template": true,
+        "show_filter": true,
+        "show_sort": true,
+        "filter_label": "Filter",
+        "sort_label": "Sort by:",
+        "apply_label": "Apply",
+        "clear_label": "Clear all",
+        "price_from_label": "From",
+        "price_to_label": "To",
+        "per_page": 24,
+        "empty_text": "No products match these filters.",
+        "pagination_label": "Product pages",
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_title": "#fffcf9",
+        "color_accent": "#78563d",
+        "color_tile": "#f6f3ee",
+        "padding_top": 50,
+        "padding_bottom": 100,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 56,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

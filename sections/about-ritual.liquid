@@ -1,0 +1,648 @@
+{%- comment -%}
+  About "The five-step ritual.": AM / PM toggle, step list on the left, detail panel on the right.
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:412 (About Us page).
+  Desktop 1920: #F5EEE6 band, 100px padding. Heading 58 left, subtitle 16/24 @80% 12px under it,
+  AM / PM pills (160 × 48, gap 10) bottom-aligned with the subtitle on the right. 50px below:
+  step cards 700 × 120 (radius 14, gap 16, active one gets a 1px #78563D border) and, 50px to the
+  right, the panel: image 485 × 555 (left radius 16) + white 485 × 555 detail card (50px padding).
+  Each "step" block picks AM, PM or both. Toggle filters the list and renumbers it; clicking a
+  card swaps the panel (one server-rendered panel per step, cross-faded).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+  assign default_view = s.default_view
+  assign am_n = 0
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}{{ tag_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --art-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --art-band: {{ s.color_background }};
+  --art-text: {{ s.color_text }};
+  --art-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --art-faint: {{ s.color_text | color_modify: 'alpha', 0.5 }};
+  --art-line: {{ s.color_text | color_modify: 'alpha', 0.1 }};
+  --art-accent: {{ s.color_accent }};
+  --art-card: {{ s.color_card }};
+  --art-h: {{ s.heading_size }};
+  --art-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --art-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+}
+#shopify-section-{{ section.id }} .art {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--art-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--art-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .art {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.art *, .art *::before, .art *::after { box-sizing: border-box; }
+.art { background: var(--art-band); color: var(--art-text); }
+.art__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.art .art__heading {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(28px, calc(var(--art-h) * var(--art-u)));
+  line-height: 1.207;
+  letter-spacing: -0.02em;
+  color: var(--art-text);
+  text-transform: none;
+}
+.art .art__heading p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.art .art__heading em,
+.art .art__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+.art .art__sub {
+  margin: max(6px, calc(12 * var(--art-u))) 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(14px, calc(16 * var(--art-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--art-muted);
+}
+
+/* AM / PM pills: 160 × 48, radius 30, Montserrat 500 20/28, 24px icon + 6px gap */
+.art__toggle { display: flex; gap: 10px; flex: none; }
+.art .art__opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: max(120px, calc(160 * var(--art-u)));
+  height: max(42px, calc(48 * var(--art-u)));
+  min-height: 0;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--art-text);
+  border-radius: 30px;
+  background: var(--art-band);
+  color: var(--art-accent);
+  font-family: var(--art-tag-font);
+  font-weight: var(--art-tag-weight);
+  font-size: max(16px, calc(20 * var(--art-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+}
+.art .art__opt svg { display: block; width: 24px; height: 24px; flex: none; }
+.art .art__opt[aria-pressed="true"] {
+  border-color: var(--art-accent);
+  background: var(--art-accent);
+  color: #FFFCF9;
+}
+
+.art__body {
+  display: grid;
+  grid-template-columns: calc(700 * var(--art-u)) 1fr;
+  gap: calc(50 * var(--art-u));
+  align-items: start;
+  margin-top: max(28px, calc(50 * var(--art-u)));
+}
+
+/* Step cards */
+.art__list { display: flex; flex-direction: column; gap: max(10px, calc(16 * var(--art-u))); margin: 0; padding: 0; list-style: none; }
+.art__step { margin: 0; padding: 0; }
+.art__step[hidden] { display: none; }
+.art .art__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(76 * var(--art-u)) calc(83 * var(--art-u)) minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  min-height: max(96px, calc(120 * var(--art-u)));
+  margin: 0;
+  padding: 0 calc(30 * var(--art-u));
+  border: 1px solid transparent;
+  border-radius: max(12px, calc(14 * var(--art-u)));
+  background: var(--art-card);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+  cursor: pointer;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+.art .art__card:hover { box-shadow: 0 6px 24px rgba(40, 32, 31, 0.06); }
+.art__step.is-active .art__card { border-color: var(--art-accent); }
+.art__num {
+  font-family: 'Test Tiempos Fine Italic', 'Test Tiempos Fine Italic RG', serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: max(18px, calc(24 * var(--art-u)));
+  line-height: 1.26;
+  color: var(--art-accent);
+}
+.art__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: max(64px, calc(87 * var(--art-u)));
+}
+.art__thumb img {
+  display: block;
+  width: auto;
+  max-width: calc(60 * var(--art-u));
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.12));
+}
+.art__thumb img.art__thumb--wide { width: max(40px, calc(56 * var(--art-u))); height: auto; max-width: none; }
+.art__name {
+  display: block;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: max(16px, calc(22 * var(--art-u)));
+  line-height: 1.26;
+  color: #010101;
+  text-transform: uppercase;
+}
+.art__meta {
+  display: block;
+  margin-top: max(4px, calc(10 * var(--art-u)));
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(13px, calc(16 * var(--art-u)));
+  line-height: 1.5;
+  color: rgba(1, 1, 1, 0.75);
+}
+.art__price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding-left: 12px; white-space: nowrap; }
+.art__price-now {
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: max(14px, calc(16 * var(--art-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: var(--art-text);
+}
+.art__price-was {
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(12px, calc(13 * var(--art-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: var(--art-faint);
+  text-decoration: line-through;
+}
+
+/* Panel */
+.art__panels { position: relative; display: grid; }
+.art__panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(555 * var(--art-u));
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 400ms ease, visibility 0s linear 400ms;
+}
+.art__panel.is-active { opacity: 1; visibility: visible; transition: opacity 400ms ease, visibility 0s; }
+.art__panel-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: max(12px, calc(16 * var(--art-u))) 0 0 max(12px, calc(16 * var(--art-u)));
+  background: #e9e1d7;
+}
+.art__panel-media img,
+.art__panel-media .placeholder-svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.art__panel-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: calc(50 * var(--art-u)) calc(50 * var(--art-u)) calc(40 * var(--art-u));
+  border-radius: 0 max(12px, calc(16 * var(--art-u))) max(12px, calc(16 * var(--art-u))) 0;
+  background: var(--art-card);
+}
+.art .art__tag {
+  display: inline-flex;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--art-text);
+  border-radius: 30px;
+  font-family: var(--art-tag-font);
+  font-weight: var(--art-tag-weight);
+  font-size: max(12px, calc(16 * var(--art-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--art-text);
+}
+.art .art__title {
+  margin: max(14px, calc(20 * var(--art-u))) 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(22px, calc(30 * var(--art-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--art-text);
+  text-transform: none;
+}
+.art .art__desc {
+  margin: max(10px, calc(16 * var(--art-u))) 0 0;
+  max-width: max(226px, calc(376 * var(--art-u) + 2px));
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(14px, calc(16 * var(--art-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--art-muted);
+}
+.art__rows { width: 100%; margin: max(24px, calc(40 * var(--art-u))) 0 0; padding: 0; border-top: 1px solid var(--art-line); }
+.art__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: max(52px, calc(64 * var(--art-u)));
+  padding: max(14px, calc(20 * var(--art-u))) 0 max(13px, calc(19 * var(--art-u)));
+  border-bottom: 1px solid var(--art-line);
+  font-size: max(14px, calc(16 * var(--art-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.art__row dt { font-family: 'Blauer Nue LT', sans-serif; font-weight: 300; color: var(--art-muted); }
+.art__row dd { margin: 0; font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: var(--art-text); text-align: right; }
+.art .art__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max(160px, calc(180 * var(--art-u)));
+  height: 48px;
+  margin-top: max(24px, calc(33 * var(--art-u)));
+  padding: 0 27px;
+  border-radius: 50px;
+  background: var(--art-accent);
+  color: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 250ms ease;
+}
+.art .art__btn:hover { background: #5f4430; }
+
+@media screen and (max-width: 1100px) {
+  .art__body { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 768px) {
+  .art__head { flex-direction: column; align-items: flex-start; }
+  .art__toggle { width: 100%; }
+  .art .art__opt { flex: 1; width: auto; }
+  .art .art__card { grid-template-columns: 30px 48px minmax(0, 1fr) auto; padding: 12px 14px; }
+  .art__name { font-size: 15px; }
+  .art__meta { font-size: 13px; }
+  .art__thumb img { max-width: 44px; }
+  .art__panel { grid-template-columns: 1fr; min-height: 0; }
+  .art__panel-media { aspect-ratio: 485 / 400; border-radius: 12px 12px 0 0; }
+  .art__panel-info { padding: 24px 20px 28px; border-radius: 0 0 12px 12px; }
+  .art .art__desc { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .art__panel, .art__panel.is-active { transition: none; }
+}
+{% endstyle %}
+
+<div class="art {{ s.custom_class | escape }}"{% if s.anchor_id != blank %} id="{{ s.anchor_id | handleize }}"{% endif %} data-art data-view="{{ default_view }}">
+  <div class="main-container">
+    <div class="art__head">
+      <div>
+        {%- if s.heading != blank -%}<h2 class="art__heading">{{ s.heading }}</h2>{%- endif -%}
+        {%- if s.subheading != blank -%}<p class="art__sub">{{ s.subheading | escape }}</p>{%- endif -%}
+      </div>
+      {%- if s.show_toggle -%}
+        <div class="art__toggle" role="group" aria-label="{{ s.toggle_label | escape }}">
+          <button type="button" class="art__opt" data-art-opt="am" aria-pressed="{% if default_view == 'am' %}true{% else %}false{% endif %}">
+            {{- 'cio-sun.svg' | inline_asset_content -}}<span>{{ s.am_label | escape }}</span>
+          </button>
+          <button type="button" class="art__opt" data-art-opt="pm" aria-pressed="{% if default_view == 'pm' %}true{% else %}false{% endif %}">
+            {{- 'cio-moon.svg' | inline_asset_content -}}<span>{{ s.pm_label | escape }}</span>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="art__body">
+        <ul class="art__list">
+          {%- assign first_done = false -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign p = b.product
+              assign in_view = false
+              if b.routine == 'both' or b.routine == default_view or s.show_toggle == false
+                assign in_view = true
+              endif
+              assign active = false
+              if in_view and first_done == false
+                assign active = true
+                assign first_done = true
+              endif
+              if in_view
+                assign am_n = am_n | plus: 1
+              endif
+              assign thumb = b.thumb
+              if thumb == blank and p != blank
+                assign thumb = p.featured_image
+              endif
+              assign title = b.title
+              if title == blank and p != blank
+                assign title = p.title
+              endif
+            -%}
+            <li
+              class="art__step{% if active %} is-active{% endif %}"
+              data-art-step
+              data-routine="{{ b.routine }}"
+              data-index="{{ forloop.index0 }}"
+              {% unless in_view %}hidden{% endunless %}
+              {{ block.shopify_attributes }}
+            >
+              <button type="button" class="art__card" aria-controls="art-panel-{{ block.id }}" aria-pressed="{{ active }}">
+                <span class="art__num" data-art-num>{{ am_n | prepend: '0' | slice: -2, 2 }}</span>
+                <span class="art__thumb">
+                  {%- if thumb != blank -%}
+                    {%- liquid
+                      assign thumb_class = ''
+                      if thumb.aspect_ratio > 0.8
+                        assign thumb_class = 'art__thumb--wide'
+                      endif
+                    -%}
+                    {{ thumb | image_url: width: 200 | image_tag: class: thumb_class, loading: 'lazy', widths: '100, 200', sizes: '60px', alt: '' }}
+                  {%- endif -%}
+                </span>
+                <span>
+                  <span class="art__name">{{ title | escape }}</span>
+                  {%- if b.meta != blank -%}<span class="art__meta">{{ b.meta | escape }}</span>{%- endif -%}
+                </span>
+                <span class="art__price">
+                  {%- if p != blank -%}
+                    <span class="art__price-now">{{ p.price | money_without_trailing_zeros }}</span>
+                    {%- if p.compare_at_price > p.price -%}<span class="art__price-was">{{ p.compare_at_price | money_without_trailing_zeros }}</span>{%- endif -%}
+                  {%- else -%}
+                    {%- if b.price_text != blank -%}<span class="art__price-now">{{ b.price_text | escape }}</span>{%- endif -%}
+                    {%- if b.compare_text != blank -%}<span class="art__price-was">{{ b.compare_text | escape }}</span>{%- endif -%}
+                  {%- endif -%}
+                </span>
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="art__panels">
+          {%- assign first_done = false -%}
+          {%- assign n = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b = block.settings
+              assign p = b.product
+              assign in_view = false
+              if b.routine == 'both' or b.routine == default_view or s.show_toggle == false
+                assign in_view = true
+              endif
+              assign active = false
+              if in_view and first_done == false
+                assign active = true
+                assign first_done = true
+              endif
+              if in_view
+                assign n = n | plus: 1
+              endif
+              assign image = b.image | default: s.default_image
+              assign title = b.panel_title | default: b.title
+              if title == blank and p != blank
+                assign title = p.title
+              endif
+              assign link = b.link
+              if link == blank and p != blank
+                assign link = p.url
+              endif
+              if default_view == 'pm'
+                assign view_label = s.pm_label
+              else
+                assign view_label = s.am_label
+              endif
+            -%}
+            <div class="art__panel{% if active %} is-active{% endif %}" id="art-panel-{{ block.id }}" data-art-panel data-index="{{ forloop.index0 }}">
+              <div class="art__panel-media">
+                {%- if image != blank -%}
+                  {{ image | image_url: width: 970 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 25vw, (min-width: 769px) 50vw, 100vw', widths: '400, 600, 800, 970', alt: image.alt }}
+                {%- else -%}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+              <div class="art__panel-info">
+                <p class="art__tag" data-art-tag>
+                  {%- if s.show_toggle -%}<span data-art-view>{{ view_label | escape }}</span> · {% endif -%}
+                  {{- s.step_label | escape }} <span data-art-num>{{ n | prepend: '0' | slice: -2, 2 }}</span>
+                </p>
+                {%- if title != blank -%}<h3 class="art__title">{{ title | escape }}</h3>{%- endif -%}
+                {%- if b.description != blank -%}<p class="art__desc">{{ b.description | escape }}</p>{%- endif -%}
+                {%- if b.row_1_label != blank or b.row_2_label != blank or b.row_3_label != blank -%}
+                  <dl class="art__rows">
+                    {%- if b.row_1_label != blank -%}<div class="art__row"><dt>{{ b.row_1_label | escape }}</dt><dd>{{ b.row_1_value | escape }}</dd></div>{%- endif -%}
+                    {%- if b.row_2_label != blank -%}<div class="art__row"><dt>{{ b.row_2_label | escape }}</dt><dd>{{ b.row_2_value | escape }}</dd></div>{%- endif -%}
+                    {%- if b.row_3_label != blank -%}<div class="art__row"><dt>{{ b.row_3_label | escape }}</dt><dd>{{ b.row_3_value | escape }}</dd></div>{%- endif -%}
+                  </dl>
+                {%- endif -%}
+                {%- if b.button_label != blank -%}
+                  <a class="art__btn" href="{{ link | default: '#' }}">{{ b.button_label | escape }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var LABELS = { am: {{ s.am_label | json }}, pm: {{ s.pm_label | json }} };
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function init(root) {
+      if (!root || root._artInit) return;
+      root._artInit = true;
+      var steps = Array.prototype.slice.call(root.querySelectorAll('[data-art-step]'));
+      var panels = Array.prototype.slice.call(root.querySelectorAll('[data-art-panel]'));
+      var opts = Array.prototype.slice.call(root.querySelectorAll('[data-art-opt]'));
+      var view = root.getAttribute('data-view') || 'am';
+
+      function select(index) {
+        steps.forEach(function (st) {
+          var on = st.getAttribute('data-index') === String(index);
+          st.classList.toggle('is-active', on);
+          st.querySelector('.art__card').setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-index') === String(index)); });
+      }
+
+      function applyView(v) {
+        view = v;
+        root.setAttribute('data-view', v);
+        opts.forEach(function (o) { o.setAttribute('aria-pressed', o.getAttribute('data-art-opt') === v ? 'true' : 'false'); });
+        var n = 0, first = null;
+        steps.forEach(function (st) {
+          var r = st.getAttribute('data-routine');
+          var show = !opts.length || r === 'both' || r === v;
+          st.hidden = !show;
+          var panel = panels[steps.indexOf(st)];
+          if (!show) return;
+          n += 1;
+          if (first === null) first = st.getAttribute('data-index');
+          st.querySelector('[data-art-num]').textContent = pad(n);
+          if (panel) {
+            var num = panel.querySelector('[data-art-num]');
+            var lab = panel.querySelector('[data-art-view]');
+            if (num) num.textContent = pad(n);
+            if (lab) lab.textContent = LABELS[v] || v.toUpperCase();
+          }
+        });
+        var active = root.querySelector('[data-art-step].is-active');
+        if (!active || active.hidden) select(first);
+      }
+
+      function onClick(e) {
+        var opt = e.target.closest('[data-art-opt]');
+        if (opt && root.contains(opt)) { applyView(opt.getAttribute('data-art-opt')); return; }
+        var card = e.target.closest('.art__card');
+        if (card && root.contains(card)) select(card.closest('[data-art-step]').getAttribute('data-index'));
+      }
+      root.addEventListener('click', onClick);
+      applyView(view);
+
+      root._artSelect = function (blockEl) {
+        var st = blockEl && blockEl.closest ? blockEl.closest('[data-art-step]') : null;
+        if (!st) return;
+        if (st.hidden) applyView(st.getAttribute('data-routine') === 'pm' ? 'pm' : 'am');
+        select(st.getAttribute('data-index'));
+      };
+      root._artCleanup = function () {
+        root.removeEventListener('click', onClick);
+        root._artInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-art]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__artEditorBound) {
+      window.__artEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._artCleanup) r._artCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._artSelect) r._artSelect(e.target);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About ritual steps",
+  "tag": "section",
+  "class": "about-ritual-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent word.", "default": "<p>The five-step <em>ritual.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Each product works as a standalone step; the five-step ritual is one option, not a requirement." },
+    { "type": "image_picker", "id": "default_image", "label": "Default panel image", "info": "Used when a step has no image of its own. 485 × 555. Design export: 06-ritual-feature.webp." },
+    { "type": "header", "content": "AM / PM toggle" },
+    { "type": "checkbox", "id": "show_toggle", "label": "Show AM / PM toggle", "info": "When off, every step is listed.", "default": true },
+    { "type": "select", "id": "default_view", "label": "Open on", "options": [ { "value": "am", "label": "AM" }, { "value": "pm", "label": "PM" } ], "default": "am" },
+    { "type": "text", "id": "am_label", "label": "AM label", "default": "AM" },
+    { "type": "text", "id": "pm_label", "label": "PM label", "default": "PM" },
+    { "type": "text", "id": "step_label", "label": "Step label in the panel tag", "default": "Step" },
+    { "type": "text", "id": "toggle_label", "label": "Toggle group name (screen readers)", "default": "Routine time" },
+    { "type": "font_picker", "id": "tag_font", "label": "Toggle and tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Band background", "default": "#F5EEE6" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_accent", "label": "Accent (numbers, active toggle, button)", "default": "#78563D" },
+    { "type": "color", "id": "color_card", "label": "Cards", "default": "#FFFFFF" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "info": "Link to this section with #anchor-id (the hero's \"Explore the Ritual\" button uses #about-ritual).", "default": "about-ritual" },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "select", "id": "routine", "label": "Routine", "options": [ { "value": "both", "label": "AM and PM" }, { "value": "am", "label": "AM only" }, { "value": "pm", "label": "PM only" } ], "default": "both" },
+        { "type": "product", "id": "product", "label": "Product", "info": "Supplies the price, link and (if empty) title and thumbnail." },
+        { "type": "header", "content": "List card" },
+        { "type": "image_picker", "id": "thumb", "label": "Thumbnail", "info": "Transparent product cut-out." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Clean It Off Face Wash" },
+        { "type": "text", "id": "meta", "label": "Subtitle", "default": "Postbiotic Gel Cleanser | 100ml" },
+        { "type": "text", "id": "price_text", "label": "Price", "info": "Only used when no product is picked.", "default": "Rs. 1,199" },
+        { "type": "text", "id": "compare_text", "label": "Compare-at price", "info": "Only used when no product is picked." },
+        { "type": "header", "content": "Panel" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Leave empty to use the section's default image." },
+        { "type": "text", "id": "panel_title", "label": "Title", "info": "Defaults to the list title." },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Each product works as a standalone step; the five-step ritual is one option, not a requirement." },
+        { "type": "text", "id": "row_1_label", "label": "Row 1 label", "default": "Format" },
+        { "type": "text", "id": "row_1_value", "label": "Row 1 value", "default": "Gel face wash - 100ml" },
+        { "type": "text", "id": "row_2_label", "label": "Row 2 label", "default": "Key active" },
+        { "type": "text", "id": "row_2_value", "label": "Row 2 value", "default": "Postbiotic ferment lysate 1%" },
+        { "type": "text", "id": "row_3_label", "label": "Row 3 label", "default": "Frequency" },
+        { "type": "text", "id": "row_3_value", "label": "Row 3 value", "default": "Twice daily" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "View product" },
+        { "type": "url", "id": "link", "label": "Button link", "info": "Defaults to the product page." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About ritual steps",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Clean It Off Face Wash", "meta": "Postbiotic Gel Cleanser | 100ml" } },
+        { "type": "step", "settings": { "title": "Dab It On Toner", "meta": "2% Niacinamide - Witch Hazel | 100 ml" } },
+        { "type": "step", "settings": { "title": "Rub It In Serum", "meta": "Lactobacillus Ferment Lysate | 30 ml" } },
+        { "type": "step", "settings": { "title": "Soak It In Face Cream", "meta": "Postbiotic Daily Moisturiser | 45ml" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

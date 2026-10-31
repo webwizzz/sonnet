@@ -1,0 +1,1646 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": true,
+            "padding_bottom": 20
+          }
+        },
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.vendor }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "<p>{{ product.title }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<span class=\"title\">{{product.title}}</span><br>"
+          }
+        },
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% if product.compare_at_price %}\n  <span class=\"price\">{{ product.price | money}} </span>  <del>{{ product.compare_at_price | money }}</del> <span style=\"color: black;\"></span>\n{% else %}\n  {{ product.price | money}}\n{% endif %}"
+          }
+        },
+        "241165e0-622a-491a-9eaf-7f1831b2881c": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.short_description | metafield_tag }}</p>",
+            "padding_bottom": 20
+          }
+        },
+        "quantity_dp4pWb": {
+          "type": "quantity",
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "add_buttons_qhrYHm": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "glo_related_products_upsell_app_block_product_XVzdEN": {
+          "type": "shopify://apps/tipo-related-products/blocks/app-block-product/75cf2d86-3988-45e7-8f28-ada23c99704f",
+          "disabled": true,
+          "settings": {
+            "widget": "3",
+            "gashortcode": "<div class=\"globo_widget_15187\"></div>"
+          }
+        },
+        "meroxio_zipcode_checker_availibility_LT4eBi": {
+          "type": "shopify://apps/zip-pin-postal-code-checker/blocks/availibility/b355dba7-d415-49dc-8399-11206b10c9ca",
+          "settings": {
+            "input_placeholder": "Enter your pincode...",
+            "auto_check_length": 6,
+            "box_bg_color": "#eaf6ef",
+            "icon_color": "#2e7d5b",
+            "input_border_radius": 6,
+            "input_text_color": "#000000",
+            "change_text": "Change",
+            "button_bg_color": "#182d2c",
+            "available_text_color": "#4caf50",
+            "bg-success-msg": "#e8f9f0",
+            "available_text": "Delivery is available in your area!",
+            "show_delivery_time": true,
+            "delivery_time_text": "Delivery by {date}",
+            "use_fallback_delivery_time": false,
+            "fallback_delivery_time": "5",
+            "not_available_text_color": "#d32f2f",
+            "bg-wrong-msg": "#ff050529",
+            "not_available_text": "Sorry, we do not deliver to your location.",
+            "enable_border": true,
+            "add_to_cart_default_disabled": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "afdb8154-e89f-47ea-a4f2-166d5d1ab44c",
+        "1a1cbdba-f894-4364-9022-3e6369e85ab5",
+        "332cb547-4947-4c9c-a6f4-08cc036b6cbb",
+        "4253d6fd-ee80-4d84-9981-4bd16c7470db",
+        "241165e0-622a-491a-9eaf-7f1831b2881c",
+        "7214d5fe-746d-4258-9a14-d4c0a9df26fc",
+        "quantity_dp4pWb",
+        "add_buttons_qhrYHm",
+        "glo_related_products_upsell_app_block_product_XVzdEN",
+        "meroxio_zipcode_checker_availibility_LT4eBi"
+      ],
+      "disabled": true,
+      "settings": {
+        "layout": "thumbnails-below@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "product_tlpc_8tB6r7": {
+      "type": "product-tlpc",
+      "blocks": {
+        "title_d8f4NW": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": false,
+            "show_rating_count": false,
+            "padding_bottom": 16
+          }
+        },
+        "text_MwYrmh": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.tagline.value }}</p>",
+            "padding_bottom": 16
+          }
+        },
+        "description_HjAF3F": {
+          "type": "description",
+          "settings": {
+            "style": "none",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "",
+            "icon_name_1": "",
+            "raw_content_1": "",
+            "image_1": "",
+            "title_2": "Details",
+            "icon_name_2": "",
+            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product. &nbsp;Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+            "image_2": "",
+            "title_3": "",
+            "icon_name_3": "",
+            "raw_content_3": "",
+            "image_3": "",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 0
+          }
+        },
+        "spacer_Rcz69C": {
+          "type": "spacer",
+          "settings": {
+            "show_line": true,
+            "target_device": "",
+            "padding_top": 0,
+            "padding_bottom": 20
+          }
+        },
+        "product_info_VVyN8P": {
+          "type": "product-info",
+          "settings": {
+            "icon_bg": "#ffffff",
+            "text_color": "#2b2b2b",
+            "divider_color": "#ddd3ca",
+            "icon_circle": 46,
+            "font_size": 14,
+            "text_width": 200,
+            "radius": 6
+          }
+        },
+        "spacer_Y3B8Vy": {
+          "type": "spacer",
+          "settings": {
+            "show_line": true,
+            "target_device": "",
+            "padding_top": 20,
+            "padding_bottom": 20
+          }
+        },
+        "variant_selectors_zYEyb3": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 34,
+            "option_size_radio": 50,
+            "option_space": 30,
+            "padding_bottom": 20
+          }
+        },
+        "price_wMgK3w": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "add_buttons_WB8Rwr": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": false,
+            "enable_gift_card_recipient": false,
+            "padding_bottom": 20
+          }
+        },
+        "upsell_UgXWDc": {
+          "type": "upsell",
+          "settings": {
+            "title": "Shop Individually",
+            "upsell_type": "product_grouping",
+            "product": "",
+            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
+            "upsell_list_limit": 10,
+            "padding_bottom": 20
+          }
+        },
+        "liquid_GYcMU3": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'static-text' %}"
+          }
+        },
+        "description_CwzkCw": {
+          "type": "description",
+          "settings": {
+            "style": "accordions",
+            "enable_description": false,
+            "read_more": false,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "INGREDIENTS",
+            "icon_name_1": "",
+            "raw_content_1": "<p>sSas&nbsp;</p>",
+            "image_1": "{% render 'product-ingredients-tabs' %}",
+            "title_2": "USAGE GUIDE",
+            "icon_name_2": "",
+            "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
+            "image_2": "",
+            "title_3": "BENEFITS",
+            "icon_name_3": "",
+            "raw_content_3": "{{ product.metafields.custom.benefits_accordion | metafield_tag }}",
+            "image_3": "",
+            "title_4": "What's Inside",
+            "icon_name_4": "",
+            "raw_content_4": "{{ product.metafields.custom.what_s_inside | metafield_tag }}",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 10
+          }
+        },
+        "liquid_hkkHPA": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'trust-badges' %}"
+          }
+        },
+        "liquid_jWXjdi": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'loved-by-thousands' %}"
+          }
+        },
+        "shop_combo_826ev3": {
+          "type": "shop-combo",
+          "settings": {
+            "title": "Explore Other Rituals",
+            "font": "montserrat_n4",
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_d8f4NW",
+        "text_MwYrmh",
+        "description_HjAF3F",
+        "spacer_Rcz69C",
+        "product_info_VVyN8P",
+        "spacer_Y3B8Vy",
+        "variant_selectors_zYEyb3",
+        "price_wMgK3w",
+        "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
+        "liquid_GYcMU3",
+        "description_CwzkCw",
+        "liquid_hkkHPA",
+        "liquid_jWXjdi",
+        "shop_combo_826ev3"
+      ],
+      "name": "Product Tlpc page",
+      "settings": {
+        "layout": "none@single",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--neutral",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": false,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper--full",
+        "padding_top": 20,
+        "padding_bottom": 130
+      }
+    },
+    "marquee_bar_z7LLMg": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_LfdJDR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.webp",
+            "title": "Made In India"
+          }
+        },
+        "item_XD396D": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329696.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_AKKcxG": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_1_565b7b0c-de56-48be-abbe-a421b11047d7.webp",
+            "title": "Postbiotic Formula"
+          }
+        },
+        "item_6hFP7W": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/amp-icon-cruelty-free.webp",
+            "title": "Cruelty Free"
+          }
+        }
+      },
+      "block_order": [
+        "item_LfdJDR",
+        "item_XD396D",
+        "item_AKKcxG",
+        "item_6hFP7W"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "",
+        "label": "WHY US?",
+        "background_color": "#f3ede7",
+        "marquee_speed": 6,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
+      }
+    },
+    "17754664316b6f6fbf": {
+      "type": "apps",
+      "blocks": {
+        "quinn_shoppable_reel_app_cards_block_qhywQD": {
+          "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+          "settings": {
+            "custom_metaobject_handle": "null",
+            "background_color": "#ffffff",
+            "margin_desktop": "10px 0px 0px 0px",
+            "margin_mobile": "5px 0px 0px 0px",
+            "padding_desktop": "10px 10px 10px 10px",
+            "padding_mobile": "10px 5px 10px 5px"
+          }
+        }
+      },
+      "block_order": [
+        "quinn_shoppable_reel_app_cards_block_qhywQD"
+      ],
+      "disabled": true,
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "why_love_dCAtMf": {
+      "type": "why-love",
+      "blocks": {
+        "slide_k4cQQt": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dcc-love-deep-cleansed-pores.webp",
+            "label": "Deep-cleansed pores, weekly",
+            "stat": "97%",
+            "stat_caption": "Said skin looked cleaner after one use",
+            "body": "20% Kaolin Clay helps absorb excess surface oil and lift pore debris in a 10 to 15 minute session. Skin looks visibly cleaner and more refined after rinsing, two to three times a week."
+          }
+        },
+        "slide_ePwiUP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dcc-love-smoother-texture.webp",
+            "label": "Smoother-feeling texture",
+            "stat": "90%",
+            "stat_caption": "Said skin felt smoother after first use",
+            "body": "4% Glycolic Acid helps loosen dead surface skin cells to support a smoother-looking, more refined texture. The non-cracking formula stays comfortable across the full wear time, without hardening or pulling."
+          }
+        },
+        "slide_9AHF4w": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dcc-love-less-shine.webp",
+            "label": "Less shine between masks",
+            "stat": "~22%",
+            "stat_caption": "Lower sebum output in 4 weeks",
+            "body": "On the days between masks, Dab It On helps reduce the appearance of excess surface shine. Its 2% Niacinamide keeps working with regular daily use, so the balance holds between mask days."
+          }
+        },
+        "slide_8jnKMq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dcc-love-calm-finish.webp",
+            "label": "A calm, comfortable finish",
+            "stat": "93%",
+            "stat_caption": "Said skin felt comfortable, not dry",
+            "body": "Pressed in straight after rinsing, the alcohol-free toner hydrates while Chamomile helps soothe the look of redness. Skin finishes the ritual feeling conditioned and comfortable, never dry or tight."
+          }
+        }
+      },
+      "block_order": [
+        "slide_k4cQQt",
+        "slide_ePwiUP",
+        "slide_9AHF4w",
+        "slide_8jnKMq"
+      ],
+      "name": "Why Love Slider",
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/dcc-love-deep-cleansed-pores.webp",
+        "image_position": "right",
+        "heading": "<p>Why your skin will<br/><em>love Deep Clean Couplette</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_divider": true,
+        "show_counter": true,
+        "scroll_length": 100,
+        "zoom_start": 125,
+        "text_animation": "rise",
+        "sticky_offset_mode": "auto",
+        "sticky_offset": 0,
+        "enable_mobile_animation": true,
+        "mobile_image_height": 45,
+        "color_background": "#fffcf9",
+        "color_panel": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_pill_text": "#ffffff",
+        "color_counter_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "why_section_gbUtQL": {
+      "type": "Why_section",
+      "blocks": {
+        "block_idcbU8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1139962745.png",
+            "t1": "Won't Strip Or Tighten",
+            "desc": "<p>Formulated with 6% Glycerin and 5% Aloe Vera to help skin feel comfortable and hydrated after rinsing, not tight or stripped.</p>",
+            "title": "6+5%",
+            "title1": ""
+          }
+        },
+        "block_BRitU8": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1139962745_469ab6e0-530d-4903-bdbb-5ac8ff0a2dc1.png",
+            "t1": "Won't Strip Or Tighten",
+            "desc": "<p>Formulated with 6% Glycerin and 5% Aloe Vera to help skin feel comfortable and hydrated after rinsing, not tight or stripped.</p>",
+            "title": "6+5%",
+            "title1": ""
+          }
+        },
+        "block_APzLt7": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1139962745_b2d3706b-8bfa-40ad-a90b-b28f77b6683d.png",
+            "t1": "Won't Strip Or Tighten",
+            "desc": "<p>Formulated with 6% Glycerin and 5% Aloe Vera to help skin feel comfortable and hydrated after rinsing, not tight or stripped.</p>",
+            "title": "6+5%",
+            "title1": ""
+          }
+        },
+        "block_KLNVfz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1139962745_bd94815d-927d-4275-9857-2a1c1de6c1d9.png",
+            "t1": "Won't Strip Or Tighten",
+            "desc": "<p>Formulated with 6% Glycerin and 5% Aloe Vera to help skin feel comfortable and hydrated after rinsing, not tight or stripped.</p>",
+            "title": "6+5%",
+            "title1": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_idcbU8",
+        "block_BRitU8",
+        "block_APzLt7",
+        "block_KLNVfz"
+      ],
+      "disabled": true,
+      "name": "Why Section",
+      "settings": {
+        "custom_class": "",
+        "title": "<p>Why your skin will <em>love Rub It In</em></p>",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "color_text": "",
+        "color_background": ""
+      }
+    },
+    "set_before_after_aeVtai": {
+      "type": "set-before-after",
+      "blocks": {
+        "before_point_NGAnRW": {
+          "type": "before_point",
+          "settings": {
+            "text": "Pores that look congested"
+          }
+        },
+        "before_point_rCtmcY": {
+          "type": "before_point",
+          "settings": {
+            "text": "Rough-looking texture"
+          }
+        },
+        "before_point_BhtYTG": {
+          "type": "before_point",
+          "settings": {
+            "text": "Clay that leaves skin dry"
+          }
+        },
+        "before_point_dcc1": {
+          "type": "before_point",
+          "settings": {
+            "text": "Surface shine on oily skin"
+          }
+        },
+        "after_point_PKm6fR": {
+          "type": "after_point",
+          "settings": {
+            "text": "Skin looks visibly cleaner and more refined after rinsing"
+          }
+        },
+        "after_point_7wRq9t": {
+          "type": "after_point",
+          "settings": {
+            "text": "Smoother-looking, more refined texture"
+          }
+        },
+        "after_point_mzgDUG": {
+          "type": "after_point",
+          "settings": {
+            "text": "Glycerin and Aloe help offset clay's drying effect"
+          }
+        },
+        "after_point_dcc2": {
+          "type": "after_point",
+          "settings": {
+            "text": "Toner helps reduce the look of excess shine"
+          }
+        }
+      },
+      "block_order": [
+        "before_point_NGAnRW",
+        "before_point_rCtmcY",
+        "before_point_BhtYTG",
+        "before_point_dcc1",
+        "after_point_PKm6fR",
+        "after_point_7wRq9t",
+        "after_point_mzgDUG",
+        "after_point_dcc2"
+      ],
+      "name": "Set Before After",
+      "settings": {
+        "before_image": "shopify://shop_images/dcc-before.webp",
+        "after_image": "shopify://shop_images/dcc-after.webp",
+        "before_label": "BEFORE",
+        "after_label": "AFTER",
+        "compare_start": 50,
+        "image_position": "left",
+        "desktop_height": 700,
+        "mobile_aspect_ratio": "1 / 1",
+        "heading": "<p>Before This Set <em>After This Set</em></p>",
+        "italic_new_line": true,
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "list_font": "montserrat_n4",
+        "before_list_label": "Before this set",
+        "after_list_label": "After this set",
+        "color_background": "#fffcf9",
+        "card_bg": "#ffffff",
+        "box_bg": "#f5eee6",
+        "text_color": "#28201f",
+        "before_badge_color": "#f00009",
+        "after_badge_color": "#228761",
+        "badge_icon_color": "#ffffff",
+        "compare_ui_color": "#f5eee6",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "your_routine_HUmmJP": {
+      "type": "your-routine",
+      "blocks": {
+        "step_jtGNLc": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "image": "shopify://shop_images/dcc-routine-am-toner.webp",
+            "video": "shopify://files/videos/Tone Vid.mp4",
+            "video_url": "",
+            "title": "Dab It On Toner",
+            "description": "Daily after cleansing; conditions the skin surface; Niacinamide 2%",
+            "product": "",
+            "link": "",
+            "number_override": ""
+          }
+        },
+        "step_Pe7TCF": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "image": "shopify://shop_images/dcc-routine-am-spf.webp",
+            "video": "shopify://files/videos/Protect Vid.mp4",
+            "video_url": "",
+            "title": "Your SPF 30–50",
+            "description": "Not in the Sonnet range. Essential while using the mask and for a week afterwards",
+            "product": "",
+            "link": "",
+            "number_override": ""
+          }
+        },
+        "step_NVrci8": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "image": "shopify://shop_images/dcc-routine-pm-mask.webp",
+            "video": "shopify://files/videos/Deep cleanse Face mask Vid.mp4",
+            "video_url": "",
+            "title": "Smear It On Face Mask",
+            "description": "Kaolin 20% absorbs excess oil; Glycolic Acid 4%; leave 10–15 min, then rinse PM · mask nights (2–3× weekly)",
+            "product": "",
+            "link": "",
+            "number_override": ""
+          }
+        },
+        "step_3PLmwP": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "image": "shopify://shop_images/dcc-routine-pm-toner.webp",
+            "video": "shopify://files/videos/Condition Dab It On Toner Vid.mp4",
+            "video_url": "",
+            "title": "Dab It On Toner",
+            "description": "Applied immediately after rinsing; Niacinamide 2%; Chamomile soothes",
+            "product": "",
+            "link": "",
+            "number_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_jtGNLc",
+        "step_Pe7TCF",
+        "step_NVrci8",
+        "step_3PLmwP"
+      ],
+      "name": "Your Routine",
+      "settings": {
+        "heading": "<p>Your <em>Routine</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "show_toggle": true,
+        "default_view": "all",
+        "am_label": "AM",
+        "pm_label": "PM",
+        "title_font": "montserrat_n7",
+        "body_font": "montserrat_n4",
+        "toggle_font": "montserrat_n5",
+        "color_band": "#f6f3ee",
+        "text_color": "#28201f",
+        "accent_color": "#78563d",
+        "toggle_label": "Routine time",
+        "showing_label": "Showing [routine] steps",
+        "showing_all_label": "Showing all steps",
+        "color_page": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "whats_inside_tabs_e8e37N": {
+      "type": "whats-inside-tabs",
+      "blocks": {
+        "tab_TUgQRF": {
+          "type": "tab",
+          "settings": {
+            "label": "MASK"
+          }
+        },
+        "ingredient_dcc3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-lactobacillus.webp",
+            "name": "LACTOBACILLUS FERMENT LYSATE (1%)",
+            "description": "Inactivated postbiotic. Helps maintain a conditioned skin surface while masking."
+          }
+        },
+        "ingredient_dcc4": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/amp-kaolin-clay.webp",
+            "name": "KAOLIN CLAY (20%)",
+            "description": "Mineral clay. Helps absorb excess surface oil and lift pore debris."
+          }
+        },
+        "ingredient_dcc5": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-glycolic-acid.webp",
+            "name": "GLYCOLIC ACID (4%)",
+            "description": "An AHA. Helps loosen dead surface skin cells for smoother-looking texture."
+          }
+        },
+        "ingredient_dcc6": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/amp-green-tea-extract.webp",
+            "name": "GREEN TEA LEAF EXTRACT (1%)",
+            "description": "Antioxidant support at the skin surface during masking."
+          }
+        },
+        "ingredient_dcc7": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-aloe.webp",
+            "name": "ALOE LEAF JUICE (5%)",
+            "description": "Keeps skin comfortable during and after masking."
+          }
+        },
+        "ingredient_dcc8": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/amp-glycerin-mask.webp",
+            "name": "GLYCERIN (3%)",
+            "description": "Draws moisture to the surface, balancing the absorbent clay."
+          }
+        },
+        "ingredient_dcc9": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-magnesium-aluminium-silicate.webp",
+            "name": "MAGNESIUM ALUMINIUM SILICATE (5%)",
+            "description": "Gives the mask a smooth, spreadable consistency."
+          }
+        },
+        "tab_E3yTgz": {
+          "type": "tab",
+          "settings": {
+            "label": "TONER"
+          }
+        },
+        "ingredient_dcc10": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-lactobacillus.webp",
+            "name": "Lactobacillus Ferment Lysate (1%)",
+            "description": "Inactivated postbiotic. Helps maintain a conditioned, comfortable skin surface."
+          }
+        },
+        "ingredient_dcc11": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/amp-niacinamide-cream.webp",
+            "name": "Niacinamide (2%)",
+            "description": "Vitamin B3. Helps support an even-looking tone and refined-looking pores."
+          }
+        },
+        "ingredient_dcc12": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-toner-witch-hazel.webp",
+            "name": "WITCH HAZEL EXTRACT (2%)",
+            "description": "A pore-refining botanical. Helps refine the visible appearance of pores."
+          }
+        },
+        "ingredient_dcc13": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-toner-chamomile.webp",
+            "name": "CHAMOMILE FLOWER EXTRACT (1%)",
+            "description": "Helps soothe the visible appearance of redness on reactive skin."
+          }
+        },
+        "ingredient_dcc14": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-aloe.webp",
+            "name": "ALOE LEAF JUICE (5%)",
+            "description": "Soothing hydration that helps skin feel comfortable after toning."
+          }
+        },
+        "ingredient_dcc15": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/amp-glycerin-mask.webp",
+            "name": "Propanediol (1%)",
+            "description": "A plant-derived humectant that draws in moisture and keeps niacinamide stable."
+          }
+        },
+        "ingredient_dcc16": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/dcc-mask-glycolic-acid.webp",
+            "name": "Glycolic Acid (0.1%)",
+            "description": "Adjusts pH. At this level it is not an exfoliant."
+          }
+        }
+      },
+      "block_order": [
+        "tab_TUgQRF",
+        "ingredient_dcc3",
+        "ingredient_dcc4",
+        "ingredient_dcc5",
+        "ingredient_dcc6",
+        "ingredient_dcc7",
+        "ingredient_dcc8",
+        "ingredient_dcc9",
+        "tab_E3yTgz",
+        "ingredient_dcc10",
+        "ingredient_dcc11",
+        "ingredient_dcc12",
+        "ingredient_dcc13",
+        "ingredient_dcc14",
+        "ingredient_dcc15",
+        "ingredient_dcc16"
+      ],
+      "name": "What's Inside Tabs",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>What's inside, <em>and exactly why.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_progress_ring": true,
+        "active_size": 400,
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_tab_bg": "#ffffff",
+        "color_arrow_bg": "#f6f3ee",
+        "color_ring_track": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "whats_inside_carousel_GDxNxB": {
+      "type": "whats-inside-carousel",
+      "blocks": {
+        "ingredient_UJfpeN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "name": "Lactobacillus Ferment Lysate 1%",
+            "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
+          }
+        },
+        "ingredient_BciJAz": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "name": "Cocamidopropyl Betaine 17%",
+            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+          }
+        },
+        "ingredient_Eyfm37": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "name": "Aloe Barbadensis 5%",
+            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+          }
+        },
+        "ingredient_Hg4EBX": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "name": "Glycerin 6%",
+            "description": "Helps offset the drying effect of cleansing on skin comfort."
+          }
+        },
+        "ingredient_8WxCii": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "name": "Ingredient name",
+            "description": "Describe what this ingredient does."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_UJfpeN",
+        "ingredient_BciJAz",
+        "ingredient_Eyfm37",
+        "ingredient_Hg4EBX",
+        "ingredient_8WxCii"
+      ],
+      "disabled": true,
+      "name": "What's Inside Carousel",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>What's inside, <em>and exactly why.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_progress_ring": true,
+        "active_size": 400,
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_arrow_bg": "#f6f3ee",
+        "color_ring_track": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "system_logic_arc_FGrVXw": {
+      "type": "system-logic-arc",
+      "blocks": {
+        "card_ymNgKm": {
+          "type": "card",
+          "settings": {
+            "style": "product",
+            "image": "shopify://shop_images/amp-card-smear-it-on.webp",
+            "label": "Smear It On Face Mask",
+            "video_url": "",
+            "product": "smear-it-on-face-mask",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_7yJBkF": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-absorb-oil.webp",
+            "label": "Helps absorb oil",
+            "video": "shopify://files/videos/Helps absorb oil Vid.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_JTJgDQ": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-smoother-texture.webp",
+            "label": "Smoother-looking texture",
+            "video": "shopify://files/videos/Smoother-looking texture Vid.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_dcc17": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-aloe-comfort.webp",
+            "label": "Aloe-balanced comfort",
+            "video": "shopify://files/videos/Aloe-balanced comfort Vid.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_mzYdPJ": {
+          "type": "card",
+          "settings": {
+            "style": "product",
+            "image": "shopify://shop_images/amp-card-dab-it-on.webp",
+            "label": "Dab It On Toner",
+            "video_url": "",
+            "product": "dab-it-on-toner",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_tDn94e": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-conditions-after-rinsing.webp",
+            "label": "Conditions after rinsing",
+            "video": "shopify://files/videos/Conditions after rinsing Vid.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_CJdDfh": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-refined-pores.webp",
+            "label": "Refined-looking pores",
+            "video": "shopify://files/videos/Refined-looking pores Vid_01fccdff-1e01-49b3-a287-98140098d7d2.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        },
+        "card_dcc18": {
+          "type": "card",
+          "settings": {
+            "style": "benefit",
+            "image": "shopify://shop_images/dcc-card-alcohol-free.webp",
+            "label": "Alcohol-free hydration",
+            "video": "shopify://files/videos/Alcohol-free hydration Vid_456bb5ae-165c-482e-8b03-245d5ee854df.mp4",
+            "video_url": "",
+            "product": "",
+            "link": "",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_ymNgKm",
+        "card_7yJBkF",
+        "card_JTJgDQ",
+        "card_dcc17",
+        "card_mzYdPJ",
+        "card_tDn94e",
+        "card_CJdDfh",
+        "card_dcc18"
+      ],
+      "name": "System Logic Arc",
+      "settings": {
+        "heading": "<p>The System <em>Logic</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "subtitle": "Shared base - 1% Lactobacillus Ferment Lysate (postbiotic) in both steps",
+        "subtitle_font": "montserrat_n4",
+        "label_font": "montserrat_n6",
+        "pill_font": "montserrat_n5",
+        "decor_image": "shopify://shop_images/model-left-decor-821x856.webp",
+        "show_decor_mobile": false,
+        "scroll_per_card": 70,
+        "arc_radius": 2440,
+        "angle_step": 10,
+        "sticky_offset_mode": "auto",
+        "sticky_offset": 0,
+        "show_guides": false,
+        "guide_color": "#28201f",
+        "guide_opacity": 15,
+        "color_band": "#f6f3ee",
+        "text_color": "#28201f",
+        "benefit_overlay": "#28201f",
+        "product_overlay": "#ffffff",
+        "overlay_opacity": 30,
+        "label_color": "#ffffff",
+        "pill_color": "#28201f",
+        "play_bg": "#ffffff",
+        "play_icon": "#78563d",
+        "play_label": "Play video",
+        "dialog_label": "Video",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_class": ""
+      }
+    },
+    "science_stats_cEpVm6": {
+      "type": "science-stats",
+      "blocks": {
+        "stat_VApmf4": {
+          "type": "stat",
+          "settings": {
+            "icon": "sun_skin",
+            "icon_image": "shopify://shop_images/Group_2087330668.svg",
+            "value": "20%",
+            "text": "Kaolin Clay in Smear It On Face Mask",
+            "text_width": 221
+          }
+        },
+        "stat_CmcnmV": {
+          "type": "stat",
+          "settings": {
+            "icon": "skin_layers",
+            "icon_image": "shopify://shop_images/Group_2087330669.svg",
+            "value": "4%",
+            "text": "Glycolic Acid in Smear It On Face Mask",
+            "text_width": 216
+          }
+        },
+        "stat_r4yenw": {
+          "type": "stat",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/Group_2087330673.svg",
+            "value": "5%",
+            "text": "Aloe Barbadensis Leaf Juice in each product",
+            "text_width": 204
+          }
+        },
+        "stat_iNkgTr": {
+          "type": "stat",
+          "settings": {
+            "icon": "face_glow",
+            "value": "2%",
+            "text": "Niacinamide in Dab It On Toner",
+            "text_width": 183
+          }
+        }
+      },
+      "block_order": [
+        "stat_VApmf4",
+        "stat_CmcnmV",
+        "stat_r4yenw",
+        "stat_iNkgTr"
+      ],
+      "name": "Science Stats",
+      "settings": {
+        "heading": "<p>What's <em>Actually In It</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
+        "video_on_mobile": true,
+        "background_position": "center center",
+        "overlay_color": "#28201f",
+        "overlay_opacity": 20,
+        "pill_color": "#ffffff",
+        "icon_bg_color": "#f5eee6",
+        "icon_color": "#78563d",
+        "stat_color": "#78563d",
+        "text_color": "#28201f",
+        "text_opacity": 85,
+        "animate_entrance": true,
+        "animate_numbers": true,
+        "color_background": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "band_padding_top": 132,
+        "band_padding_bottom": 131,
+        "mobile_band_padding_top": 48,
+        "mobile_band_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "trust_badges_XGitCm": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_HhctTk": {
+          "type": "badge",
+          "settings": {
+            "icon": "vegan",
+            "icon_size": 80,
+            "label": "100%\nVegan"
+          }
+        },
+        "badge_trXaWW": {
+          "type": "badge",
+          "settings": {
+            "icon": "cruelty_free",
+            "icon_size": 80,
+            "label": "Cruelty-\nFree"
+          }
+        },
+        "badge_bk64kr": {
+          "type": "badge",
+          "settings": {
+            "icon": "made_in_india",
+            "icon_size": 80,
+            "label": "Made\nIn India"
+          }
+        },
+        "badge_DdCRRJ": {
+          "type": "badge",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/Frame_5.webp",
+            "icon_size": 80,
+            "label": "Probiotic\nSkincare"
+          }
+        }
+      },
+      "block_order": [
+        "badge_HhctTk",
+        "badge_trXaWW",
+        "badge_bk64kr",
+        "badge_DdCRRJ"
+      ],
+      "name": "Trust Badges",
+      "settings": {
+        "heading": "<p>What We <em>Can Promise</em></p>",
+        "italic_new_line": true,
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "label_font": "montserrat_n6",
+        "show_dividers": true,
+        "color_background": "#ffffff",
+        "text_color": "#28201f",
+        "circle_color": "#f6f3ee",
+        "icon_color": "#28201f",
+        "padding_top": 47,
+        "padding_bottom": 47,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "ritual_bundle_dE8MLN": {
+      "type": "ritual-bundle",
+      "blocks": {
+        "hotspot_4h66jW": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
+            "pos_x": 60,
+            "pos_y": 14,
+            "mobile_pos_x": 60,
+            "mobile_pos_y": 14
+          }
+        },
+        "hotspot_KXaJpz": {
+          "type": "hotspot",
+          "settings": {
+            "product": "dab-it-on-toner",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_1.webp",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
+            "pos_x": 47,
+            "pos_y": 30,
+            "mobile_pos_x": 47,
+            "mobile_pos_y": 30
+          }
+        },
+        "hotspot_6xky7d": {
+          "type": "hotspot",
+          "settings": {
+            "product": "rub-it-in-serum-2",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_2.webp",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
+            "pos_x": 32,
+            "pos_y": 57,
+            "mobile_pos_x": 32,
+            "mobile_pos_y": 57
+          }
+        },
+        "hotspot_3b6gTe": {
+          "type": "hotspot",
+          "settings": {
+            "product": "soak-it-in-face-cream",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_4.webp",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
+            "pos_x": 48,
+            "pos_y": 64,
+            "mobile_pos_x": 48,
+            "mobile_pos_y": 64
+          }
+        },
+        "hotspot_hkX47c": {
+          "type": "hotspot",
+          "settings": {
+            "product": "smear-it-on-face-mask",
+            "include_in_bundle": true,
+            "link": "",
+            "image": "shopify://shop_images/image_52_3.webp",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
+            "pos_x": 62,
+            "pos_y": 56,
+            "mobile_pos_x": 62,
+            "mobile_pos_y": 56
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_4h66jW",
+        "hotspot_KXaJpz",
+        "hotspot_6xky7d",
+        "hotspot_3b6gTe",
+        "hotspot_hkX47c"
+      ],
+      "name": "Ritual Bundle",
+      "settings": {
+        "heading": "<p>Five products. <em>one complete ritual.</em></p>",
+        "italic_new_line": true,
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "heading_color": "#ffffff",
+        "background_image": "shopify://shop_images/rectangle-1430107051-191-590-1720x700.webp",
+        "focus_x": 47,
+        "focus_y": 50,
+        "stacked_aspect_ratio": "1 / 1",
+        "stacked_focus_x": 47,
+        "stacked_focus_y": 55,
+        "hotspot_animation": "bling",
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#28201f",
+        "hotspot_active_color": "#78563d",
+        "hotspot_active_text_color": "#ffffff",
+        "accent_font": "montserrat_n7",
+        "detail_card_bg": "#f6f3ee",
+        "show_card_price": false,
+        "show_button": true,
+        "button_label": "ADD BUNDLE",
+        "bundle_discount": 10,
+        "discount_code": "",
+        "show_compare_price": true,
+        "price_format": "money_without_trailing_zeros",
+        "price_override": "Rs. 1,199",
+        "compare_price_override": "Rs. 1,332",
+        "after_add": "drawer",
+        "button_bg": "#ffffff",
+        "button_text_color": "#2a1f19",
+        "adding_label": "Adding…",
+        "added_label": "Bundle added to your cart.",
+        "error_label": "Couldn't add the bundle. Please try again.",
+        "sold_out_label": "Sold out",
+        "price_sr_label": "Bundle price",
+        "compare_sr_label": "Original price",
+        "showing_sr_label": "Showing [title]",
+        "card_bg": "#28201f",
+        "card_radius": 16,
+        "color_background": "#fffcf9",
+        "padding_top": 80,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "17930103146ee3d04d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_bQhmYj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_bQhmYj"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 30,
+        "padding_bottom": 36
+      }
+    },
+    "faq_know_first_rwdfL3": {
+      "type": "faq-know-first",
+      "blocks": {
+        "question_Nkzwn7": {
+          "type": "question",
+          "settings": {
+            "question": "How often should I use the mask?",
+            "answer": "<p>Two to three times a week. More often isn't advised because it contains 4% glycolic acid.</p>"
+          }
+        },
+        "question_zcAym6": {
+          "type": "question",
+          "settings": {
+            "question": "What order do I use them in?",
+            "answer": "<p>Mask on clean, dry skin. Rinse, then toner straight after.</p>"
+          }
+        },
+        "question_Xy6WJB": {
+          "type": "question",
+          "settings": {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Patch test on the inner forearm first. Start with a five-minute wear time. Not for damaged or broken skin.</p>"
+          }
+        },
+        "question_YXzpAm": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need sunscreen?",
+            "answer": "<p>Yes. Use broad-spectrum SPF 30 to 50 daily while using the mask and for a week afterwards.</p>"
+          }
+        },
+        "question_638rff": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use other acid products in the same session?",
+            "answer": "<p>No. Do not combine the mask with other products containing alpha or beta hydroxy acids in the same session.</p>"
+          }
+        },
+        "question_g3bmmJ": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use the toner without the mask?",
+            "answer": "<p>Yes. Use it daily after cleansing, morning and night.</p>"
+          }
+        },
+        "question_dcc19": {
+          "type": "question",
+          "settings": {
+            "question": "Is the toner alcohol-free?",
+            "answer": "<p>Yes. No denatured alcohol, ethanol or isopropyl alcohol.</p>"
+          }
+        },
+        "question_dcc20": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use the toner as a facial mist?",
+            "answer": "<p>Yes. Decant it into a clean fine-mist spray bottle.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_Nkzwn7",
+        "question_zcAym6",
+        "question_Xy6WJB",
+        "question_YXzpAm",
+        "question_638rff",
+        "question_g3bmmJ",
+        "question_dcc19",
+        "question_dcc20"
+      ],
+      "name": "FAQ Know First",
+      "settings": {
+        "heading": "<p>Everything you want to <em>know first.</em></p>",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "open_first": true,
+        "allow_multiple_open": false,
+        "show_numbers": true,
+        "enable_schema": true,
+        "decor_image": "shopify://shop_images/faq-bubbles-decor-624x544.webp",
+        "show_decor_left": true,
+        "show_decor_right": true,
+        "decor_opacity": 10,
+        "color_background": "#f6f3ee",
+        "heading_color": "#28201f",
+        "card_bg": "#ffffff",
+        "card_opacity": 80,
+        "number_color": "#78563d",
+        "question_color": "#010101",
+        "answer_color": "#010101",
+        "toggle_bg": "#78563d",
+        "toggle_icon_color": "#ffffff",
+        "content_width": 1060,
+        "color_page": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "marquee_bar_K9WLgV": {
+      "type": "marquee-bar",
+      "blocks": {
+        "item_wpGrLf": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Microbiome Friendly"
+          }
+        },
+        "item_JYamad": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "100% Vegan"
+          }
+        },
+        "item_DrKT6k": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Cruelty Free"
+          }
+        },
+        "item_6qYzTR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
+        },
+        "item_qnTthh": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Science-Backed"
+          }
+        }
+      },
+      "block_order": [
+        "item_wpGrLf",
+        "item_JYamad",
+        "item_DrKT6k",
+        "item_6qYzTR",
+        "item_qnTthh"
+      ],
+      "name": "Marquee Bar",
+      "settings": {
+        "add_class": "footer-marquee",
+        "label": "",
+        "background_color": "#28201f",
+        "marquee_speed": 11,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_tlpc_8tB6r7",
+    "marquee_bar_z7LLMg",
+    "17754664316b6f6fbf",
+    "why_love_dCAtMf",
+    "why_section_gbUtQL",
+    "set_before_after_aeVtai",
+    "your_routine_HUmmJP",
+    "whats_inside_tabs_e8e37N",
+    "whats_inside_carousel_GDxNxB",
+    "system_logic_arc_FGrVXw",
+    "science_stats_cEpVm6",
+    "trust_badges_XGitCm",
+    "ritual_bundle_dE8MLN",
+    "17930103146ee3d04d",
+    "faq_know_first_rwdfL3",
+    "marquee_bar_K9WLgV"
+  ]
+}

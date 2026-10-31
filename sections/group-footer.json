@@ -35,13 +35,6 @@
             "title": "Cruelty Free"
           }
         },
-        "item_qJiCJK": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "FDA Approved"
-          }
-        },
         "item_j6Cagi": {
           "type": "item",
           "settings": {
@@ -61,7 +54,6 @@
         "item_CrVgKc",
         "item_xRhwcB",
         "item_EHEm7b",
-        "item_qJiCJK",
         "item_j6Cagi",
         "item_jKyxPf"
       ],

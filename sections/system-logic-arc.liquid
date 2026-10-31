@@ -13,7 +13,7 @@
   - Layout comes from the 1920 × 960 Figma frame, scaled by u = min(100vw / 1920, viewport height / 960)
     (0.5 to 1). R scales with the card size, so phones keep the same arc with smaller cards.
   - Reduced motion, short landscape phones and single-card sections show a static, swipeable row instead.
-  - Benefit cards can open a video in a <dialog> lightbox; cards can link to a product or URL.
+  - Benefit cards can play a video in place, inside the card; cards can link to a product or URL.
   All CSS is scoped to .sla / #shopify-section-{{ section.id }}; JS is vanilla and per instance
   (scroll engine shared with sections/why-love.liquid).
 {%- endcomment -%}
@@ -508,84 +508,22 @@
 .sla--list .sla__card.is-far { pointer-events: auto; }
 .sla--list .sla__play::after { animation: none; }
 
-/* ---------- Video lightbox ---------- */
-.sla__dialog {
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: none;
-  height: -moz-fit-content;
-  height: fit-content;
-  max-height: none;
-  margin: auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  overflow: visible;
-}
-.sla__dialog::backdrop { background: rgba(20, 16, 15, 0.86); }
-.sla__dialog[open] { animation: sla-dlg-in 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
-@keyframes sla-dlg-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
-.sla__dlg-box { position: relative; }
-.sla__dlg-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 200px;
-  min-height: 120px;
+/* ---------- Inline video: plays in the card, in place ---------- */
+.sla__vid {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
   background: #000;
-  border-radius: 12px;
-  overflow: hidden;
 }
-.sla__dlg-media video {
+.sla .sla__vid video,
+.sla .sla__vid iframe {
   display: block;
-  width: auto;
-  height: auto;
-  max-width: min(92vw, 1200px);
-  max-height: calc(100svh - 120px);
-}
-.sla__dlg-media iframe {
-  display: block;
-  width: min(92vw, 1200px, calc((100svh - 120px) * 16 / 9));
-  aspect-ratio: 16 / 9;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  max-width: none;
   border: 0;
+  object-fit: cover;
 }
-.sla .sla__close,
-.sla__dialog .sla__close {
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute;
-  top: -48px;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.sla__close::before,
-.sla__close::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 18px;
-  height: 1.5px;
-  margin: -0.75px 0 0 -9px;
-  background: currentColor;
-  transform: rotate(45deg);
-}
-.sla__close::after { transform: rotate(-45deg); }
-@media (hover: hover) { .sla__dialog .sla__close:hover { background: rgba(255, 255, 255, 0.26); } }
-.sla__dialog .sla__close:focus { outline: none; }
-.sla__dialog .sla__close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 .sla__empty {
   margin: 0;
@@ -597,8 +535,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sla .sla__play,
-  .sla__dialog[open] { transition: none; animation: none; }
+  .sla .sla__play { transition: none; animation: none; }
   .sla .sla__play::after { animation: none; }
 }
 {% endstyle %}
@@ -727,7 +664,7 @@
                     {%- endif -%}
                   {%- endif -%}
                   {%- if has_video -%}
-                    <button type="button" class="sla__play" data-sla-play aria-haspopup="dialog" aria-label="{{ s.play_label | default: 'Play video' | escape }}{% if label != blank %}: {{ label | escape }}{% endif %}"></button>
+                    <button type="button" class="sla__play" data-sla-play aria-label="{{ s.play_label | default: 'Play video' | escape }}{% if label != blank %}: {{ label | escape }}{% endif %}"></button>
                     <template data-sla-tpl>
                       {%- if b.video != blank -%}
                         {{- b.video | video_tag: autoplay: true, controls: true, playsinline: true, preload: 'auto', image_size: '1200x' -}}
@@ -749,14 +686,6 @@
     </div>
   </div>
 
-  {%- if block_count > 0 -%}
-    <dialog class="sla__dialog" data-sla-dialog aria-label="{{ s.dialog_label | default: 'Video' | escape }}">
-      <div class="sla__dlg-box">
-        <button type="button" class="sla__close" data-sla-close aria-label="{{ s.close_label | default: 'Close video' | escape }}"></button>
-        <div class="sla__dlg-media" data-sla-media></div>
-      </div>
-    </dialog>
-  {%- endif -%}
 </div>
 
 {%- if block_count > 0 -%}
@@ -785,8 +714,6 @@
         this.cards = Array.prototype.map.call(root.querySelectorAll('[data-sla-card]'), function (el) {
           return { el: el, key: '', z: '', far: false };
         });
-        this.dialog = root.querySelector('[data-sla-dialog]');
-        this.media = root.querySelector('[data-sla-media]');
         this.count = this.cards.length;
         this.stepDeg = clamp(parseFloat(root.getAttribute('data-step')) || 10, 1, 45);
         this.radius = Math.max(200, parseFloat(root.getAttribute('data-radius')) || 2440);
@@ -823,7 +750,7 @@
 
       SLA.prototype.init = function () {
         var self = this;
-        this.initDialog();
+        this.initVideo();
         if (!this.isArc) {
           this.mode = 'list';
           return;
@@ -1083,7 +1010,11 @@
           var z = String(1000 - Math.round(a * 4));
           if (z !== c.z) { c.z = z; c.el.style.zIndex = z; }
           var far = op < 0.35;
-          if (far !== c.far) { c.far = far; c.el.classList.toggle('is-far', far); }
+          if (far !== c.far) {
+            c.far = far;
+            c.el.classList.toggle('is-far', far);
+            if (far && this.playing === c.el) this.stopVideo(); // scrolled off the arc: stop it
+          }
         }
       };
 
@@ -1169,7 +1100,7 @@
       };
 
       SLA.prototype.focused = function (e) {
-        if (this.mode !== 'arc' || this.noFocusScroll) return;
+        if (this.mode !== 'arc') return;
         // The sticky viewport is overflow: clip, but reset it anyway in case a browser scrolled it.
         if (this.sticky.scrollLeft || this.sticky.scrollTop) { this.sticky.scrollLeft = 0; this.sticky.scrollTop = 0; }
         if (this.ptrAt && Date.now() - this.ptrAt < 800) return; // mouse / touch focus: no scroll
@@ -1201,119 +1132,54 @@
         this.settle();
       };
 
-      // ---------- Video lightbox ----------
-      SLA.prototype.initDialog = function () {
+      // ---------- Inline video: plays in the card, in place ----------
+      SLA.prototype.initVideo = function () {
         var self = this;
-        var dlg = this.dialog;
-        if (!dlg) return;
         this.on(this.root, 'click', function (e) {
           var btn = e.target.closest ? e.target.closest('[data-sla-play]') : null;
           if (!btn || !self.root.contains(btn)) return;
           e.preventDefault();
-          self.openVideo(btn);
+          self.playVideo(btn.closest('[data-sla-card]'));
         });
-        var closeBtn = dlg.querySelector('[data-sla-close]');
-        if (closeBtn) this.on(closeBtn, 'click', function () { self.closeVideo(); });
-        // Click on the backdrop (outside the box) closes.
-        this.on(dlg, 'click', function (e) { if (e.target === dlg) self.closeVideo(); });
-        this.on(dlg, 'cancel', function (e) { e.preventDefault(); self.closeVideo(); });
-        this.on(dlg, 'close', function () { self.afterClose(); });
       };
 
-      // Page scroll lock while the video is open: the theme's own lock first (touch scrolling + scrollbar gap),
-      // a plain overflow lock with scrollbar compensation only when no theme lock answers.
-      SLA.prototype.lock = function (on) {
-        var self = this;
-        var h = D.documentElement;
-        var L = W.lenis;
-        if (on) {
-          clearTimeout(this.lockT);
-          this.fallback = null;
-          (this.dialog || D).dispatchEvent(new CustomEvent('theme:scroll:lock', { bubbles: true, detail: this.dialog }));
-          // The theme applies its lock in a timeout and marks <html data-scroll-locked>.
-          this.lockT = setTimeout(function () {
-            if (!self.locked || h.hasAttribute('data-scroll-locked')) return;
-            var gap = W.innerWidth - h.clientWidth;
-            self.fallback = { overflow: h.style.overflow, pad: h.style.paddingRight };
-            if (gap > 0) h.style.paddingRight = gap + 'px';
-            h.style.overflow = 'hidden';
-          }, 30);
-          this.lenisWasStopped = !!(L && L.isStopped);
-          if (L && typeof L.stop === 'function' && !this.lenisWasStopped) { try { L.stop(); } catch (e) {} }
-        } else {
-          clearTimeout(this.lockT);
-          if (this.fallback) {
-            h.style.overflow = this.fallback.overflow || '';
-            h.style.paddingRight = this.fallback.pad || '';
-            this.fallback = null;
-          }
-          D.dispatchEvent(new CustomEvent('theme:scroll:unlock', { bubbles: true }));
-          if (L && typeof L.start === 'function' && !this.lenisWasStopped) { try { L.start(); } catch (e) {} }
-        }
-      };
-
-      SLA.prototype.openVideo = function (btn) {
-        var dlg = this.dialog;
-        var card = btn.closest('[data-sla-card]');
+      SLA.prototype.playVideo = function (card) {
         var tpl = card && card.querySelector('template[data-sla-tpl]');
-        if (!dlg || !tpl || !this.media) return;
-        if (dlg.open) this.closeVideo();
-        this.opener = btn;
-        this.media.innerHTML = '';
-        this.media.appendChild(tpl.content.cloneNode(true));
-        var label = card.querySelector('.sla__label, .sla__pill');
-        if (label) dlg.setAttribute('aria-describedby', label.id);
-        else dlg.removeAttribute('aria-describedby');
-        this.locked = true;
-        this.lock(true);
-        if (typeof dlg.showModal === 'function') {
-          try { dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); }
-        } else {
-          dlg.setAttribute('open', '');
-        }
-        var v = this.media.querySelector('video');
+        var inner = card && card.querySelector('.sla__inner');
+        if (!tpl || !inner) return;
+        this.stopVideo(); // one video at a time
+        var box = D.createElement('div');
+        box.className = 'sla__vid';
+        box.appendChild(tpl.content.cloneNode(true));
+        inner.appendChild(box);
+        this.playing = card;
+        var v = box.querySelector('video');
         if (v) {
           v.setAttribute('controls', '');
           v.setAttribute('playsinline', '');
           var pr = v.play();
           if (pr && pr.catch) pr.catch(function () {});
         }
-        var close = dlg.querySelector('[data-sla-close]');
-        if (close) close.focus({ preventScroll: true });
+        var f = v || box.querySelector('iframe');
+        if (f) { try { f.focus({ preventScroll: true }); } catch (e) {} }
       };
 
-      SLA.prototype.closeVideo = function () {
-        var dlg = this.dialog;
-        if (!dlg) return;
-        // The browser hands focus back to the play button while closing: that must not scroll the arc.
-        this.noFocusScroll = true;
-        if (dlg.open && typeof dlg.close === 'function') dlg.close();
-        else { dlg.removeAttribute('open'); this.afterClose(); }
-      };
-
-      SLA.prototype.afterClose = function () {
-        var self = this;
-        if (this.media) {
-          var v = this.media.querySelector('video');
-          if (v) { try { v.pause(); } catch (e) {} }
-          this.media.innerHTML = ''; // removes the video / iframe, which stops playback
-        }
-        if (this.dialog) this.dialog.removeAttribute('aria-describedby');
-        if (this.locked) { this.lock(false); this.locked = false; }
-        var btn = this.opener;
-        this.opener = null;
-        this.noFocusScroll = true;
-        if (btn && D.contains(btn) && D.activeElement !== btn) {
-          // Return focus without moving the page or the arc.
-          try { btn.focus({ preventScroll: true }); } catch (e) { btn.focus(); }
-        }
-        setTimeout(function () { self.noFocusScroll = false; }, 0);
+      SLA.prototype.stopVideo = function () {
+        var card = this.playing;
+        this.playing = null;
+        var box = card && card.querySelector('.sla__vid');
+        if (!box) return;
+        var hadFocus = box.contains(D.activeElement);
+        var v = box.querySelector('video');
+        if (v) { try { v.pause(); } catch (e) {} }
+        box.parentNode.removeChild(box); // removing the video / iframe stops playback
+        var btn = card.querySelector('[data-sla-play]');
+        if (hadFocus && btn) { try { btn.focus({ preventScroll: true }); } catch (e) {} }
       };
 
       SLA.prototype.destroy = function () {
         this.dead = true;
-        if (this.dialog && this.dialog.open) this.closeVideo();
-        if (this.locked) { this.lock(false); this.locked = false; }
+        this.stopVideo();
         if (this.raf) cancelAnimationFrame(this.raf);
         if (this.mrq) cancelAnimationFrame(this.mrq);
         clearInterval(this.lenisPoll);
@@ -1422,8 +1288,7 @@
     { "type": "color", "id": "play_icon", "label": "Play icon", "default": "#78563D" },
     { "type": "header", "content": "Accessibility" },
     { "type": "text", "id": "play_label", "label": "Play button", "default": "Play video" },
-    { "type": "text", "id": "close_label", "label": "Close button", "default": "Close video" },
-    { "type": "text", "id": "dialog_label", "label": "Video window name", "default": "Video" },
+    { "type": "text", "id": "dialog_label", "label": "Video name (screen readers)", "default": "Video" },
     { "type": "header", "content": "Spacing" },
     { "type": "range", "id": "padding_top", "label": "Space above", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_bottom", "label": "Space below", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
@@ -1448,7 +1313,7 @@
         { "type": "image_picker", "id": "image", "label": "Image", "info": "345 × 420 px in the design. Falls back to the product image." },
         { "type": "text", "id": "label", "label": "Label", "info": "Falls back to the product title." },
         { "type": "header", "content": "Video (benefit cards)" },
-        { "type": "video", "id": "video", "label": "Video", "info": "Shows a play button that opens the video in a window." },
+        { "type": "video", "id": "video", "label": "Video", "info": "Shows a play button that plays the video inside the card." },
         { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
         { "type": "header", "content": "Link" },
         { "type": "product", "id": "product", "label": "Product", "info": "Optional. The whole card links to it." },

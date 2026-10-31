@@ -207,13 +207,21 @@
             "custom_liquid": "{% render 'benefits-strip' %}"
           }
         },
+        "shop_combo_fic90q": {
+          "type": "shop-combo",
+          "settings": {
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
+            "padding_bottom": 0
+          }
+        },
         "variant_selectors_zYEyb3": {
           "type": "variant-selectors",
           "settings": {
             "option_size_swatch": 34,
             "option_size_radio": 50,
             "option_space": 30,
-            "padding_bottom": 30
+            "padding_bottom": 20
           }
         },
         "price_wMgK3w": {
@@ -290,7 +298,7 @@
             "product": "",
             "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
             "upsell_list_limit": 2,
-            "padding_bottom": 0
+            "padding_bottom": 20
           }
         }
       },
@@ -303,11 +311,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
-        "upsell_UgXWDc"
+        "shop_combo_fic90q"
       ],
       "name": "Product Tlpc page",
       "settings": {

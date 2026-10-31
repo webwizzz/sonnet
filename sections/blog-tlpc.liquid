@@ -1,0 +1,348 @@
+{%- comment -%}
+  Blog listing (TLPC): featured article hero + 3-column article grid + round pagination.
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:1158 ("Blog page").
+  Desktop 1920: 50px gutters (1820 wide). Hero 1820 × 500, radius 16, bottom-up black 30% → 0 at 55%;
+  pills + title (Blauer Nue MD 36, 699 wide, #FFFCF9) + "Read More" sit 50px from the left / bottom.
+  Grid 50px under the hero: 587-wide cards, 30px gaps. Card = 360-tall image (radius 10) + 10px +
+  #F5EEE6 body (radius 10): pills / read time, 6% divider, title Blauer Nue RG 24/31.2, "Read More".
+  Pagination 50px under the grid: 50px circles, 10px apart, current page full, others at 60%.
+  An article can supply a text-free cover for the hero / cards with an image metafield custom.listing_image
+  (falls back to the featured image). Every page shows its first article as the hero and the next ones in the grid, so with the default
+  10 per page each page is 1 hero + 9 cards. Read time = words / 200, rounded up.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign fallback_tag = s.fallback_tag
+  assign article_view = s.article_view | strip
+  assign grid_offset = 0
+  if s.show_hero
+    assign grid_offset = 1
+  endif
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --btl-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --btl-text: {{ s.color_text }};
+  --btl-light: {{ s.color_light }};
+  --btl-card: {{ s.color_card }};
+  --btl-accent: {{ s.color_accent }};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .btl {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--btl-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--btl-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .btl {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.btl *, .btl *::before, .btl *::after { box-sizing: border-box; }
+.btl { padding-left: max(16px, calc(50 * var(--btl-u))); padding-right: max(16px, calc(50 * var(--btl-u))); color: var(--btl-text); }
+.btl a { color: inherit; text-decoration: none; }
+
+/* Pill: white, radius 60, 6 / 14 / 5, Blauer Nue LT 12/15.6 uppercase */
+.btl__pills { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.btl .btl__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px 5px;
+  border-radius: 60px;
+  background: #FFFFFF;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--btl-text);
+  white-space: nowrap;
+}
+.btl .btl__more {
+  display: inline-block;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Featured hero ---------- */
+.btl__hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: max(360px, calc(500 * var(--btl-u)));
+  padding: max(24px, calc(50 * var(--btl-u)));
+  border-radius: max(12px, calc(16 * var(--btl-u)));
+  overflow: hidden;
+  background: #d9d9d9;
+  isolation: isolate;
+}
+.btl__hero-media { position: absolute; inset: 0; z-index: -2; }
+.btl__hero-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 800ms ease; }
+.btl__hero:hover .btl__hero-media img { transform: scale(1.03); }
+.btl__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 55%);
+  pointer-events: none;
+}
+.btl .btl__hero-title {
+  max-width: calc(699 * var(--btl-u) + 2px);
+  margin: 14px 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(24px, calc(36 * var(--btl-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--btl-light);
+  text-transform: none;
+}
+.btl .btl__hero .btl__more {
+  margin-top: 20px;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+/* ---------- Grid ---------- */
+.btl__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: max(16px, calc(30 * var(--btl-u)));
+  margin: max(28px, calc(50 * var(--btl-u))) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.btl__grid > li { margin: 0; }
+.btl__card { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+.btl__card-media {
+  position: relative;
+  aspect-ratio: 587 / 360;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+.btl__card-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 600ms ease; }
+.btl__card:hover .btl__card-media img { transform: scale(1.04); }
+.btl__card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: calc(206 * var(--btl-u));
+  padding-bottom: 24px;
+  border-radius: 10px;
+  background: var(--btl-card);
+}
+.btl__card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 31px 16px 20px;
+  border-bottom: 1px solid rgba(40, 32, 31, 0.06);
+}
+.btl .btl__read {
+  flex: none;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--btl-text);
+}
+.btl .btl__card-title {
+  max-width: calc(519 * var(--btl-u) + 2px);
+  margin: 16px 20px 0;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: max(19px, calc(24 * var(--btl-u)));
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--btl-text);
+  text-transform: none;
+}
+.btl .btl__card .btl__more { align-self: flex-start; margin: auto 20px 0; padding-top: 20px; }
+
+/* ---------- Pagination ---------- */
+.btl__pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: max(32px, calc(50 * var(--btl-u)));
+}
+.btl .btl__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--btl-accent);
+  border-radius: 50%;
+  background: #FFFCF9;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--btl-accent);
+  transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+.btl .btl__page--num { opacity: 0.6; }
+.btl .btl__page--num:hover { opacity: 1; }
+.btl .btl__page--current { opacity: 1; }
+.btl .btl__page--gap { border-color: transparent; background: transparent; }
+.btl .btl__page svg { display: block; width: 50px; height: 50px; }
+.btl .btl__page--prev svg { transform: scaleX(-1); }
+.btl .btl__page--arrow { border: 0; background: transparent; }
+.btl .btl__page--disabled { opacity: 0.35; pointer-events: none; }
+
+.btl__empty { padding: 80px 0; text-align: center; font-family: 'Blauer Nue LT', sans-serif; font-size: 18px; }
+
+@media screen and (max-width: 1100px) {
+  .btl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 768px) {
+  .btl__grid { grid-template-columns: 1fr; }
+  .btl__card-body { min-height: 0; }
+  .btl .btl__hero-title { max-width: none; }
+  .btl .btl__page { width: 40px; height: 40px; font-size: 18px; }
+  .btl .btl__page svg { width: 40px; height: 40px; }
+}
+{% endstyle %}
+
+<div class="btl {{ s.custom_class | escape }}">
+  {%- paginate blog.articles by s.per_page -%}
+    {%- if blog.articles.size == 0 -%}
+      <p class="btl__empty">{{ s.empty_text | escape }}</p>
+    {%- endif -%}
+
+    {%- if s.show_hero and blog.articles.size > 0 -%}
+      {%- liquid
+        assign article = blog.articles.first
+        assign tag = article.tags.first | default: fallback_tag
+        assign alt = article.image.alt | default: article.title
+        assign hero_image = article.metafields.custom.listing_image.value | default: article.image
+        assign article_link = article.url
+        if article_view != blank and article.template_suffix != article_view
+          assign article_link = article.url | append: '?view=' | append: article_view
+        endif
+      -%}
+      <a class="btl__hero" href="{{ article_link }}">
+        <div class="btl__hero-media">
+          {%- if hero_image != blank -%}
+            {{ hero_image | image_url: width: 3640 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750, 1100, 1500, 1820, 2400, 3640', alt: alt }}
+          {%- endif -%}
+        </div>
+        <div>
+          {%- render 'blog-tlpc-pills', article: article, tag: tag, show_date: s.show_date -%}
+          <h2 class="btl__hero-title">{{ article.title | escape }}</h2>
+          <span class="btl__more">{{ s.read_more | escape }}</span>
+        </div>
+      </a>
+    {%- endif -%}
+
+    {%- if blog.articles.size > grid_offset -%}
+      <ul class="btl__grid">
+        {%- for article in blog.articles offset: grid_offset -%}
+          {%- liquid
+            assign words = article.content | strip_html | split: ' ' | size
+            assign minutes = words | plus: 199 | divided_by: 200 | at_least: 1
+            assign tag = article.tags.first | default: fallback_tag
+            assign alt = article.image.alt | default: article.title
+            assign card_image = article.metafields.custom.listing_image.value | default: article.image
+            assign article_link = article.url
+            if article_view != blank and article.template_suffix != article_view
+              assign article_link = article.url | append: '?view=' | append: article_view
+            endif
+          -%}
+          <li>
+            <a class="btl__card" href="{{ article_link }}">
+              <div class="btl__card-media">
+                {%- if card_image != blank -%}
+                  {{ card_image | image_url: width: 1174 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 31vw, (min-width: 769px) 48vw, 100vw', widths: '400, 600, 800, 1174', alt: alt }}
+                {%- endif -%}
+              </div>
+              <div class="btl__card-body">
+                <div class="btl__card-meta">
+                  {%- render 'blog-tlpc-pills', article: article, tag: tag, show_date: s.show_date -%}
+                  {%- if s.show_read_time -%}<span class="btl__read">{{ minutes }} {{ s.minutes_label | escape }}</span>{%- endif -%}
+                </div>
+                <h3 class="btl__card-title">{{ article.title | escape }}</h3>
+                <span class="btl__more">{{ s.read_more | escape }}</span>
+              </div>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="btl__pagination" aria-label="{{ s.pagination_label | escape }}">
+        {%- assign next_svg = 'blog-page-next.svg' | inline_asset_content -%}
+        {%- if paginate.previous -%}
+          <a class="btl__page btl__page--arrow btl__page--prev" href="{{ paginate.previous.url }}" aria-label="Previous page">{{ next_svg }}</a>
+        {%- else -%}
+          <span class="btl__page btl__page--arrow btl__page--prev btl__page--disabled" aria-hidden="true">{{ next_svg }}</span>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a class="btl__page btl__page--num" href="{{ part.url }}">{{ part.title }}</a>
+          {%- elsif part.title == paginate.current_page -%}
+            <span class="btl__page btl__page--num btl__page--current" aria-current="page">{{ part.title }}</span>
+          {%- else -%}
+            <span class="btl__page btl__page--gap">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a class="btl__page btl__page--arrow btl__page--next" href="{{ paginate.next.url }}" aria-label="Next page">{{ next_svg }}</a>
+        {%- else -%}
+          <span class="btl__page btl__page--arrow btl__page--next btl__page--disabled" aria-hidden="true">{{ next_svg }}</span>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Blog listing (TLPC)",
+  "tag": "section",
+  "class": "blog-tlpc-section",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Articles per page", "info": "The first article on each page becomes the hero, so 10 gives 1 hero + 9 cards.", "min": 4, "max": 25, "step": 1, "default": 10 },
+    { "type": "text", "id": "article_view", "label": "Open articles with template", "info": "Article links add ?view= with this template name so they open in the TLPC article design. Skipped for articles that already use it. Leave empty for plain links.", "default": "blog-tlpc" },
+    { "type": "checkbox", "id": "show_hero", "label": "Show the first article as a large hero", "default": true },
+    { "type": "checkbox", "id": "show_date", "label": "Show date pill", "default": true },
+    { "type": "checkbox", "id": "show_read_time", "label": "Show read time", "default": true },
+    { "type": "text", "id": "fallback_tag", "label": "Category pill when an article has no tags", "info": "The pill shows the article's first tag. Leave empty to hide it for untagged articles.", "default": "Skin Science" },
+    { "type": "text", "id": "minutes_label", "label": "Read time label", "default": "min" },
+    { "type": "text", "id": "read_more", "label": "Read more label", "default": "Read More" },
+    { "type": "text", "id": "empty_text", "label": "Text when the blog has no articles", "default": "New articles are on the way." },
+    { "type": "text", "id": "pagination_label", "label": "Pagination name (screen readers)", "default": "Blog pages" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_light", "label": "Hero title", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_card", "label": "Card body", "default": "#F5EEE6" },
+    { "type": "color", "id": "color_accent", "label": "Pagination", "default": "#78563D" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 56 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ]
+}
+{% endschema %}

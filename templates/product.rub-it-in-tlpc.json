@@ -207,13 +207,21 @@
             "custom_liquid": "{% render 'benefits-strip' %}"
           }
         },
+        "shop_combo_zip3kz": {
+          "type": "shop-combo",
+          "settings": {
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
+            "padding_bottom": 0
+          }
+        },
         "variant_selectors_zYEyb3": {
           "type": "variant-selectors",
           "settings": {
             "option_size_swatch": 34,
             "option_size_radio": 50,
             "option_space": 30,
-            "padding_bottom": 30
+            "padding_bottom": 20
           }
         },
         "price_wMgK3w": {
@@ -283,14 +291,13 @@
         },
         "upsell_UgXWDc": {
           "type": "upsell",
-          "disabled": true,
           "settings": {
             "title": "Complete your ritual",
             "upsell_type": "product_grouping",
             "product": "",
             "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
             "upsell_list_limit": 2,
-            "padding_bottom": 0
+            "padding_bottom": 20
           }
         }
       },
@@ -303,11 +310,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
-        "upsell_UgXWDc"
+        "shop_combo_zip3kz"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -420,6 +428,7 @@
       "block_order": [
         "quinn_shoppable_reel_app_cards_block_qhywQD"
       ],
+      "disabled": true,
       "settings": {
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
@@ -437,13 +446,13 @@
             "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_43_19_PM_1_converted.webp",
             "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_49_52_PM_1_1_converted.webp",
             "tag": "Sensitive skin",
-            "title": "My skinfeels repaired.",
-            "review": "<p>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
+            "title": "Gentle enough for my reactive skin.",
+            "review": "<p>Within 3 weeks my skin was calmer than it's been in years. The serum made the biggest difference to my post-acne marks.</p>",
             "rating": 4.5,
             "rating_label": "",
-            "avatar": "shopify://shop_images/Ellipse_1337.webp",
-            "name": "Priya M.",
-            "location": "Mumbai"
+            "avatar": "shopify://shop_images/Ellipse_1337_3.webp",
+            "name": "Sneha T.",
+            "location": "Pune"
           }
         },
         "testimonial_mQe9DQ": {
@@ -451,13 +460,14 @@
           "settings": {
             "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_16_07_PM_1_converted.webp",
             "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_17_07_PM_1_converted.webp",
-            "tag": "Sensitive skin",
-            "title": "My skin stopped feeling tight.",
-            "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
+            "tag": "Pigmentation",
+            "title": "My uneven tone is cured",
+            "review": "<p>Dark spots lightened noticeably after a month. Lightweight, absorbs instantly, no residue and zero irritation.</p>",
             "rating": 4.5,
             "rating_label": "",
-            "name": "Ananya R",
-            "location": "Bengaluru"
+            "avatar": "shopify://shop_images/Ellipse_1337_5.webp",
+            "name": "Kavya S.",
+            "location": "Hyderabad"
           }
         },
         "testimonial_yJtzp7": {
@@ -465,13 +475,14 @@
           "settings": {
             "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_04_40_PM_1_converted.webp",
             "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_04_07_27_PM_1_converted.webp",
-            "tag": "Oily skin",
-            "title": "No more afternoon shine.",
-            "review": "<p>I used to blot my T-zone by lunch. Clean It Off lifts sunscreen and oil without that squeaky feel, and now my skin stays fresh and matte well into the evening.</p>",
-            "rating": 5,
+            "tag": "ACNE",
+            "title": "Breakouts reduced & scars faded",
+            "review": "<p>No stinging, no redness. After two weeks my skin felt balanced and the redness I wake up with has calmed significantly.</p>",
+            "rating": 4.5,
             "rating_label": "",
-            "name": "Priya M",
-            "location": "Mumbai"
+            "avatar": "shopify://shop_images/Ellipse_1337_4.webp",
+            "name": "Ananya R.",
+            "location": "Bengaluru"
           }
         }
       },
@@ -594,41 +605,41 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-467-400x400.webp",
-            "name": "Lactobacillus Ferment Lysate 1%",
+            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "name": "LACTOBACILLUS FERMENT LYSATE",
             "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
           }
         },
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-471-300x300.webp",
-            "name": "Cocamidopropyl Betaine 17%",
-            "description": "Coconut-derived, chosen for its mildness profile. It buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+            "image": "shopify://shop_images/JOJOBA_OIL.webp",
+            "name": "JOJOBA OIL",
+            "description": "Mimics skin's natural sebum without clogging pores. Deeply moisturises while calming inflammation, ideal for acne-prone skin."
           }
         },
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
-            "name": "Aloe Barbadensis 5%",
-            "description": "Helps skin feel soothed and comfortable in the cleansing step."
+            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
+            "name": "Niacinamide",
+            "description": "Fades dark spots, controls sebum, and brightens skin tone. One of the most clinically validated brightening actives available."
           }
         },
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
-            "name": "Glycerin 6%",
-            "description": "Helps offset the drying effect of cleansing on skin comfort."
+            "image": "shopify://shop_images/GLYCERIN.webp",
+            "name": "Vitamin E",
+            "description": "Neutralises free radical damage from pollution and UV daily. Restores natural glow and supports scar healing."
           }
         },
-        "ingredient_8WxCii": {
+        "ingredient_eKfFEH": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "Ingredient name",
-            "description": "Describe what this ingredient does."
+            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
+            "name": "Aloe Vera",
+            "description": "Hydrates and soothes simultaneously. Lightens blemish marks and enhances absorption of all other actives."
           }
         }
       },
@@ -637,7 +648,7 @@
         "ingredient_BciJAz",
         "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
-        "ingredient_8WxCii"
+        "ingredient_eKfFEH"
       ],
       "name": "What's Inside Carousel",
       "settings": {
@@ -829,83 +840,83 @@
         "custom_class": ""
       }
     },
-    "ritual_bundle_LwhN88": {
+    "ritual_bundle_8JXhn9": {
       "type": "ritual-bundle",
       "blocks": {
-        "hotspot_yrej3Y": {
+        "hotspot_iAWdYM": {
           "type": "hotspot",
           "settings": {
             "product": "",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
-            "tag": "100% VEGAN",
-            "title": "CLEAN IT OFF\nFace Wash 100ml",
-            "description": "Brightening + hydration + scar healing — all in two drops",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
             "pos_x": 60,
             "pos_y": 14,
             "mobile_pos_x": 60,
             "mobile_pos_y": 14
           }
         },
-        "hotspot_gEQAHP": {
+        "hotspot_dhFHYy": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "dab-it-on-toner",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_1.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 2",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
             "pos_x": 47,
             "pos_y": 30,
             "mobile_pos_x": 47,
             "mobile_pos_y": 30
           }
         },
-        "hotspot_U8AAUU": {
+        "hotspot_bh4MRR": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "rub-it-in-serum-2",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_2.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 3",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
             "pos_x": 32,
             "pos_y": 57,
             "mobile_pos_x": 32,
             "mobile_pos_y": 57
           }
         },
-        "hotspot_RrijiF": {
+        "hotspot_4aA84X": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "soak-it-in-face-cream",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_4.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 4",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
             "pos_x": 48,
             "pos_y": 64,
             "mobile_pos_x": 48,
             "mobile_pos_y": 64
           }
         },
-        "hotspot_WwpGDC": {
+        "hotspot_bTQQnk": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "smear-it-on-face-mask",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_3.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 5",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
             "pos_x": 62,
             "pos_y": 56,
             "mobile_pos_x": 62,
@@ -914,11 +925,11 @@
         }
       },
       "block_order": [
-        "hotspot_yrej3Y",
-        "hotspot_gEQAHP",
-        "hotspot_U8AAUU",
-        "hotspot_RrijiF",
-        "hotspot_WwpGDC"
+        "hotspot_iAWdYM",
+        "hotspot_dhFHYy",
+        "hotspot_bh4MRR",
+        "hotspot_4aA84X",
+        "hotspot_bTQQnk"
       ],
       "name": "Ritual Bundle",
       "settings": {
@@ -1565,13 +1576,6 @@
             "title": "Cruelty Free"
           }
         },
-        "item_yVarNg": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "FDA Approved"
-          }
-        },
         "item_zeBtf7": {
           "type": "item",
           "settings": {
@@ -1591,11 +1595,9 @@
         "item_aUzx7W",
         "item_FUg9VM",
         "item_Hc86hi",
-        "item_yVarNg",
         "item_zeBtf7",
         "item_wBgage"
       ],
-      "disabled": true,
       "name": "Marquee Bar",
       "settings": {
         "add_class": "footer-marquee",
@@ -1619,7 +1621,7 @@
     "whats_inside_carousel_GDxNxB",
     "comparison_table_87q9dy",
     "science_stats_cEpVm6",
-    "ritual_bundle_LwhN88",
+    "ritual_bundle_8JXhn9",
     "microbiome_compare_kdJJf3",
     "testimonial_section_aTEYNa",
     "why_section_pUQnp4",

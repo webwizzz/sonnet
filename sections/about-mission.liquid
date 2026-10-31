@@ -1,0 +1,459 @@
+{%- comment -%}
+  About mission: dark band, "OUR MISSION" tag + heading left, portrait centred (bottom-aligned),
+  dashed doodle, body copy right, then value cards that stack on scroll.
+  Design: Figma QvQ11convTbPladsyhAg96, nodes 249:506 (band), 249:568 (band with a value card)
+  and 249:603 / 249:647 / 249:612 / 249:624 / 249:634 (the five value cards).
+  Desktop 1920 band 780 tall: tag at 100, heading 58 (643 wide) 16px under it, portrait 557 × 696
+  at x 682, doodle at 1176 / 341, copy 448 wide at 1372 / 512, card slot 448 × 499 at 1372 / 201.
+  Card: #FFFCF9, radius 16, 150px icon 54px from the top, title Blauer Nue MD 30 (279 wide)
+  at 236, text Blauer Nue LT 16/24 @80% (340 wide) at 338.
+
+  Scroll effect (Clingr "A stylist everywhere" style): the band is position: sticky inside a
+  taller track. Each value card slides up from below into the slot while the previous ones shrink
+  and step back behind it; once the last card has landed the track ends and the page scrolls on.
+  JS sets --enter (0..1) and --depth per card. Mobile / reduced motion: no pinning, the cards
+  sit in a swipeable row under the copy (.amn without .amn--stack).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+  assign card_count = section.blocks.size
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}{{ tag_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --amn-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --amn-band: {{ s.color_background }};
+  --amn-text: {{ s.color_text }};
+  --amn-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --amn-card: {{ s.color_card }};
+  --amn-card-text: {{ s.color_card_text }};
+  --amn-card-muted: {{ s.color_card_text | color_modify: 'alpha', 0.8 }};
+  --amn-h: {{ s.heading_size }};
+  --amn-step: {{ s.scroll_per_card }}px;
+  --amn-count: {{ card_count }};
+  --amn-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --amn-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_background }};
+}
+{% endstyle %}
+
+{% style %}
+.amn *, .amn *::before, .amn *::after { box-sizing: border-box; }
+.amn { position: relative; color: var(--amn-text); }
+.amn__band {
+  position: relative;
+  overflow: hidden;
+  background: var(--amn-band);
+}
+.amn__inner {
+  position: relative;
+  min-height: max(560px, calc(780 * var(--amn-u)));
+  padding-top: max(56px, calc(100 * var(--amn-u)));
+}
+
+.amn .amn__tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--amn-text);
+  border-radius: 30px;
+  font-family: var(--amn-tag-font);
+  font-weight: var(--amn-tag-weight);
+  font-size: max(13px, calc(16 * var(--amn-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--amn-text);
+}
+.amn .amn__heading {
+  position: relative;
+  z-index: 2;
+  max-width: max(300px, calc(643 * var(--amn-u) + 2px));
+  margin: max(12px, calc(16 * var(--amn-u))) 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(28px, calc(var(--amn-h) * var(--amn-u)));
+  line-height: 1.207;
+  letter-spacing: -0.02em;
+  color: var(--amn-text);
+  text-transform: none;
+}
+.amn .amn__heading p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.amn .amn__heading em,
+.amn .amn__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+
+.amn__portrait {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
+  width: calc(557 * var(--amn-u));
+  height: calc(696 * var(--amn-u));
+  margin-left: calc(-278 * var(--amn-u));
+}
+.amn__portrait img,
+.amn__portrait .placeholder-svg { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.amn__portrait .placeholder-svg { fill: rgba(255, 255, 255, 0.12); }
+
+.amn__doodle {
+  position: absolute;
+  top: calc(341 * var(--amn-u));
+  left: calc(1176 * var(--amn-u));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(203.224 * var(--amn-u));
+  height: calc(173.777 * var(--amn-u));
+  pointer-events: none;
+}
+.amn__doodle img {
+  display: block;
+  flex: none;
+  width: calc(192 * var(--amn-u));
+  height: calc(79.245 * var(--amn-u));
+  max-width: none;
+  transform: rotate(-145.64deg);
+}
+
+.amn .amn__copy {
+  position: absolute;
+  top: calc(512 * var(--amn-u));
+  right: calc(100 * var(--amn-u));
+  z-index: 2;
+  width: calc(448 * var(--amn-u));
+  margin: 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(13px, calc(16 * var(--amn-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--amn-muted);
+}
+.amn .amn__copy p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+
+/* Value card */
+.amn__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(499 * var(--amn-u));
+  padding: calc(54 * var(--amn-u)) calc(54 * var(--amn-u)) calc(50 * var(--amn-u));
+  border-radius: max(12px, calc(16 * var(--amn-u)));
+  background: var(--amn-card);
+  color: var(--amn-card-text);
+  text-align: center;
+}
+.amn__icon { display: block; width: calc(150 * var(--amn-u)); height: calc(150 * var(--amn-u)); flex: none; }
+.amn__icon svg,
+.amn__icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.amn .amn__card-title {
+  max-width: max(167px, calc(279 * var(--amn-u) + 2px));
+  margin: calc(32 * var(--amn-u)) 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(22px, calc(30 * var(--amn-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+  color: var(--amn-card-text);
+}
+.amn .amn__card-text {
+  max-width: max(204px, calc(340 * var(--amn-u) + 2px));
+  margin: max(14px, calc(30 * var(--amn-u))) 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(14px, calc(16 * var(--amn-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--amn-card-muted);
+}
+
+/* ---------- Static layout (mobile, reduced motion, no JS): cards in a swipeable row ---------- */
+.amn:not(.amn--stack) .amn__cards {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 32px 16px 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+.amn:not(.amn--stack) .amn__cards::-webkit-scrollbar { display: none; }
+.amn__cards > li { margin: 0; }
+.amn:not(.amn--stack) .amn__cards > li { flex: 0 0 min(320px, 82vw); scroll-snap-align: center; }
+.amn:not(.amn--stack) .amn__card { height: 100%; min-height: 0; padding: 32px 24px 36px; }
+.amn:not(.amn--stack) .amn__icon { width: 110px; height: 110px; }
+.amn:not(.amn--stack) .amn__card-title { margin-top: 24px; max-width: 280px; }
+.amn:not(.amn--stack) .amn__card-text { max-width: 280px; }
+
+/* ---------- Stacking layout (desktop) ---------- */
+.amn--stack { height: calc(max(560px, 780 * var(--amn-u)) + var(--amn-count) * var(--amn-step)); }
+.amn--stack .amn__band {
+  position: sticky;
+  top: max(0px, calc((100vh - max(560px, 780 * var(--amn-u))) / 2));
+}
+.amn--stack .amn__copy { opacity: calc(1 - var(--amn-first, 0)); }
+.amn--stack .amn__cards {
+  position: absolute;
+  top: calc(201 * var(--amn-u));
+  right: calc(100 * var(--amn-u));
+  z-index: 3;
+  width: calc(448 * var(--amn-u));
+  height: calc(499 * var(--amn-u));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.amn--stack .amn__cards > li {
+  --enter: 0;
+  --depth: 0;
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+  transform:
+    translateY(calc((1 - var(--enter)) * 100vh - var(--depth) * 22px))
+    scale(calc(1 - var(--depth) * 0.05));
+  will-change: transform;
+}
+.amn--stack .amn__cards > li[data-hidden] { visibility: hidden; }
+.amn--stack .amn__card { height: 100%; box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.18); }
+.amn--stack .amn__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--amn-band);
+  opacity: min(0.55, calc(var(--depth) * 0.22));
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .amn__inner { min-height: 0; padding-top: 48px; }
+  .amn .amn__heading { max-width: none; }
+  .amn__portrait {
+    position: relative;
+    left: auto;
+    width: min(100%, 340px);
+    height: auto;
+    aspect-ratio: 557 / 696;
+    margin: 28px auto 0;
+  }
+  .amn__doodle { display: none; }
+  .amn .amn__copy { position: static; width: auto; margin: 28px 0 0; font-size: 15px; }
+}
+@media screen and (min-width: 769px) {
+  .amn:not(.amn--stack) .amn__cards { padding: 0 calc(100 * var(--amn-u)) calc(80 * var(--amn-u)); }
+  .amn:not(.amn--stack) .amn__inner { min-height: calc(780 * var(--amn-u)); }
+}
+{% endstyle %}
+
+<div class="amn {{ s.custom_class | escape }}" data-amn data-enabled="{{ s.enable_stack }}">
+  <div class="amn__band" data-amn-band>
+    <div class="amn__inner main-container">
+      {%- if s.tag != blank -%}<p class="amn__tag">{{ s.tag | escape }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}<h2 class="amn__heading">{{ s.heading }}</h2>{%- endif -%}
+
+      <div class="amn__portrait">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 1122 | image_tag: loading: 'lazy', sizes: '(min-width: 769px) 30vw, 340px', widths: '400, 600, 800, 1122', alt: s.image.alt }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      {%- if s.show_doodle -%}
+        <span class="amn__doodle" aria-hidden="true"><img src="{{ 'about-mission-dash.svg' | asset_url }}" alt="" width="192" height="80" loading="lazy"></span>
+      {%- endif -%}
+
+      {%- if s.text != blank -%}<div class="amn__copy">{{ s.text }}</div>{%- endif -%}
+    </div>
+
+    {%- if card_count > 0 -%}
+      <ul class="amn__cards" data-amn-cards>
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          <li data-amn-card {{ block.shopify_attributes }}>
+            <div class="amn__card">
+              <span class="amn__icon">
+                {%- if b.icon_image != blank -%}
+                  {{ b.icon_image | image_url: width: 300 | image_tag: loading: 'lazy', width: 150, height: 150, alt: '' }}
+                {%- elsif b.icon != 'none' -%}
+                  {%- assign icon_file = 'about-value-' | append: b.icon | append: '.svg' -%}
+                  {{- icon_file | inline_asset_content -}}
+                {%- endif -%}
+              </span>
+              {%- if b.title != blank -%}<h3 class="amn__card-title">{{ b.title | escape }}</h3>{%- endif -%}
+              {%- if b.text != blank -%}<p class="amn__card-text">{{ b.text | escape }}</p>{%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var mobile = window.matchMedia('(max-width: 768px)');
+
+    function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+    function init(root) {
+      if (!root || root._amnInit) return;
+      root._amnInit = true;
+      var band = root.querySelector('[data-amn-band]');
+      var items = Array.prototype.slice.call(root.querySelectorAll('[data-amn-card]'));
+      var enabled = root.getAttribute('data-enabled') === 'true';
+      var ticking = false;
+      var forced = -1; // editor: index of the selected block, shown fully stacked
+
+      function stackOn() { return enabled && items.length > 0 && !reduce.matches && !mobile.matches; }
+
+      function update() {
+        ticking = false;
+        var on = stackOn();
+        root.classList.toggle('amn--stack', on);
+        if (!on) {
+          items.forEach(function (li) { li.style.removeProperty('--enter'); li.style.removeProperty('--depth'); li.removeAttribute('data-hidden'); });
+          return;
+        }
+        var n = items.length;
+        var top = parseFloat(getComputedStyle(band).top) || 0;
+        var travel = root.offsetHeight - band.offsetHeight; // = count × scroll per card
+        var progress = travel > 0 ? clamp((top - root.getBoundingClientRect().top) / travel) : 1;
+        // Card i enters over [i / n, (i + 1) / n] of the pinned scroll.
+        var enters = items.map(function (_, i) { return forced >= 0 ? (i <= forced ? 1 : 0) : clamp(progress * n - i); });
+        items.forEach(function (li, i) {
+          var depth = 0;
+          for (var j = i + 1; j < n; j++) depth += enters[j];
+          li.style.setProperty('--enter', enters[i].toFixed(4));
+          li.style.setProperty('--depth', depth.toFixed(4));
+          if (depth > 3.2 || enters[i] === 0) li.setAttribute('data-hidden', ''); else li.removeAttribute('data-hidden');
+        });
+        root.style.setProperty('--amn-first', enters[0].toFixed(4));
+      }
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      if (mobile.addEventListener) { mobile.addEventListener('change', onScroll); reduce.addEventListener('change', onScroll); }
+      update();
+
+      root._amnSelect = function (el) {
+        var li = el && el.closest ? el.closest('[data-amn-card]') : null;
+        forced = li ? items.indexOf(li) : -1;
+        update();
+      };
+      root._amnDeselect = function () { forced = -1; update(); };
+      root._amnCleanup = function () {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+        if (mobile.removeEventListener) { mobile.removeEventListener('change', onScroll); reduce.removeEventListener('change', onScroll); }
+        root._amnInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-amn]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__amnEditorBound) {
+      window.__amnEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._amnCleanup) r._amnCleanup();
+      });
+      document.addEventListener('shopify:block:select', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._amnSelect) r._amnSelect(e.target);
+      });
+      document.addEventListener('shopify:block:deselect', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._amnDeselect) r._amnDeselect();
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About mission",
+  "tag": "section",
+  "class": "about-mission-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Our mission" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent line.", "default": "<p>To help skin become genuinely healthy -</p><p><em>not just look good for a day.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "image_picker", "id": "image", "label": "Portrait", "info": "Transparent cut-out, 557 × 696. Design export: 07-mission-portrait.webp." },
+    { "type": "checkbox", "id": "show_doodle", "label": "Show dashed doodle", "default": true },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Our formulations start with the skin barrier. Rather than stripping everything away and starting over, each product is built to help maintain a comfortable, conditioned skin surface — pairing postbiotic Lactobacillus Ferment Lysate with actives already established in cosmetic science, like Niacinamide and Glycolic Acid, at concentrations backed by their own formulation data.</p>" },
+    { "type": "header", "content": "Value cards scroll effect" },
+    { "type": "checkbox", "id": "enable_stack", "label": "Pin the section and stack the cards on scroll", "info": "Desktop only. On mobile (and for reduced motion) the cards sit in a swipeable row.", "default": true },
+    { "type": "range", "id": "scroll_per_card", "label": "Scroll distance per card", "min": 200, "max": 900, "step": 20, "unit": "px", "default": 480 },
+    { "type": "font_picker", "id": "tag_font", "label": "Tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Band background", "default": "#28201F" },
+    { "type": "color", "id": "color_text", "label": "Band text", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_card", "label": "Card", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_card_text", "label": "Card text", "default": "#28201F" },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "transparency", "label": "Magnifier (Transparency)" },
+            { "value": "claims", "label": "Clock (Claims)" },
+            { "value": "skin-type", "label": "Face (Skin types)" },
+            { "value": "gentle", "label": "Hands (Gentleness)" },
+            { "value": "cruelty-free", "label": "Rabbit (Cruelty-free)" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "transparency"
+        },
+        { "type": "image_picker", "id": "icon_image", "label": "Custom icon", "info": "Overrides the icon above. 150 × 150." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Transparency" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Every ingredient list is published in full, as selectable text, on every product page, never as an image." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About mission",
+      "blocks": [
+        { "type": "value", "settings": { "icon": "transparency", "title": "Transparency", "text": "Every ingredient list is published in full, as selectable text, on every product page, never as an image." } },
+        { "type": "value", "settings": { "icon": "claims", "title": "Claims we can stand behind", "text": "Every benefit statement carries its qualifier (\"helps,\" \"with regular use\") and no percentage is published without the data behind it." } },
+        { "type": "value", "settings": { "icon": "skin-type", "title": "Formulated for every skin type", "text": "Including sensitive and blemish-prone skin." } },
+        { "type": "value", "settings": { "icon": "gentle", "title": "Gentleness over stripping", "text": "Alcohol-free where formulated, buffered surfactant systems, pH-considered formulas." } },
+        { "type": "value", "settings": { "icon": "cruelty-free", "title": "Cruelty-free and vegan", "text": "No animal testing, no animal-derived ingredients, across every product." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

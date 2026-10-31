@@ -213,7 +213,7 @@
             "option_size_swatch": 34,
             "option_size_radio": 50,
             "option_space": 30,
-            "padding_bottom": 30
+            "padding_bottom": 20
           }
         },
         "price_wMgK3w": {
@@ -229,6 +229,17 @@
           "settings": {
             "enable_payment_button": false,
             "enable_gift_card_recipient": false,
+            "padding_bottom": 20
+          }
+        },
+        "upsell_UgXWDc": {
+          "type": "upsell",
+          "settings": {
+            "title": "Complete your ritual",
+            "upsell_type": "product_grouping",
+            "product": "",
+            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
+            "upsell_list_limit": 2,
             "padding_bottom": 20
           }
         },
@@ -281,15 +292,11 @@
             "custom_liquid": "{% render 'loved-by-thousands' %}"
           }
         },
-        "upsell_UgXWDc": {
-          "type": "upsell",
-          "disabled": true,
+        "shop_combo_589hd5": {
+          "type": "shop-combo",
           "settings": {
-            "title": "Complete your ritual",
-            "upsell_type": "product_grouping",
-            "product": "",
-            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
-            "upsell_list_limit": 2,
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
             "padding_bottom": 0
           }
         }
@@ -303,11 +310,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
-        "upsell_UgXWDc"
+        "shop_combo_589hd5"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -331,25 +339,18 @@
     "marquee_bar_z7LLMg": {
       "type": "marquee-bar",
       "blocks": {
+        "item_qaLQzd": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.png",
+            "title": "Dermatologically Tested"
+          }
+        },
         "item_g4eqM6": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_3.webp",
             "title": "Postbiotic Formula"
-          }
-        },
-        "item_y9J3XR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No Harsh Chemicals"
-          }
-        },
-        "item_iELbjW": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_2087329697.webp",
-            "title": "For All Skin Types"
           }
         },
         "item_XD396D": {
@@ -359,11 +360,11 @@
             "title": "100% vegan & cruelty free"
           }
         },
-        "item_PbUEYP": {
+        "item_96k6Yj": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No GMO Ingredients"
+            "icon": "shopify://shop_images/Group_1321321668_2.png",
+            "title": "Cruelty Free"
           }
         },
         "item_LfdJDR": {
@@ -372,52 +373,68 @@
             "icon": "shopify://shop_images/Group_1321321668.webp",
             "title": "Made In India"
           }
+        },
+        "item_8V6MhT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321669.webp",
+            "title": "No Parabens"
+          }
+        },
+        "item_LkD9Px": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
+            "title": "All Skin Type"
+          }
+        },
+        "item_y9J3XR": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No Harsh Chemicals"
+          }
+        },
+        "item_iELbjW": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329697.webp",
+            "title": "For All Skin Types"
+          }
+        },
+        "item_PbUEYP": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No GMO Ingredients"
+          }
         }
       },
       "block_order": [
+        "item_qaLQzd",
         "item_g4eqM6",
+        "item_XD396D",
+        "item_96k6Yj",
+        "item_LfdJDR",
+        "item_8V6MhT",
+        "item_LkD9Px",
         "item_y9J3XR",
         "item_iELbjW",
-        "item_XD396D",
-        "item_PbUEYP",
-        "item_LfdJDR"
+        "item_PbUEYP"
       ],
       "name": "Marquee Bar",
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
         "padding_top_mobile": 10,
         "padding_bottom_mobile": 10
-      }
-    },
-    "17754664316b6f6fbf": {
-      "type": "apps",
-      "blocks": {
-        "quinn_shoppable_reel_app_cards_block_qhywQD": {
-          "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
-          "settings": {
-            "custom_metaobject_handle": "null",
-            "background_color": "#ffffff",
-            "margin_desktop": "10px 0px 0px 0px",
-            "margin_mobile": "5px 0px 0px 0px",
-            "padding_desktop": "10px 10px 10px 10px",
-            "padding_mobile": "10px 5px 10px 5px"
-          }
-        }
-      },
-      "block_order": [
-        "quinn_shoppable_reel_app_cards_block_qhywQD"
-      ],
-      "settings": {
-        "text_color": "text--neutral",
-        "bg": "palette--light bg--neutral",
-        "width": "wrapper",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "honest_results_d4wnzA": {
@@ -426,28 +443,30 @@
         "testimonial_mQe9DQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/Group_2087330656.webp",
-            "after_image": "shopify://shop_images/Rectangle_1430107053.webp",
+            "before_image": "shopify://shop_images/Natural_beauty_close-up_with_visible_pores_1.webp",
+            "after_image": "shopify://shop_images/Natural_Indian_Beauty_Portrait_1.webp",
             "tag": "Oily/Congested skin",
-            "title": "Relaxing yet so effective",
-            "review": "<p>Absolutely loveeee this product. So so relaxing to my skin. A literal spa at home. Could literally feel toxins being pulled out of my skin and end result very soft, supple and hydrated!</p>",
+            "title": "My skin looks visibly clearer",
+            "review": "<p>\"Smear It On helps skin looks visibly cleaner and more refined after rinsing, impressive.\"</p>",
             "rating": 4.5,
             "rating_label": "",
-            "name": "Vinayaka Agarwal",
+            "avatar": "shopify://shop_images/Ellipse_1337_10.webp",
+            "name": "Payal l.",
             "location": "Mumbai"
           }
         },
         "testimonial_yJtzp7": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/before_converted.webp",
-            "after_image": "shopify://shop_images/after_converted.webp",
+            "before_image": "shopify://shop_images/Natural_Bare-Faced_Beauty_Close-Up_1.webp",
+            "after_image": "shopify://shop_images/Soft_natural_skin_portrait_1.webp",
             "tag": "Oily / Congested Skin",
-            "title": "My skin looks visibly clearer",
-            "review": "<p>\"Smear It On helps skin looks visibly cleaner and more refined after rinsing, impressive.\"</p>",
-            "rating": 5,
+            "title": "Relaxing yet so effective",
+            "review": "<p>Absolutely loveeee this product. So so relaxing to my skin. A literal spa at home. Could literally feel toxins being pulled out of my skin and end result very soft, supple and hydrated!</p>",
+            "rating": 4.5,
             "rating_label": "",
-            "name": "Payal Lahoti",
+            "avatar": "shopify://shop_images/Ellipse_1337_10.webp",
+            "name": "Vinayaka A.",
             "location": "Mumbai"
           }
         }
@@ -492,41 +511,41 @@
         "slide_Kw6EWD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1st.png",
-            "label": "HELPS LIFT OIL & DEBRIS",
-            "stat": "20%",
-            "stat_caption": "Kaolin Clay in every application",
-            "body": "Kaolin Clay absorbs excess surface oil and lifts pore debris, the foundation of every masking session."
+            "image": "shopify://shop_images/Indian_beauty_with_an_upward_gaze_1.webp",
+            "label": "Deep-cleansed pores, weekly",
+            "stat": "78%",
+            "stat_caption": "Said skin looked cleaner after one use",
+            "body": "20% Kaolin Clay helps absorb excess surface sebum and lift pore debris during a 10 to 15 minute session. Skin looks visibly cleaner and more refined after rinsing, two to three times a week."
           }
         },
         "slide_dpPkbw": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_1430107054.png",
-            "label": "FOR A SMOOTHER-LOOKING TEXTURE",
-            "stat": "4%",
-            "stat_caption": "Glycerin — post-rinse skin comfort",
-            "body": "The smallest AHA molecule, formulated to loosen dead surface cells without over-exfoliating skin."
+            "image": "shopify://shop_images/Soft_Indian_Portrait_with_High_Bun_1.webp",
+            "label": "Smoother-looking texture",
+            "stat": "86%",
+            "stat_caption": "Said skin felt smoother after first use",
+            "body": "4% Glycolic Acid, the smallest-molecule alpha hydroxy acid, helps loosen dead surface skin cells to support a smoother-looking, more refined texture. The rinse-off format keeps exposure to the masking window."
           }
         },
         "slide_N7Y4Ja": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/3rd.png",
-            "label": "LONG ENOUGH TO WORK",
-            "stat": "10 - 15",
-            "stat_caption": "Minutes wear time",
-            "body": "Just enough time for clay and acid to do their job, without pushing skin past comfortable."
+            "image": "shopify://shop_images/Cracked_Clay_Mask_Spa_Portrait_1.webp",
+            "label": "Comfortable, never cracking",
+            "stat": "90%",
+            "stat_caption": "Said it stayed comfortable throughout",
+            "body": "Magnesium Aluminium Silicate keeps the mask smooth and spreadable, so it stays comfortable across the full wear time without hardening, cracking or pulling. No stiff, tight face while you wait to rinse."
           }
         },
         "slide_qDT3bE": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/4th.png",
-            "label": "NO DRYNESS, NO CRACKING",
-            "stat": "0",
-            "stat_caption": "Cracking or hardening",
-            "body": "Magnesium Aluminium Silicate, Glycerine and Aloe Vera keep the mask spreadable, start to finish."
+            "image": "shopify://shop_images/Joyful_woman_with_a_dark_bob_1.webp",
+            "label": "Clay that doesn't dry",
+            "stat": "80%",
+            "stat_caption": "Said skin didn't feel dry after rinsing",
+            "body": "3% Glycerine and 5% Aloe Vera help offset the drying effect clay masks can have, while Green Tea Extract provides antioxidant support at the skin surface throughout the masking period."
           }
         }
       },
@@ -570,7 +589,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "image": "shopify://shop_images/Kaolin_Clay_-_Smear_It_On_Face_Mask_-_Sonnet_Wellness_Artboard_1_copy_14.png",
             "name": "KAOLIN CLAY",
             "description": "A naturally occurring mineral clay that absorbs excess surface oil and lifts pore debris during masking."
           }
@@ -578,7 +597,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "image": "shopify://shop_images/GLYCOLIC_ACID.webp",
             "name": "GLYCOLIC ACID",
             "description": "The smallest AHA molecule. Helps loosen dead surface cells for a smoother-looking texture, in a rinse-off format."
           }
@@ -594,7 +613,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
             "name": "ALOE VERA",
             "description": "Helps keep skin comfortable during masking and hydrated after rinsing."
           }
@@ -602,7 +621,7 @@
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
             "name": "LACTOBACILLUS",
             "description": "An inactivated postbiotic extract that helps maintain a conditioned skin surface."
           }
@@ -754,7 +773,7 @@
             "icon": "shield_cross",
             "value": "0",
             "text": "Cracking or Hardening\nStays smooth & comfortable throughout wear.",
-            "text_width": 183
+            "text_width": 200
           }
         },
         "stat_JkQBhR": {
@@ -763,7 +782,7 @@
             "icon": "face_glow",
             "value": "2 - 3×",
             "text": "Weekly Use\nDeep-cleanse regularly without overdoing it.",
-            "text_width": 190
+            "text_width": 250
           }
         }
       },
@@ -805,83 +824,83 @@
         "custom_class": ""
       }
     },
-    "ritual_bundle_LwhN88": {
+    "ritual_bundle_eraCf9": {
       "type": "ritual-bundle",
       "blocks": {
-        "hotspot_yrej3Y": {
+        "hotspot_YjWyV4": {
           "type": "hotspot",
           "settings": {
             "product": "",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
-            "tag": "100% VEGAN",
-            "title": "CLEAN IT OFF\nFace Wash 100ml",
-            "description": "Brightening + hydration + scar healing — all in two drops",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
             "pos_x": 60,
             "pos_y": 14,
             "mobile_pos_x": 60,
             "mobile_pos_y": 14
           }
         },
-        "hotspot_gEQAHP": {
+        "hotspot_FXrPVc": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "dab-it-on-toner",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_1.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 2",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
             "pos_x": 47,
             "pos_y": 30,
             "mobile_pos_x": 47,
             "mobile_pos_y": 30
           }
         },
-        "hotspot_U8AAUU": {
+        "hotspot_dMPqUN": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "rub-it-in-serum-2",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_2.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 3",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
             "pos_x": 32,
             "pos_y": 57,
             "mobile_pos_x": 32,
             "mobile_pos_y": 57
           }
         },
-        "hotspot_RrijiF": {
+        "hotspot_KABWY3": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "soak-it-in-face-cream",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_4.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 4",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
             "pos_x": 48,
             "pos_y": 64,
             "mobile_pos_x": 48,
             "mobile_pos_y": 64
           }
         },
-        "hotspot_WwpGDC": {
+        "hotspot_pDCXCT": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "smear-it-on-face-mask",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_3.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 5",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
             "pos_x": 62,
             "pos_y": 56,
             "mobile_pos_x": 62,
@@ -890,11 +909,11 @@
         }
       },
       "block_order": [
-        "hotspot_yrej3Y",
-        "hotspot_gEQAHP",
-        "hotspot_U8AAUU",
-        "hotspot_RrijiF",
-        "hotspot_WwpGDC"
+        "hotspot_YjWyV4",
+        "hotspot_FXrPVc",
+        "hotspot_dMPqUN",
+        "hotspot_KABWY3",
+        "hotspot_pDCXCT"
       ],
       "name": "Ritual Bundle",
       "settings": {
@@ -1527,13 +1546,6 @@
             "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
-        "item_BqPXqR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "FDA Approved"
-          }
-        },
         "item_4JMWnT": {
           "type": "item",
           "settings": {
@@ -1565,7 +1577,6 @@
       },
       "block_order": [
         "item_HGMqkp",
-        "item_BqPXqR",
         "item_4JMWnT",
         "item_KA8J3Q",
         "item_nBAKKk",
@@ -1588,13 +1599,12 @@
     "main",
     "product_tlpc_8tB6r7",
     "marquee_bar_z7LLMg",
-    "17754664316b6f6fbf",
     "honest_results_d4wnzA",
     "why_love_NU7yVx",
     "whats_inside_carousel_GDxNxB",
     "comparison_table_87q9dy",
     "science_stats_cEpVm6",
-    "ritual_bundle_LwhN88",
+    "ritual_bundle_eraCf9",
     "microbiome_compare_kdJJf3",
     "testimonial_section_aTEYNa",
     "why_section_pUQnp4",

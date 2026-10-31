@@ -1,0 +1,8 @@
+{%- comment -%}
+  Pills row for the TLPC blog listing (sections/blog-tlpc.liquid): category tag + date.
+  Accepts: article, tag (string, may be blank), show_date (boolean)
+{%- endcomment -%}
+<div class="btl__pills">
+  {%- if tag != blank -%}<span class="btl__pill">{{ tag | escape }}</span>{%- endif -%}
+  {%- if show_date -%}<span class="btl__pill"><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %-d, %Y' }}</time></span>{%- endif -%}
+</div>

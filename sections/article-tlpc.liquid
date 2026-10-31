@@ -1,0 +1,898 @@
+{%- comment -%}
+  Article (TLPC): article card + author box on the left, tags / tabbed posts / bundle promo on the right.
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:1457 ("blog details page").
+  Desktop 1920 (100px gutters): left column 1200, 50px gap, sidebar 470; both start 48px under the header.
+  Article card: #F5EEE6, radius 16, 42 / 50 / 30 padding. Pill → title (Blauer Nue MD 36, 699 wide) 24px →
+  author row (36px avatar, name | date | read time, 16px uppercase) 24px → image 1100 × 500 (radius 10) 24px →
+  body (Blauer Nue LT 16/24 @80%, h2 Blauer Nue MD 24, bullets 16/28.8) → share row (78 tall, 10% rules)
+  40px → "Shop …" heading (MD 20) 30px → product card 330 × 102 18px.
+  Author box 30px under the card: 1200 × 314, 30px padding, 254px photo, text 47px to its right.
+  Sidebar panel (#F5EEE6, radius 16, 30px padding): "articles - Tags" + 10% rule, tag pills (4px gaps),
+  rule, Popular / Recent / Trendy tabs (30 tall, Montserrat 12), four 410 × 105 post cards (10px gaps).
+  Bundle card 30px under it: 470 × 583, radius 8, centred heading (MD 28 + Tiempos italic), white
+  326 × 44 pill 43px from the bottom with ADD BUNDLE, prices and a green badge.
+  Tabs: Popular / Trendy list articles tagged with the chosen tags; with none tagged they fall back to
+  the next newest articles so every tab has content. +ADD and ADD BUNDLE use /cart/add.js and open the drawer.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+  assign tag_font_semi = tag_font | font_modify: 'weight', '600'
+  assign words = article.content | strip_html | split: ' ' | size
+  assign minutes = words | plus: 199 | divided_by: 200 | at_least: 1
+  assign tag = article.tags.first | default: s.fallback_tag
+
+  assign feature_product = article.metafields.custom.featured_product.value | default: s.product
+  assign bundle = s.bundle_product
+
+  assign author_image = article.user.image | default: s.author_image
+  assign avatar_image = article.user.image | default: s.avatar_image
+  assign author_bio = article.user.bio | default: s.author_bio
+
+  comment
+    Keep visitors in the TLPC designs: links to other articles / the listing add ?view= unless that
+    article or blog already uses the template.
+  endcomment
+  assign article_view = s.article_view | strip
+  assign listing_view = s.listing_view | strip
+  assign listing_query = ''
+  if listing_view != blank and blog.template_suffix != listing_view
+    assign listing_query = '?view=' | append: listing_view
+  endif
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}
+  {{ tag_font | font_face: font_display: 'swap' }}
+  {%- if tag_font_semi != blank -%}{{ tag_font_semi | font_face: font_display: 'swap' }}{%- endif -%}
+{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --atl-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --atl-text: {{ s.color_text }};
+  --atl-panel: {{ s.color_panel }};
+  --atl-accent: {{ s.color_accent }};
+  --atl-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --atl-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .atl {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--atl-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--atl-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .atl {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.atl *, .atl *::before, .atl *::after { box-sizing: border-box; }
+.atl { color: var(--atl-text); }
+.atl a { color: inherit; }
+.atl__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1200fr) minmax(0, 470fr);
+  gap: calc(50 * var(--atl-u));
+  align-items: start;
+}
+
+/* Shared pill */
+.atl .atl__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px 5px;
+  border-radius: 60px;
+  background: #FFFFFF;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--atl-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.atl a.atl__pill:hover { background: var(--atl-accent); color: #FFFFFF; }
+
+/* ---------- Article card ---------- */
+.atl__card {
+  padding: 42px calc(50 * var(--atl-u) + 0px) 30px;
+  border-radius: max(12px, calc(16 * var(--atl-u)));
+  background: var(--atl-panel);
+}
+.atl .atl__title {
+  max-width: calc(699 * var(--atl-u) + 2px);
+  margin: 24px 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(26px, calc(36 * var(--atl-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--atl-text);
+  text-transform: none;
+}
+.atl__byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 24px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(13px, calc(16 * var(--atl-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgba(40, 32, 31, 0.6);
+}
+.atl__avatar { width: 36px; height: 36px; margin-right: -4px; border-radius: 50%; overflow: hidden; flex: none; background: #e5dccf; }
+.atl__avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl__byline-name { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: var(--atl-text); }
+.atl__sep { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: rgba(40, 32, 31, 0.4); }
+.atl__hero {
+  margin-top: 24px;
+  aspect-ratio: 1100 / 500;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+.atl__hero img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Article body (rich text from the editor) */
+.atl .atl__body {
+  max-width: calc(1070 * var(--atl-u) + 2px);
+  margin-top: 24px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(15px, calc(16 * var(--atl-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.8);
+}
+.atl .atl__body > :first-child { margin-top: 0; }
+.atl .atl__body > :last-child { margin-bottom: 0; }
+.atl .atl__body p { margin: 0 0 16px; font: inherit; color: inherit; letter-spacing: inherit; }
+.atl .atl__body h1,
+.atl .atl__body h2,
+.atl .atl__body h3,
+.atl .atl__body h4 {
+  margin: 30px 0 20px;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(20px, calc(24 * var(--atl-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--atl-text);
+  text-transform: none;
+}
+.atl .atl__body h3,
+.atl .atl__body h4 { font-size: max(18px, calc(20 * var(--atl-u))); }
+.atl .atl__body ul,
+.atl .atl__body ol { margin: 0 0 16px; padding: 0; list-style: none; line-height: 1.8; }
+.atl .atl__body li { position: relative; margin: 0; padding-left: 1.05em; }
+.atl .atl__body ul > li::before { content: '•'; position: absolute; left: 0; }
+.atl .atl__body ol { counter-reset: atl; }
+.atl .atl__body ol > li { padding-left: 1.6em; counter-increment: atl; }
+.atl .atl__body ol > li::before { content: counter(atl) '.'; position: absolute; left: 0; }
+.atl .atl__body em,
+.atl .atl__body i { font-family: 'Blauer Nue TH', sans-serif; font-weight: 200; font-style: italic; }
+.atl .atl__body strong,
+.atl .atl__body b { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: var(--atl-text); }
+.atl .atl__body a { color: var(--atl-accent); text-decoration: underline; text-underline-offset: 2px; }
+.atl .atl__body img { max-width: 100%; height: auto; border-radius: 10px; }
+.atl .atl__body blockquote { margin: 24px 0; padding: 0 0 0 20px; border-left: 2px solid var(--atl-accent); font-style: normal; }
+
+/* Share row */
+.atl__share {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(40, 32, 31, 0.1);
+  border-bottom: 1px solid rgba(40, 32, 31, 0.1);
+}
+.atl .atl__share-label { margin: 0; font-family: 'Blauer Nue RG', sans-serif; font-weight: 400; font-size: 18px; line-height: 1.36; color: #151515; }
+.atl__share-list { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.atl__share-list li { margin: 0; }
+.atl .atl__share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--atl-accent);
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.atl .atl__share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+.atl .atl__share-btn svg { display: block; max-width: 20px; max-height: 20px; width: auto; height: auto; }
+
+/* Featured product */
+.atl .atl__shop-title {
+  margin: 30px 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--atl-text);
+  text-transform: none;
+}
+.atl__product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, 330px);
+  min-height: 102px;
+  margin-top: 18px;
+  padding: 6px 20px 6px 6px;
+  border-radius: 8px;
+  background: #FFFFFF;
+}
+.atl__product-media { flex: none; width: 90px; height: 90px; border-radius: 5px; overflow: hidden; background: #EAE7E2; }
+.atl__product-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl__product-info { flex: 1; min-width: 0; }
+.atl .atl__product-name {
+  display: block;
+  max-width: 112px;
+  font-family: var(--atl-tag-font);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--atl-text);
+}
+.atl__prices { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; font-size: 12px; line-height: normal; letter-spacing: -0.02em; }
+.atl__price-now { font-family: 'Blauer Nue RG', sans-serif; font-weight: 400; color: var(--atl-text); }
+.atl__price-was { font-family: 'Blauer Nue TH', sans-serif; font-weight: 200; color: rgba(40, 32, 31, 0.5); text-decoration: line-through; }
+.atl .atl__add {
+  flex: none;
+  min-width: 58px;
+  height: 26px;
+  min-height: 0;
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 40px;
+  background: var(--atl-accent);
+  color: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+.atl .atl__add[aria-busy="true"] { opacity: 0.6; pointer-events: none; }
+.atl .atl__add:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- Author box ---------- */
+.atl__author {
+  display: flex;
+  gap: calc(47 * var(--atl-u));
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: max(12px, calc(16 * var(--atl-u)));
+  background: var(--atl-panel);
+}
+.atl__author-media { flex: none; width: calc(254 * var(--atl-u) + 0px); min-width: 140px; aspect-ratio: 1 / 1; border-radius: 8px; overflow: hidden; background: #e5dccf; }
+.atl__author-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl__author-text { padding-top: calc(30 * var(--atl-u)); min-width: 0; }
+.atl .atl__author-name {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(24px, calc(34 * var(--atl-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--atl-text);
+  text-transform: none;
+}
+.atl .atl__author-bio {
+  max-width: calc(791 * var(--atl-u) + 2px);
+  margin: 16px 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(15px, calc(16 * var(--atl-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.8);
+}
+.atl .atl__author-bio p { margin: 0; font: inherit; color: inherit; }
+.atl .atl__more {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--atl-text);
+}
+
+/* ---------- Sidebar ---------- */
+.atl__panel { padding: 30px; border-radius: max(12px, calc(16 * var(--atl-u))); background: var(--atl-panel); }
+.atl .atl__side-title {
+  margin: 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(40, 32, 31, 0.1);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--atl-text);
+}
+.atl__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 18px 0 0;
+  padding: 0 0 30px;
+  border-bottom: 1px solid rgba(40, 32, 31, 0.1);
+  list-style: none;
+}
+.atl__tags li { margin: 0; }
+.atl__tabs { display: flex; gap: 6px; }
+.atl__tags + .atl__tabs { margin-top: 30px; }
+.atl .atl__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 98px;
+  height: 30px;
+  min-height: 0;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--atl-text);
+  border-radius: 30px;
+  background: transparent;
+  font-family: var(--atl-tag-font);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--atl-accent);
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.atl .atl__tab[aria-selected="true"] {
+  min-width: 112px;
+  border-color: var(--atl-accent);
+  background: var(--atl-accent);
+  color: #FFFFFF;
+  font-weight: var(--atl-tag-weight);
+}
+.atl__tabpanel { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 0; padding: 0; list-style: none; }
+.atl__tabpanel[hidden] { display: none; }
+.atl__tabpanel li { margin: 0; }
+.atl__post {
+  display: flex;
+  gap: 19px;
+  min-height: 105px;
+  padding: 6px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  text-decoration: none;
+  transition: box-shadow 200ms ease;
+}
+.atl__post:hover { box-shadow: 0 6px 18px rgba(40, 32, 31, 0.08); }
+.atl__post-media { flex: none; width: 93px; height: 93px; border-radius: 6px; overflow: hidden; background: #e5dccf; }
+.atl__post-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl__post-text { min-width: 0; padding: 10px 10px 0 0; }
+.atl .atl__post-title {
+  display: -webkit-box;
+  max-width: 250px;
+  margin: 0;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--atl-text);
+  text-transform: none;
+}
+.atl .atl__post-date {
+  display: block;
+  margin-top: 11px;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgba(40, 32, 31, 0.6);
+}
+
+/* Bundle promo */
+.atl__bundle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(583 * var(--atl-u));
+  margin-top: 30px;
+  padding: 40px 20px 43px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #2A1F19;
+  text-align: center;
+  isolation: isolate;
+}
+.atl__bundle-media { position: absolute; inset: 0; z-index: -1; }
+.atl__bundle-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl .atl__bundle-title {
+  max-width: 270px;
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(24px, calc(28 * var(--atl-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  text-transform: none;
+}
+.atl .atl__bundle-title p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.atl .atl__bundle-title em,
+.atl .atl__bundle-title i { font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif; font-weight: 400; font-style: italic; }
+.atl .atl__bundle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: min(100%, 326px);
+  height: 44px;
+  min-height: 0;
+  margin: 0;
+  padding: 0 14px 0 24px;
+  border: 0;
+  border-radius: 120px;
+  background: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: #2A1F19;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+.atl .atl__bundle-btn:hover { transform: translateY(-2px); }
+.atl .atl__bundle-btn[aria-busy="true"] { opacity: 0.7; pointer-events: none; }
+.atl__bundle-prices { display: inline-flex; align-items: center; gap: 6px; text-transform: none; }
+.atl__bundle-prices .atl__price-was { font-size: 14px; }
+.atl__badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 40px;
+  background: #008000;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+.atl__status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media screen and (max-width: 1100px) {
+  .atl__layout { grid-template-columns: 1fr; gap: 30px; }
+  .atl__bundle { min-height: 520px; }
+}
+@media screen and (max-width: 768px) {
+  .atl__card { padding: 24px 16px; }
+  .atl .atl__title { max-width: none; }
+  .atl__author { flex-direction: column; padding: 16px; }
+  .atl__author-media { width: 160px; }
+  .atl__author-text { padding-top: 0; }
+  .atl__panel { padding: 20px 16px; }
+  .atl__share { flex-wrap: wrap; gap: 12px; }
+}
+{% endstyle %}
+
+<div class="atl {{ s.custom_class | escape }}" data-atl data-cart-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}" data-cart-json-url="{{ routes.cart_url }}.js">
+  <div class="main-container">
+    <div class="atl__layout">
+      <div class="atl__main">
+        <article class="atl__card">
+          {%- if tag != blank -%}
+            <a class="atl__pill" href="{{ blog.url }}{% if article.tags.first %}/tagged/{{ article.tags.first | handleize }}{% endif %}{{ listing_query }}">{{ tag | escape }}</a>
+          {%- endif -%}
+          <h1 class="atl__title">{{ article.title | escape }}</h1>
+
+          <div class="atl__byline">
+            {%- if avatar_image != blank -%}
+              <span class="atl__avatar">{{ avatar_image | image_url: width: 72 | image_tag: loading: 'eager', width: 36, height: 36, alt: '' }}</span>
+            {%- endif -%}
+            <span class="atl__byline-name">{{ article.author | escape }}</span>
+            <span class="atl__sep" aria-hidden="true">|</span>
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %-d, %Y' }}</time>
+            {%- if s.show_read_time -%}
+              <span class="atl__sep" aria-hidden="true">|</span>
+              <span>{{ minutes }} {{ s.read_time_label | escape }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if s.show_image and article.image != blank -%}
+            <div class="atl__hero">
+              {%- assign hero_alt = article.image.alt | default: article.title -%}
+              {{ article.image | image_url: width: 2200 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 1101px) 58vw, 100vw', widths: '600, 900, 1200, 1600, 2200', alt: hero_alt }}
+            </div>
+          {%- endif -%}
+
+          <div class="atl__body">{{ article.content }}</div>
+
+          {%- if s.show_share -%}
+            {%- liquid
+              assign share_url = shop.url | append: article.url
+              assign share_url_enc = share_url | url_encode
+            -%}
+            <div class="atl__share">
+              <p class="atl__share-label">{{ s.share_label | escape }}</p>
+              <ul class="atl__share-list">
+                <li><a class="atl__share-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url_enc }}" target="_blank" rel="noopener" aria-label="Share on Facebook">{{- 'blog-share-facebook.svg' | inline_asset_content -}}</a></li>
+                {%- if settings.social_instagram_link != blank and settings.social_instagram_link != '#' -%}
+                  <li><a class="atl__share-btn" href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">{{- 'blog-share-instagram.svg' | inline_asset_content -}}</a></li>
+                {%- endif -%}
+                {%- if settings.social_youtube_link != blank and settings.social_youtube_link != '#' -%}
+                  <li><a class="atl__share-btn" href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener" aria-label="YouTube">{{- 'blog-share-youtube.svg' | inline_asset_content -}}</a></li>
+                {%- endif -%}
+                <li><a class="atl__share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url_enc }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">{{- 'blog-share-linkedin.svg' | inline_asset_content -}}</a></li>
+              </ul>
+            </div>
+          {%- endif -%}
+
+          {%- if feature_product != blank -%}
+            {%- assign fp_variant = feature_product.selected_or_first_available_variant -%}
+            {%- if s.product_heading != blank -%}<h2 class="atl__shop-title">{{ s.product_heading | escape }}</h2>{%- endif -%}
+            <div class="atl__product">
+              <a class="atl__product-media" href="{{ feature_product.url }}">
+                {%- assign fp_image = s.product_image | default: feature_product.featured_image -%}
+                {%- if fp_image != blank -%}{{ fp_image | image_url: width: 180 | image_tag: loading: 'lazy', width: 90, height: 90, alt: feature_product.title }}{%- endif -%}
+              </a>
+              <div class="atl__product-info">
+                <a class="atl__product-name" href="{{ feature_product.url }}">{{ feature_product.title | escape }}</a>
+                <div class="atl__prices">
+                  <span class="atl__price-now">{{ fp_variant.price | money_without_trailing_zeros }}</span>
+                  {%- if fp_variant.compare_at_price > fp_variant.price -%}<span class="atl__price-was">{{ fp_variant.compare_at_price | money_without_trailing_zeros }}</span>{%- endif -%}
+                </div>
+              </div>
+              <button type="button" class="atl__add" data-atl-add="{{ fp_variant.id }}" data-label="{{ s.add_label | escape }}" {% unless fp_variant.available %}disabled{% endunless %}>{{ s.add_label | escape }}</button>
+            </div>
+          {%- endif -%}
+        </article>
+
+        {%- if s.show_author -%}
+          <aside class="atl__author" aria-label="{{ s.author_label | escape }}">
+            {%- if author_image != blank -%}
+              <div class="atl__author-media">{{ author_image | image_url: width: 508 | image_tag: loading: 'lazy', sizes: '254px', widths: '254, 508', alt: article.author }}</div>
+            {%- endif -%}
+            <div class="atl__author-text">
+              <h2 class="atl__author-name">{{ article.author | escape }}</h2>
+              {%- if author_bio != blank -%}<div class="atl__author-bio">{{ author_bio }}</div>{%- endif -%}
+              {%- if s.author_link != blank and s.author_link_label != blank -%}
+                <a class="atl__more" href="{{ s.author_link }}">{{ s.author_link_label | escape }}</a>
+              {%- endif -%}
+            </div>
+          </aside>
+        {%- endif -%}
+      </div>
+
+      <aside class="atl__side">
+        <div class="atl__panel">
+          {%- if blog.all_tags.size > 0 -%}
+            <h2 class="atl__side-title">{{ s.tags_heading | escape }}</h2>
+            <ul class="atl__tags">
+              {%- for t in blog.all_tags -%}
+                <li><a class="atl__pill" href="{{ blog.url }}/tagged/{{ t | handleize }}{{ listing_query }}">{{ t | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- liquid
+            assign per_tab = s.posts_per_tab
+            assign recent_html = ''
+            assign popular_html = ''
+            assign trendy_html = ''
+            assign n_recent = 0
+            assign n_popular = 0
+            assign n_trendy = 0
+            assign others = 0
+          -%}
+          {%- for a in blog.articles -%}
+            {%- if a.id == article.id -%}{%- continue -%}{%- endif -%}
+            {%- assign others = others | plus: 1 -%}
+            {%- liquid
+              assign a_link = a.url
+              if article_view != blank and a.template_suffix != article_view
+                assign a_link = a.url | append: '?view=' | append: article_view
+              endif
+            -%}
+            {%- capture card -%}
+              <li>
+                <a class="atl__post" href="{{ a_link }}">
+                  <span class="atl__post-media">{%- if a.image != blank -%}{{ a.image | image_url: width: 186 | image_tag: loading: 'lazy', width: 93, height: 93, alt: '' }}{%- endif -%}</span>
+                  <span class="atl__post-text">
+                    <span class="atl__post-title">{{ a.title | escape }}</span>
+                    <time class="atl__post-date" datetime="{{ a.published_at | date: '%Y-%m-%d' }}">{{ a.published_at | date: '%b %-d, %Y' }}</time>
+                  </span>
+                </a>
+              </li>
+            {%- endcapture -%}
+            {%- liquid
+              if n_recent < per_tab
+                assign recent_html = recent_html | append: card
+                assign n_recent = n_recent | plus: 1
+              endif
+              if s.popular_tag != blank and a.tags contains s.popular_tag and n_popular < per_tab
+                assign popular_html = popular_html | append: card
+                assign n_popular = n_popular | plus: 1
+              endif
+              if s.trendy_tag != blank and a.tags contains s.trendy_tag and n_trendy < per_tab
+                assign trendy_html = trendy_html | append: card
+                assign n_trendy = n_trendy | plus: 1
+              endif
+            -%}
+          {%- endfor -%}
+          {%- comment -%} Untagged blogs: Popular / Trendy fall back to the next newest articles. {%- endcomment -%}
+          {%- if n_popular == 0 or n_trendy == 0 -%}
+            {%- assign idx = 0 -%}
+            {%- assign popular_fill = '' -%}
+            {%- assign trendy_fill = '' -%}
+            {%- assign pop_from = per_tab -%}
+            {%- assign pop_to = per_tab | times: 2 -%}
+            {%- assign tr_to = per_tab | times: 3 -%}
+            {%- for a in blog.articles -%}
+              {%- if a.id == article.id -%}{%- continue -%}{%- endif -%}
+              {%- liquid
+                assign a_link = a.url
+                if article_view != blank and a.template_suffix != article_view
+                  assign a_link = a.url | append: '?view=' | append: article_view
+                endif
+              -%}
+              {%- capture card -%}
+                <li>
+                  <a class="atl__post" href="{{ a_link }}">
+                    <span class="atl__post-media">{%- if a.image != blank -%}{{ a.image | image_url: width: 186 | image_tag: loading: 'lazy', width: 93, height: 93, alt: '' }}{%- endif -%}</span>
+                    <span class="atl__post-text">
+                      <span class="atl__post-title">{{ a.title | escape }}</span>
+                      <time class="atl__post-date" datetime="{{ a.published_at | date: '%Y-%m-%d' }}">{{ a.published_at | date: '%b %-d, %Y' }}</time>
+                    </span>
+                  </a>
+                </li>
+              {%- endcapture -%}
+              {%- liquid
+                if n_popular == 0 and idx >= pop_from and idx < pop_to
+                  assign popular_fill = popular_fill | append: card
+                endif
+                if n_trendy == 0 and idx >= pop_to and idx < tr_to
+                  assign trendy_fill = trendy_fill | append: card
+                endif
+                assign idx = idx | plus: 1
+              -%}
+            {%- endfor -%}
+            {%- if n_popular == 0 -%}{%- assign popular_html = popular_fill | default: recent_html -%}{%- endif -%}
+            {%- if n_trendy == 0 -%}{%- assign trendy_html = trendy_fill | default: recent_html -%}{%- endif -%}
+          {%- endif -%}
+
+          {%- if others > 0 -%}
+            <div class="atl__tabs" role="tablist" aria-label="{{ s.tabs_label | escape }}">
+              <button type="button" class="atl__tab" role="tab" id="atl-tab-popular-{{ section.id }}" aria-controls="atl-panel-popular-{{ section.id }}" aria-selected="true" data-atl-tab>{{ s.popular_label | escape }}</button>
+              <button type="button" class="atl__tab" role="tab" id="atl-tab-recent-{{ section.id }}" aria-controls="atl-panel-recent-{{ section.id }}" aria-selected="false" tabindex="-1" data-atl-tab>{{ s.recent_label | escape }}</button>
+              <button type="button" class="atl__tab" role="tab" id="atl-tab-trendy-{{ section.id }}" aria-controls="atl-panel-trendy-{{ section.id }}" aria-selected="false" tabindex="-1" data-atl-tab>{{ s.trendy_label | escape }}</button>
+            </div>
+            <ul class="atl__tabpanel" role="tabpanel" id="atl-panel-popular-{{ section.id }}" aria-labelledby="atl-tab-popular-{{ section.id }}">{{ popular_html }}</ul>
+            <ul class="atl__tabpanel" role="tabpanel" id="atl-panel-recent-{{ section.id }}" aria-labelledby="atl-tab-recent-{{ section.id }}" hidden>{{ recent_html }}</ul>
+            <ul class="atl__tabpanel" role="tabpanel" id="atl-panel-trendy-{{ section.id }}" aria-labelledby="atl-tab-trendy-{{ section.id }}" hidden>{{ trendy_html }}</ul>
+          {%- endif -%}
+        </div>
+
+        {%- if s.show_bundle -%}
+          <div class="atl__bundle">
+            <div class="atl__bundle-media">
+              {%- if s.bundle_image != blank -%}
+                {{ s.bundle_image | image_url: width: 940 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 25vw, 100vw', widths: '470, 700, 940', alt: s.bundle_image.alt }}
+              {%- endif -%}
+            </div>
+            {%- if s.bundle_heading != blank -%}<div class="atl__bundle-title">{{ s.bundle_heading }}</div>{%- endif -%}
+            {%- if bundle != blank -%}
+              {%- assign b_variant = bundle.selected_or_first_available_variant -%}
+              <button type="button" class="atl__bundle-btn" data-atl-add="{{ b_variant.id }}" data-label="{{ s.bundle_button | escape }}" {% unless b_variant.available %}disabled{% endunless %}>
+                <span data-atl-label>{{ s.bundle_button | escape }}</span>
+                <span class="atl__bundle-prices">
+                  <span class="atl__price-now">{{ b_variant.price | money_without_trailing_zeros }}</span>
+                  {%- if b_variant.compare_at_price > b_variant.price -%}<span class="atl__price-was">{{ b_variant.compare_at_price | money_without_trailing_zeros }}</span>{%- endif -%}
+                  {%- if s.bundle_badge != blank -%}<span class="atl__badge">{{ s.bundle_badge | escape }}</span>{%- endif -%}
+                </span>
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </aside>
+    </div>
+  </div>
+  <p class="atl__status" role="status" aria-live="polite" data-atl-status></p>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var MSG = { adding: {{ s.adding_label | json }}, added: {{ s.added_label | json }}, error: {{ s.error_label | json }} };
+
+    function init(root) {
+      if (!root || root._atlInit) return;
+      root._atlInit = true;
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-atl-tab]'));
+      var status = root.querySelector('[data-atl-status]');
+
+      function selectTab(tab, focus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          var panel = document.getElementById(t.getAttribute('aria-controls'));
+          if (panel) panel.hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+
+      function addToCart(btn) {
+        var id = parseInt(btn.getAttribute('data-atl-add'), 10);
+        if (!id) return;
+        var label = btn.querySelector('[data-atl-label]') || btn;
+        btn.setAttribute('aria-busy', 'true');
+        if (label === btn) btn.textContent = MSG.adding; else label.textContent = MSG.adding;
+        fetch(root.getAttribute('data-cart-add-url'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+          body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              if (!res.ok) throw new Error(data && (data.description || data.message) || ('HTTP ' + res.status));
+              return data;
+            });
+          })
+          .then(function () { return fetch(root.getAttribute('data-cart-json-url'), { headers: { 'Accept': 'application/json' } }); })
+          .then(function (r) { return r.json(); })
+          .then(function (cart) {
+            document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true, detail: { cart: cart } }));
+            var drawer = document.getElementById('drawer-cart');
+            if (drawer) drawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+            else window.location.href = root.getAttribute('data-cart-url');
+            if (status) status.textContent = MSG.added;
+          })
+          .catch(function (err) {
+            if (status) status.textContent = MSG.error + (err && err.message ? ' (' + err.message + ')' : '');
+          })
+          .then(function () {
+            btn.removeAttribute('aria-busy');
+            var text = btn.getAttribute('data-label');
+            if (label === btn) btn.textContent = text; else label.textContent = text;
+          });
+      }
+
+      function onClick(e) {
+        var tab = e.target.closest('[data-atl-tab]');
+        if (tab && root.contains(tab)) { selectTab(tab, false); return; }
+        var add = e.target.closest('[data-atl-add]');
+        if (add && root.contains(add) && !add.disabled) addToCart(add);
+      }
+      function onKey(e) {
+        var tab = e.target.closest('[data-atl-tab]');
+        if (!tab) return;
+        var i = tabs.indexOf(tab);
+        if (e.key === 'ArrowRight') { e.preventDefault(); selectTab(tabs[(i + 1) % tabs.length], true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); selectTab(tabs[(i - 1 + tabs.length) % tabs.length], true); }
+      }
+      root.addEventListener('click', onClick);
+      root.addEventListener('keydown', onKey);
+      root._atlCleanup = function () {
+        root.removeEventListener('click', onClick);
+        root.removeEventListener('keydown', onKey);
+        root._atlInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-atl]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__atlEditorBound) {
+      window.__atlEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._atlCleanup) r._atlCleanup();
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Article (TLPC)",
+  "tag": "section",
+  "class": "article-tlpc-section",
+  "settings": [
+    { "type": "header", "content": "Article" },
+    { "type": "text", "id": "fallback_tag", "label": "Category pill when the article has no tags", "default": "Skin Science" },
+    { "type": "text", "id": "article_view", "label": "Open other articles with template", "info": "Sidebar article links add ?view= with this template name. Skipped for articles that already use it. Leave empty for plain links.", "default": "blog-tlpc" },
+    { "type": "text", "id": "listing_view", "label": "Open tag links with blog template", "info": "Tag links add ?view= with this template name. Skipped when the blog already uses it.", "default": "blog-tlpc" },
+    { "type": "checkbox", "id": "show_image", "label": "Show featured image", "default": true },
+    { "type": "checkbox", "id": "show_read_time", "label": "Show read time", "default": true },
+    { "type": "text", "id": "read_time_label", "label": "Read time label", "default": "Minutes Read" },
+    { "type": "image_picker", "id": "avatar_image", "label": "Fallback author avatar", "info": "Used when the author's staff account has no photo. Use a real photo of the author; the Figma placeholder is 04-author-avatar.webp." },
+    { "type": "header", "content": "Share" },
+    { "type": "checkbox", "id": "show_share", "label": "Show share row", "info": "Facebook and LinkedIn share the article. Instagram and YouTube link to the profiles in Theme settings > Social media, and are hidden while those are empty.", "default": true },
+    { "type": "text", "id": "share_label", "label": "Label", "default": "Share:" },
+    { "type": "header", "content": "Featured product" },
+    { "type": "text", "id": "product_heading", "label": "Heading", "default": "Shop India's First Postbiotic Serum" },
+    { "type": "product", "id": "product", "label": "Product", "info": "An article can override this with a product-reference metafield custom.featured_product." },
+    { "type": "image_picker", "id": "product_image", "label": "Thumbnail override", "info": "Design export: 06-product-thumb-serum.webp." },
+    { "type": "text", "id": "add_label", "label": "Add button label", "default": "+Add" },
+    { "type": "header", "content": "Author box" },
+    { "type": "checkbox", "id": "show_author", "label": "Show author box", "default": true },
+    { "type": "image_picker", "id": "author_image", "label": "Fallback author photo", "info": "Used when the author's staff account has no photo. Use a real photo of the author; the Figma placeholder is 05-author-photo.webp." },
+    { "type": "richtext", "id": "author_bio", "label": "Fallback author bio", "info": "Used when the author's staff account has no bio.", "default": "<p>Writing about the science of skin, the microbiome and building routines that work for Indian skin and climate.</p>" },
+    { "type": "url", "id": "author_link", "label": "Read more link" },
+    { "type": "text", "id": "author_link_label", "label": "Read more label", "default": "Read More" },
+    { "type": "text", "id": "author_label", "label": "Author box name (screen readers)", "default": "About the author" },
+    { "type": "header", "content": "Sidebar" },
+    { "type": "text", "id": "tags_heading", "label": "Tags heading", "info": "The tag cloud lists every tag used in this blog and hides while there are none.", "default": "articles - Tags" },
+    { "type": "text", "id": "popular_label", "label": "Popular tab", "default": "Popular" },
+    { "type": "text", "id": "popular_tag", "label": "Popular tab shows articles tagged", "default": "popular" },
+    { "type": "text", "id": "recent_label", "label": "Recent tab", "default": "Recent" },
+    { "type": "text", "id": "trendy_label", "label": "Trendy tab", "default": "Trendy" },
+    { "type": "text", "id": "trendy_tag", "label": "Trendy tab shows articles tagged", "default": "trendy" },
+    { "type": "range", "id": "posts_per_tab", "label": "Articles per tab", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "text", "id": "tabs_label", "label": "Tabs name (screen readers)", "default": "More articles" },
+    { "type": "font_picker", "id": "tag_font", "label": "Tabs and product name font", "info": "Design: Montserrat Medium / SemiBold.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Bundle promo" },
+    { "type": "checkbox", "id": "show_bundle", "label": "Show bundle card", "default": true },
+    { "type": "image_picker", "id": "bundle_image", "label": "Image", "info": "470 × 583. Design export: 07-bundle-promo.webp." },
+    { "type": "richtext", "id": "bundle_heading", "label": "Heading", "default": "<p>Five products. one <em>complete ritual.</em></p>" },
+    { "type": "product", "id": "bundle_product", "label": "Bundle product" },
+    { "type": "text", "id": "bundle_button", "label": "Button label", "default": "Add bundle" },
+    { "type": "text", "id": "bundle_badge", "label": "Badge", "default": "-10% OFF" },
+    { "type": "header", "content": "Cart messages" },
+    { "type": "text", "id": "adding_label", "label": "While adding", "default": "Adding…" },
+    { "type": "text", "id": "added_label", "label": "Added", "default": "Added to your cart." },
+    { "type": "text", "id": "error_label", "label": "Error", "default": "Could not add to cart." },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_panel", "label": "Panels", "default": "#F5EEE6" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_accent", "label": "Accent", "default": "#78563D" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 56 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ]
+}
+{% endschema %}

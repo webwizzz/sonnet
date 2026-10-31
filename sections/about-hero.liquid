@@ -1,0 +1,304 @@
+{%- comment -%}
+  About hero: "ABOUT US" tag, "Nourish. Balance. Glow." heading and the dark product card.
+  Design: Figma QvQ11convTbPladsyhAg96, nodes 249:142 / 249:143 / 249:121 (About Us page).
+  Desktop 1920: tag at 50px, heading (Blauer Nue MD 65 + Tiempos italic, 674 wide) 20px under it,
+  card 1820 × 782 (radius 22) 30px under the heading. Card text column starts 123px in and is
+  vertically centred: heading 40/48, body 20/26 @80%, two 288 × 52 pill buttons (gap 16).
+  The product shot fills the card from 24.5% to the right edge.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}{{ tag_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --ahe-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --ahe-text: {{ s.color_text }};
+  --ahe-accent: {{ s.color_accent }};
+  --ahe-h: {{ s.heading_size }};
+  --ahe-card-text: {{ s.color_card_text }};
+  --ahe-card-body: {{ s.color_card_text | color_modify: 'alpha', 0.8 }};
+  --ahe-btn: {{ s.color_button }};
+  --ahe-btn-text: {{ s.color_button_text }};
+  --ahe-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --ahe-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .ahe {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--ahe-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--ahe-u)));
+}
+#shopify-section-{{ section.id }} .ahe__card {
+  background-image: linear-gradient(180deg, {{ s.card_gradient_top }} 0%, {{ s.card_gradient_mid }} 47.122%, {{ s.card_gradient_bottom }} 100%);
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .ahe {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.ahe *, .ahe *::before, .ahe *::after { box-sizing: border-box; }
+.ahe { color: var(--ahe-text); }
+.ahe__intro { display: flex; flex-direction: column; align-items: center; padding: 0 16px; text-align: center; }
+
+/* Tag: Montserrat 500 16 uppercase, 1px border, radius 30, 5 / 10 padding */
+.ahe .ahe__tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  border-radius: 30px;
+  font-family: var(--ahe-tag-font);
+  font-weight: var(--ahe-tag-weight);
+  font-size: max(13px, calc(16 * var(--ahe-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ahe-text);
+}
+
+/* Heading: Blauer Nue MD 65 (matches Figma's 674px line), Tiempos Fine Italic RG accent */
+.ahe .ahe__heading {
+  margin: max(14px, calc(20 * var(--ahe-u))) 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(34px, calc(var(--ahe-h) * var(--ahe-u)));
+  line-height: 1.206;
+  letter-spacing: -0.02em;
+  color: var(--ahe-text);
+  text-transform: none;
+}
+.ahe .ahe__heading p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.ahe .ahe__heading em,
+.ahe .ahe__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+
+/* Card: 1820 × 782, radius 22, 50px side gutters */
+.ahe__card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: max(20px, calc(30 * var(--ahe-u))) max(16px, calc(50 * var(--ahe-u))) 0;
+  min-height: calc(782 * var(--ahe-u));
+  border-radius: max(14px, calc(22 * var(--ahe-u)));
+  overflow: hidden;
+  isolation: isolate;
+}
+.ahe__media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 24.5%;
+  z-index: -1;
+}
+.ahe__media img,
+.ahe__media .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+.ahe__media .placeholder-svg { fill: rgba(255, 255, 255, 0.2); }
+
+.ahe__content {
+  width: calc(592 * var(--ahe-u) + 40px);
+  max-width: 100%;
+  margin-left: calc(123 * var(--ahe-u) - 20px);
+  padding: 40px 20px;
+}
+.ahe .ahe__title {
+  margin: 0;
+  max-width: max(300px, calc(517 * var(--ahe-u) + 2px));
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(24px, calc(40 * var(--ahe-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ahe-card-text);
+  text-transform: none;
+}
+.ahe .ahe__body {
+  margin: max(16px, calc(30 * var(--ahe-u))) 0 0;
+  max-width: max(300px, calc(542 * var(--ahe-u) + 2px));
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(16px, calc(20 * var(--ahe-u)));
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--ahe-card-body);
+}
+.ahe .ahe__body p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.ahe .ahe__body p + p { margin-top: 0.6em; }
+
+/* Buttons: white pill 288 × 52, label Blauer Nue LT 16 uppercase, brown 48px circle with ↗ */
+.ahe__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: max(28px, calc(60 * var(--ahe-u)));
+}
+.ahe .ahe__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: max(240px, calc(288 * var(--ahe-u)));
+  height: 52px;
+  padding: 0 2px 0 30px;
+  border-radius: 50px;
+  background: var(--ahe-btn);
+  color: var(--ahe-btn-text);
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+.ahe__btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ahe-accent);
+  transition: transform 300ms ease;
+}
+.ahe__btn-icon svg { display: block; width: 18px; height: 18px; }
+.ahe .ahe__btn:hover .ahe__btn-icon,
+.ahe .ahe__btn:focus-visible .ahe__btn-icon { transform: rotate(45deg); }
+
+@media screen and (max-width: 768px) {
+  .ahe__card {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .ahe__media {
+    position: relative;
+    left: auto;
+    order: 2;
+    aspect-ratio: 1374 / 782;
+  }
+  .ahe__content { order: 1; width: 100%; margin-left: 0; padding: 32px 20px 8px; }
+  .ahe__buttons { flex-direction: column; }
+  .ahe .ahe__btn { width: 100%; max-width: 320px; }
+}
+{% endstyle %}
+
+<div class="ahe {{ s.custom_class | escape }}" data-ahe>
+  <div class="ahe__intro">
+    {%- if s.tag != blank -%}
+      <p class="ahe__tag">{{ s.tag | escape }}</p>
+    {%- endif -%}
+    {%- if s.heading != blank -%}
+      <h1 class="ahe__heading">{{ s.heading }}</h1>
+    {%- endif -%}
+  </div>
+
+  <div class="ahe__card">
+    <div class="ahe__media">
+      {%- if s.image != blank -%}
+        {{ s.image | image_url: width: 2800 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 769px) 75vw, 100vw', widths: '600, 900, 1200, 1600, 2000, 2400, 2800', alt: s.image.alt }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    <div class="ahe__content">
+      {%- if s.title != blank -%}
+        <h2 class="ahe__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <div class="ahe__body">{{ s.text }}</div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="ahe__buttons">
+          {%- for block in section.blocks -%}
+            <a
+              class="ahe__btn"
+              href="{{ block.settings.link | default: '#' }}"
+              {{ block.shopify_attributes }}
+            >
+              <span>{{ block.settings.label | escape }}</span>
+              <span class="ahe__btn-icon" aria-hidden="true">{{- 'about-arrow-up-right.svg' | inline_asset_content -}}</span>
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About hero",
+  "tag": "section",
+  "class": "about-hero-section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "About us" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent word.", "default": "<p>Nourish. Balance. <em>Glow.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 36, "max": 90, "step": 1, "unit": "px", "default": 65 },
+    { "type": "header", "content": "Card" },
+    { "type": "image_picker", "id": "image", "label": "Product image", "info": "Fills the card from 24.5% to the right edge. Design export: 01-hero-products.webp (2748 × 1564)." },
+    { "type": "text", "id": "title", "label": "Title", "default": "Postbiotic-powered skincare, formulated to work with your skin — not strip it back." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Sonnet Wellness is a five-step postbiotic skincare ritual built around Lactobacillus Ferment Lysate alongside established actives — Niacinamide, Glycolic Acid and Aloe Vera — formulated for all skin types, with every ingredient listed in full.</p>" },
+    { "type": "font_picker", "id": "tag_font", "label": "Tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Heading and tag", "default": "#28201F" },
+    { "type": "color", "id": "card_gradient_top", "label": "Card gradient top", "default": "#27201F" },
+    { "type": "color", "id": "card_gradient_mid", "label": "Card gradient middle", "default": "#27201D" },
+    { "type": "color", "id": "card_gradient_bottom", "label": "Card gradient bottom", "default": "#2C221B" },
+    { "type": "color", "id": "color_card_text", "label": "Card text", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_button", "label": "Button", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_button_text", "label": "Button text", "default": "#000000" },
+    { "type": "color", "id": "color_accent", "label": "Button icon circle", "default": "#78563D" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 32 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 32 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Explore the ritual" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About hero",
+      "blocks": [
+        { "type": "button", "settings": { "label": "Explore the Ritual" } },
+        { "type": "button", "settings": { "label": "Shop All Products", "link": "shopify://collections/all" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

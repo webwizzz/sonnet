@@ -207,13 +207,21 @@
             "custom_liquid": "{% render 'benefits-strip' %}"
           }
         },
+        "shop_combo_lfwpd0": {
+          "type": "shop-combo",
+          "settings": {
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
+            "padding_bottom": 0
+          }
+        },
         "variant_selectors_zYEyb3": {
           "type": "variant-selectors",
           "settings": {
             "option_size_swatch": 34,
             "option_size_radio": 50,
             "option_space": 30,
-            "padding_bottom": 30
+            "padding_bottom": 20
           }
         },
         "price_wMgK3w": {
@@ -283,14 +291,13 @@
         },
         "upsell_UgXWDc": {
           "type": "upsell",
-          "disabled": true,
           "settings": {
             "title": "Complete your ritual",
             "upsell_type": "product_grouping",
             "product": "",
             "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
             "upsell_list_limit": 2,
-            "padding_bottom": 0
+            "padding_bottom": 20
           }
         }
       },
@@ -303,11 +310,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
-        "upsell_UgXWDc"
+        "shop_combo_lfwpd0"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -331,25 +339,18 @@
     "marquee_bar_z7LLMg": {
       "type": "marquee-bar",
       "blocks": {
+        "item_aQcr4W": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.png",
+            "title": "Dermatologically Tested"
+          }
+        },
         "item_g4eqM6": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_3.webp",
             "title": "Postbiotic Formula"
-          }
-        },
-        "item_y9J3XR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No Harsh Chemicals"
-          }
-        },
-        "item_iELbjW": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_2087329697.webp",
-            "title": "For All Skin Types"
           }
         },
         "item_XD396D": {
@@ -359,11 +360,11 @@
             "title": "100% vegan & cruelty free"
           }
         },
-        "item_PbUEYP": {
+        "item_McjzAb": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.webp",
-            "title": "No GMO Ingredients"
+            "icon": "shopify://shop_images/Group_1321321668_1.png",
+            "title": "Cruelty Free"
           }
         },
         "item_LfdJDR": {
@@ -372,15 +373,48 @@
             "icon": "shopify://shop_images/Group_1321321668.webp",
             "title": "Made In India"
           }
+        },
+        "item_QFfLwd": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321669.webp",
+            "title": "No Parabens"
+          }
+        },
+        "item_y9J3XR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
+            "title": "All Skin Type"
+          }
+        },
+        "item_iELbjW": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/Group_2087329697.webp",
+            "title": "For All Skin Types"
+          }
+        },
+        "item_PbUEYP": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.webp",
+            "title": "No GMO Ingredients"
+          }
         }
       },
       "block_order": [
+        "item_aQcr4W",
         "item_g4eqM6",
+        "item_XD396D",
+        "item_McjzAb",
+        "item_LfdJDR",
+        "item_QFfLwd",
         "item_y9J3XR",
         "item_iELbjW",
-        "item_XD396D",
-        "item_PbUEYP",
-        "item_LfdJDR"
+        "item_PbUEYP"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -412,6 +446,7 @@
       "block_order": [
         "quinn_shoppable_reel_app_cards_block_qhywQD"
       ],
+      "disabled": true,
       "settings": {
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
@@ -426,10 +461,10 @@
         "testimonial_mQe9DQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/beforee_converted.webp",
-            "after_image": "shopify://shop_images/aafter_converted.webp",
+            "before_image": "shopify://shop_images/Unretouched_Open-Pore_Skin_Macro_1.webp",
+            "after_image": "shopify://shop_images/Calm_matte_nose_and_cheek_macro_1.webp",
             "tag": "Combination / Oily Skin",
-            "title": "My poreslook visibly refined.",
+            "title": "My pores look visibly refined.",
             "review": "<p>\"Witch Hazel Extract helps refine the visible appearance of pores, my skin healed.\"</p>",
             "rating": 4.5,
             "rating_label": "",
@@ -441,14 +476,15 @@
         "testimonial_yJtzp7": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/before_converted.webp",
-            "after_image": "shopify://shop_images/after_converted.webp",
+            "before_image": "shopify://shop_images/Natural_skin_before_beauty_portrait_1.webp",
+            "after_image": "shopify://shop_images/Luminous_smile_in_a_warm_studio_1.webp",
             "tag": "Combination / Oily Skin",
             "title": "Amazing experience!",
             "review": "<p>I have been using this product for over a month now and it has given me very nice results. Makes my skin feel so fresh and happy all day long. Feels very soft and gentle on my face.</p>",
-            "rating": 5,
+            "rating": 4.5,
             "rating_label": "",
-            "name": "Sanjay Sharma",
+            "avatar": "shopify://shop_images/Ellipse_1337_11.webp",
+            "name": "Sanjay S.",
             "location": "Mumbai"
           }
         }
@@ -493,41 +529,41 @@
         "slide_Kw6EWD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1st.png",
-            "label": "HELPS REFINE THE LOOK OF PORES",
-            "stat": "2%",
-            "stat_caption": "Niacinamide",
-            "body": "The concentration used here to help minimise the visible appearance of enlarged pores, with consistent use."
+            "image": "shopify://shop_images/Radiant_laughing_beauty_close-up_1.webp",
+            "label": "Pores look refined",
+            "stat": "79%",
+            "stat_caption": "Said pores looked smaller in 4 weeks",
+            "body": "2% Niacinamide and Witch Hazel Extract work together to help minimise the visible appearance of enlarged pores. With consistent twice-daily use, the difference builds steadily over the weeks."
           }
         },
         "slide_dpPkbw": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_1430107054.png",
-            "label": "HYDRATES, DOESN'T DRY",
-            "stat": "0%",
-            "stat_caption": "Denatured alcohol, ethanol or isopropyl",
-            "body": "Alcohol Fully alcohol-free, which is why it suits dry and sensitive skin as well as oily types."
+            "image": "shopify://shop_images/Playful_glance_soft_balanced_glow_1.webp",
+            "label": "Less shine, more balance",
+            "stat": "~22%",
+            "stat_caption": "Lower sebum output in 4 weeks",
+            "body": "Dab It On helps reduce the appearance of excess surface shine on oily and combination skin. Its alcohol-free base does it without the drying, tight feeling that alcohol-based toners can leave."
           }
         },
         "slide_N7Y4Ja": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/3rd.png",
-            "label": "HOWEVER YOUR ROUTINE WORKS",
-            "stat": "3",
-            "stat_caption": "Application methods, one bottle",
-            "body": "Cotton pad, palm press, or facial mist — apply the way that actually fits your day."
+            "image": "shopify://shop_images/Freshly_hydrated_natural_glow_1.webp",
+            "label": "Hydrates, never dries",
+            "stat": "88%",
+            "stat_caption": "Said skin felt hydrated, not tight",
+            "body": "Alcohol-free, with 5% Aloe Vera and plant-derived Propanediol drawing moisture to the skin. It hydrates rather than dries, which is why it suits dry and sensitive skin as well as oily."
           }
         },
         "slide_qDT3bE": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/4th.png",
-            "label": "A PORE-REFINING BOTANICAL",
-            "stat": "2%",
-            "stat_caption": "Witch Hazel Extract",
-            "body": "Included at a cosmetically effective level to help refine the visible look of pores."
+            "image": "shopify://shop_images/Joyful_Beauty_with_Calm_Even_Skin_1.webp",
+            "label": "Even tone, calmer look",
+            "stat": "35–68%",
+            "stat_caption": "Less pigment transfer in lab models",
+            "body": "2% Niacinamide, a form of Vitamin B3, helps support a visibly more even-looking skin tone over time. Chamomile Extract helps soothe the look of redness, so skin looks calmer as well as more even."
           }
         }
       },
@@ -571,7 +607,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
             "name": "NIACINAMIDE",
             "description": "Helps support an even-looking skin tone and helps minimise the appearance of enlarged pores."
           }
@@ -595,7 +631,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
             "name": "ALOE VERA",
             "description": "Hydrates and helps skin feel comfortable after toning."
           }
@@ -603,7 +639,7 @@
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
             "name": "LACTOBACILLUS",
             "description": "An inactivated postbiotic extract that helps maintain a conditioned skin surface."
           }
@@ -815,83 +851,83 @@
         "custom_class": ""
       }
     },
-    "ritual_bundle_LwhN88": {
+    "ritual_bundle_GKp4gD": {
       "type": "ritual-bundle",
       "blocks": {
-        "hotspot_yrej3Y": {
+        "hotspot_8YkfMk": {
           "type": "hotspot",
           "settings": {
             "product": "",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
-            "tag": "100% VEGAN",
-            "title": "CLEAN IT OFF\nFace Wash 100ml",
-            "description": "Brightening + hydration + scar healing — all in two drops",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
             "pos_x": 60,
             "pos_y": 14,
             "mobile_pos_x": 60,
             "mobile_pos_y": 14
           }
         },
-        "hotspot_gEQAHP": {
+        "hotspot_8wR3Di": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "dab-it-on-toner",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_1.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 2",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
             "pos_x": 47,
             "pos_y": 30,
             "mobile_pos_x": 47,
             "mobile_pos_y": 30
           }
         },
-        "hotspot_U8AAUU": {
+        "hotspot_XKjEMM": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "rub-it-in-serum-2",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_2.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 3",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
             "pos_x": 32,
             "pos_y": 57,
             "mobile_pos_x": 32,
             "mobile_pos_y": 57
           }
         },
-        "hotspot_RrijiF": {
+        "hotspot_LUiUjY": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "soak-it-in-face-cream",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_4.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 4",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
             "pos_x": 48,
             "pos_y": 64,
             "mobile_pos_x": 48,
             "mobile_pos_y": 64
           }
         },
-        "hotspot_WwpGDC": {
+        "hotspot_dtqFzJ": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "smear-it-on-face-mask",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_3.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 5",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
             "pos_x": 62,
             "pos_y": 56,
             "mobile_pos_x": 62,
@@ -900,11 +936,11 @@
         }
       },
       "block_order": [
-        "hotspot_yrej3Y",
-        "hotspot_gEQAHP",
-        "hotspot_U8AAUU",
-        "hotspot_RrijiF",
-        "hotspot_WwpGDC"
+        "hotspot_8YkfMk",
+        "hotspot_8wR3Di",
+        "hotspot_XKjEMM",
+        "hotspot_LUiUjY",
+        "hotspot_dtqFzJ"
       ],
       "name": "Ritual Bundle",
       "settings": {
@@ -1596,7 +1632,7 @@
     "whats_inside_carousel_GDxNxB",
     "comparison_table_87q9dy",
     "science_stats_cEpVm6",
-    "ritual_bundle_LwhN88",
+    "ritual_bundle_GKp4gD",
     "microbiome_compare_kdJJf3",
     "testimonial_section_aTEYNa",
     "why_section_pUQnp4",

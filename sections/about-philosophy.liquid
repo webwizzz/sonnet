@@ -1,0 +1,388 @@
+{%- comment -%}
+  About philosophy: "It starts with the skin barrier." + faded group portrait + ingredient card.
+  Design: Figma QvQ11convTbPladsyhAg96, nodes 249:390 / 249:391 / 249:393 / 249:396 / 249:398.
+  Desktop 1920: outlined tag, heading 58 16px under it, portrait 1032 × 765 (bottom 35% fades out)
+  37px under the heading, body copy (397 wide) at x 100 / 135px down, ingredient card 1320 × 350
+  overlapping the portrait from 559px down.
+
+  Scroll effect (Clingr-style): the portrait row is position: sticky, so it holds still for
+  `pin_distance` px while the card scrolls up over it; once the card reaches its Figma spot the
+  whole block scrolls on together. JS only drives a small zoom-out on the portrait (--aph-p).
+  Geometry: sticky row margin box = 765 + 144, card margin-top = pin - 350, so the card starts
+  `pin` px lower and ends exactly 559px under the portrait top.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+  assign pin = s.pin_distance
+  if s.enable_parallax == false
+    assign pin = 0
+  endif
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}{{ tag_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --aph-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --aph-text: {{ s.color_text }};
+  --aph-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --aph-card: {{ s.color_card }};
+  --aph-divider: {{ s.color_text | color_modify: 'alpha', 0.1 }};
+  --aph-h: {{ s.heading_size }};
+  --aph-pin: {{ pin }}px;
+  --aph-zoom: {{ s.zoom | divided_by: 100.0 }};
+  --aph-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --aph-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .aph {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--aph-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--aph-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .aph {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.aph *, .aph *::before, .aph *::after { box-sizing: border-box; }
+.aph { --aph-p: 0; color: var(--aph-text); }
+.aph__intro { display: flex; flex-direction: column; align-items: center; padding: 0 16px; text-align: center; }
+.aph .aph__tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  border-radius: 30px;
+  font-family: var(--aph-tag-font);
+  font-weight: var(--aph-tag-weight);
+  font-size: max(13px, calc(16 * var(--aph-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--aph-text);
+}
+.aph .aph__heading {
+  margin: max(12px, calc(16 * var(--aph-u))) 0 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(28px, calc(var(--aph-h) * var(--aph-u)));
+  line-height: 1.207;
+  letter-spacing: -0.02em;
+  color: var(--aph-text);
+  text-transform: none;
+}
+.aph .aph__heading p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.aph .aph__heading em,
+.aph .aph__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+
+/* ---------- Stage: sticky portrait row + card that scrolls over it ---------- */
+/* flex column so the sticky row's margin-bottom and the card's margin-top add up instead of collapsing */
+.aph__stage { position: relative; display: flex; flex-direction: column; margin-top: max(24px, calc(37 * var(--aph-u))); }
+.aph__sticky {
+  position: sticky;
+  top: max(16px, calc((100vh - 765 * var(--aph-u)) / 2));
+  z-index: 0;
+  height: calc(765 * var(--aph-u));
+  margin-bottom: calc(144 * var(--aph-u));
+}
+.aph__media {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(1032 * var(--aph-u));
+  height: 100%;
+  margin-left: calc(-516 * var(--aph-u));
+  -webkit-mask-image: linear-gradient(180deg, #000 64.72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 64.72%, transparent 100%);
+  transform-origin: 50% 0;
+  transform: scale(calc(1 + var(--aph-zoom) * (1 - var(--aph-p))));
+  will-change: transform;
+}
+.aph__media img,
+.aph__media .placeholder-svg { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.aph__media .placeholder-svg { fill: rgba(40, 32, 31, 0.15); }
+.aph .aph__body {
+  position: absolute;
+  top: calc(135 * var(--aph-u));
+  left: calc(100 * var(--aph-u));
+  z-index: 1;
+  width: max(238px, calc(397 * var(--aph-u) + 2px));
+  margin: 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(13px, calc(16 * var(--aph-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--aph-muted);
+}
+.aph .aph__body p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.aph .aph__body p + p { margin-top: 0.75em; }
+
+/* Card: 1320 × 350, radius 16; berries 294 × 249 at 91 / 51, divider at 505, text at 625 / 78 */
+.aph__card {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: calc(505 * var(--aph-u)) 1px 1fr;
+  align-items: start;
+  width: calc(1320 * var(--aph-u));
+  min-height: calc(350 * var(--aph-u));
+  margin: calc(var(--aph-pin) - 350 * var(--aph-u)) auto 0;
+  border-radius: max(12px, calc(16 * var(--aph-u)));
+  background: var(--aph-card);
+}
+.aph__card-media {
+  position: relative;
+  width: calc(294 * var(--aph-u));
+  height: calc(249 * var(--aph-u));
+  margin: calc(51 * var(--aph-u)) 0 0 calc(91 * var(--aph-u));
+}
+.aph__card-media .aph__shadow {
+  position: absolute;
+  width: calc(103 * var(--aph-u));
+  height: calc(32 * var(--aph-u));
+  max-width: none;
+  pointer-events: none;
+}
+.aph__card-media .aph__shadow:nth-child(1) { left: calc(3 * var(--aph-u)); top: calc(204 * var(--aph-u)); }
+.aph__card-media .aph__shadow:nth-child(2) { left: calc(92 * var(--aph-u)); top: calc(219 * var(--aph-u)); }
+.aph__card-media .aph__shadow:nth-child(3) { left: calc(166 * var(--aph-u)); top: calc(205 * var(--aph-u)); }
+.aph__card-media .aph__shadow:nth-child(4) { left: calc(191 * var(--aph-u)); top: calc(182 * var(--aph-u)); }
+.aph__card-media .aph__card-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.aph__divider {
+  width: 1px;
+  height: calc(250 * var(--aph-u));
+  margin-top: calc(50 * var(--aph-u));
+  background: var(--aph-divider);
+}
+.aph__card-text { padding: calc(78 * var(--aph-u)) calc(60 * var(--aph-u)) calc(50 * var(--aph-u)) calc(119 * var(--aph-u)); }
+.aph .aph__card-tag {
+  display: inline-flex;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--aph-text);
+  border-radius: 30px;
+  font-family: var(--aph-tag-font);
+  font-weight: var(--aph-tag-weight);
+  font-size: max(12px, calc(16 * var(--aph-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--aph-text);
+}
+.aph .aph__card-title {
+  margin: max(14px, calc(21 * var(--aph-u))) 0 0;
+  max-width: max(289px, calc(481 * var(--aph-u) + 2px));
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(24px, calc(40 * var(--aph-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--aph-text);
+  text-transform: none;
+}
+.aph .aph__card-desc {
+  margin: max(8px, calc(10 * var(--aph-u))) 0 0;
+  max-width: max(300px, calc(506 * var(--aph-u) + 2px));
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(15px, calc(18 * var(--aph-u)));
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--aph-muted);
+}
+
+@media screen and (max-width: 768px) {
+  .aph__stage { margin-top: 24px; }
+  .aph__sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .aph__media {
+    position: relative;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    aspect-ratio: 1032 / 765;
+    transform: none;
+  }
+  .aph .aph__body { position: relative; top: auto; left: auto; order: 2; width: auto; margin: 4px 16px 0; font-size: 15px; }
+  .aph__card {
+    grid-template-columns: 1fr;
+    width: auto;
+    min-height: 0;
+    margin: 28px 16px 0;
+    padding: 28px 20px 32px;
+  }
+  .aph__card-media { width: 220px; height: 186px; margin: 0 auto; }
+  .aph__card-media .aph__shadow { width: 77px; height: 24px; }
+  .aph__card-media .aph__shadow:nth-child(1) { left: 2px; top: 153px; }
+  .aph__card-media .aph__shadow:nth-child(2) { left: 69px; top: 164px; }
+  .aph__card-media .aph__shadow:nth-child(3) { left: 124px; top: 153px; }
+  .aph__card-media .aph__shadow:nth-child(4) { left: 143px; top: 136px; }
+  .aph__divider { width: 100%; height: 1px; margin: 24px 0; }
+  .aph__card-text { padding: 0; text-align: center; }
+  .aph .aph__card-title { margin-left: auto; margin-right: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aph__media { transform: none; }
+}
+{% endstyle %}
+
+<div class="aph {{ s.custom_class | escape }}" data-aph data-section-id="{{ section.id }}">
+  <div class="aph__intro">
+    {%- if s.tag != blank -%}<p class="aph__tag">{{ s.tag | escape }}</p>{%- endif -%}
+    {%- if s.heading != blank -%}<h2 class="aph__heading">{{ s.heading }}</h2>{%- endif -%}
+  </div>
+
+  <div class="aph__stage" data-aph-stage>
+    <div class="aph__sticky" data-aph-sticky>
+      <div class="aph__media">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 2064 | image_tag: loading: 'lazy', sizes: '(min-width: 769px) 54vw, 100vw', widths: '600, 900, 1200, 1600, 2064', alt: s.image.alt }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+      {%- if s.text != blank -%}<div class="aph__body">{{ s.text }}</div>{%- endif -%}
+    </div>
+
+    {%- if s.show_card -%}
+      <div class="aph__card">
+        <div class="aph__card-media">
+          {%- assign shadow_url = 'about-soft-shadow.svg' | asset_url -%}
+          {%- if s.show_shadows -%}
+            <img class="aph__shadow" src="{{ shadow_url }}" alt="" width="103" height="32" loading="lazy">
+            <img class="aph__shadow" src="{{ shadow_url }}" alt="" width="103" height="32" loading="lazy">
+            <img class="aph__shadow" src="{{ shadow_url }}" alt="" width="103" height="32" loading="lazy">
+            <img class="aph__shadow" src="{{ shadow_url }}" alt="" width="103" height="32" loading="lazy">
+          {%- endif -%}
+          {%- if s.card_image != blank -%}
+            {{ s.card_image | image_url: width: 600 | image_tag: class: 'aph__card-img', loading: 'lazy', sizes: '(min-width: 769px) 294px, 220px', widths: '300, 450, 600', alt: s.card_image.alt }}
+          {%- endif -%}
+        </div>
+        <span class="aph__divider" aria-hidden="true"></span>
+        <div class="aph__card-text">
+          {%- if s.card_tag != blank -%}<p class="aph__card-tag">{{ s.card_tag | escape }}</p>{%- endif -%}
+          {%- if s.card_title != blank -%}<h3 class="aph__card-title">{{ s.card_title | escape }}</h3>{%- endif -%}
+          {%- if s.card_text != blank -%}<p class="aph__card-desc">{{ s.card_text | escape }}</p>{%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var mobile = window.matchMedia('(max-width: 768px)');
+
+    function init(root) {
+      if (!root || root._aphInit) return;
+      root._aphInit = true;
+      var stage = root.querySelector('[data-aph-stage]');
+      var sticky = root.querySelector('[data-aph-sticky]');
+      var ticking = false;
+
+      // Progress through the pinned stretch: 0 when the portrait row first sticks, 1 when it lets go.
+      function update() {
+        ticking = false;
+        if (!stage || !sticky || reduce.matches || mobile.matches) { root.style.setProperty('--aph-p', 1); return; }
+        var pin = stage.offsetHeight - sticky.offsetHeight - (parseFloat(getComputedStyle(sticky).marginBottom) || 0);
+        var top = parseFloat(getComputedStyle(sticky).top) || 0;
+        var travelled = top - stage.getBoundingClientRect().top;
+        var p = pin > 0 ? travelled / pin : (travelled > 0 ? 1 : 0);
+        root.style.setProperty('--aph-p', Math.min(1, Math.max(0, p)).toFixed(4));
+      }
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+
+      root._aphCleanup = function () {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+        root._aphInit = false;
+      };
+    }
+
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-aph]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+
+    if (!window.__aphEditorBound) {
+      window.__aphEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+      document.addEventListener('shopify:section:unload', function (e) {
+        var r = rootFor(e.detail.sectionId);
+        if (r && r._aphCleanup) r._aphCleanup();
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About philosophy",
+  "tag": "section",
+  "class": "about-philosophy-section",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Philosophy" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent words.", "default": "<p>It starts with <em>the skin barrier.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "image_picker", "id": "image", "label": "Portrait", "info": "Transparent background works best; the bottom 35% fades out. Design export: 04-philosophy-women.webp (2064 × 1530)." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Our formulations start with the skin barrier. Rather than stripping everything away and starting over, each product is built to help maintain a comfortable, conditioned skin surface — pairing postbiotic Lactobacillus Ferment Lysate with actives already established in cosmetic science, like Niacinamide and Glycolic Acid, at concentrations backed by their own formulation data.</p>" },
+    { "type": "header", "content": "Scroll effect" },
+    { "type": "checkbox", "id": "enable_parallax", "label": "Pin the portrait while the card scrolls over it", "info": "Desktop only. Turned off for visitors who prefer reduced motion.", "default": true },
+    { "type": "range", "id": "pin_distance", "label": "Pin distance", "min": 100, "max": 800, "step": 20, "unit": "px", "default": 420 },
+    { "type": "range", "id": "zoom", "label": "Portrait zoom-out while pinned", "min": 0, "max": 15, "step": 1, "unit": "%", "default": 6 },
+    { "type": "header", "content": "Ingredient card" },
+    { "type": "checkbox", "id": "show_card", "label": "Show card", "default": true },
+    { "type": "image_picker", "id": "card_image", "label": "Image", "info": "Transparent PNG/WebP. Design export: 04-kokum-berries.webp." },
+    { "type": "checkbox", "id": "show_shadows", "label": "Show soft shadows under the image", "default": true },
+    { "type": "text", "id": "card_tag", "label": "Tag", "default": "An Indian ingredient, a postbiotic method" },
+    { "type": "text", "id": "card_title", "label": "Title", "default": "Garcinia Indica (Kokum) Seed Butter" },
+    { "type": "textarea", "id": "card_text", "label": "Text", "default": "Formulated alongside 1% Lactobacillus Ferment Lysate in Soak It In Face Cream." },
+    { "type": "font_picker", "id": "tag_font", "label": "Tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_card", "label": "Card", "default": "#F5EEE6" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "presets": [ { "name": "About philosophy" } ]
+}
+{% endschema %}

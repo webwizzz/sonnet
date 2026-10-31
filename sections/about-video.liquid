@@ -1,0 +1,192 @@
+{%- comment -%}
+  About video: 1820 × 782 rounded (22) poster with the warm diagonal overlay and a 40px white play button.
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:514 (About Us page).
+  Click → the poster is swapped for the Shopify-hosted video (or a YouTube / Vimeo embed) which
+  plays inline. Without a video the poster is shown on its own and the button is hidden.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign has_video = false
+  if s.video != blank or s.video_url != blank
+    assign has_video = true
+  endif
+  assign poster = s.poster
+  if poster == blank and s.video != blank
+    assign poster = s.video.preview_image
+  endif
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --avd-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --avd-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .avd {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--avd-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--avd-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .avd {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.avd *, .avd *::before, .avd *::after { box-sizing: border-box; }
+.avd__frame {
+  position: relative;
+  margin: 0 max(16px, calc(50 * var(--avd-u)));
+  aspect-ratio: 1820 / 782;
+  border-radius: max(14px, calc(22 * var(--avd-u)));
+  overflow: hidden;
+  background: #28201f;
+  isolation: isolate;
+}
+.avd__poster,
+.avd__player { position: absolute; inset: 0; }
+.avd__poster img,
+.avd__poster .placeholder-svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+.avd__poster .placeholder-svg { fill: rgba(255, 255, 255, 0.15); }
+.avd__poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: var(--avd-overlay);
+  background: linear-gradient(151.64deg, rgba(40, 32, 31, 0) 44.065%, rgba(120, 86, 61, 0.48) 68.915%, rgba(40, 32, 31, 0.6) 89.515%);
+  pointer-events: none;
+}
+.avd .avd__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max(40px, calc(40 * var(--avd-u)));
+  height: max(40px, calc(40 * var(--avd-u)));
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 300ms ease;
+}
+.avd .avd__play::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: avd-pulse 2.4s ease-out infinite;
+}
+.avd .avd__play:hover,
+.avd .avd__play:focus-visible { transform: translate(-50%, -50%) scale(1.12); }
+.avd__play svg { display: block; width: 100%; height: 100%; }
+.avd__player { z-index: 3; background: #000; }
+.avd__player video,
+.avd__player iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.avd.is-playing .avd__poster,
+.avd.is-playing .avd__play { visibility: hidden; }
+@keyframes avd-pulse {
+  0% { transform: scale(0.7); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@media screen and (max-width: 768px) {
+  .avd__frame { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .avd .avd__play::before { animation: none; opacity: 0; }
+}
+{% endstyle %}
+
+<div class="avd {{ s.custom_class | escape }}" data-avd>
+  <div class="avd__frame">
+    <div class="avd__poster">
+      {%- if poster != blank -%}
+        {{ poster | image_url: width: 3640 | image_tag: loading: 'lazy', sizes: '100vw', widths: '750, 1100, 1500, 1820, 2400, 3640', alt: s.poster.alt }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    {%- if has_video -%}
+      <button type="button" class="avd__play" data-avd-play aria-label="{{ s.play_label | escape }}">
+        {{- 'about-play-button.svg' | inline_asset_content -}}
+      </button>
+      <template data-avd-template>
+        {%- if s.video != blank -%}
+          {{ s.video | video_tag: autoplay: true, controls: true, playsinline: true, loop: s.loop, image_size: '1820x' }}
+        {%- elsif s.video_url.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ s.video_url.id }}?autoplay=1&rel=0&playsinline=1" title="{{ s.play_label | escape }}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        {%- elsif s.video_url.type == 'vimeo' -%}
+          <iframe src="https://player.vimeo.com/video/{{ s.video_url.id }}?autoplay=1" title="{{ s.play_label | escape }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        {%- endif -%}
+      </template>
+      <div class="avd__player" data-avd-player hidden></div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var SECTION_ID = {{ section.id | json }};
+    function init(root) {
+      if (!root || root._avdInit) return;
+      root._avdInit = true;
+      var btn = root.querySelector('[data-avd-play]');
+      var tpl = root.querySelector('[data-avd-template]');
+      var player = root.querySelector('[data-avd-player]');
+      if (!btn || !tpl || !player) return;
+      btn.addEventListener('click', function () {
+        player.innerHTML = '';
+        player.appendChild(tpl.content.cloneNode(true));
+        player.hidden = false;
+        root.classList.add('is-playing');
+        var v = player.querySelector('video');
+        if (v) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); v.focus(); }
+      });
+    }
+    function rootFor(id) {
+      var host = document.getElementById('shopify-section-' + id);
+      return host && host.querySelector('[data-avd]');
+    }
+    if (rootFor(SECTION_ID)) init(rootFor(SECTION_ID));
+    else document.addEventListener('DOMContentLoaded', function () { init(rootFor(SECTION_ID)); });
+    if (!window.__avdEditorBound) {
+      window.__avdEditorBound = true;
+      document.addEventListener('shopify:section:load', function (e) { init(rootFor(e.detail.sectionId)); });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About video",
+  "tag": "section",
+  "class": "about-video-section",
+  "settings": [
+    { "type": "image_picker", "id": "poster", "label": "Poster image", "info": "1820 × 782. Design export: 05-video-poster.webp." },
+    { "type": "range", "id": "overlay_opacity", "label": "Warm overlay", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "video", "id": "video", "label": "Video (uploaded)" },
+    { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
+    { "type": "checkbox", "id": "loop", "label": "Loop uploaded video", "default": false },
+    { "type": "text", "id": "play_label", "label": "Play button label (screen readers)", "default": "Play video" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 32 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "presets": [ { "name": "About video" } ]
+}
+{% endschema %}

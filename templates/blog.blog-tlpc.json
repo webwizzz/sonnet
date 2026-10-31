@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "blog-tlpc",
+      "settings": {
+        "per_page": 10,
+        "show_hero": true,
+        "show_date": true,
+        "show_read_time": true,
+        "fallback_tag": "Skin Science",
+        "minutes_label": "min",
+        "read_more": "Read More",
+        "empty_text": "New articles are on the way.",
+        "pagination_label": "Blog pages",
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_light": "#fffcf9",
+        "color_card": "#f5eee6",
+        "color_accent": "#78563d",
+        "padding_top": 50,
+        "padding_bottom": 100,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 56,
+        "custom_class": "",
+        "article_view": "blog-tlpc"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -290,5 +290,14 @@
         </div>
       {%- endfor -%}
     </div>
+  {%- elsif show_price_row -%}
+    {%- comment -%} Single-variant products have no option cards, so show the price row here instead. {%- endcomment -%}
+    <div class="pdp-price-row">
+      <span class="pdp-price-row__price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+      {%- if current_variant.compare_at_price > current_variant.price -%}
+        <s class="pdp-price-row__compare">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</s>
+        <span class="pdp-price-row__off">{{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price }}% OFF</span>
+      {%- endif -%}
+    </div>
   {%- endunless -%}
 </div>

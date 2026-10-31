@@ -146,7 +146,7 @@
                 :aria-busy="isLoading"
                 {% unless card_variant.available %} disabled="disabled" {% endunless %}
               >
-                <span class="btn-state-ready">{{ button_text }}</span>
+                <span class="btn-state-ready">+ADD</span>
                 <span class="btn-state-loading">
                   <svg height="18" width="18" class="svg-loader">
                     <circle r="7" cx="9" cy="9" />
@@ -174,7 +174,7 @@
             :disabled="isDisabled"
             :aria-busy="isLoading"
           >
-            <span class="btn-state-ready">{{ 'products.general.quick_view' | t }}</span>
+            <span class="btn-state-ready">+ADD</span>
             <span class="btn-state-loading">
               <svg height="18" width="18" class="svg-loader">
                 <circle r="7" cx="9" cy="9" />

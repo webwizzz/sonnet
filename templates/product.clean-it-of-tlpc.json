@@ -123,6 +123,7 @@
         "glo_related_products_upsell_app_block_product_XVzdEN",
         "meroxio_zipcode_checker_availibility_LT4eBi"
       ],
+      "disabled": true,
       "settings": {
         "layout": "thumbnails-below@slides",
         "image_width": "half",
@@ -139,6 +140,200 @@
         "width": "wrapper",
         "padding_top": 24,
         "padding_bottom": 36
+      }
+    },
+    "product_tlpc_Hp4yda": {
+      "type": "product-tlpc",
+      "blocks": {
+        "title_pNPxbr": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": false,
+            "show_rating_count": false,
+            "padding_bottom": 16
+          }
+        },
+        "text_YqdgYx": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.tagline.value }}</p>",
+            "padding_bottom": 16
+          }
+        },
+        "text_pHhKGk": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "{{ product.description }}",
+            "padding_bottom": 20
+          }
+        },
+        "description_LUbtai": {
+          "type": "description",
+          "settings": {
+            "style": "none",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "",
+            "icon_name_1": "",
+            "raw_content_1": "",
+            "image_1": "",
+            "title_2": "Details",
+            "icon_name_2": "",
+            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+            "image_2": "",
+            "title_3": "",
+            "icon_name_3": "",
+            "raw_content_3": "",
+            "image_3": "",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 20
+          }
+        },
+        "liquid_dVhnh4": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'benefits-strip' %}"
+          }
+        },
+        "variant_selectors_dUYCiU": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 34,
+            "option_size_radio": 50,
+            "option_space": 30,
+            "padding_bottom": 20
+          }
+        },
+        "price_ieeF9Q": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "add_buttons_X6c7Uw": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": false,
+            "enable_gift_card_recipient": false,
+            "padding_bottom": 20
+          }
+        },
+        "upsell_QRh93n": {
+          "type": "upsell",
+          "settings": {
+            "title": "Complete your ritual",
+            "upsell_type": "product_grouping",
+            "product": "",
+            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
+            "upsell_list_limit": 2,
+            "padding_bottom": 20
+          }
+        },
+        "liquid_cctVyp": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'static-text' %}"
+          }
+        },
+        "description_UypVb8": {
+          "type": "description",
+          "settings": {
+            "style": "accordions",
+            "enable_description": false,
+            "read_more": false,
+            "icon_description": "",
+            "description_expanded": false,
+            "title_1": "INGREDIENTS",
+            "icon_name_1": "",
+            "raw_content_1": "<p>sSas</p>",
+            "image_1": "{% render 'product-ingredients' %}",
+            "title_2": "USAGE GUIDE",
+            "icon_name_2": "",
+            "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
+            "image_2": "",
+            "title_3": "BENEFITS",
+            "icon_name_3": "",
+            "raw_content_3": "{{ product.metafields.custom.benefits_accordion | metafield_tag }}",
+            "image_3": "",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "image_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "image_5": "",
+            "padding_bottom": 10
+          }
+        },
+        "liquid_H6jfJw": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'trust-badges' %}"
+          }
+        },
+        "liquid_CfXiMh": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'loved-by-thousands' %}"
+          }
+        },
+        "shop_combo_ECX8t6": {
+          "type": "shop-combo",
+          "settings": {
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_pNPxbr",
+        "text_YqdgYx",
+        "text_pHhKGk",
+        "description_LUbtai",
+        "liquid_dVhnh4",
+        "variant_selectors_dUYCiU",
+        "price_ieeF9Q",
+        "add_buttons_X6c7Uw",
+        "upsell_QRh93n",
+        "liquid_cctVyp",
+        "description_UypVb8",
+        "liquid_H6jfJw",
+        "liquid_CfXiMh",
+        "shop_combo_ECX8t6"
+      ],
+      "name": "Product Tlpc page",
+      "settings": {
+        "layout": "none@single",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--neutral",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": false,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper--full",
+        "padding_top": 20,
+        "padding_bottom": 130
       }
     },
     "marquee_bar_BK3y6m": {
@@ -221,14 +416,14 @@
         "testimonial_39GnzQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/beforee_converted.webp",
-            "after_image": "shopify://shop_images/aafter_converted.webp",
+            "before_image": "shopify://shop_images/Rectangle_1430107052.webp",
+            "after_image": "shopify://shop_images/Rectangle_1430107053_1.webp",
             "tag": "Sensitive skin",
             "title": "My skin stopped feeling tight.",
             "review": "<p>My skin used to feel dry and stripped after every wash. Within 2 weeks of switching to Clean It Off, it felt comfortable and balanced, from the very first rinse.</p>",
             "rating": 4.5,
             "rating_label": "",
-            "avatar": "shopify://shop_images/Ellipse_1337.webp",
+            "avatar": "shopify://shop_images/Ellipse_1337_6.webp",
             "name": "Ananya R",
             "location": "Bengaluru"
           }
@@ -236,8 +431,8 @@
         "testimonial_xY6XGY": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/before_converted.webp",
-            "after_image": "shopify://shop_images/after_converted.webp",
+            "before_image": "shopify://shop_images/Group_2087330655.webp",
+            "after_image": "shopify://shop_images/Group_2087330655_1.webp",
             "tag": "SENSITIVE SKIN",
             "title": "Calming & lightweight",
             "review": "<p>Absolutely in loveee with this one. Found a facewash after long that was affordable and satisfying in terms of quality and results both!</p>",
@@ -289,41 +484,41 @@
         "slide_krGDwB": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1st.png",
-            "label": "Cleanses without stripping the skin",
-            "stat": "17%",
-            "stat_caption": "Cocamidopropyl Betaine — coconut-derived",
-            "body": "Pairs two surfactants, not one. Cocamidopropyl Betaine buffers the system so skin is thoroughly cleansed without the tight, stripped feeling after."
+            "image": "shopify://shop_images/Rectangle_1430107054_1.webp",
+            "label": "Clean, never stripped",
+            "stat": "77%",
+            "stat_caption": "Said skin felt clean, not tight",
+            "body": "A pea-sized amount lifts away oil, sunscreen residue and daily impurities in a single cleanse. 6% Glycerin and 5% Aloe Vera help skin feel comfortable after rinsing, never tight or stripped."
           }
         },
         "slide_dpW84a": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_1430107054.png",
-            "label": "Keeps skin comfortable after every rinse",
-            "stat": "6%",
-            "stat_caption": "Glycerin — post-rinse skin comfort",
-            "body": "Glycerin draws moisture toward the skin surface during cleansing — actively fighting the drying effect of surfactants so skin feels hydrated, not depleted."
+            "image": "shopify://shop_images/Rectangle_1430107054_1_1.webp",
+            "label": "Hydrated after every rinse",
+            "stat": "89%",
+            "stat_caption": "Said skin felt hydrated after washing",
+            "body": "Glycerin, one of the best-characterised humectants in cosmetics, draws moisture toward the skin surface to help offset the drying effect cleansing can have. Skin is left feeling comfortable and hydrated, morning and night."
           }
         },
         "slide_UWMYL3": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/3rd.png",
-            "label": "Soothes skin through the cleansing step",
-            "stat": "5%",
-            "stat_caption": "Aloe Barbadensis Leaf Juice — soothing humectant",
-            "body": "Aloe works during the wash itself. Helps reduce the inflammatory response cleansing triggers on reactive skin — every morning and evening."
+            "label": "Gentle on sensitive skin",
+            "stat": "90%",
+            "stat_caption": "Said it suited their sensitive skin",
+            "body": "Coconut-derived Cocamidopropyl Betaine, chosen for its mildness profile, keeps the cleanse mild, while 1% postbiotic ferment lysate helps maintain a conditioned skin surface. Formulated for all skin types, including sensitive and blemish-prone."
           }
         },
         "slide_fEdXpb": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/4th.png",
-            "label": "A postbiotic active in every wash",
-            "stat": "1%",
-            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic ingredient",
-            "body": "An inactivated ferment lysate — not a live culture. Helps maintain a comfortable, conditioned skin surface through every cleanse."
+            "label": "Smooth, fresh finish",
+            "stat": "68%",
+            "stat_caption": "Said skin felt fresh after rinsing",
+            "body": "Polyquaternium-7 leaves a light conditioning film so skin feels smooth, not squeaky, after rinsing. A low 0.03% touch of Menthol adds a light cooling finish to start and end each day."
           }
         }
       },
@@ -367,72 +562,64 @@
         "ingredient_YTjpCq": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-467-400x400.webp",
-            "name": "LACTOBACILLUS FERMENT LYSATE · 1%",
+            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "name": "LACTOBACILLUS FERMENT LYSATE - 1%",
             "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
           }
         },
         "ingredient_jjyC8a": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-471-300x300.webp",
-            "name": "GLYCERIN · 6%",
+            "image": "shopify://shop_images/GLYCERIN.webp",
+            "name": "GLYCERIN - 6%",
             "description": "A proven humectant that draws moisture to the skin surface, helping offset cleansing-related dryness."
           }
         },
         "ingredient_7wfwhh": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
-            "name": "COCAMIDOPROPYL BETAINE · 17%",
+            "image": "shopify://shop_images/COCAMIDOPROPYL_BETAINE.webp",
+            "name": "COCAMIDOPROPYL BETAINE - 17%",
             "description": "Coconut-derived co-surfactant that lifts impurities and creates foam with a gentler cleansing profile."
-          }
-        },
-        "ingredient_3n3U8P": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
-            "name": "Glycerin 6%",
-            "description": "Helps offset the drying effect of cleansing on skin comfort."
           }
         },
         "ingredient_QgKec3": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "ALOE BARBADENSIS LEAF JUICE · 5%",
+            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
+            "name": "ALOE BARBADENSIS LEAF JUICE - 5%",
             "description": "Helps hydrate and soothe during cleansing for a comfortable, non-tight finish."
           }
         },
         "ingredient_DYBTNG": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "POLYQUATERNIUM-7 · 2%",
+            "image": "shopify://shop_images/POLYQUATERNIUM.webp",
+            "name": "POLYQUATERNIUM-7 - 2%",
             "description": "A conditioning polymer that leaves skin feeling smooth and soft after rinsing."
           }
         },
         "ingredient_4DKJCj": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "MENTHOL · 0.03%",
+            "image": "shopify://shop_images/MENTHOL.webp",
+            "name": "MENTHOL - 0.03%",
             "description": "A low-level sensory ingredient that provides a light, refreshing cooling finish."
           }
         },
         "ingredient_K6DDLg": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "GLYCOLIC ACID · 0.1%",
+            "image": "shopify://shop_images/GLYCOLIC_ACID.webp",
+            "name": "GLYCOLIC ACID - 0.1%",
             "description": "Used as a pH adjuster at this concentration — not an exfoliant."
           }
         },
         "ingredient_J9EYVw": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
-            "name": "SODIUM LAURETH SULFATE · 28%",
+            "image": "shopify://shop_images/SODIUM_LAURETH_SULFATE.webp",
+            "name": "SODIUM LAURETH SULFATE - 28%",
             "description": "The primary cleansing and foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe."
           }
         }
@@ -441,7 +628,6 @@
         "ingredient_YTjpCq",
         "ingredient_jjyC8a",
         "ingredient_7wfwhh",
-        "ingredient_3n3U8P",
         "ingredient_QgKec3",
         "ingredient_DYBTNG",
         "ingredient_4DKJCj",
@@ -554,12 +740,22 @@
     "science_stats_FRLgMQ": {
       "type": "science-stats",
       "blocks": {
+        "stat_Ewangd": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield_cross",
+            "value": "6%",
+            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+            "text_width": 183
+          }
+        },
         "stat_JWhhRw": {
           "type": "stat",
           "settings": {
-            "icon": "sun_skin",
-            "value": "6%",
-            "text": "Glycerin — helps offset the drying effect of cleansing on skin comfort",
+            "icon": "face_glow",
+            "icon_image": "shopify://shop_images/Group_2087330669_3.webp",
+            "value": "17%",
+            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
             "text_width": 221
           }
         },
@@ -567,8 +763,9 @@
           "type": "stat",
           "settings": {
             "icon": "skin_layers",
-            "value": "17%",
-            "text": "Coconut-derived Cocamidopropyl Betaine — chosen for its mildness profile",
+            "icon_image": "shopify://shop_images/Group_2087330673.webp",
+            "value": "5%",
+            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
             "text_width": 216
           }
         },
@@ -576,24 +773,17 @@
           "type": "stat",
           "settings": {
             "icon": "drops",
-            "value": "5%",
-            "text": "Aloe Barbadensis — helps skin feel soothed and comfortable in the cleansing step",
-            "text_width": 204
-          }
-        },
-        "stat_Ewangd": {
-          "type": "stat",
-          "settings": {
-            "icon": "shield_cross",
+            "icon_image": "shopify://shop_images/Group_2087330672.webp",
             "value": "1%",
             "text": "Lactobacillus Ferment Lysate — postbiotic active in every wash",
-            "text_width": 183
+            "text_width": 204
           }
         },
         "stat_DqYwKP": {
           "type": "stat",
           "settings": {
             "icon": "face_glow",
+            "icon_image": "shopify://shop_images/Group_2087330672.webp",
             "value": "0%",
             "text": "Parabens- Phthalates-Alcohol -Mineral Oil-Petrolatum-Propylene Glycol",
             "text_width": 190
@@ -601,10 +791,10 @@
         }
       },
       "block_order": [
+        "stat_Ewangd",
         "stat_JWhhRw",
         "stat_n4M8FC",
         "stat_FjfLxe",
-        "stat_Ewangd",
         "stat_DqYwKP"
       ],
       "name": "Science Stats",
@@ -648,9 +838,9 @@
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
-            "tag": "100% VEGAN",
-            "title": "CLEAN IT OFF\nFace Wash 100ml",
-            "description": "Brightening + hydration + scar healing — all in two drops",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
             "pos_x": 60,
             "pos_y": 14,
             "mobile_pos_x": 60,
@@ -660,13 +850,13 @@
         "hotspot_c3eYQe": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "dab-it-on-toner",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_1.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 2",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
             "pos_x": 47,
             "pos_y": 30,
             "mobile_pos_x": 47,
@@ -676,13 +866,13 @@
         "hotspot_UrQqkx": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "rub-it-in-serum-2",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_2.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 3",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
             "pos_x": 32,
             "pos_y": 57,
             "mobile_pos_x": 32,
@@ -692,13 +882,13 @@
         "hotspot_6zeTyR": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "soak-it-in-face-cream",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_4.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 4",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
             "pos_x": 48,
             "pos_y": 64,
             "mobile_pos_x": 48,
@@ -708,13 +898,13 @@
         "hotspot_HXfp7L": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "smear-it-on-face-mask",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_3.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 5",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
             "pos_x": 62,
             "pos_y": 56,
             "mobile_pos_x": 62,
@@ -1016,6 +1206,7 @@
   },
   "order": [
     "main",
+    "product_tlpc_Hp4yda",
     "marquee_bar_BK3y6m",
     "honest_results_VFQtqQ",
     "why_love_eGpM33",

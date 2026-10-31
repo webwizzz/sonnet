@@ -332,27 +332,39 @@
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var designMode = window.Shopify && Shopify.designMode;
 
-      // Background video: play only while on screen and visible at this breakpoint;
-      // never for reduced-motion visitors (the poster/image stays).
+      // Background video: autoplays muted on every device and loops forever, paused only while off screen
+      // or hidden at this breakpoint. Low Power / data-saver modes can refuse autoplay, so a refused play
+      // is retried on the visitor's first touch, scroll or click.
       var videos = Array.prototype.slice.call(root.querySelectorAll('[data-sci-video] video'));
-      var videoIo = null, videoInView = true, mqls = [];
+      var videoIo = null, videoInView = true, mqls = [], kickOn = false;
+      var kickEvents = ['touchstart', 'pointerdown', 'scroll', 'keydown'];
+      function kick() { kickOn = false; kickEvents.forEach(function (t) { window.removeEventListener(t, kick, true); }); syncVideos(); }
+      function armKick() {
+        if (kickOn) return;
+        kickOn = true;
+        kickEvents.forEach(function (t) { window.addEventListener(t, kick, { capture: true, passive: true }); });
+      }
       function syncVideos() {
         videos.forEach(function (v) {
           var shown = getComputedStyle(v.parentNode).display !== 'none';
-          if (!reduce && videoInView && shown) {
+          if (videoInView && shown) {
             v.muted = true;
+            if (!v.paused) return;
             var pr = v.play();
-            if (pr && pr.catch) pr.catch(function () {});
+            if (pr && pr.catch) pr.catch(armKick);
           } else {
             v.pause();
           }
         });
       }
+      function onVisible() { if (!document.hidden) syncVideos(); }
       if (videos.length) {
         videos.forEach(function (v) {
-          v.muted = true; v.setAttribute('muted', ''); v.playsInline = true;
-          if (reduce) { v.removeAttribute('autoplay'); v.autoplay = false; v.pause(); }
+          v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); v.playsInline = true; v.setAttribute('playsinline', ''); v.loop = true;
+          // Some mobile browsers drop `loop` after a stall: restart by hand.
+          v.addEventListener('ended', function () { v.currentTime = 0; syncVideos(); });
         });
+        document.addEventListener('visibilitychange', onVisible);
         if ('IntersectionObserver' in window) {
           videoIo = new IntersectionObserver(function (entries) {
             videoInView = entries[entries.length - 1].isIntersecting;

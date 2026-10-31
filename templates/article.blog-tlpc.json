@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "main": {
+      "type": "article-tlpc",
+      "settings": {
+        "fallback_tag": "Skin Science",
+        "show_image": true,
+        "show_read_time": true,
+        "read_time_label": "Minutes Read",
+        "show_share": true,
+        "share_label": "Share:",
+        "product_heading": "Shop India's First Postbiotic Serum",
+        "product": "rub-it-in-serum-2",
+        "product_image": "shopify://shop_images/06-product-thumb-serum.webp",
+        "add_label": "+Add",
+        "show_author": true,
+        "author_bio": "<p>Writing about the science of skin, the microbiome and building routines that work for Indian skin and climate.</p>",
+        "author_link": "",
+        "author_link_label": "Read More",
+        "author_label": "About the author",
+        "tags_heading": "articles - Tags",
+        "popular_label": "Popular",
+        "popular_tag": "popular",
+        "recent_label": "Recent",
+        "trendy_label": "Trendy",
+        "trendy_tag": "trendy",
+        "posts_per_tab": 4,
+        "tabs_label": "More articles",
+        "tag_font": "montserrat_n5",
+        "show_bundle": true,
+        "bundle_image": "shopify://shop_images/07-bundle-promo.webp",
+        "bundle_heading": "<p>Five products. one <em>complete ritual.</em></p>",
+        "bundle_product": "am-pm-skincare-ritual",
+        "bundle_button": "Add bundle",
+        "bundle_badge": "-10% OFF",
+        "adding_label": "Adding…",
+        "added_label": "Added to your cart.",
+        "error_label": "Could not add to cart.",
+        "color_background": "#fffcf9",
+        "color_panel": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "padding_top": 48,
+        "padding_bottom": 100,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 56,
+        "custom_class": "",
+        "article_view": "blog-tlpc",
+        "listing_view": "blog-tlpc"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

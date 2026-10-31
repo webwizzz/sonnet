@@ -213,7 +213,7 @@
             "option_size_swatch": 34,
             "option_size_radio": 50,
             "option_space": 30,
-            "padding_bottom": 30
+            "padding_bottom": 20
           }
         },
         "price_wMgK3w": {
@@ -229,6 +229,17 @@
           "settings": {
             "enable_payment_button": false,
             "enable_gift_card_recipient": false,
+            "padding_bottom": 20
+          }
+        },
+        "upsell_UgXWDc": {
+          "type": "upsell",
+          "settings": {
+            "title": "Complete your ritual",
+            "upsell_type": "product_grouping",
+            "product": "",
+            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
+            "upsell_list_limit": 2,
             "padding_bottom": 20
           }
         },
@@ -281,15 +292,11 @@
             "custom_liquid": "{% render 'loved-by-thousands' %}"
           }
         },
-        "upsell_UgXWDc": {
-          "type": "upsell",
-          "disabled": true,
+        "shop_combo_s6vt3j": {
+          "type": "shop-combo",
           "settings": {
-            "title": "Complete your ritual",
-            "upsell_type": "product_grouping",
-            "product": "",
-            "upsell_product_list": "{{ product.metafields.custom.bundle_products.value }}",
-            "upsell_list_limit": 2,
+            "title": "96% Bought this combos",
+            "font": "montserrat_n4",
             "padding_bottom": 0
           }
         }
@@ -303,11 +310,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
+        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
-        "upsell_UgXWDc"
+        "shop_combo_s6vt3j"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -369,14 +377,8 @@
         "item_xefDH3": {
           "type": "item",
           "settings": {
+            "icon": "shopify://shop_images/Frame_5.png",
             "title": "No Parabens"
-          }
-        },
-        "item_LfdJDR": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Group_1321321668.webp",
-            "title": "Made In India"
           }
         }
       },
@@ -386,8 +388,7 @@
         "item_iELbjW",
         "item_XD396D",
         "item_PbUEYP",
-        "item_xefDH3",
-        "item_LfdJDR"
+        "item_xefDH3"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -419,6 +420,7 @@
       "block_order": [
         "quinn_shoppable_reel_app_cards_block_qhywQD"
       ],
+      "disabled": true,
       "settings": {
         "text_color": "text--neutral",
         "bg": "palette--light bg--neutral",
@@ -433,13 +435,14 @@
         "testimonial_mQe9DQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/beforee_converted.webp",
-            "after_image": "shopify://shop_images/aafter_converted.webp",
+            "before_image": "shopify://shop_images/Dry_skin_feels_repaired_BEFORE_1.webp",
+            "after_image": "shopify://shop_images/Dry_skin_feels_repaired_AFTER_1.webp",
             "tag": "Sensitive skin",
-            "title": "SKIN THAT STAYSSOFT ALL DAY.",
+            "title": "SKIN THAT STAYS SOFT ALL DAY.",
             "review": "<p>I used to reapply moisturiser twice a day. Within 10 days of Soak It In, my skin stayed comfortable from morning to night. No tight feeling. No dry patches. Just balanced skin.</p>",
             "rating": 4.5,
             "rating_label": "",
+            "avatar": "shopify://shop_images/Ellipse_1337_8.webp",
             "name": "Priya M.",
             "location": "Mumbai"
           }
@@ -447,14 +450,15 @@
         "testimonial_yJtzp7": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/before_converted.webp",
-            "after_image": "shopify://shop_images/after_converted.webp",
-            "tag": "DRY SKIN",
-            "title": "SKIN THAT STAYS SOFT ALL DAY",
-            "review": "<p>&nbsp;I used to reapply moisturiser twice a day. Within 10 days of Soak It In, my skin stayed comfortable from morning to night. No tight feeling. No dry patches. Just balanced skin.</p>",
-            "rating": 5,
+            "before_image": "shopify://shop_images/Combination_Skin_BEFORE_1.webp",
+            "after_image": "shopify://shop_images/Combination_Skin_AFTER_1.webp",
+            "tag": "Combination Skin",
+            "title": "Good cream for my combination skin type",
+            "review": "<p>This cream feels so good on my face. I am now a fan of the the active probiotic ingredients working on my face.</p>",
+            "rating": 4.5,
             "rating_label": "",
-            "name": "Priya M",
+            "avatar": "shopify://shop_images/Ellipse_1337_9.webp",
+            "name": "Varshita A.",
             "location": "Mumbai"
           }
         }
@@ -499,41 +503,41 @@
         "slide_Kw6EWD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1st.png",
-            "label": "SEALS YOUR ROUTINE",
-            "stat": "4",
-            "stat_caption": "Step 4 of 4 - The step that locks everything in",
-            "body": "Most moisturisers sit on the surface and evaporate. Applied over Rub It In Serum, Soak It In acts as a seal — holding the serum's Niacinamide and postbiotic actives at the skin surface so they can work through the day rather than dispersing within hours."
+            "image": "shopify://shop_images/magnific__-format-11-square-16001600-a-real-sharp-unretouche__12970_1.webp",
+            "label": "Lasting daily moisture",
+            "stat": "24%",
+            "stat_caption": "Less water lost from skin",
+            "body": "A cushioned cream that helps hold moisture at the skin surface from morning to night. Isopropyl Myristate gives it a quick-absorbing, non-greasy finish, so it feels rich without the weight."
           }
         },
         "slide_dpPkbw": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_1430107054.png",
-            "label": "CUSHIONED TEXTURE. ZERO GREASINESS.",
-            "stat": "5%",
-            "stat_caption": "Isopropyl Myristate — primary emollient for non-greasy finish",
-            "body": "Isopropyl Myristate at 5% is the emollient responsible for Soak It In's signature texture, rich on the fingers, quick-absorbing on skin. It gives the cream its spreadability and slip while leaving no greasy film. Suitable for morning and evening wear on normal, dry and combination skin."
+            "image": "shopify://shop_images/magnific__-format-11-square-16001600-a-real-sharp-unretouche__12971_1.webp",
+            "label": "Visibly more even tone",
+            "stat": "35–68%",
+            "stat_caption": "Less pigment transfer in lab models",
+            "body": "2% Niacinamide helps support a visibly more even-looking skin tone and helps minimise the look of pores with regular use. As the final step, it quietly keeps working through the day and night."
           }
         },
         "slide_N7Y4Ja": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/3rd.png",
-            "label": "NIACINAMIDE WORKS HERE TOO",
-            "stat": "2%",
-            "stat_caption": "Niacinamide — tone-evening and pore-refining active",
-            "body": "This is not just a moisturiser. At 2%, Niacinamide in Soak It In helps support a visibly more even-looking skin tone and helps minimise the look of enlarged pores with consistent use — layered after the serum's 5% for a complete Vitamin B3 routine across two steps."
+            "image": "shopify://shop_images/magnific__-format-11-square-16001600-a-real-sharp-unretouche__12972_1.webp",
+            "label": "Fine lines look softer",
+            "stat": "82%",
+            "stat_caption": "Said fine lines looked softer",
+            "body": "With consistent use over time, Soak It In may help soften the visible appearance of fine lines. Kokum Butter and Jojoba Seed Oil add conditioning emolliency, so skin feels comfortable and conditioned."
           }
         },
         "slide_qDT3bE": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/4th.png",
-            "label": "CONDITIONING FROM WITHIN THE BASE.",
-            "stat": "1%",
-            "stat_caption": "Lactobacillus Ferment Lysate — postbiotic active maintaining conditioned skin surface",
-            "body": "Kokum Butter — Garcinia Indica Seed Butter, from the seeds of the kokum tree — is naturally rich in stearic acid. Alongside Jojoba Seed Oil, a liquid wax close in structure to skin's own sebum, it conditions the skin's lipid layer without clogging pores. Moisture that holds because the base itself is intelligent."
+            "image": "shopify://shop_images/magnific__-format-11-square-16001600-a-real-sharp-unretouche__12973_1.webp",
+            "label": "Seals in every step",
+            "stat": "75%",
+            "stat_caption": "Said skin felt comfortable all day",
+            "body": "Applied over serum, Soak It In helps hold the previous step in place at the skin surface. It is the last step that helps every other step work better, morning and evening."
           }
         }
       },
@@ -577,7 +581,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-467-400x400.webp",
+            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
             "name": "NIACINAMIDE · 2%",
             "description": "Vitamin B3. Helps support a visibly more even-looking skin tone and helps minimise the look of enlarged pores with consistent use"
           }
@@ -585,7 +589,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
             "name": "LACTOBACILLUS FERMENT LYSATE · 1%",
             "description": "Postbiotic active — inactivated ferment lysate, not a live culture. Helps maintain a conditioned skin surface after application"
           }
@@ -617,7 +621,7 @@
         "ingredient_3rTr6i": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
             "name": "ALOE BARBADENSIS LEAF JUICE · 5%",
             "description": "Hydrates and helps skin feel comfortable and soothed after application"
           }
@@ -821,83 +825,83 @@
         "custom_class": ""
       }
     },
-    "ritual_bundle_LwhN88": {
+    "ritual_bundle_qXfdhR": {
       "type": "ritual-bundle",
       "blocks": {
-        "hotspot_yrej3Y": {
+        "hotspot_BLaBec": {
           "type": "hotspot",
           "settings": {
             "product": "",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
-            "tag": "100% VEGAN",
-            "title": "CLEAN IT OFF\nFace Wash 100ml",
-            "description": "Brightening + hydration + scar healing — all in two drops",
+            "tag": "Lifts Impurities",
+            "title": "Clean It Off Face Wash",
+            "description": "Postbiotic Gel Cleanser | 100ml",
             "pos_x": 60,
             "pos_y": 14,
             "mobile_pos_x": 60,
             "mobile_pos_y": 14
           }
         },
-        "hotspot_gEQAHP": {
+        "hotspot_UHrKxt": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "dab-it-on-toner",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_1.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 2",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Pore-Refining",
+            "title": "Dab It On Toner",
+            "description": "2% Niacinamide - Witch Hazel | 100 ml",
             "pos_x": 47,
             "pos_y": 30,
             "mobile_pos_x": 47,
             "mobile_pos_y": 30
           }
         },
-        "hotspot_U8AAUU": {
+        "hotspot_txyn4i": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "rub-it-in-serum-2",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_2.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 3",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Fades Spots",
+            "title": "Rub It In Serum",
+            "description": "Lactobacillus Ferment Lysate | 30 ml",
             "pos_x": 32,
             "pos_y": 57,
             "mobile_pos_x": 32,
             "mobile_pos_y": 57
           }
         },
-        "hotspot_RrijiF": {
+        "hotspot_qRYPga": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "soak-it-in-face-cream",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_4.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 4",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Lasting Moisture",
+            "title": "Soak It In Face Cream",
+            "description": "Postbiotic Daily Moisturiser | 45ml",
             "pos_x": 48,
             "pos_y": 64,
             "mobile_pos_x": 48,
             "mobile_pos_y": 64
           }
         },
-        "hotspot_WwpGDC": {
+        "hotspot_3ttXQr": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "smear-it-on-face-mask",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/image_52_3.webp",
-            "tag": "100% VEGAN",
-            "title": "Product 5",
-            "description": "Add this product's details in the customizer.",
+            "tag": "Deep Cleanses",
+            "title": "Smear It On Face Mask",
+            "description": "20% Kaolin Clay - Glycolic Acid | 45 ml",
             "pos_x": 62,
             "pos_y": 56,
             "mobile_pos_x": 62,
@@ -906,11 +910,11 @@
         }
       },
       "block_order": [
-        "hotspot_yrej3Y",
-        "hotspot_gEQAHP",
-        "hotspot_U8AAUU",
-        "hotspot_RrijiF",
-        "hotspot_WwpGDC"
+        "hotspot_BLaBec",
+        "hotspot_UHrKxt",
+        "hotspot_txyn4i",
+        "hotspot_qRYPga",
+        "hotspot_3ttXQr"
       ],
       "name": "Ritual Bundle",
       "settings": {
@@ -1626,7 +1630,7 @@
     "whats_inside_carousel_GDxNxB",
     "comparison_table_87q9dy",
     "science_stats_cEpVm6",
-    "ritual_bundle_LwhN88",
+    "ritual_bundle_qXfdhR",
     "microbiome_compare_kdJJf3",
     "testimonial_section_aTEYNa",
     "why_section_pUQnp4",

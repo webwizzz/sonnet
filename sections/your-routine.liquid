@@ -3,7 +3,7 @@
   Design: design-specs/clean-it-off/sections/13-your-routine.md (Figma 203:5587)
   Full-bleed #F6F3EE band (1920 × 778): heading at 100, AM/PM toggle 18px below,
   4 cards (415 × 432, gap 20) 30px below that, 100px bottom.
-  Card: 415 × 340 image (radius 16) + 30px play button, then 10px, number (Tiempos 500 italic 26)
+  Card: 415 × 340 image (radius 16) or autoplaying muted video, then 10px, number (Tiempos 500 italic 26)
   + 8px + title (Montserrat 700 20 uppercase), description (Montserrat 400 16/22.4 @80%).
   Default view shows every step (as in Figma); AM / PM filter the cards. Numbers count per routine.
 {%- endcomment -%}
@@ -28,8 +28,6 @@
   --yrt-text: {{ text_color }};
   --yrt-desc: {{ desc_color }};
   --yrt-accent: {{ s.accent_color }};
-  --yrt-play: {{ s.play_bg }};
-  --yrt-play-icon: {{ s.play_icon }};
   --yrt-h-num: {{ s.heading_size }};
   --yrt-h: {{ s.heading_size }}px;
   --yrt-h-m: {{ s.heading_size_mobile }}px;
@@ -167,53 +165,11 @@
 .yrt__media .yrt__ph { fill: rgba(40, 32, 31, 0.2); }
 @media (hover: hover) and (pointer: fine) {
   .yrt__card:hover .yrt__media img { transform: scale(1.04); }
-  .yrt__card:hover .yrt__play { transform: translate(-50%, -50%) scale(1.12); }
 }
-/* Play: 30px white circle, #78563D triangle (9.6px) */
-.yrt__play {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--yrt-play);
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-.yrt__play::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
-  margin: -4.8px 0 0 -3px;
-  border-style: solid;
-  border-width: 4.8px 0 4.8px 8.3px;
-  border-color: transparent transparent transparent var(--yrt-play-icon);
-}
-/* Soft pulse so the play button invites a click */
-.yrt__play::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1.5px solid var(--yrt-play);
-  opacity: 0;
-  animation: yrt-pulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-}
-@keyframes yrt-pulse { 0% { transform: scale(1); opacity: 0.8; } 70%, 100% { transform: scale(2.1); opacity: 0; } }
-.yrt__play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.yrt__player { position: absolute; inset: 0; z-index: 3; background: #000; }
+/* Autoplaying video over the image (the image shows while the video loads) */
+.yrt__player { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .yrt__player video,
 .yrt__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
-.yrt__media.is-playing .yrt__play { display: none; }
 
 .yrt__meta { margin-top: 10px; }
 .yrt__row { display: flex; align-items: flex-start; gap: 8px; min-height: 38px; }   /* Figma number box 31 × 38 */
@@ -291,8 +247,7 @@
   .yrt__num { font-size: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .yrt__card, .yrt__card.is-in, .yrt__media img, .yrt__play { transition: none; animation: none; }
-  .yrt__play::after { animation: none; }
+  .yrt__card, .yrt__card.is-in, .yrt__media img { transition: none; animation: none; }
 }
 .yrt__empty { margin: 0; text-align: center; font-family: 'Blauer Nue RG', sans-serif; font-size: 15px; color: var(--yrt-text); }
 {% endstyle %}
@@ -364,18 +319,16 @@
                   {{- 'lifestyle-1' | placeholder_svg_tag: 'yrt__ph' -}}
                 {%- endif -%}
                 {%- if has_video -%}
-                  <button type="button" class="yrt__play" data-yrt-play aria-label="{{ s.play_label | escape }}: {{ title | escape }}"></button>
-                  <template data-yrt-tpl>
-                    <div class="yrt__player">
-                      {%- if b.video != blank -%}
-                        {{- b.video | video_tag: autoplay: true, controls: true, playsinline: true, preload: 'auto', image_size: '900x' -}}
-                      {%- elsif b.video_url.type == 'youtube' -%}
-                        <iframe src="https://www.youtube-nocookie.com/embed/{{ b.video_url.id }}?autoplay=1&rel=0&playsinline=1" title="{{ title | escape }}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-                      {%- elsif b.video_url.type == 'vimeo' -%}
-                        <iframe src="https://player.vimeo.com/video/{{ b.video_url.id }}?autoplay=1&dnt=1" title="{{ title | escape }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                      {%- endif -%}
-                    </div>
-                  </template>
+                  {%- comment -%} Browsers only autoplay muted video, so every player is muted + looped. {%- endcomment -%}
+                  <div class="yrt__player">
+                    {%- if b.video != blank -%}
+                      {{- b.video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, preload: 'metadata', image_size: '900x' -}}
+                    {%- elsif b.video_url.type == 'youtube' -%}
+                      <iframe src="https://www.youtube-nocookie.com/embed/{{ b.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ b.video_url.id }}&controls=0&rel=0&playsinline=1" title="{{ title | escape }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                    {%- elsif b.video_url.type == 'vimeo' -%}
+                      <iframe src="https://player.vimeo.com/video/{{ b.video_url.id }}?background=1&autoplay=1&muted=1&loop=1&dnt=1" title="{{ title | escape }}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    {%- endif -%}
+                  </div>
                 {%- endif -%}
               </div>
               <div class="yrt__meta">
@@ -406,15 +359,6 @@
     var MSG = { all: {{ s.showing_all_label | json }}, am: {{ s.am_label | json }}, pm: {{ s.pm_label | json }}, showing: {{ s.showing_label | json }} };
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    function stopPlayers(root, except) {
-      root.querySelectorAll('[data-yrt-media].is-playing').forEach(function (m) {
-        if (m === except) return;
-        var pl = m.querySelector('.yrt__player');
-        if (pl) pl.remove();
-        m.classList.remove('is-playing');
-      });
-    }
-
     function init(root) {
       if (!root || root._yrtInit) return;
       root._yrtInit = true;
@@ -430,7 +374,6 @@
         view = next;
         root.classList.toggle('yrt--filtered', view !== 'all');
         opts.forEach(function (o) { o.setAttribute('aria-pressed', o.getAttribute('data-yrt-opt') === view ? 'true' : 'false'); });
-        stopPlayers(root);
         var show = cards.filter(function (c) { return view === 'all' || c.getAttribute('data-routine') === view; });
         var hideList = cards.filter(function (c) { return show.indexOf(c) === -1 && !c.hidden; });
         clearTimeout(timer);
@@ -453,33 +396,12 @@
         if (opt && root.contains(opt)) {
           var v = opt.getAttribute('data-yrt-opt');
           apply(view === v ? 'all' : v, true);
-          return;
-        }
-        var play = e.target.closest('[data-yrt-play]');
-        if (play && root.contains(play)) {
-          var media = play.closest('[data-yrt-media]');
-          var tpl = media.querySelector('[data-yrt-tpl]');
-          if (!tpl) return;
-          stopPlayers(root, media);
-          media.appendChild(tpl.content.cloneNode(true));
-          media.classList.add('is-playing');
-          var v2 = media.querySelector('.yrt__player video');
-          if (v2) {
-            var pr = v2.play(); if (pr && pr.catch) pr.catch(function () {});
-            v2.focus();
-          } else {
-            var fr = media.querySelector('.yrt__player iframe'); if (fr) fr.focus();
-          }
         }
       }
       root.addEventListener('click', onClick);
 
-      // Stop playback when the section scrolls away
-      var io = null;
-      if ('IntersectionObserver' in window) {
-        io = new IntersectionObserver(function (en) { if (!en[en.length - 1].isIntersecting) stopPlayers(root); });
-        io.observe(root);
-      }
+      // Reduced motion: hold the uploaded videos on their first frame instead of autoplaying.
+      if (reduce.matches) root.querySelectorAll('.yrt__player video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
 
       root._yrtShow = function (card) {
         var r = card.getAttribute('data-routine');
@@ -488,9 +410,7 @@
       };
       root._yrtCleanup = function () {
         root.removeEventListener('click', onClick);
-        if (io) io.disconnect();
         clearTimeout(timer);
-        stopPlayers(root);
         root._yrtInit = false;
       };
     }
@@ -552,11 +472,8 @@
     { "type": "color", "id": "color_band", "label": "Band background", "default": "#F6F3EE" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#28201F" },
     { "type": "color", "id": "accent_color", "label": "Numbers and active toggle", "default": "#78563D" },
-    { "type": "color", "id": "play_bg", "label": "Play button", "default": "#FFFFFF" },
-    { "type": "color", "id": "play_icon", "label": "Play icon", "default": "#78563D" },
     { "type": "header", "content": "Accessibility" },
     { "type": "text", "id": "toggle_label", "label": "Toggle group name", "default": "Routine time" },
-    { "type": "text", "id": "play_label", "label": "Play button", "default": "Play video" },
     { "type": "text", "id": "showing_label", "label": "Announcement when filtered", "info": "[routine] is replaced by AM or PM.", "default": "Showing [routine] steps" },
     { "type": "text", "id": "showing_all_label", "label": "Announcement when showing all", "default": "Showing all steps" },
     { "type": "header", "content": "Spacing" },
@@ -585,7 +502,7 @@
           "default": "am"
         },
         { "type": "image_picker", "id": "image", "label": "Image", "info": "415 × 340 in the design. Falls back to the video's cover image." },
-        { "type": "video", "id": "video", "label": "Video", "info": "Plays in the card when the play button is pressed." },
+        { "type": "video", "id": "video", "label": "Video", "info": "Autoplays in the card, muted and looping." },
         { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
         { "type": "text", "id": "title", "label": "Title", "info": "Shown in capitals. Falls back to the product title.", "default": "Clean It Off Face Wash" },
         { "type": "textarea", "id": "description", "label": "Description", "default": "Removes overnight sebum and surface impurities" },

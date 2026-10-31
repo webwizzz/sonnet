@@ -1,0 +1,357 @@
+{%- comment -%}
+  About "Safety": heading, dark "All Products" card on the left, warnings panel on the right.
+  Design: Figma QvQ11convTbPladsyhAg96, nodes 249:541 (heading) and 249:542 (About Us page).
+  Desktop 1920: heading 58 centred, 30px gap, then a 1720-wide row of height 546:
+  - left card 414 wide, radius 8, #2A1F19 + product photo, title Blauer Nue MD 28 at 30,
+    note Blauer Nue 200 16/22.4 (306 wide) pinned to the bottom;
+  - 20px gap, then a #F5EEE6 panel (radius 8): two 408px warning columns either side of a white
+    350 × 506 product card (radius 6), 30px gutters, 20px padding. Warnings are Blauer Nue 200
+    18/25.2 @85% with a disc bullet (27px indent), divided by 1px lines; rows line up across columns.
+  Blocks: "warning" (left or right column, richtext so a lead-in can be bold).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign tag_font = s.tag_font
+  assign left_count = 0
+  assign right_count = 0
+  for block in section.blocks
+    if block.settings.column == 'right'
+      assign right_count = right_count | plus: 1
+    else
+      assign left_count = left_count | plus: 1
+    endif
+  endfor
+  assign rows = left_count | at_least: right_count | at_least: 1
+-%}
+
+{% style %}
+{%- if tag_font != blank -%}{{ tag_font | font_face: font_display: 'swap' }}{%- endif -%}
+#shopify-section-{{ section.id }} {
+  --asa-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --asa-text: {{ s.color_text }};
+  --asa-item: {{ s.color_text | color_modify: 'alpha', 0.85 }};
+  --asa-line: {{ s.color_text | color_modify: 'alpha', 0.1 }};
+  --asa-panel: {{ s.color_panel }};
+  --asa-dark: {{ s.color_dark_card }};
+  --asa-dark-text: {{ s.color_dark_text }};
+  --asa-h: {{ s.heading_size }};
+  --asa-rows: {{ rows }};
+  --asa-tag-font: {% if tag_font != blank %}{{ tag_font.family }}, {{ tag_font.fallback_families }}{% else %}'Montserrat', sans-serif{% endif %};
+  --asa-tag-weight: {% if tag_font != blank %}{{ tag_font.weight }}{% else %}500{% endif %};
+  background-color: {{ s.color_background }};
+}
+#shopify-section-{{ section.id }} .asa__panel {
+  grid-template-rows: {% if rows > 1 %}repeat({{ rows | minus: 1 }}, auto) {% endif %}1fr;
+}
+#shopify-section-{{ section.id }} .asa {
+  padding-top: max({{ s.mobile_padding_top }}px, calc({{ s.padding_top }} * var(--asa-u)));
+  padding-bottom: max({{ s.mobile_padding_bottom }}px, calc({{ s.padding_bottom }} * var(--asa-u)));
+}
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .asa {
+    padding-top: {{ s.mobile_padding_top }}px;
+    padding-bottom: {{ s.mobile_padding_bottom }}px;
+  }
+}
+{% endstyle %}
+
+{% style %}
+.asa *, .asa *::before, .asa *::after { box-sizing: border-box; }
+.asa { color: var(--asa-text); }
+.asa .asa__heading {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(28px, calc(var(--asa-h) * var(--asa-u)));
+  line-height: 1.207;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--asa-text);
+  text-transform: none;
+}
+.asa .asa__heading p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.asa .asa__heading em,
+.asa .asa__heading i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+
+.asa__row {
+  display: grid;
+  grid-template-columns: calc(414 * var(--asa-u)) 1fr;
+  gap: calc(20 * var(--asa-u));
+  margin-top: max(20px, calc(30 * var(--asa-u)));
+}
+
+/* Left: dark "All Products" card */
+.asa__feature {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(546 * var(--asa-u));
+  padding: calc(30 * var(--asa-u)) calc(54 * var(--asa-u)) calc(34 * var(--asa-u));
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--asa-dark);
+  color: var(--asa-dark-text);
+  text-align: center;
+  isolation: isolate;
+}
+.asa__feature-media { position: absolute; inset: 0; z-index: -1; }
+.asa__feature-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.asa .asa__feature-title {
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(22px, calc(28 * var(--asa-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--asa-dark-text);
+  text-transform: none;
+}
+.asa .asa__feature-note {
+  max-width: max(184px, calc(306 * var(--asa-u) + 2px));
+  margin: 0;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(14px, calc(16 * var(--asa-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--asa-dark-text);
+}
+
+/* Right: warnings panel */
+.asa__panel {
+  display: grid;
+  grid-template-columns: 1fr calc(350 * var(--asa-u)) 1fr;
+  column-gap: calc(30 * var(--asa-u));
+  padding: 20px calc(30 * var(--asa-u));
+  border-radius: 8px;
+  background: var(--asa-panel);
+}
+.asa__product {
+  grid-column: 2;
+  grid-row: 1 / span var(--asa-rows);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(506 * var(--asa-u));
+  padding: calc(30 * var(--asa-u)) 20px calc(36 * var(--asa-u));
+  border-radius: 6px;
+  background: #FFFFFF;
+  text-align: center;
+}
+.asa .asa__product-tag {
+  display: inline-flex;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--asa-text);
+  border-radius: 30px;
+  font-family: var(--asa-tag-font);
+  font-weight: var(--asa-tag-weight);
+  font-size: max(12px, calc(16 * var(--asa-u)));
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--asa-text);
+}
+.asa__product-media {
+  position: relative;
+  width: calc(216 * var(--asa-u));
+  height: calc(228 * var(--asa-u));
+  margin-top: calc(76 * var(--asa-u));
+}
+.asa__product-media .asa__shadow {
+  position: absolute;
+  top: calc(155 * var(--asa-u));
+  left: calc(-6 * var(--asa-u));
+  width: calc(228 * var(--asa-u));
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+}
+.asa__product-media .asa__product-img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+.asa .asa__product-title {
+  margin: auto 0 0;
+  padding-top: 20px;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: max(17px, calc(20 * var(--asa-u)));
+  line-height: 1.26;
+  color: #010101;
+  text-transform: uppercase;
+}
+.asa .asa__product-meta {
+  margin: max(6px, calc(9 * var(--asa-u))) 0 0;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: max(13px, calc(14 * var(--asa-u)));
+  line-height: 1.5;
+  color: rgba(1, 1, 1, 0.75);
+}
+
+.asa__item {
+  margin: 0;
+  padding: calc(34 * var(--asa-u)) 0 calc(33 * var(--asa-u));
+  border-bottom: 1px solid var(--asa-line);
+}
+.asa__item--r1 { padding-top: 20px; }
+.asa__item--last { border-bottom: 0; }
+.asa__item--left { grid-column: 1; }
+.asa__item--right { grid-column: 3; }
+.asa .asa__item-text {
+  position: relative;
+  padding-left: 27px;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(15px, calc(18 * var(--asa-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--asa-item);
+}
+.asa .asa__item-text::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 11px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.asa .asa__item-text p { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.asa .asa__item-text strong,
+.asa .asa__item-text b { font-family: 'Blauer Nue RG', sans-serif; font-weight: 400; color: var(--asa-text); }
+
+@media screen and (max-width: 1100px) {
+  .asa__row { grid-template-columns: 1fr; }
+  .asa__feature { min-height: 420px; }
+}
+@media screen and (max-width: 768px) {
+  .asa__feature { min-height: 380px; padding: 24px 20px; }
+  .asa .asa__feature-note { max-width: 320px; }
+  .asa__panel { grid-template-columns: 1fr; grid-template-rows: none; padding: 16px; }
+  .asa__product { grid-column: 1; grid-row: auto; min-height: 0; padding: 24px 16px 28px; margin-bottom: 8px; }
+  .asa__product-media { width: 180px; height: 190px; margin-top: 28px; }
+  .asa__item,
+  .asa__item--r1 { grid-column: 1; grid-row: auto !important; padding: 18px 0; }
+  .asa__item--last { border-bottom: 1px solid var(--asa-line); }
+  .asa__item:last-child { border-bottom: 0; }
+}
+{% endstyle %}
+
+<div class="asa {{ s.custom_class | escape }}">
+  <div class="main-container">
+    {%- if s.heading != blank -%}<h2 class="asa__heading">{{ s.heading }}</h2>{%- endif -%}
+
+    <div class="asa__row">
+      <div class="asa__feature">
+        <div class="asa__feature-media">
+          {%- if s.feature_image != blank -%}
+            {{ s.feature_image | image_url: width: 828 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 22vw, 100vw', widths: '414, 600, 828', alt: s.feature_image.alt }}
+          {%- endif -%}
+        </div>
+        {%- if s.feature_title != blank -%}<h3 class="asa__feature-title">{{ s.feature_title | escape }}</h3>{%- endif -%}
+        {%- if s.feature_text != blank -%}<p class="asa__feature-note">{{ s.feature_text | escape }}</p>{%- endif -%}
+      </div>
+
+      <div class="asa__panel">
+        <div class="asa__product">
+          {%- if s.product_tag != blank -%}<p class="asa__product-tag">{{ s.product_tag | escape }}</p>{%- endif -%}
+          <div class="asa__product-media">
+            <img class="asa__shadow" src="{{ 'about-safety-shadow.svg' | asset_url }}" alt="" width="228" height="81" loading="lazy">
+            {%- if s.product_image != blank -%}
+              {{ s.product_image | image_url: width: 648 | image_tag: class: 'asa__product-img', loading: 'lazy', sizes: '220px', widths: '220, 440, 648', alt: s.product_image.alt }}
+            {%- endif -%}
+          </div>
+          {%- if s.product_title != blank -%}<h3 class="asa__product-title">{{ s.product_title | escape }}</h3>{%- endif -%}
+          {%- if s.product_meta != blank -%}<p class="asa__product-meta">{{ s.product_meta | escape }}</p>{%- endif -%}
+        </div>
+
+        {%- assign li = 0 -%}
+        {%- assign ri = 0 -%}
+        {%- for item in section.blocks -%}
+          {%- liquid
+            if item.settings.column == 'right'
+              assign ri = ri | plus: 1
+              assign side = 'right'
+              assign row = ri
+              assign total = right_count
+            else
+              assign li = li | plus: 1
+              assign side = 'left'
+              assign row = li
+              assign total = left_count
+            endif
+          -%}
+          <div class="asa__item asa__item--{{ side }}{% if row == 1 %} asa__item--r1{% endif %}{% if row == total %} asa__item--last{% endif %}" style="grid-row: {{ row }};" {{ item.shopify_attributes }}>
+            <div class="asa__item-text">{{ item.settings.text }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About safety",
+  "tag": "section",
+  "class": "about-safety-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Safety</p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "header", "content": "Left card" },
+    { "type": "image_picker", "id": "feature_image", "label": "Image", "info": "414 × 546. Design export: 09-safety-all-products.webp." },
+    { "type": "text", "id": "feature_title", "label": "Title", "default": "All Products" },
+    { "type": "textarea", "id": "feature_text", "label": "Note", "default": "Patch test on the inner forearm 24 hours before first full use. Discontinue use if irritation occurs. For external use only. Keep out of reach of children." },
+    { "type": "header", "content": "Product card" },
+    { "type": "text", "id": "product_tag", "label": "Tag", "default": "Product warnings" },
+    { "type": "image_picker", "id": "product_image", "label": "Image", "info": "Transparent cut-out. Design export: 09-safety-face-mask.webp." },
+    { "type": "text", "id": "product_title", "label": "Title", "default": "Smear It On Face Mask" },
+    { "type": "text", "id": "product_meta", "label": "Subtitle", "default": "20% Kaolin Clay - Glycolic Acid | 45 ml" },
+    { "type": "font_picker", "id": "tag_font", "label": "Tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "color", "id": "color_panel", "label": "Warnings panel", "default": "#F5EEE6" },
+    { "type": "color", "id": "color_dark_card", "label": "Left card", "default": "#2A1F19" },
+    { "type": "color", "id": "color_dark_text", "label": "Left card text", "default": "#F5EEE6" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 48 },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "warning",
+      "name": "Warning",
+      "settings": [
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left of the product" }, { "value": "right", "label": "Right of the product" } ], "default": "left" },
+        { "type": "richtext", "id": "text", "label": "Text", "info": "Bold text renders in the darker regular weight (e.g. \"Sun alert:\").", "default": "<p>Patch test before first use. For external use only. Keep out of reach of children.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About safety",
+      "blocks": [
+        { "type": "warning", "settings": { "column": "left", "text": "<p>Contains Glycolic Acid, an alpha hydroxy acid. Do not use on damaged or broken skin.</p>" } },
+        { "type": "warning", "settings": { "column": "left", "text": "<p><strong>Sun alert:</strong> this product contains an alpha hydroxy acid that may increase your skin’s sensitivity to the sun, and particularly the possibility of sunburn. Use sunscreen and limit sun exposure while using this product and for a week afterwards.</p>" } },
+        { "type": "warning", "settings": { "column": "left", "text": "<p>Do not use in combination with other products containing alpha or beta hydroxy acids in the same session.</p>" } },
+        { "type": "warning", "settings": { "column": "right", "text": "<p>Avoid contact with the eyes. If contact occurs, rinse immediately with plenty of water.</p>" } },
+        { "type": "warning", "settings": { "column": "right", "text": "<p>Not to be used on children.</p>" } },
+        { "type": "warning", "settings": { "column": "right", "text": "<p>Patch test before first use. For external use only. Keep out of reach of children.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,638 @@
+{
+  "sections": {
+    "about_hero": {
+      "type": "about-hero",
+      "settings": {
+        "tag": "About us",
+        "heading": "<p>Nourish. Balance. <em>Glow.</em></p>",
+        "heading_size": 65,
+        "image": "shopify://shop_images/01-hero-products.webp",
+        "title": "Postbiotic-powered skincare, formulated to work with your skin — not strip it back.",
+        "text": "<p>Sonnet Wellness is a five-step postbiotic skincare ritual built around Lactobacillus Ferment Lysate alongside established actives — Niacinamide, Glycolic Acid and Aloe Vera — formulated for all skin types, with every ingredient listed in full.</p>",
+        "tag_font": "montserrat_n5",
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "card_gradient_top": "#27201f",
+        "card_gradient_mid": "#27201d",
+        "card_gradient_bottom": "#2c221b",
+        "color_card_text": "#ffffff",
+        "color_button": "#ffffff",
+        "color_button_text": "#000000",
+        "color_accent": "#78563d",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "mobile_padding_top": 32,
+        "mobile_padding_bottom": 32,
+        "custom_class": ""
+      },
+      "blocks": {
+        "button_explore": {
+          "type": "button",
+          "settings": {
+            "label": "Explore the Ritual",
+            "link": "#about-ritual"
+          }
+        },
+        "button_shop": {
+          "type": "button",
+          "settings": {
+            "label": "Shop All Products",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "button_explore",
+        "button_shop"
+      ]
+    },
+    "marquee_why_us": {
+      "type": "marquee-bar",
+      "settings": {
+        "add_class": "",
+        "label": "WHY US?",
+        "background_color": "#f3ede7",
+        "marquee_speed": 6,
+        "padding_top_desktop": 18,
+        "padding_bottom_desktop": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 14
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_1_565b7b0c-de56-48be-abbe-a421b11047d7.webp",
+            "title": "Probiotic + Prebiotic Skincare"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321669.webp",
+            "title": "No Harsh Chemicals"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
+            "title": "For All Skin Types"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_1.png",
+            "title": "100% vegan & cruelty free"
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_2.png",
+            "title": "No GMO Ingredients"
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668_3.png",
+            "title": "Made In India"
+          }
+        },
+        "item_7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1321321668.png",
+            "title": "Dermatologically Tested"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6",
+        "item_7"
+      ]
+    },
+    "about_founder": {
+      "type": "about-founder",
+      "settings": {
+        "image": "shopify://shop_images/03-founder-portrait.webp",
+        "image_position": "left",
+        "tag": "Our story",
+        "quote": "“We started Sonnet Wellness because we believed skincare could work with skin, not against it.”",
+        "quote_size": 48,
+        "text": "<p>Rather than stripping everything away and starting from scratch, we wanted to help skin maintain its own natural balance.</p>",
+        "name": "Cameron Williamson",
+        "role": "Founder for Sonnet Welness",
+        "color_panel": "#f6f3ee",
+        "color_text": "#28201f",
+        "color_tag": "#78563d",
+        "color_tag_text": "#ffffff",
+        "custom_class": ""
+      }
+    },
+    "about_philosophy": {
+      "type": "about-philosophy",
+      "settings": {
+        "tag": "Philosophy",
+        "heading": "<p>It starts with <em>the skin barrier.</em></p>",
+        "heading_size": 58,
+        "image": "shopify://shop_images/04-philosophy-women.webp",
+        "text": "<p>Our formulations start with the skin barrier. Rather than stripping everything away and starting over, each product is built to help maintain a comfortable, conditioned skin surface — pairing postbiotic Lactobacillus Ferment Lysate with actives already established in cosmetic science, like Niacinamide and Glycolic Acid, at concentrations backed by their own formulation data.</p>",
+        "enable_parallax": true,
+        "pin_distance": 420,
+        "zoom": 6,
+        "show_card": true,
+        "card_image": "shopify://shop_images/04-kokum-berries.webp",
+        "show_shadows": true,
+        "card_tag": "An Indian ingredient, a postbiotic method",
+        "card_title": "Garcinia Indica (Kokum) Seed Butter",
+        "card_text": "Formulated alongside 1% Lactobacillus Ferment Lysate in Soak It In Face Cream.",
+        "tag_font": "montserrat_n5",
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_card": "#f5eee6",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      }
+    },
+    "about_video": {
+      "type": "about-video",
+      "settings": {
+        "poster": "shopify://shop_images/05-video-poster.webp",
+        "overlay_opacity": 100,
+        "loop": false,
+        "play_label": "Play video",
+        "color_background": "#fffcf9",
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 32,
+        "custom_class": ""
+      }
+    },
+    "about_ritual": {
+      "type": "about-ritual",
+      "settings": {
+        "heading": "<p>The five-step <em>ritual.</em></p>",
+        "heading_size": 58,
+        "subheading": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+        "default_image": "shopify://shop_images/06-ritual-feature.webp",
+        "show_toggle": true,
+        "default_view": "am",
+        "am_label": "AM",
+        "pm_label": "PM",
+        "step_label": "Step",
+        "toggle_label": "Routine time",
+        "tag_font": "montserrat_n5",
+        "color_background": "#f5eee6",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_card": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": "",
+        "anchor_id": "about-ritual"
+      },
+      "blocks": {
+        "step_clean": {
+          "type": "step",
+          "settings": {
+            "routine": "both",
+            "product": "clean-it-off-face-wash",
+            "thumb": "shopify://shop_images/06-step-01-clean-it-off.webp",
+            "title": "Clean It Off Face Wash",
+            "meta": "Postbiotic Gel Cleanser | 100ml",
+            "price_text": "Rs. 1,199",
+            "compare_text": "Rs. 1,199",
+            "panel_title": "",
+            "description": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+            "row_1_label": "Format",
+            "row_1_value": "Gel face wash - 100ml",
+            "row_2_label": "Key active",
+            "row_2_value": "Postbiotic ferment lysate 1%",
+            "row_3_label": "Frequency",
+            "row_3_value": "Twice daily",
+            "button_label": "View product",
+            "link": ""
+          }
+        },
+        "step_mask": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "product": "smear-it-on-face-mask",
+            "thumb": "shopify://shop_images/09-safety-face-mask.webp",
+            "title": "Smear It On Face Mask",
+            "meta": "20% Kaolin Clay - Glycolic Acid | 45 ml",
+            "price_text": "Rs. 1,199",
+            "compare_text": "Rs. 1,199",
+            "panel_title": "",
+            "description": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+            "row_1_label": "Format",
+            "row_1_value": "Rinse-off clay mask - 45 ml",
+            "row_2_label": "Key active",
+            "row_2_value": "20% Kaolin Clay, Glycolic Acid",
+            "row_3_label": "Frequency",
+            "row_3_value": "1–2 times a week",
+            "button_label": "View product",
+            "link": ""
+          }
+        },
+        "step_toner": {
+          "type": "step",
+          "settings": {
+            "routine": "both",
+            "product": "dab-it-on-toner",
+            "thumb": "shopify://shop_images/06-step-02-dab-it-on.webp",
+            "title": "Dab It On Toner",
+            "meta": "2% Niacinamide - Witch Hazel | 100 ml",
+            "price_text": "Rs. 1,199",
+            "compare_text": "Rs. 1,199",
+            "panel_title": "",
+            "description": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+            "row_1_label": "Format",
+            "row_1_value": "Toner - 100 ml",
+            "row_2_label": "Key active",
+            "row_2_value": "2% Niacinamide, Witch Hazel",
+            "row_3_label": "Frequency",
+            "row_3_value": "Twice daily",
+            "button_label": "View product",
+            "link": ""
+          }
+        },
+        "step_serum": {
+          "type": "step",
+          "settings": {
+            "routine": "both",
+            "product": "rub-it-in-serum-2",
+            "thumb": "shopify://shop_images/06-step-03-rub-it-in.webp",
+            "title": "Rub It In Serum",
+            "meta": "Lactobacillus Ferment Lysate | 30 ml",
+            "price_text": "Rs. 1,199",
+            "compare_text": "Rs. 1,199",
+            "panel_title": "",
+            "description": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+            "row_1_label": "Format",
+            "row_1_value": "Serum - 30 ml",
+            "row_2_label": "Key active",
+            "row_2_value": "Lactobacillus Ferment Lysate",
+            "row_3_label": "Frequency",
+            "row_3_value": "Twice daily",
+            "button_label": "View product",
+            "link": ""
+          }
+        },
+        "step_cream": {
+          "type": "step",
+          "settings": {
+            "routine": "both",
+            "product": "soak-it-in-face-cream",
+            "thumb": "shopify://shop_images/06-step-04-soak-it-in.webp",
+            "title": "Soak It In Face Cream",
+            "meta": "Postbiotic Daily Moisturiser | 45ml",
+            "price_text": "Rs. 1,199",
+            "compare_text": "Rs. 1,199",
+            "panel_title": "",
+            "description": "Each product works as a standalone step; the five-step ritual is one option, not a requirement.",
+            "row_1_label": "Format",
+            "row_1_value": "Face cream - 45ml",
+            "row_2_label": "Key active",
+            "row_2_value": "Postbiotic ferment lysate 1%",
+            "row_3_label": "Frequency",
+            "row_3_value": "Twice daily",
+            "button_label": "View product",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_clean",
+        "step_mask",
+        "step_toner",
+        "step_serum",
+        "step_cream"
+      ]
+    },
+    "about_mission": {
+      "type": "about-mission",
+      "settings": {
+        "tag": "Our mission",
+        "heading": "<p>To help skin become genuinely healthy -</p><p><em>not just look good for a day.</em></p>",
+        "heading_size": 58,
+        "image": "shopify://shop_images/07-mission-portrait.webp",
+        "show_doodle": true,
+        "text": "<p>Our formulations start with the skin barrier. Rather than stripping everything away and starting over, each product is built to help maintain a comfortable, conditioned skin surface — pairing postbiotic Lactobacillus Ferment Lysate with actives already established in cosmetic science, like Niacinamide and Glycolic Acid, at concentrations backed by their own formulation data.</p>",
+        "enable_stack": true,
+        "scroll_per_card": 480,
+        "tag_font": "montserrat_n5",
+        "color_background": "#28201f",
+        "color_text": "#fffcf9",
+        "color_card": "#fffcf9",
+        "color_card_text": "#28201f",
+        "custom_class": ""
+      },
+      "blocks": {
+        "value_transparency": {
+          "type": "value",
+          "settings": {
+            "icon": "transparency",
+            "title": "Transparency",
+            "text": "Every ingredient list is published in full, as selectable text, on every product page, never as an image."
+          }
+        },
+        "value_claims": {
+          "type": "value",
+          "settings": {
+            "icon": "claims",
+            "title": "Claims we can stand behind",
+            "text": "Every benefit statement carries its qualifier (\"helps,\" \"with regular use\") and no percentage is published without the data behind it."
+          }
+        },
+        "value_skin": {
+          "type": "value",
+          "settings": {
+            "icon": "skin-type",
+            "title": "Formulated for every skin type",
+            "text": "Including sensitive and blemish-prone skin."
+          }
+        },
+        "value_gentle": {
+          "type": "value",
+          "settings": {
+            "icon": "gentle",
+            "title": "Gentleness over stripping",
+            "text": "Alcohol-free where formulated, buffered surfactant systems, pH-considered formulas."
+          }
+        },
+        "value_cruelty": {
+          "type": "value",
+          "settings": {
+            "icon": "cruelty-free",
+            "title": "Cruelty-free and vegan",
+            "text": "No animal testing, no animal-derived ingredients, across every product."
+          }
+        }
+      },
+      "block_order": [
+        "value_transparency",
+        "value_claims",
+        "value_skin",
+        "value_gentle",
+        "value_cruelty"
+      ]
+    },
+    "ingredient_transparency": {
+      "type": "whats-inside-carousel",
+      "settings": {
+        "custom_class": "",
+        "heading": "<p>Ingredient <em>transparency.</em></p>",
+        "subheading": "Full ingredient lists live on each product page, as selectable text — never as an image.",
+        "heading_size": 58,
+        "heading_size_mobile": 28,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_progress_ring": true,
+        "active_size": 400,
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_accent": "#78563d",
+        "color_arrow_bg": "#f6f3ee",
+        "color_ring_track": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      },
+      "blocks": {
+        "ing_lacto": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/08-ing-lactobacillus.webp",
+            "name": "LACTOBACILLUS FERMENT LYSATE - 1%",
+            "description": "A postbiotic ingredient — an inactivated bacterial ferment lysate, not a live culture. Helps maintain a comfortable, conditioned skin surface."
+          }
+        },
+        "ing_niacinamide": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/08-ing-niacinamide.webp",
+            "name": "NIACINAMIDE 2–5%",
+            "description": "Helps support the appearance of an even skin tone and helps minimise the visible appearance of enlarged pores, with regular use."
+          }
+        },
+        "ing_aloe": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/08-ing-aloe-vera.webp",
+            "name": "ALOE BARBADENSIS LEAF JUICE 5%",
+            "description": "Soothing humectant; helps hydrate and keep skin comfortable."
+          }
+        },
+        "ing_kaolin": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/08-ing-kaolin-clay.webp",
+            "name": "KAOLIN CLAY 20%",
+            "description": "A mineral clay that helps absorb excess surface sebum and lift pore debris during masking."
+          }
+        },
+        "ing_glycolic": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/08-ing-glycolic-acid.webp",
+            "name": "GLYCOLIC ACID 0.1–4%",
+            "description": "At trace levels, supports the formula's optimal pH; at 4% in the rinse-off mask, an AHA that helps loosen dead surface cells for a smoother-looking texture."
+          }
+        }
+      },
+      "block_order": [
+        "ing_lacto",
+        "ing_niacinamide",
+        "ing_aloe",
+        "ing_kaolin",
+        "ing_glycolic"
+      ]
+    },
+    "about_safety": {
+      "type": "about-safety",
+      "settings": {
+        "heading": "<p>Safety</p>",
+        "heading_size": 58,
+        "feature_image": "shopify://shop_images/09-safety-all-products.webp",
+        "feature_title": "All Products",
+        "feature_text": "Patch test on the inner forearm 24 hours before first full use. Discontinue use if irritation occurs. For external use only. Keep out of reach of children.",
+        "product_tag": "Product warnings",
+        "product_image": "shopify://shop_images/09-safety-face-mask.webp",
+        "product_title": "Smear It On Face Mask",
+        "product_meta": "20% Kaolin Clay - Glycolic Acid | 45 ml",
+        "tag_font": "montserrat_n5",
+        "color_background": "#fffcf9",
+        "color_text": "#28201f",
+        "color_panel": "#f5eee6",
+        "color_dark_card": "#2a1f19",
+        "color_dark_text": "#f5eee6",
+        "padding_top": 108,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      },
+      "blocks": {
+        "warn_glycolic": {
+          "type": "warning",
+          "settings": {
+            "column": "left",
+            "text": "<p>Contains Glycolic Acid, an alpha hydroxy acid. Do not use on damaged or broken skin.</p>"
+          }
+        },
+        "warn_sun": {
+          "type": "warning",
+          "settings": {
+            "column": "left",
+            "text": "<p><strong>Sun alert:</strong> this product contains an alpha hydroxy acid that may increase your skin’s sensitivity to the sun, and particularly the possibility of sunburn. Use sunscreen and limit sun exposure while using this product and for a week afterwards.</p>"
+          }
+        },
+        "warn_combine": {
+          "type": "warning",
+          "settings": {
+            "column": "left",
+            "text": "<p>Do not use in combination with other products containing alpha or beta hydroxy acids in the same session.</p>"
+          }
+        },
+        "warn_eyes": {
+          "type": "warning",
+          "settings": {
+            "column": "right",
+            "text": "<p>Avoid contact with the eyes. If contact occurs, rinse immediately with plenty of water.</p>"
+          }
+        },
+        "warn_children": {
+          "type": "warning",
+          "settings": {
+            "column": "right",
+            "text": "<p>Not to be used on children.</p>"
+          }
+        },
+        "warn_patch": {
+          "type": "warning",
+          "settings": {
+            "column": "right",
+            "text": "<p>Patch test before first use. For external use only. Keep out of reach of children.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "warn_glycolic",
+        "warn_sun",
+        "warn_combine",
+        "warn_eyes",
+        "warn_children",
+        "warn_patch"
+      ]
+    },
+    "faq": {
+      "type": "faq-know-first",
+      "settings": {
+        "heading": "<p>Frequently asked.</p>",
+        "heading_size": 59,
+        "heading_size_mobile": 28,
+        "open_first": true,
+        "allow_multiple_open": false,
+        "show_numbers": true,
+        "enable_schema": true,
+        "decor_image": "shopify://shop_images/faq-bubbles-decor-624x544.webp",
+        "show_decor_left": true,
+        "show_decor_right": true,
+        "decor_opacity": 10,
+        "color_background": "#f6f3ee",
+        "heading_color": "#28201f",
+        "card_bg": "#ffffff",
+        "card_opacity": 80,
+        "number_color": "#78563d",
+        "question_color": "#010101",
+        "answer_color": "#010101",
+        "toggle_bg": "#78563d",
+        "toggle_icon_color": "#ffffff",
+        "content_width": 1060,
+        "color_page": "#fffcf9",
+        "spacing_top": 0,
+        "spacing_bottom": 0,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "custom_class": ""
+      },
+      "blocks": {
+        "faq_vegan": {
+          "type": "question",
+          "settings": {
+            "question": "Is Sonnet Wellness vegan and cruelty-free?",
+            "answer": "<p>Yes. Every product is 100% vegan and cruelty-free.</p>"
+          }
+        },
+        "faq_postbiotic": {
+          "type": "question",
+          "settings": {
+            "question": "What does \"postbiotic\" mean?",
+            "answer": "<p>A postbiotic is an inactivated bacterial ferment lysate, not a live culture. Our postbiotic, Lactobacillus Ferment Lysate, helps maintain a comfortable, conditioned skin surface.</p>"
+          }
+        },
+        "faq_sensitive": {
+          "type": "question",
+          "settings": {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Yes. Every product is formulated for all skin types, including sensitive and blemish-prone skin. Patch test before first use.</p>"
+          }
+        },
+        "faq_steps": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to use all five steps?",
+            "answer": "<p>No. Each product works as a standalone step; the five-step ritual is one option, not a requirement.</p>"
+          }
+        },
+        "faq_made": {
+          "type": "question",
+          "settings": {
+            "question": "Where are Sonnet Wellness products made?",
+            "answer": "<p>Every Sonnet Wellness product is made in India.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_vegan",
+        "faq_postbiotic",
+        "faq_sensitive",
+        "faq_steps",
+        "faq_made"
+      ]
+    }
+  },
+  "order": [
+    "about_hero",
+    "marquee_why_us",
+    "about_founder",
+    "about_philosophy",
+    "about_video",
+    "about_ritual",
+    "about_mission",
+    "ingredient_transparency",
+    "about_safety",
+    "faq"
+  ]
+}

@@ -137,9 +137,25 @@
   line-height: 1; /* keep the line box at the roman 120% (Figma 70px) */
 }
 
+/* Optional subheading (About page, Figma 249:521): Blauer Nue 200 18/1.4 @85%, 16px under the heading, 40px above the circles */
+.wis .wis__subheading {
+  margin: max(10px, calc(16 * var(--wis-u))) auto 0;
+  padding: 0 16px;
+  max-width: 1720px;
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: max(15px, calc(18 * var(--wis-u)));
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--wis-text);
+  opacity: 0.85;
+}
+
 /* ---------- Circle row ---------- */
 .wis__carousel { position: relative; }
 .wis__heading + .wis__carousel { margin-top: max(28px, calc(60 * var(--wis-u))); }
+.wis__subheading + .wis__carousel { margin-top: max(24px, calc(40 * var(--wis-u))); }
 .wis__stage {
   position: relative;
   height: calc(var(--wis-a) * 1.025); /* ring box: 410 for a 400 image */
@@ -526,6 +542,9 @@
 >
   {%- if s.heading != blank -%}
     <h2 class="wis__heading class_h2" id="wis-heading-{{ section.id }}">{{ s.heading }}</h2>
+  {%- endif -%}
+  {%- if s.subheading != blank -%}
+    <p class="wis__subheading">{{ s.subheading | escape }}</p>
   {%- endif -%}
 
   {%- if block_count == 0 -%}
@@ -1131,6 +1150,12 @@
       "label": "Heading",
       "info": "Use italic for the serif accent words.",
       "default": "<p>What's inside, <em>and exactly why.</em></p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "info": "Optional line under the heading."
     },
     {
       "type": "range",
