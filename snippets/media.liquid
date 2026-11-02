@@ -97,18 +97,21 @@
       </div>
     {% when 'video' %}
       <div class="media__contain" style="">
-      {{
-        media
-        | video_tag:
-          class: 'media-video',
-          autoplay: true,
-          loop: true,
-          muted: true,
-          playsinline: true,
-          controls: false,
-          preload: 'metadata',
-          poster: poster_url
-      }}
+      {%- comment -%}
+        Sources are written out (not video_tag) so the sharpest MP4 comes first: video_tag lists the
+        480p file first and browsers play the first source they can, which looked blurry when cropped.
+      {%- endcomment -%}
+      {%- assign video_sources = media.sources | where: 'format', 'mp4' | sort: 'height' | reverse -%}
+      {%- if video_sources.size > 0 -%}
+        <video class="media-video" autoplay loop muted playsinline preload="metadata"
+          {% if poster_url != blank %}poster="{{ poster_url }}"{% else %}poster="{{ media.preview_image | image_url: width: 1920 }}"{% endif %}>
+          {%- for source in video_sources -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        </video>
+      {%- else -%}
+        {{ media | video_tag: class: 'media-video', autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', poster: poster_url }}
+      {%- endif -%}
         {% comment %} {{ media | video_tag: class: 'media-video', image_size: image_size }} {% endcomment %}
       </div>
     {% when 'external_video' %}

@@ -16,8 +16,12 @@
   assign compare_total = 0
   assign variant_ids = ''
   assign any_unavailable = false
+  assign unlinked_titles = ''
   for block in section.blocks
     assign p = block.settings.product
+    if p == blank and block.settings.include_in_bundle
+      assign unlinked_titles = unlinked_titles | append: block.settings.title | append: ', '
+    endif
     if p != blank and block.settings.include_in_bundle
       assign v = p.selected_or_first_available_variant
       if v.available
@@ -396,6 +400,21 @@ a.rit__item-in:focus-visible { outline: 2px solid var(--rit-dot-active); outline
   border: 0;
 }
 
+/* ---- Desktop below 1920: the photo scales with the viewport, so the pill does too.
+   With fixed 16px text and padding it grew relative to the photo and covered the serum (hotspot 3)
+   on 1280–1600px screens. ---- */
+@media screen and (min-width: 1200px) and (max-width: 1919px) {
+  .rit__btn {
+    min-height: clamp(44px, calc(54 * 100vw / 1920), 54px);
+    padding: 0 clamp(16px, calc(24 * 100vw / 1920), 24px);
+  }
+  .rit__btn-label,
+  .rit__price { font-size: clamp(13px, calc(16 * 100vw / 1920), 16px); }
+  .rit__btn-price { margin-left: clamp(12px, calc(23 * 100vw / 1920), 23px); }
+  .rit__compare,
+  .rit__badge { font-size: clamp(10px, calc(12 * 100vw / 1920), 12px); }
+}
+
 /* ---- Stacked layout (≤1199) ---- */
 @media screen and (max-width: 1199px) {
   .rit__card {
@@ -527,6 +546,10 @@ a.rit__item-in:focus-visible { outline: 2px solid var(--rit-dot-active); outline
             {%- endif -%}
           </button>
           <p class="rit__status" role="status" aria-live="polite" data-rit-status></p>
+          {%- if request.design_mode and unlinked_titles != '' -%}
+            {%- comment -%} Editor only: an unlinked hotspot is silently left out of ADD BUNDLE {%- endcomment -%}
+            <p class="rit__status">Not added by ADD BUNDLE (no product linked): {{ unlinked_titles | remove_last: ', ' | escape }}</p>
+          {%- endif -%}
         {%- endif -%}
       </div>
 

@@ -83,6 +83,9 @@
   --wly-vh: calc(100vh - var(--wly-top));
   /* 1 design px at 1920 x 960, scales down with the viewport width AND height (min 0.5px) */
   --wly-u: clamp(0.5px, min(calc(100vw / 1920), calc(var(--wly-vh) / 960)), 1px);
+  /* Type + counter badge: Figma size on any 1920-wide screen; only eases off below an 800px-tall
+     viewport (spacing above still compresses first), so laptop screens keep the design's type sizes. */
+  --wly-t: clamp(0.5px, min(calc(100vw / 1920), calc(var(--wly-vh) / 800)), 1px);
   --wly-px: calc(130 * var(--wly-u));
   --wly-ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* Text swap, sequenced: every outgoing element fades (out + i * out-stagger) before the first
@@ -97,7 +100,7 @@
 @supports (height: 100svh) {
   .wly { --wly-vh: calc(100svh - var(--wly-top)); }
 }
-.wly--static { --wly-u: clamp(0.5px, calc(100vw / 1920), 1px); }
+.wly--static { --wly-u: clamp(0.5px, calc(100vw / 1920), 1px); --wly-t: var(--wly-u); }
 .wly *,
 .wly *::before,
 .wly *::after { box-sizing: border-box; }
@@ -197,7 +200,7 @@
    Figma places the badge 5px right of and 5px below the true seam / section centre
    (centre 965,485 vs 960,480). That offset looks accidental, so it is centred exactly here. */
 .wly {
-  --wly-badge: max(90px, calc(130 * var(--wly-u)));
+  --wly-badge: max(90px, calc(130 * var(--wly-t)));
 }
 .wly .wly__badge {
   -webkit-appearance: none;
@@ -213,7 +216,7 @@
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: max(8px, calc(10 * var(--wly-u)));
+  border-radius: max(8px, calc(10 * var(--wly-t)));
   box-shadow: none;
   transform: translate(-50%, -50%);
   background-color: var(--wly-counter-bg);
@@ -235,15 +238,15 @@
   pointer-events: none;
 }
 .wly .wly__badge-current {
-  top: max(10px, calc(14 * var(--wly-u)));
-  left: max(10px, calc(14 * var(--wly-u)));
+  top: max(10px, calc(14 * var(--wly-t)));
+  left: max(10px, calc(14 * var(--wly-t)));
   display: block;
   height: 1.212em;
   overflow: hidden; /* mask for the rolling number */
   font-family: 'Test Tiempos Fine Italic', 'Test Tiempos Fine Italic RG', serif;
   font-weight: 500;
   font-style: italic;
-  font-size: max(28px, calc(40 * var(--wly-u)));
+  font-size: max(28px, calc(40 * var(--wly-t)));
   line-height: 1.212;
   letter-spacing: -0.02em;
   color: var(--wly-accent);
@@ -265,12 +268,12 @@
 .wly .wly__num[data-pos="1"] { transform: translate3d(0, 110%, 0); }
 .wly .wly__num.is-jump { transition: none; }
 .wly .wly__badge-total {
-  right: max(10px, calc(16 * var(--wly-u)));
-  bottom: max(10px, calc(12 * var(--wly-u)));
+  right: max(10px, calc(16 * var(--wly-t)));
+  bottom: max(10px, calc(12 * var(--wly-t)));
   font-family: 'Blauer Nue RG', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: max(14px, calc(18 * var(--wly-u)));
+  font-size: max(14px, calc(18 * var(--wly-t)));
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -336,12 +339,12 @@
 .wly .wly__heading {
   width: 100%;
   /* Figma box 564 wide at 58px; em keeps the same line breaks when the size floor kicks in */
-  max-width: max(calc(564 * var(--wly-u)), 9.73em);
+  max-width: max(calc(564 * var(--wly-t)), 9.73em);
   margin: 0;
   font-family: 'Blauer Nue MD', sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: max(28px, calc(var(--wly-h) * var(--wly-u)));
+  font-size: max(28px, calc(var(--wly-h) * var(--wly-t)));
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: none;
@@ -451,14 +454,14 @@
 .wly .wly__pill {
   display: inline-block;
   max-width: 100%;
-  padding: max(6px, calc(9 * var(--wly-u))) max(14px, calc(20 * var(--wly-u)));
+  padding: max(6px, calc(9 * var(--wly-t))) max(14px, calc(20 * var(--wly-t)));
   border-radius: 50px;
   background-color: var(--wly-accent);
   color: var(--wly-pill-text);
   font-family: 'Blauer Nue MD', sans-serif;
   font-weight: 500;
   font-style: italic;
-  font-size: max(13px, calc(16 * var(--wly-u)));
+  font-size: max(13px, calc(16 * var(--wly-t)));
   line-height: 1.375;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -468,7 +471,7 @@
   font-family: 'Test Tiempos Fine Italic', 'Test Tiempos Fine Italic RG', serif;
   font-weight: 500;
   font-style: italic;
-  font-size: max(44px, calc(80 * var(--wly-u)));
+  font-size: max(44px, calc(80 * var(--wly-t)));
   line-height: 1.212;
   letter-spacing: -0.02em;
   text-transform: none;
@@ -479,7 +482,7 @@
   font-family: 'Blauer Nue LT', sans-serif;
   font-weight: 300;
   font-style: normal;
-  font-size: max(16px, calc(24 * var(--wly-u)));
+  font-size: max(16px, calc(24 * var(--wly-t)));
   line-height: 1.5;
   letter-spacing: -0.02em;
   text-transform: none;
@@ -520,6 +523,7 @@
 @media only screen and (max-width: 990px) {
   .wly {
     --wly-u: 0.7px;
+    --wly-t: 0.7px;
     --wly-mu: clamp(0.78px, calc(var(--wly-vh) / 844), 1px);
     --wly-body-gap: calc(64 * var(--wly-mu));
     --wly-badge: max(72px, calc(90 * var(--wly-mu)));

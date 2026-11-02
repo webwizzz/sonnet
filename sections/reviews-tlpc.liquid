@@ -1,0 +1,386 @@
+{%- comment -%}
+  Customer Reviews (PDP): heading + an app block slot for the Judge.me review widget.
+  Design: Figma DECK 279:3194 ("RUB IT IN" page). Centred 1120px column on #FFFCF9:
+  title 58px with Tiempos italic accent, 70px to a summary row (score | histogram | buttons)
+  split by 90px rules, tab/sort row between 1px rules, then review rows divided by 1px rules.
+  Judge.me draws the widget, so its classes are restyled here, scoped to this section.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --rvw-bg: {{ s.color_background }};
+  --rvw-text: {{ s.color_text }};
+  --rvw-accent: {{ s.color_accent }};
+  --rvw-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --rvw-rule: {{ s.color_text | color_modify: 'alpha', 0.12 }};
+  --rvw-track: {{ s.color_track }};
+  --rvw-tab: {{ s.color_tab }};
+  --rvw-width: {{ s.content_width }}px;
+  --rvw-h: {{ s.heading_size }};
+  --rvw-h-m: {{ s.heading_size_mobile }}px;
+  background-color: var(--rvw-bg);
+  padding-top: clamp(48px, calc({{ s.padding_top }} * 100vw / 1920), {{ s.padding_top }}px);
+  padding-bottom: clamp(48px, calc({{ s.padding_bottom }} * 100vw / 1920), {{ s.padding_bottom }}px);
+}
+{% endstyle %}
+
+{% style %}
+.rvw { padding: 0 20px; color: var(--rvw-text); }
+.rvw__inner { max-width: var(--rvw-width); margin: 0 auto; }
+.rvw .rvw__heading {
+  margin: 0 0 clamp(28px, calc(40 * 100vw / 1920), 40px);
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(var(--rvw-h-m), calc(var(--rvw-h) * 100vw / 1920), calc(var(--rvw-h) * 1px));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--rvw-text);
+}
+.rvw .rvw__heading p { margin: 0; font: inherit; letter-spacing: inherit; color: inherit; }
+.rvw .rvw__heading em {
+  font-family: 'Test Tiempos Fine Italic RG', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.rvw__empty {
+  padding: 40px 0;
+  text-align: center;
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-size: 16px;
+  color: var(--rvw-muted);
+  border: 1px dashed var(--rvw-rule);
+  border-radius: 16px;
+}
+
+/* ---------- Judge.me widget ---------- */
+.rvw .jdgm-widget,
+.rvw .jdgm-widget * {
+  font-family: 'Blauer Nue RG', sans-serif;
+  letter-spacing: -0.02em;
+}
+.rvw .jdgm-widget.jdgm-review-widget { max-width: none !important; margin: 0 !important; }
+.rvw .jdgm-rev-widg { padding: 0 !important; border: 0 !important; background: transparent !important; }
+.rvw .jdgm-rev-widg__header { margin: 0 !important; padding: 0 !important; text-align: left; }
+.rvw .jdgm-rev-widg__title { display: none !important; }
+
+/* Stars: Judge.me icon font, recoloured to the design's dark brown */
+.rvw .jdgm-star { color: var(--rvw-text) !important; font-size: 16px !important; padding: 0 2px 0 0 !important; }
+
+/* Summary row: score | histogram | buttons, divided by 90px rules */
+.rvw .jdgm-row-stars {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0 !important;
+  padding: 0 0 40px !important;
+  border-bottom: 1px solid var(--rvw-rule);
+}
+.rvw .jdgm-rev-widg__summary,
+.rvw .jdgm-histogram,
+.rvw .jdgm-widget-actions-wrapper {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  width: auto !important;
+  min-height: 90px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+.rvw .jdgm-rev-widg__summary { flex: 0 0 314px; align-items: center; border-right: 1px solid var(--rvw-rule) !important; }
+.rvw .jdgm-histogram { flex: 1 1 auto; align-items: center; gap: 13px; border-right: 1px solid var(--rvw-rule) !important; }
+.rvw .jdgm-rev-widg a:not(.jdgm-write-rev-link):not(.jdgm-paginate__page) { color: var(--rvw-text) !important; }
+.rvw .jdgm-widget-actions-wrapper { flex: 0 0 290px; align-items: flex-end; gap: 8px; }
+.rvw .jdgm-rev-widg__summary-inner { width: auto !important; max-width: none !important; text-align: center; }
+.rvw .jdgm-rev-widg__summary-stars { display: inline-flex !important; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+.rvw .jdgm-rev-widg__summary-stars .jdgm-star { font-size: 18px !important; padding-right: 4px !important; }
+.rvw .jdgm-rev-widg__summary-stars .jdgm-rev-widg__summary-average { margin-left: 26px !important; white-space: nowrap; }
+.rvw .jdgm-rev-widg__summary-average,
+.rvw .jdgm-rev-widg__summary-text {
+  margin: 0 !important;
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+  color: var(--rvw-text) !important;
+  opacity: 1 !important;
+}
+.rvw .jdgm-rev-widg__summary-text { margin-top: 4px !important; }
+.rvw .jdgm-verified-checkmark { display: none !important; }
+
+.rvw .jdgm-histogram__row { display: flex !important; align-items: center; gap: 10px; height: 16px; margin: 0 !important; line-height: 16px; }
+.rvw .jdgm-histogram__star { width: 112px !important; display: flex; gap: 0; }
+.rvw .jdgm-histogram__star .jdgm-star { font-size: 16px !important; padding-right: 8px !important; }
+.rvw .jdgm-histogram__bar {
+  width: 151px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  border-radius: 30px;
+  background: var(--rvw-track) !important;
+  overflow: hidden;
+}
+.rvw .jdgm-histogram__bar-content { height: 100% !important; border-radius: 30px; background: var(--rvw-accent) !important; }
+.rvw .jdgm-histogram__frequency,
+.rvw .jdgm-histogram__percentage,
+.rvw .jdgm-histogram ~ .jdgm-all-reviews-text {
+  width: auto !important;
+  min-width: 20px;
+  font-size: 16px !important;
+  color: var(--rvw-text) !important;
+  text-align: left !important;
+}
+
+.rvw a.jdgm-write-rev-link,
+.rvw .jdgm-ask-question-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 170px !important;
+  min-height: 46px;
+  margin: 0 !important;
+  padding: 11px 20px !important;
+  border: 1px solid var(--rvw-accent) !important;
+  border-radius: 40px !important;
+  background: var(--rvw-accent) !important;
+  color: #FFFFFF !important;
+  font-family: 'Blauer Nue MD', sans-serif !important;
+  font-size: 18px !important;
+  line-height: 24px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.rvw .jdgm-ask-question-btn { background: transparent !important; color: var(--rvw-accent) !important; }
+@media (hover: hover) {
+  .rvw a.jdgm-write-rev-link:hover { background: transparent !important; color: var(--rvw-accent) !important; }
+  .rvw .jdgm-ask-question-btn:hover { background: var(--rvw-accent) !important; color: #FFFFFF !important; }
+}
+
+/* Tabs + sort row */
+.rvw .jdgm-row-actions,
+.rvw .jdgm-rev-widg__sort-wrapper,
+.rvw .jdgm-widget-tabs,
+.rvw .jdgm-rev-widg__tabs {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.rvw .jdgm-row-actions { min-height: 60px; padding: 10px 0 !important; border-bottom: 1px solid var(--rvw-rule) !important; }
+.rvw .jdgm-rev-widg__sort-wrapper { margin-left: auto !important; }
+.rvw .jdgm-sort-dropdown {
+  height: 34px !important;
+  padding: 0 34px 0 10px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--rvw-text) !important;
+  font-size: 18px !important;
+}
+.rvw .jdgm-sort-dropdown-arrow { color: var(--rvw-text) !important; }
+.rvw .jdgm-widget-tab,
+.rvw .jdgm-rev-widg__tab {
+  padding: 8px 16px !important;
+  border: 1px solid var(--rvw-rule) !important;
+  border-radius: 30px !important;
+  font-size: 18px !important;
+  color: var(--rvw-text) !important;
+}
+.rvw .jdgm-widget-tab.jdgm--active,
+.rvw .jdgm-rev-widg__tab.jdgm--active { background: var(--rvw-tab) !important; border-color: var(--rvw-tab) !important; }
+
+/* Review rows */
+.rvw .jdgm-rev-widg__body { margin: 0 !important; }
+.rvw .jdgm-rev {
+  position: relative;
+  margin: 0 !important;
+  padding: 30px 10px 30px 0 !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid var(--rvw-rule) !important;
+}
+.rvw .jdgm-rev__header { display: grid !important; grid-template-columns: 1fr auto; row-gap: 14px; margin: 0 !important; }
+.rvw .jdgm-row-rating { grid-column: 1 / -1; display: block !important; margin: 0 !important; }
+.rvw .jdgm-rev__rating .jdgm-star { font-size: 16px !important; padding-right: 4px !important; }
+.rvw .jdgm-rev__timestamp {
+  position: absolute;
+  right: 10px;
+  top: 76px;
+  font-size: 14px !important;
+  color: var(--rvw-text) !important;
+}
+.rvw .jdgm-row-profile { grid-column: 1; display: flex !important; align-items: center; gap: 10px; margin: 0 !important; }
+.rvw .jdgm-rev__icon {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background: var(--rvw-accent) !important;
+  color: #FFFFFF !important;
+  font-family: 'Blauer Nue MD', sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+}
+.rvw .jdgm-rev__icon * { color: #FFFFFF !important; }
+/* Initial written in by the script below replaces Judge.me's person glyph */
+.rvw .jdgm-rev__icon[data-rvw-initial]::before { content: none !important; display: none !important; }
+.rvw .jdgm-rev__icon[data-rvw-initial]::after {
+  content: attr(data-rvw-initial) !important;
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  color: #FFFFFF;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.rvw .jdgm-rev__icon:not([data-rvw-initial])::before { color: #FFFFFF !important; }
+.rvw .jdgm-rev__author-wrapper,
+.rvw .jdgm-rev__author {
+  font-family: 'Blauer Nue MD', sans-serif !important;
+  font-size: 16px !important;
+  color: #151515 !important;
+}
+.rvw .jdgm-rev__buyer-badge-wrapper,
+.rvw .jdgm-row-product:empty,
+.rvw .jdgm-row-extra,
+.rvw .jdgm-rev__br { display: none !important; }
+.rvw .jdgm-rev__custom-form:empty,
+.rvw .jdgm-rev__actions:empty { margin: 0 !important; }
+
+.rvw .jdgm-rev__content { margin: 14px 0 0 !important; padding: 0 !important; }
+.rvw .jdgm-rev__title,
+.rvw .jdgm-rev__body,
+.rvw .jdgm-rev__body p {
+  margin: 0 !important;
+  font-family: 'Blauer Nue LT', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  color: var(--rvw-muted) !important;
+}
+.rvw .jdgm-rev__title { display: block; margin-bottom: 6px !important; font-family: 'Blauer Nue MD', sans-serif !important; font-weight: 500 !important; color: var(--rvw-text) !important; }
+.rvw .jdgm-rev__actions,
+.rvw .jdgm-rev__reply { margin-top: 12px !important; }
+
+/* Pagination */
+.rvw .jdgm-paginate { display: flex !important; justify-content: center; align-items: center; gap: 14px; margin: 0 !important; padding: 36px 0 0 !important; }
+.rvw .jdgm-paginate__page {
+  min-width: 0 !important;
+  padding: 0 4px !important;
+  font-size: 18px !important;
+  line-height: 24px !important;
+  color: var(--rvw-text) !important;
+  opacity: 0.5;
+}
+.rvw .jdgm-paginate__page.jdgm-curt { opacity: 1; }
+
+@media screen and (max-width: 990px) {
+  .rvw .jdgm-row-stars { flex-wrap: wrap; gap: 24px; }
+  .rvw .jdgm-rev-widg__summary,
+  .rvw .jdgm-histogram { flex: 1 1 100%; border-right: 0 !important; min-height: 0; }
+  .rvw .jdgm-widget-actions-wrapper { flex: 1 1 100%; align-items: center; flex-direction: row; justify-content: center; min-height: 0; }
+}
+@media screen and (max-width: 768px) {
+  .rvw { padding: 0 16px; }
+  .rvw .rvw__heading { margin-bottom: 24px; }
+  .rvw .jdgm-rev-widg__summary-average,
+  .rvw .jdgm-rev-widg__summary-text,
+  .rvw .jdgm-sort-dropdown { font-size: 16px !important; }
+  .rvw a.jdgm-write-rev-link,
+  .rvw .jdgm-ask-question-btn { width: auto !important; font-size: 16px !important; min-height: 42px; }
+  .rvw .jdgm-rev { padding: 24px 0 !important; }
+  .rvw .jdgm-rev__timestamp { position: static; grid-column: 2; grid-row: 2; align-self: center; }
+}
+{% endstyle %}
+
+<div class="rvw {{ s.custom_class | escape }}">
+  <div class="rvw__inner">
+    {%- if s.heading != blank -%}
+      <h2 class="rvw__heading">{{ s.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- elsif request.design_mode -%}
+      <p class="rvw__empty">Add the Judge.me “Review widget” app block to this section.</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    function paint(root) {
+      root.querySelectorAll('.jdgm-rev').forEach(function (rev) {
+        var icon = rev.querySelector('.jdgm-rev__icon');
+        var author = rev.querySelector('.jdgm-rev__author');
+        if (!icon || !author || icon.querySelector('img')) return;
+        var initial = (author.textContent || '').trim().charAt(0);
+        if (initial && icon.getAttribute('data-rvw-initial') !== initial) icon.setAttribute('data-rvw-initial', initial);
+      });
+    }
+    function init(section) {
+      var root = section && section.querySelector('.rvw');
+      if (!root || root._rvwObserver) return;
+      paint(root);
+      root._rvwObserver = new MutationObserver(function () { paint(root); });
+      root._rvwObserver.observe(root, { childList: true, subtree: true });
+    }
+    init(document.getElementById('shopify-section-{{ section.id }}'));
+    document.addEventListener('shopify:section:load', function (e) {
+      if (e.target.id === 'shopify-section-{{ section.id }}') init(e.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Customer reviews",
+  "tag": "section",
+  "class": "reviews-tlpc-section",
+  "settings": [
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent word.", "default": "<p>Customer <em>Reviews</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "range", "id": "content_width", "label": "Content width", "min": 800, "max": 1400, "step": 10, "unit": "px", "default": 1120 },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Text and stars", "default": "#28201F" },
+    { "type": "color", "id": "color_accent", "label": "Buttons, bars and avatars", "default": "#78563D" },
+    { "type": "color", "id": "color_track", "label": "Bar track", "default": "#E7DED7" },
+    { "type": "color", "id": "color_tab", "label": "Active tab", "default": "#E9E5E3" },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    { "type": "@app" }
+  ],
+  "presets": [
+    { "name": "Customer reviews" }
+  ],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

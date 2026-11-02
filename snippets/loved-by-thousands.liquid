@@ -10,7 +10,8 @@
     {%- for item in testimonials -%}
       {%- liquid
         assign thumbnail = item.thumbnail_image.value
-        assign quote     = item.quote_text.value
+        # quotes are entered with or without their own quote marks; the card adds curly ones
+        assign quote     = item.quote_text.value | strip | remove: '"' | remove: '“' | remove: '”'
         assign video_url = item.video_url.value
         assign name      = item.customer_name.value
       -%}

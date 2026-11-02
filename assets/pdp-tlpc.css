@@ -747,3 +747,391 @@
     }
 
 }
+/* ==========================================================================
+   QC pass vs Figma (DECK 279:2610 "RUB IT IN") — hero
+   ========================================================================== */
+.product-section {
+    background: #F5EEE6;
+}
+/* theme's alt-text "info" button over gallery media isn't in the design */
+.product-section .media__button--info {
+    display: none !important;
+}
+.product__title {
+    line-height: 1.2;
+}
+.product__block__description .product-description__content p {
+    max-width: 600px;
+    margin: 0;
+    line-height: 22px;
+}
+.product__block__description .product-description__holder {
+    margin-bottom: 0;
+}
+.product__block__description .product-description__actions:empty {
+    display: none;
+}
+
+/* Benefit + trust strips: 50px band, #F6F3EE fill, 1px rules. Dividers are real flex items —
+   40px (20 | 20) when there's room, shrinking to 16px for longer labels, so a strip never wraps
+   (Clean It Off's "Conditions Skin Surface"). */
+.product__inner .benefits-strip {
+    gap: 0;
+    flex-wrap: nowrap;
+    padding: 15px 16px;
+    background: #F6F3EE;
+    border-top: 1px solid #28201F1A;
+    border-bottom: 1px solid #28201F1A;
+    margin-bottom: 20px;
+}
+.product__inner .benefits-strip .benefit-item {
+    flex: 0 0 auto;
+}
+.product__inner .benefits-strip .benefit-item:not(:last-child)::after {
+    content: none;
+}
+.product__inner .benefits-strip .benefit-sep {
+    flex: 0 1 41px;
+    min-width: 17px;
+    height: 18px;
+    background: linear-gradient(#28201F14, #28201F14) center / 1px 100% no-repeat;
+}
+.product__inner .benefits-strip .benefit-text {
+    line-height: 18px;
+}
+.product__inner .product__block__buttons + .benefits-strip,
+.product__inner .product__block__upsell + .benefits-strip {
+    margin-top: 4px;
+    margin-bottom: 24px;
+}
+
+/* Pack size cards: image on top, price + compare + % off centred, radio top-right */
+.product__block__variants .radio__legend {
+    padding-bottom: 12px;
+}
+.product__block__variants .radio__inputs {
+    gap: 12px;
+}
+.product__block__variants .radio__button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 183px;
+    max-width: none;
+    margin: 0;
+}
+.product__block__variants .radio__button input[type="radio"] + label {
+    height: 165px;
+    padding: 21px 20px 21px;
+    border-color: #28201F1F;
+    border-radius: 8px;
+    background: #F8F3ED;
+}
+.product__block__variants .radio__button input[type="radio"]:checked + label {
+    border-color: #28201F;
+    background: #FFFFFF;
+}
+.product__block__variants .radio__fieldset .radio__button label > span:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+.product__block__variants .radio__button .variants-inside {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+    height: 100%;
+    padding: 0;
+}
+.product__block__variants .variants-inside img {
+    height: 68px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+.product__block__variants .radio__button .variant-swatch-price {
+    justify-content: center;
+    align-items: center;
+    gap: 4px 4px;
+    text-align: center;
+}
+.product__block__variants .radio__button .variant-swatch-price .variant-price {
+    font-size: 16px;
+    line-height: 19px;
+}
+.product__block__variants .radio__button .variant-swatch-price .variant-compare-price {
+    font-family: 'Blauer Nue LT';
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 16px;
+}
+.product__block__variants .radio__button .variant-swatch-price .variant-discount {
+    padding: 2px 8px;
+    font-size: 10px;
+    line-height: 12px;
+}
+.product__block__variants .radio__button input[type="radio"] + label::before {
+    border-color: #28201F33 !important;
+}
+.product__block__variants .radio__button input[type="radio"] + label::after {
+    top: 10px;
+    right: 10px;
+}
+.product__block__variants {
+    padding-bottom: 30px !important;
+}
+
+/* Add to cart: 52px pill, 40px side padding */
+.product__inner .btn--add-to-cart {
+    padding: 16px 40px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+/* Accordions: 62px rows, 30px radius, #FDFCFA, plus icon on #F6F3EE */
+.product-accordion .accordion__wrapper {
+    background: #FDFCFA;
+    border-radius: 30px;
+    padding: 16px 16px 16px 24px;
+}
+.product-accordion .accordion__wrapper.is-active,
+.product-accordion .accordion__wrapper:has(.accordion-is-open) {
+    border-radius: 24px;
+}
+.product-accordion .accordion__title .plusicon {
+    background: #F6F3EE;
+    flex-shrink: 0;
+}
+.product-accordion .accordion__body {
+    padding: 14px 8px 8px 0;
+}
+
+/* Badges row: 34px pills, 14px uppercase LT */
+.product__inner .trust-badges {
+    gap: 10px;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom-color: #28201F1F;
+}
+.product__inner .trust-badge {
+    gap: 4px;
+    padding: 9px 16px 9px 12px;
+}
+.product__inner .trust-badge:hover {
+    background: #EAE7E2;
+}
+.product__inner .trust-badge__icon img {
+    width: 16px;
+    height: 16px;
+}
+.product__inner .trust-badge__label {
+    font-size: 13px;
+    line-height: 16px;
+}
+@media (min-width: 1471px) {
+    .product__inner .trust-badges {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Testimonial under the main image: 112px card, 2-line quote at 17px leading */
+.testimonial-static .testimonial-card {
+    padding: 24px;
+    border-radius: 16px;
+}
+.testimonial-static .testimonial-inner {
+    gap: 14px;
+}
+.testimonial-static .testimonial-text,
+.testimonial-static .testimonial-text * {
+    line-height: 17px;
+    margin: 0;
+}
+.testimonial-static .testimonial-text strong {
+    display: inline;
+    font-family: 'Blauer Nue LT';
+    font-weight: 300;
+}
+.testimonial-static .testimonial-meta {
+    margin-top: 10px;
+}
+
+/* "Loved by thousands" / "Complete your ritual" spacing */
+.product__inner .lbt-section {
+    margin-bottom: 30px;
+}
+.product__inner .lbt-heading {
+    margin: 0 0 16px;
+}
+.product__inner .product__block__upsell .product-clip {
+    min-width: 303px;
+    max-width: 303px;
+    min-height: 72px;
+}
+
+@media (max-width: 1470px) {
+    .product__inner .benefits-strip {
+        scrollbar-width: none;
+    }
+    .product__inner .benefits-strip::-webkit-scrollbar,
+    .product__inner .trust-badges::-webkit-scrollbar {
+        display: none;
+    }
+    .product__inner .trust-badges {
+        scrollbar-width: none;
+    }
+    .product__block__variants .radio__button {
+        min-width: 170px;
+    }
+}
+@media (max-width: 500px) {
+    .product__inner .benefits-strip {
+        padding: 13px;
+    }
+    .product__inner .product__block__buttons + .benefits-strip .benefit-sep {
+        display: none;
+    }
+    .product__block__variants .radio__button {
+        min-width: 150px;
+    }
+    .product__block__variants .radio__button input[type="radio"] + label {
+        height: 150px;
+        padding: 18px 12px;
+    }
+    .product-accordion .accordion__wrapper {
+        padding: 14px 14px 14px 18px;
+    }
+    .product__inner .trust-badge__label {
+        font-size: 12px;
+    }
+}
+
+/* ==========================================================================
+   QC round 2 — mobile / tablet
+   ========================================================================== */
+/* Fullscreen video shows the whole frame (the inline player crops with cover) */
+.product-section video:fullscreen,
+.product-section video:-webkit-full-screen,
+.product-section .plyr--fullscreen-active video,
+.product-section .plyr:fullscreen video {
+    object-fit: contain !important;
+    background: #000;
+}
+@media (max-width: 768px) {
+    /* All gallery media is 1:1 — a square slide shows it whole instead of cropping the sides */
+    .product-section .product__media__wrapper .product__media,
+    .product-section .product__media__wrapper .featured-media img {
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+    }
+    .product-section .product__media .media__contain,
+    .product-section .product__media .product-image-wrapper,
+    .product-section .product__media > div {
+        height: 100%;
+        min-height: 0;
+        padding-top: 0 !important;
+    }
+    .product-section .product__media img,
+    .product-section .product__media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* The badge belongs to the first (product) image only — not on top of the other slides' artwork */
+    .product-section .media-desktop .desktop-hide {
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .product-section .media-desktop:has(.product__media.is-selected:not(:first-child)) .desktop-hide {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Tablet (769–1199): two columns left the product info ~200px wide (ADD TO CART wrapped onto
+   three lines). Stack it like mobile: gallery pair on top, full-width product info below. */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .product-section .float-grid.product-single {
+        flex-direction: column;
+        column-gap: 0;
+    }
+    .product-section .product__media__wrapper {
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    .product-section .featured-wrapper img {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+    .product-section .product__media__wrapper .product__grid {
+        max-height: none;
+        aspect-ratio: 1 / 1;
+    }
+    .product-section .product__main__content {
+        max-width: 100% !important;
+        width: 100%;
+        margin: 32px 0 0;
+        padding: 0 !important;
+    }
+    .product-section .product-single .product__inner {
+        max-width: 100%;
+    }
+    .product__inner .trust-badges {
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile + small tablet: one left/right edge for every hero block (the strips ran edge-to-edge
+   while everything else sat 16px in), breathing room under the testimonial, and a sane gap above
+   the Why Us bar (the desktop 80–130px padding was used as-is). */
+@media (max-width: 768px) {
+    .product-section {
+        padding-bottom: 40px !important;
+    }
+    .product__inner {
+        padding-top: 24px;
+    }
+    .product__inner > .benefits-strip {
+        margin-left: 16px;
+        margin-right: 16px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .product__inner .product__block__upsell .upsell__holder__wrapper > * {
+        flex: 1 0 calc(50% - 5px);
+    }
+    .product__inner .product__block__upsell .product-clip {
+        min-width: 260px;
+        max-width: none;
+        width: 100%;
+    }
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+    .product-section {
+        padding-bottom: 64px !important;
+    }
+}
+
+/* Accordion copy rhythm (Figma 284:10140): label -> 6px -> text, 16px between steps, list at 1.8 */
+.product-accordion .accordion__body p {
+    margin: 0 0 16px;
+}
+.product-accordion .accordion__body p:last-child {
+    margin-bottom: 0;
+}
+.product-accordion .accordion__body p > strong:first-child {
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+.product-accordion .accordion__body ul {
+    margin: 0;
+    padding-left: 18px;
+}
+.product-accordion .accordion__body li {
+    line-height: 1.8;
+}

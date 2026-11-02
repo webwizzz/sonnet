@@ -1,6 +1,7 @@
 {% if product.metafields.custom.product_benefit.value != blank %}
   <div class="benefits-strip">
     {% for benefit in product.metafields.custom.product_benefit.value %}
+      {%- unless forloop.first -%}<span class="benefit-sep" aria-hidden="true"></span>{%- endunless -%}
       <div class="benefit-item">
         <!-- Icon -->
         <span class="benefit-icon">

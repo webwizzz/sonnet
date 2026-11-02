@@ -299,22 +299,29 @@
             "upsell_list_limit": 2,
             "padding_bottom": 20
           }
+        },
+        "liquid_rating_line": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pdp-rating' %}"
+          }
         }
       },
       "block_order": [
         "title_d8f4NW",
         "text_MwYrmh",
+        "liquid_rating_line",
         "text_DEkJHD",
         "description_wVpqMG",
         "liquid_ArPK3L",
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
-        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
         "liquid_jWXjdi",
+        "upsell_UgXWDc",
         "shop_combo_zip3kz"
       ],
       "name": "Product Tlpc page",
@@ -333,7 +340,7 @@
         "product_breadcrumbs_list": [],
         "width": "wrapper--full",
         "padding_top": 20,
-        "padding_bottom": 130
+        "padding_bottom": 80
       }
     },
     "marquee_bar_z7LLMg": {
@@ -402,7 +409,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -445,14 +452,14 @@
           "settings": {
             "before_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_43_19_PM_1_converted.webp",
             "after_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_03_49_52_PM_1_1_converted.webp",
-            "tag": "Sensitive skin",
-            "title": "Gentle enough for my reactive skin.",
-            "review": "<p>Within 3 weeks my skin was calmer than it's been in years. The serum made the biggest difference to my post-acne marks.</p>",
+            "tag": "Dry skin",
+            "title": "My skin feels repaired.",
+            "review": "<p>My skin was calmer, more hydrated, and the tight dry feeling completely disappeared within 3 weeks.</p>",
             "rating": 4.5,
             "rating_label": "",
             "avatar": "shopify://shop_images/Ellipse_1337_3.webp",
-            "name": "Sneha T.",
-            "location": "Pune"
+            "name": "Priya M.",
+            "location": "Mumbai"
           }
         },
         "testimonial_mQe9DQ": {
@@ -605,7 +612,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/18f0ecf2-a0cb-4ecc-8caf-f2808f4c8558.png",
             "name": "LACTOBACILLUS FERMENT LYSATE",
             "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
           }
@@ -613,7 +620,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/JOJOBA_OIL.webp",
+            "image": "shopify://shop_images/f0552ae3-ff76-4ec6-a7dd-c636ad0c6037.png",
             "name": "JOJOBA OIL",
             "description": "Mimics skin's natural sebum without clogging pores. Deeply moisturises while calming inflammation, ideal for acne-prone skin."
           }
@@ -621,7 +628,7 @@
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
+            "image": "shopify://shop_images/4073ba91-95d9-410a-a1fc-8209128364b4.png",
             "name": "Niacinamide",
             "description": "Fades dark spots, controls sebum, and brightens skin tone. One of the most clinically validated brightening actives available."
           }
@@ -629,7 +636,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCERIN.webp",
+            "image": "shopify://shop_images/5ce322dc-bdac-4bc4-aa4f-afe7f890d562.png",
             "name": "Vitamin E",
             "description": "Neutralises free radical damage from pollution and UV daily. Restores natural glow and supports scar healing."
           }
@@ -637,7 +644,7 @@
         "ingredient_eKfFEH": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
+            "image": "shopify://shop_images/b08bb1fd-e73e-407b-97e7-e6277f3b1c7d.png",
             "name": "Aloe Vera",
             "description": "Hydrates and soothes simultaneously. Lightens blemish marks and enhances absorption of all other actives."
           }
@@ -646,9 +653,9 @@
       "block_order": [
         "ingredient_UJfpeN",
         "ingredient_BciJAz",
-        "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
-        "ingredient_eKfFEH"
+        "ingredient_eKfFEH",
+        "ingredient_Eyfm37"
       ],
       "name": "What's Inside Carousel",
       "settings": {
@@ -729,7 +736,7 @@
         "heading_size": 40,
         "heading_size_mobile": 28,
         "footnote": "*Comparison based on leading industry competitors",
-        "brand_image": "shopify://shop_images/sonet-wellness-serum-3-191-495-27x71.webp",
+        "brand_image": "shopify://shop_images/994b37b8b9d57dc5b7e47084099fa13b.png",
         "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
         "brand_name": "Sonnet Wellness",
         "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
@@ -815,7 +822,6 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
         "video_on_mobile": true,
         "background_position": "center center",
         "overlay_color": "#28201f",
@@ -837,7 +843,8 @@
         "band_padding_bottom": 131,
         "mobile_band_padding_top": 48,
         "mobile_band_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "background_image": "shopify://shop_images/rub-science-background.webp"
       }
     },
     "ritual_bundle_8JXhn9": {
@@ -846,7 +853,7 @@
         "hotspot_iAWdYM": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "clean-it-off-face-wash",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
@@ -955,7 +962,7 @@
         "show_button": true,
         "button_label": "ADD BUNDLE",
         "bundle_discount": 10,
-        "discount_code": "",
+        "discount_code": "RITUAL10",
         "show_compare_price": true,
         "price_format": "money_without_trailing_zeros",
         "price_override": "Rs. 1,199",
@@ -1405,43 +1412,43 @@
         "question_Nkzwn7": {
           "type": "question",
           "settings": {
-            "question": "Can I use Clean It Off twice a day?",
-            "answer": "<p>Yes. It's formulated for morning and evening use across all skin types, including sensitive and blemish-prone skin.</p>"
+            "question": "Can I use Rub It In with other active ingredients like Retinol or AHAs?",
+            "answer": "<p>Rub It In can be layered with other actives, but apply it first and allow 30–60 seconds before adding anything else. If you use retinol, use Rub It In in the morning and retinol at night to avoid over-stimulation. It pairs well with Vitamin C as Niacinamide and Vitamin E enhance its brightening effect.</p>"
           }
         },
         "question_zcAym6": {
           "type": "question",
           "settings": {
-            "question": "Does it remove sunscreen and makeup?",
-            "answer": "<p>It helps remove sunscreen residue and daily impurities. For heavy or waterproof makeup, use a dedicated remover first, then Clean It Off as a second cleanse.</p>"
+            "question": "Is this serum suitable for sensitive and acne-prone skin?",
+            "answer": "<p>Yes. The formula contains no alcohol, no parabens, no phthalates, and no mineral oil, all common irritants. Lactobacillus Ferment Lysate is specifically calming for reactive skin as it reduces inflammation at the microbiome level rather than triggering it.</p>"
           }
         },
         "question_GyjbH9": {
           "type": "question",
           "settings": {
-            "question": "Is it suitable for sensitive skin?",
-            "answer": "<p>Yes. Its dual-surfactant system, including 17% Cocamidopropyl Betaine, is designed for a milder cleansing experience. Patch test before first use.</p>"
+            "question": "How long does one 30ml bottle last?",
+            "answer": "<p>At 2 drops twice daily, morning and evening, one 30ml bottle lasts approximately 3 months.</p>"
           }
         },
         "question_Xy6WJB": {
           "type": "question",
           "settings": {
-            "question": "Does it contain sulphates?",
-            "answer": "<p>Yes. It contains Sodium Laureth Sulfate as its primary foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe Vera.</p>"
+            "question": "When will I see results?",
+            "answer": "<p>Most users notice improved hydration and a visible glow within the first few days. Deeper results, reduced dark spots, fewer breakouts, refined pores, and improved texture, typically appear within 2–4 weeks of consistent AM and PM use.</p>"
           }
         },
         "question_6gnMAw": {
           "type": "question",
           "settings": {
-            "question": "What is Lactobacillus Ferment Lysate?",
-            "answer": "<p>A postbiotic made from an inactivated Lactobacillus ferment. It contains no live organisms and helps maintain a comfortable, conditioned skin surface.</p>"
+            "question": "Can oily skin types skip the moisturiser and use just the serum?",
+            "answer": "<p>Yes. In hot or humid weather, Rub It In is lightweight enough to function as a standalone moisturiser for oily skin. Its Jojoba Oil base mimics skin's natural sebum, providing sufficient hydration without heaviness or greasiness.</p>"
           }
         },
         "question_YXzpAm": {
           "type": "question",
           "settings": {
-            "question": "Do I need the full ritual?",
-            "answer": "<p>No. Clean It Off works as a standalone cleanser. For the full AM:PM ritual, follow with Dab It On Toner, Rub It In Serum and Soak It In Face Cream.</p>"
+            "question": "Do I need to use all 5 products for the serum to work?",
+            "answer": "<p>Rub It In works as a standalone product. However, results are significantly better as part of the full AM:PM system, the Face Wash balances pH, the Toner opens absorption, the Serum delivers actives, and the Moisturiser seals and support the barrier. Each step multiplies the effectiveness of the next.</p>"
           }
         }
       },
@@ -1609,6 +1616,24 @@
         "padding_top_mobile": 14,
         "padding_bottom_mobile": 14
       }
+    },
+    "reviews_tlpc_judgeme": {
+      "type": "reviews-tlpc",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1630,6 +1655,7 @@
     "stats_microbiome_q3d8nn",
     "bundle_section_YebTG3",
     "section_richtext_YChbGR",
+    "reviews_tlpc_judgeme",
     "faq_know_first_rwdfL3",
     "faq_accordion_qHjRck",
     "marquee_bar_NzxPPn"

@@ -49,6 +49,12 @@
   padding-top: {{ s.padding_top }}px;
   padding-bottom: {{ s.padding_bottom }}px;
 }
+@media only screen and (min-width: 769px) and (max-width: 1199px) {
+  #shopify-section-{{ section.id }} .hsr {
+    padding-top: {{ s.padding_top | at_most: 64 }}px;
+    padding-bottom: {{ s.padding_bottom | at_most: 64 }}px;
+  }
+}
 @media only screen and (max-width: 768px) {
   #shopify-section-{{ section.id }} .hsr {
     padding-top: {{ s.mobile_padding_top }}px;
@@ -126,13 +132,14 @@
 .hsr__heading + .hsr__slides { margin-top: calc(34 * var(--hsr-u)); }
 .hsr__card > :first-child { margin-top: 0; }
 
-/* Slides: stacked in one grid cell so the card keeps the tallest slide's height (no jumps). */
+/* Slides: stacked in one grid cell so the card keeps the tallest slide's height (no jumps).
+   Top-aligned so a shorter slide keeps Figma's 34px divider -> tag gap instead of floating mid-cell. */
 .hsr__slides {
   flex: 1 0 auto;
   display: grid;
   width: 100%;
   margin-top: calc(34 * var(--hsr-u));
-  align-items: center;
+  align-items: start;
 }
 .hsr__slide {
   grid-area: 1 / 1;
@@ -307,12 +314,16 @@
   background-color: var(--hsr-accent);
   color: #FFFFFF;
 }
+/* Hover moves the filled state to the hovered arrow, so only one is ever dark */
 @media (hover: hover) {
-  .hsr .hsr__arrow--prev:hover {
+  .hsr .hsr__arrow--prev:hover ~ .hsr__arrow--next {
+    background-color: var(--hsr-button);
+    color: var(--hsr-text);
+  }
+  .hsr .hsr__arrow:hover {
     background-color: var(--hsr-accent);
     color: #FFFFFF;
   }
-  .hsr .hsr__arrow--next:hover { opacity: 0.88; }
 }
 .hsr .hsr__arrow:focus { outline: none; }
 .hsr .hsr__arrow:focus-visible {

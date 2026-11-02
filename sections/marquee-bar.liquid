@@ -58,11 +58,11 @@
   #{{ section_id }} .mb-label {
     flex-shrink: 0;
     padding-left: 0;
-    padding-right: 21px;
+    padding-right: 20px;
     font-family: 'Blauer Nue MD';
     font-size: 16px;
     font-weight: 500;
-    letter-spacing: -2%-;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     color: #28201F;
     white-space: nowrap;
@@ -77,9 +77,9 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 18px;
+    height: 34px;
     width: 1px;
-    background: rgba(26, 21, 18, 0.22);
+    background: #28201F1A;
   }
 
   /* ── Marquee track ───────────────────────────── */
@@ -92,7 +92,7 @@
   #{{ section_id }} .mb-track-wrapper:before{
     content: '';
     position: absolute;
-    background: linear-gradient(270deg, rgba(245, 238, 230, 0) 0%, #F5EEE6 100%);
+    background: linear-gradient(270deg, {{ bg_color | default: '#F5EEE6' | color_modify: 'alpha', 0 }} 0%, {{ bg_color | default: '#F5EEE6' }} 100%);
     width: 100px;
     height: 100%;
     left: 0px;
@@ -101,7 +101,7 @@
   #{{ section_id }} .mb-track-wrapper:after{
     content:'';
     position: absolute;
-    background: linear-gradient(90deg, rgba(245, 238, 230, 0) 0%, #F5EEE6 100%);
+    background: linear-gradient(90deg, {{ bg_color | default: '#F5EEE6' | color_modify: 'alpha', 0 }} 0%, {{ bg_color | default: '#F5EEE6' }} 100%);
     width: 100px;
     height: 100%;
     right: 0px;
@@ -130,8 +130,8 @@
   #{{ section_id }} .mb-item {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 0 28px;
+    gap: 12px;
+    padding: 0 30px;
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -172,9 +172,12 @@
   /* ── Pipe separator ──────────────────────────── */
   #{{ section_id }} .mb-pipe {
     flex-shrink: 0;
-    color: #28201F14;
-    font-size: 20px;
-    line-height: 1;
+    width: 1px;
+    height: 20px;
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+    background: #28201F14;
     user-select: none;
   }
 

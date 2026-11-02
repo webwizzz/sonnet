@@ -399,12 +399,16 @@
   background-color: var(--wis-accent);
   color: #FFFFFF;
 }
+/* Hover moves the filled state to the hovered arrow, so only one is ever dark */
 @media (hover: hover) {
-  .wis .wis__arrow--prev:hover {
+  .wis .wis__arrow--prev:hover ~ .wis__arrow--next {
+    background-color: var(--wis-arrow-bg);
+    color: var(--wis-text);
+  }
+  .wis .wis__arrow:hover {
     background-color: var(--wis-accent);
     color: #FFFFFF;
   }
-  .wis .wis__arrow--next:hover { opacity: 0.88; }
 }
 .wis .wis__arrow:focus { outline: none; }
 .wis .wis__arrow:focus-visible {

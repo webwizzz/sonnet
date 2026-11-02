@@ -1,0 +1,67 @@
+{%- comment -%}
+  PDP rating line under the tagline (Figma 279:2667): five 14px #F69104 stars + "N Reviews" link
+  to the review widget. Uses the standard reviews.rating / reviews.rating_count metafields that
+  Judge.me keeps in sync; renders nothing until the product has at least one review.
+  Usage: {% render 'pdp-rating' %} in a Custom liquid block placed after the tagline.
+{%- endcomment -%}
+
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+  assign rating_value = rating.rating | default: 0
+  assign rating_max = rating.scale_max | default: 5
+-%}
+
+{%- if rating_count > 0 -%}
+  <div class="pdp-rating">
+    <span class="pdp-rating__stars" role="img" aria-label="{{ 'general.accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max }}">
+      {%- for i in (1..5) -%}
+        {%- assign fill = rating_value | minus: forloop.index0 | at_least: 0 | at_most: 1 | times: 100 | round -%}
+        <span class="pdp-rating__star" style="--fill: {{ fill }}%;" aria-hidden="true"></span>
+      {%- endfor -%}
+    </span>
+    <a class="pdp-rating__count" href="#judgeme_product_reviews">
+      {{- rating_count }} {% if rating_count == 1 %}Review{% else %}Reviews{% endif -%}
+    </a>
+  </div>
+
+  <style>
+    .pdp-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 20px;
+    }
+    .pdp-rating__stars { display: inline-flex; gap: 1.5px; }
+    .pdp-rating__star {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      background: linear-gradient(90deg, #F69104 var(--fill), transparent var(--fill));
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3l-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3l-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    /* outline for the unfilled part, so a 4.5 rating reads as 4½ stars like the design */
+    .pdp-rating__star::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #F69104;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3l-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5L7 14.3l-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .pdp-rating__count {
+      font-family: 'Blauer Nue RG', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 21px;
+      letter-spacing: -0.02em;
+      color: #28201F;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 500px) {
+      .pdp-rating__count { font-size: 14px; }
+    }
+  </style>
+{%- endif -%}

@@ -299,22 +299,29 @@
             "font": "montserrat_n4",
             "padding_bottom": 0
           }
+        },
+        "liquid_rating_line": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pdp-rating' %}"
+          }
         }
       },
       "block_order": [
         "title_pNPxbr",
         "text_YqdgYx",
+        "liquid_rating_line",
         "text_pHhKGk",
         "description_LUbtai",
         "liquid_dVhnh4",
         "variant_selectors_dUYCiU",
         "price_ieeF9Q",
         "add_buttons_X6c7Uw",
-        "upsell_QRh93n",
         "liquid_cctVyp",
         "description_UypVb8",
         "liquid_H6jfJw",
         "liquid_CfXiMh",
+        "upsell_QRh93n",
         "shop_combo_ECX8t6"
       ],
       "name": "Product Tlpc page",
@@ -333,7 +340,7 @@
         "product_breadcrumbs_list": [],
         "width": "wrapper--full",
         "padding_top": 20,
-        "padding_bottom": 130
+        "padding_bottom": 80
       }
     },
     "marquee_bar_BK3y6m": {
@@ -402,7 +409,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 18,
         "padding_bottom_desktop": 18,
@@ -803,7 +810,6 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
         "video_on_mobile": true,
         "background_position": "center center",
         "overlay_color": "#28201f",
@@ -825,7 +831,8 @@
         "band_padding_bottom": 131,
         "mobile_band_padding_top": 48,
         "mobile_band_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "background_image": "shopify://shop_images/rub-science-background.webp"
       }
     },
     "ritual_bundle_3YtgcX": {
@@ -834,7 +841,7 @@
         "hotspot_4zrpnh": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "clean-it-off-face-wash",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
@@ -943,7 +950,7 @@
         "show_button": true,
         "button_label": "ADD BUNDLE",
         "bundle_discount": 10,
-        "discount_code": "",
+        "discount_code": "RITUAL10",
         "show_compare_price": true,
         "price_format": "money_without_trailing_zeros",
         "price_override": "Rs. 1,199",
@@ -990,7 +997,8 @@
         "width": "wrapper",
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "faq_know_first_Ynncyf": {
       "type": "faq-know-first",
@@ -1202,6 +1210,24 @@
         "padding_top_mobile": 14,
         "padding_bottom_mobile": 14
       }
+    },
+    "reviews_tlpc_judgeme": {
+      "type": "reviews-tlpc",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1215,6 +1241,7 @@
     "science_stats_FRLgMQ",
     "ritual_bundle_3YtgcX",
     "17911943963effc742",
+    "reviews_tlpc_judgeme",
     "faq_know_first_Ynncyf",
     "reviews",
     "related",
