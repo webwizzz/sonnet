@@ -277,7 +277,7 @@
             "icon_name_1": "",
             "raw_content_1": "<p>sSas&nbsp;</p>",
             "image_1": "{% render 'product-ingredients-tabs' %}",
-            "title_2": "USAGE GUIDE (AM and PM)",
+            "title_2": "USAGE GUIDE",
             "icon_name_2": "",
             "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
             "image_2": "",
@@ -667,8 +667,8 @@
       ],
       "name": "Set Before After",
       "settings": {
-        "before_image": "shopify://shop_images/Before.webp",
-        "after_image": "shopify://shop_images/After.webp",
+        "before_image": "shopify://shop_images/148963c1e064eedccb78760e05c4c673a8421418.webp",
+        "after_image": "shopify://shop_images/d847e1a5e2e7d33ec8622eb1cbd03a308fccc72f.webp",
         "before_label": "BEFORE",
         "after_label": "AFTER",
         "compare_start": 50,
@@ -1298,7 +1298,9 @@
         "dialog_label": "Video",
         "padding_top": 0,
         "padding_bottom": 0,
-        "custom_class": ""
+        "custom_class": "",
+        "decor_left": -14,
+        "decor_width": 571
       }
     },
     "science_stats_cEpVm6": {

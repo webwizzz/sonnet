@@ -277,7 +277,7 @@
             "icon_name_1": "",
             "raw_content_1": "<p>sSas&nbsp;</p>",
             "image_1": "{% render 'product-ingredients-tabs' %}",
-            "title_2": "USAGE GUIDE (AM and PM)",
+            "title_2": "USAGE GUIDE",
             "icon_name_2": "",
             "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
             "image_2": "",
@@ -1173,7 +1173,9 @@
         "dialog_label": "Video",
         "padding_top": 0,
         "padding_bottom": 0,
-        "custom_class": ""
+        "custom_class": "",
+        "decor_left": -69,
+        "decor_width": 685
       }
     },
     "science_stats_cEpVm6": {

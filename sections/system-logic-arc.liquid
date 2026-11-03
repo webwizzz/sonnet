@@ -89,6 +89,14 @@
   padding-top: {{ s.padding_top }}px;
   padding-bottom: {{ s.padding_bottom }}px;
 }
+{%- if s.decor_image != blank %}
+/* Figma crops each set's photo into its own frame (685 or 571 × 856), filled from the centre */
+#shopify-section-{{ section.id }} .sla__decor {
+  left: calc({{ s.decor_left }} * var(--sla-u));
+  width: calc({{ s.decor_width }} * var(--sla-u));
+}
+#shopify-section-{{ section.id }} .sla .sla__decor img { object-fit: cover; object-position: center; }
+{%- endif %}
 {%- unless s.show_decor_mobile %}
 @media only screen and (max-width: 768px) {
   #shopify-section-{{ section.id }} .sla__decor { display: none; }
@@ -1257,7 +1265,9 @@
     { "type": "font_picker", "id": "label_font", "label": "Benefit card label", "info": "Design: Montserrat SemiBold.", "default": "montserrat_n6" },
     { "type": "font_picker", "id": "pill_font", "label": "Product card label", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },
     { "type": "header", "content": "Decorative image" },
-    { "type": "image_picker", "id": "decor_image", "label": "Image", "info": "Sits behind the cards at the bottom left. 821 × 856 px with a transparent background works best." },
+    { "type": "image_picker", "id": "decor_image", "label": "Image", "info": "Sits behind the cards at the bottom left, 856 px tall at full width. A transparent background works best." },
+    { "type": "number", "id": "decor_left", "label": "Image left edge (px)", "info": "Measured at 1920 px wide. Negative values let the photo bleed off the left edge.", "default": -161 },
+    { "type": "number", "id": "decor_width", "label": "Image frame width (px)", "info": "Measured at 1920 px wide; the frame is 856 px tall and the photo fills it from the centre.", "default": 821 },
     { "type": "checkbox", "id": "show_decor_mobile", "label": "Show on mobile", "default": false },
     { "type": "header", "content": "Scroll animation" },
     { "type": "paragraph", "content": "The section pins while the cards travel along the arc, and moves on once the last card reaches the centre. Visitors who prefer reduced motion see a swipeable row." },

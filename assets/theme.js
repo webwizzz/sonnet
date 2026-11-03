@@ -11003,8 +11003,10 @@
         document.addEventListener('mousedown', ()=>{
             document.body.classList.remove('focus-enabled');
         });
-        document.addEventListener('keyup', (event)=>{
-            if (event.code === 'Tab') {
+        // keydown, not keyup: switching back with Alt+Tab delivers a stray Tab keyup, which outlined
+        // whatever was last clicked (an open FAQ, a card) as if the visitor were tabbing
+        document.addEventListener('keydown', (event)=>{
+            if (event.code === 'Tab' && !event.altKey && !event.metaKey) {
                 document.body.classList.add('focus-enabled');
             }
         });

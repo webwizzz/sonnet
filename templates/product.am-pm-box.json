@@ -277,7 +277,7 @@
             "icon_name_1": "",
             "raw_content_1": "<p>sSas&nbsp;</p>",
             "image_1": "{% render 'product-ingredients-tabs' %}",
-            "title_2": "USAGE GUIDE (AM and PM)",
+            "title_2": "USAGE GUIDE",
             "icon_name_2": "",
             "raw_content_2": "{{ product.metafields.custom.usage_guide_accordion | metafield_tag }}",
             "image_2": "",
@@ -690,36 +690,35 @@
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/amp-routine-clean-it-off.webp",
-            "video": "shopify://files/videos/Removes buildup gif.mp4",
+            "video": "shopify://files/videos/Clean It Off Face Wash AM Gif1.mp4",
             "video_url": "",
             "title": "Clean It Off Face Wash",
             "description": "Removes overnight sebum and surface build-up",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/Rectangle_1430107059.png"
           }
         },
         "step_Pe7TCF": {
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/amp-routine-dab-it-on.webp",
-            "video": "shopify://files/videos/Locks in moisture gif.mp4",
+            "video": "shopify://files/videos/Dab It On Toner AM Vid.mp4",
             "video_url": "",
             "title": "Dab It On Toner",
             "description": "Conditions the skin surface; Niacinamide 2% and Witch Hazel",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/Dab_It_On_Toner_AM.webp"
           }
         },
         "step_NVrci8": {
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/amp-routine-rub-it-in.webp",
-            "video": "shopify://files/videos/Wont strip skin gif.mp4",
+            "video": "shopify://files/videos/AM Rub It In Serum Vid.mp4",
             "video_url": "",
             "title": "Rub It In Serum",
             "description": "Niacinamide IP 5%, Vitamin E and Jojoba; 2 to 3 drops pressed in",
@@ -732,64 +731,63 @@
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/amp-routine-soak-it-in.webp",
-            "video": "shopify://files/videos/Non-greasy finish gif.mp4",
+            "video": "shopify://files/videos/Clean It Off Face Wash PM gif 2.mp4",
             "video_url": "",
             "title": "Soak It In Face Cream",
             "description": "Niacinamide 2% and Kokum Butter; lasting daytime moisture",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/2am.png"
           }
         },
         "step_dd1fxjr": {
           "type": "step",
           "settings": {
             "routine": "am",
-            "image": "shopify://shop_images/amp-routine-clean-it-off.webp",
-            "video": "shopify://files/videos/Non-greasy finish gif.mp4",
+            "video": "shopify://files/videos/Protect Vid.mp4",
             "video_url": "",
             "title": "Your SPF 30 to 50",
             "description": "Not included in the Sonnet range; essential final morning step",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/dcc-routine-am-spf.webp"
           }
         },
         "step_dd2pn95": {
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/amp-routine-clean-it-off.webp",
-            "video": "shopify://files/videos/Removes buildup gif.mp4",
+            "video": "shopify://files/videos/Clean It Off Face Wash PM gif.mp4",
             "video_url": "",
             "title": "Clean It Off Face Wash",
             "description": "Removes daily pollution, makeup and SPF",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/123.png"
           }
         },
         "step_dd3udj5": {
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/amp-routine-dab-it-on.webp",
-            "video": "shopify://files/videos/Locks in moisture gif.mp4",
+            "video": "shopify://files/videos/Dab It On Toner PM Vid_e5f9bcb5-0fb2-4d30-81c5-5ef74990e46a.mp4",
             "video_url": "",
             "title": "Dab It On Toner",
             "description": "Applied after cleansing or after rinsing the mask; conditions and calms",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/Dab_It_On_Toner_PM_dace7ea1-8ed2-4b24-9b33-b9f5435d7244.webp"
           }
         },
         "step_dd49izy": {
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/amp-routine-rub-it-in.webp",
-            "video": "shopify://files/videos/Wont strip skin gif.mp4",
+            "video": "shopify://files/videos/AM Rub It In Serum Vid.mp4",
             "video_url": "",
             "title": "Rub It In Serum",
             "description": "Overnight treatment; 2 to 3 drops; allow full absorption",
@@ -802,14 +800,14 @@
           "type": "step",
           "settings": {
             "routine": "pm",
-            "image": "shopify://shop_images/amp-routine-soak-it-in.webp",
-            "video": "shopify://files/videos/Non-greasy finish gif.mp4",
+            "video": "shopify://files/videos/Soak It In Face Cream PM Gif.mp4",
             "video_url": "",
             "title": "Soak It In Face Cream",
             "description": "Overnight conditioning; skin feels comfortable by morning",
             "product": "",
             "link": "",
-            "number_override": ""
+            "number_override": "",
+            "image": "shopify://shop_images/Soak_It_In_Face_Cream_PM_f1.png"
           }
         }
       },
@@ -830,7 +828,7 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "show_toggle": true,
-        "default_view": "all",
+        "default_view": "am",
         "am_label": "AM",
         "pm_label": "PM",
         "title_font": "montserrat_n7",
@@ -1315,7 +1313,7 @@
         "subtitle_font": "montserrat_n4",
         "label_font": "montserrat_n6",
         "pill_font": "montserrat_n5",
-        "decor_image": "shopify://shop_images/model-left-decor-821x856.webp",
+        "decor_image": "shopify://shop_images/aa5a02f8e66c755b6aaced365150155a.png",
         "show_decor_mobile": false,
         "scroll_per_card": 70,
         "arc_radius": 2440,
@@ -1338,7 +1336,9 @@
         "dialog_label": "Video",
         "padding_top": 0,
         "padding_bottom": 0,
-        "custom_class": ""
+        "custom_class": "",
+        "decor_left": 0,
+        "decor_width": 571
       }
     },
     "science_stats_cEpVm6": {
@@ -1380,7 +1380,8 @@
             "icon": "face_glow",
             "value": "3 of 5",
             "text": "Products that contain Niacinamide",
-            "text_width": 183
+            "text_width": 183,
+            "icon_image": "shopify://shop_images/5d7b8d0b-3617-47ab-ad63-ffe727a30bcc.svg"
           }
         }
       },

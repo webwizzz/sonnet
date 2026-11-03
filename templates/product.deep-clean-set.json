@@ -643,8 +643,8 @@
       ],
       "name": "Set Before After",
       "settings": {
-        "before_image": "shopify://shop_images/dcc-before.webp",
-        "after_image": "shopify://shop_images/dcc-after.webp",
+        "before_image": "shopify://shop_images/272932ca03df556f53d73d303c6be671.png",
+        "after_image": "shopify://shop_images/7dad44c60ef882c2eebe1ab725497dd9.png",
         "before_label": "BEFORE",
         "after_label": "AFTER",
         "compare_start": 50,
@@ -1135,7 +1135,7 @@
         "subtitle_font": "montserrat_n4",
         "label_font": "montserrat_n6",
         "pill_font": "montserrat_n5",
-        "decor_image": "shopify://shop_images/model-left-decor-821x856.webp",
+        "decor_image": "shopify://shop_images/26a100d1afb58885f9ede2ce74984266.png",
         "show_decor_mobile": false,
         "scroll_per_card": 70,
         "arc_radius": 2440,
@@ -1158,7 +1158,9 @@
         "dialog_label": "Video",
         "padding_top": 0,
         "padding_bottom": 0,
-        "custom_class": ""
+        "custom_class": "",
+        "decor_left": -17,
+        "decor_width": 571
       }
     },
     "science_stats_cEpVm6": {
@@ -1168,7 +1170,7 @@
           "type": "stat",
           "settings": {
             "icon": "sun_skin",
-            "icon_image": "shopify://shop_images/Group_2087330668.svg",
+            "icon_image": "shopify://shop_images/1d73a7f8-a505-4caf-8e6b-6eb86e2f0fbd.svg",
             "value": "20%",
             "text": "Kaolin Clay in Smear It On Face Mask",
             "text_width": 221
@@ -1178,7 +1180,7 @@
           "type": "stat",
           "settings": {
             "icon": "skin_layers",
-            "icon_image": "shopify://shop_images/Group_2087330669.svg",
+            "icon_image": "shopify://shop_images/72d7ecff-738c-4650-9e66-ed66618a5afa.svg",
             "value": "4%",
             "text": "Glycolic Acid in Smear It On Face Mask",
             "text_width": 216
@@ -1188,7 +1190,7 @@
           "type": "stat",
           "settings": {
             "icon": "none",
-            "icon_image": "shopify://shop_images/Group_2087330673.svg",
+            "icon_image": "shopify://shop_images/c1f336a7-8aa6-4981-9150-569400de3521.svg",
             "value": "5%",
             "text": "Aloe Barbadensis Leaf Juice in each product",
             "text_width": 204
@@ -1200,7 +1202,8 @@
             "icon": "face_glow",
             "value": "2%",
             "text": "Niacinamide in Dab It On Toner",
-            "text_width": 183
+            "text_width": 183,
+            "icon_image": "shopify://shop_images/38aa5397-97fc-4db9-8912-29e8ac8e51dd.svg"
           }
         }
       },

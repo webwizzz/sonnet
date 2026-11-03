@@ -239,6 +239,8 @@
   letter-spacing: -0.02em;
   color: var(--sba-text);
   overflow-wrap: break-word;
+  /* line breaks typed for Figma's narrower boxes left one-word lines here; balance instead */
+  text-wrap: balance;
 }
 .sba__sr {
   position: absolute !important;
@@ -356,7 +358,7 @@
                   {%- if block.type == 'before_point' and block.settings.text != blank -%}
                     <li class="sba__item" {{ block.shopify_attributes }}>
                       {{ icon_no }}
-                      <span class="sba__text">{{ block.settings.text | escape | newline_to_br }}</span>
+                      <span class="sba__text">{{ block.settings.text | escape | newline_to_br | replace: '<br />', ' ' }}</span>
                     </li>
                   {%- endif -%}
                 {%- endfor -%}
@@ -368,7 +370,7 @@
                   {%- if block.type == 'after_point' and block.settings.text != blank -%}
                     <li class="sba__item" {{ block.shopify_attributes }}>
                       {{ icon_yes }}
-                      <span class="sba__text">{{ block.settings.text | escape | newline_to_br }}</span>
+                      <span class="sba__text">{{ block.settings.text | escape | newline_to_br | replace: '<br />', ' ' }}</span>
                     </li>
                   {%- endif -%}
                 {%- endfor -%}
