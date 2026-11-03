@@ -235,7 +235,8 @@
   inset: 0;
   border-radius: inherit;
   background: var(--amn-band);
-  opacity: min(0.55, calc(var(--depth) * 0.22));
+  /* tint only once the next card actually covers this one (it starts 100vh below), so the front card keeps the Figma #FFFCF9 */
+  opacity: clamp(0, calc((var(--depth) - 0.75) * 0.88), 0.55);
   pointer-events: none;
 }
 

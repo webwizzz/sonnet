@@ -124,14 +124,17 @@
 }
 
 @media screen and (max-width: 1100px) {
-  .tbg__inner { flex-direction: column; align-items: flex-start; gap: 28px; }
-  .tbg__list { justify-content: flex-start; flex-wrap: wrap; row-gap: 24px; }
+  .tbg__inner { flex-direction: column; align-items: center; gap: 28px; }
+  .tbg .tbg__heading { text-align: center; }
+  .tbg__list { justify-content: center; flex-wrap: wrap; row-gap: 24px; }
 }
 @media screen and (max-width: 900px) {
+  /* two compact columns centred under the heading (equal halves left a wide empty band on the right) */
   .tbg__list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px 16px;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    gap: 20px clamp(32px, 8vw, 64px);
     width: 100%;
   }
   .tbg__item { min-width: 0; }

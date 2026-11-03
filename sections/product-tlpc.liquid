@@ -417,7 +417,10 @@
 					@container (max-width: 560px) {
 						#pib-{{ block.id }} .pib { grid-template-columns:repeat(2, 1fr); }
 						#pib-{{ block.id }} .pib__item { justify-content:flex-start; }
-						#pib-{{ block.id }} .pib__item:nth-child(odd) { border-left:0; }
+						#pib-{{ block.id }} .pib__item:nth-child(odd) { border-left:0; padding-left:0; }
+						#pib-{{ block.id }} .pib__item:nth-child(even) { padding-left:20px; }
+						/* two per row leaves room for the label on one or two lines ("Even-Looking Tone" wrapped to three) */
+						#pib-{{ block.id }} .pib__text { max-width:none; }
 					}
 					</style>
 

@@ -7,8 +7,10 @@
   assign pb_mobile    = section.settings.padding_bottom_mobile  | default: 14
   assign bg_color     = section.settings.background_color
   assign label        = section.settings.label | default: 'WHY US?'
-  assign block_count  = section.blocks.size
-  assign duration     = block_count | times: speed
+  assign block_count  = section.blocks.size | at_least: 1
+  # each half of the loop holds the items repeated to at least 10, so a short list still spans a wide screen
+  assign reps         = 10 | plus: block_count | minus: 1 | divided_by: block_count
+  assign duration     = block_count | times: reps | times: speed
 -%}
 
 <style>
@@ -235,16 +237,13 @@
         <div class="mb-track-wrapper">
             <div class="mb-track">
 
-            {%- comment -%} Render blocks twice for seamless loop {%- endcomment -%}
+            {%- comment -%} Two identical halves (track scrolls by -50%), each item followed by its pipe {%- endcomment -%}
             {%- for _pass in (1..2) -%}
+              {%- for _rep in (1..reps) -%}
                 {%- for block in section.blocks -%}
                 {%- assign bset = block.settings -%}
 
-                {%- unless forloop.first -%}
-                    <span class="mb-pipe">|</span>
-                {%- endunless -%}
-
-                <div class="mb-item" {{ block.shopify_attributes }}>
+                <div class="mb-item" {% if _pass == 1 and _rep == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
 
                     {%- if bset.icon != blank -%}
                       <img src="{{ bset.icon | image_url }}" alt="{{ bset.title }}" class="mb-item-icon" >
@@ -263,14 +262,10 @@
                     {%- endif -%}
 
                 </div>
+                <span class="mb-pipe">|</span>
 
                 {%- endfor -%}
-
-                {%- comment -%} Pipe between last item of pass 1 and first item of pass 2 {%- endcomment -%}
-                {%- if forloop.index == 1 -%}
-                <span class="mb-pipe">|</span>
-                {%- endif -%}
-
+              {%- endfor -%}
             {%- endfor -%}
 
             </div>

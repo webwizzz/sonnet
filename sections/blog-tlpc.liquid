@@ -6,8 +6,9 @@
   Grid 50px under the hero: 587-wide cards, 30px gaps. Card = 360-tall image (radius 10) + 10px +
   #F5EEE6 body (radius 10): pills / read time, 6% divider, title Blauer Nue RG 24/31.2, "Read More".
   Pagination 50px under the grid: 50px circles, 10px apart, current page full, others at 60%.
-  An article can supply a text-free cover for the hero / cards with an image metafield custom.listing_image
-  (falls back to the featured image). Every page shows its first article as the hero and the next ones in the grid, so with the default
+  Covers: many featured images carry their title in the artwork, which clashes with the overlaid text.
+  See snippets/blog-tlpc-cover.liquid: a "Cover" block for that article, then custom.listing_image,
+  then (with "Use design covers") the hero image / rotating Cover blocks, then the featured image. Every page shows its first article as the hero and the next ones in the grid, so with the default
   10 per page each page is 1 hero + 9 cards. Read time = words / 200, rounded up.
 {%- endcomment -%}
 
@@ -18,6 +19,12 @@
   assign grid_offset = 0
   if s.show_hero
     assign grid_offset = 1
+  endif
+  assign rotate = false
+  assign hero_fallback = blank
+  if s.cover_mode == 'design'
+    assign rotate = true
+    assign hero_fallback = s.hero_image
   endif
 -%}
 
@@ -45,6 +52,7 @@
 {% style %}
 .btl *, .btl *::before, .btl *::after { box-sizing: border-box; }
 .btl { padding-left: max(16px, calc(50 * var(--btl-u))); padding-right: max(16px, calc(50 * var(--btl-u))); color: var(--btl-text); }
+.btl__inner { max-width: 1820px; margin: 0 auto; }
 .btl a { color: inherit; text-decoration: none; }
 
 /* Pill: white, radius 60, 6 / 14 / 5, Blauer Nue LT 12/15.6 uppercase */
@@ -73,7 +81,13 @@
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color 200ms ease, text-underline-offset 200ms ease;
 }
+.btl a:hover .btl__more,
+.btl a:focus-visible .btl__more { text-underline-offset: 4px; }
+.btl .btl__card:hover .btl__more,
+.btl .btl__card:focus-visible .btl__more { color: var(--btl-accent); }
 
 /* ---------- Featured hero ---------- */
 .btl__hero {
@@ -87,6 +101,7 @@
   background: #d9d9d9;
   isolation: isolate;
 }
+.btl__hero-content { position: relative; min-width: 0; max-width: 100%; }
 .btl__hero-media { position: absolute; inset: 0; z-index: -2; }
 .btl__hero-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 800ms ease; }
 .btl__hero:hover .btl__hero-media img { transform: scale(1.03); }
@@ -127,6 +142,7 @@
 }
 .btl__grid > li { margin: 0; }
 .btl__card { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+.btl__card:focus-visible { outline: 2px solid var(--btl-accent); outline-offset: 4px; border-radius: 10px; }
 .btl__card-media {
   position: relative;
   aspect-ratio: 587 / 360;
@@ -142,6 +158,7 @@
   flex: 1;
   min-height: calc(206 * var(--btl-u));
   padding-bottom: 24px;
+  transition: background-color 200ms ease;
   border-radius: 10px;
   background: var(--btl-card);
 }
@@ -163,8 +180,9 @@
   color: var(--btl-text);
 }
 .btl .btl__card-title {
-  max-width: calc(519 * var(--btl-u) + 2px);
+  max-width: calc(100% - 40px);
   margin: 16px 20px 0;
+  padding-right: calc(28 * var(--btl-u));
   font-family: 'Blauer Nue RG', sans-serif;
   font-weight: 400;
   font-size: max(19px, calc(24 * var(--btl-u)));
@@ -172,6 +190,8 @@
   letter-spacing: -0.02em;
   color: var(--btl-text);
   text-transform: none;
+  overflow-wrap: break-word;
+  transition: color 200ms ease;
 }
 .btl .btl__card .btl__more { align-self: flex-start; margin: auto 20px 0; padding-top: 20px; }
 
@@ -200,29 +220,60 @@
   transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease;
 }
 .btl .btl__page--num { opacity: 0.6; }
-.btl .btl__page--num:hover { opacity: 1; }
 .btl .btl__page--current { opacity: 1; }
+.btl a.btl__page--num:hover,
+.btl a.btl__page--num:focus-visible { opacity: 1; background: var(--btl-accent); color: #FFFFFF; }
 .btl .btl__page--gap { border-color: transparent; background: transparent; }
 .btl .btl__page svg { display: block; width: 50px; height: 50px; }
+.btl .btl__page svg path { transition: fill 200ms ease, stroke 200ms ease; }
 .btl .btl__page--prev svg { transform: scaleX(-1); }
 .btl .btl__page--arrow { border: 0; background: transparent; }
-.btl .btl__page--disabled { opacity: 0.35; pointer-events: none; }
+.btl a.btl__page--arrow:hover svg > g > path,
+.btl a.btl__page--arrow:focus-visible svg > g > path { fill: var(--btl-accent); }
+.btl a.btl__page--arrow:hover svg g g path,
+.btl a.btl__page--arrow:focus-visible svg g g path { stroke: #FFFFFF; }
+.btl a.btl__page:focus-visible { outline: 2px solid var(--btl-accent); outline-offset: 3px; }
+.btl .btl__page--disabled { opacity: 0.4; pointer-events: none; }
 
 .btl__empty { padding: 80px 0; text-align: center; font-family: 'Blauer Nue LT', sans-serif; font-size: 18px; }
 
 @media screen and (max-width: 1100px) {
-  .btl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .btl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
+  .btl__card-body { min-height: 0; }
+  .btl .btl__card-title { max-width: none; padding-right: 0; font-size: 20px; }
+  .btl__card-meta { padding: 16px 20px 14px; }
+  .btl .btl__hero-title { max-width: min(100%, 620px); font-size: 28px; }
+  .btl__hero::after { background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 70%); }
 }
 @media screen and (max-width: 768px) {
-  .btl__grid { grid-template-columns: 1fr; }
-  .btl__card-body { min-height: 0; }
-  .btl .btl__hero-title { max-width: none; }
+  .btl { padding-left: 16px; padding-right: 16px; }
+  .btl__grid { gap: 20px 16px; }
+  .btl__hero { min-height: 340px; padding: 20px; border-radius: 12px; }
+  .btl__hero-media img { object-position: 72% 50%; }
+  .btl__hero::after { background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 75%); }
+  .btl .btl__hero-title { max-width: none; margin-top: 12px; font-size: 22px; line-height: 1.25; }
+  .btl .btl__hero .btl__more { margin-top: 14px; }
+  .btl__card-meta { padding: 14px 16px 12px; gap: 8px; }
+  .btl .btl__card-title { margin: 14px 16px 0; font-size: 18px; }
+  .btl .btl__card .btl__more { margin: auto 16px 0; padding-top: 16px; }
+  .btl__card-body { padding-bottom: 20px; }
+  .btl .btl__read { font-size: 13px; }
+  .btl__pagination { gap: 8px; }
   .btl .btl__page { width: 40px; height: 40px; font-size: 18px; }
   .btl .btl__page svg { width: 40px; height: 40px; }
+}
+@media screen and (max-width: 680px) {
+  .btl__grid { grid-template-columns: 1fr; gap: 20px; }
+}
+@media screen and (max-width: 380px) {
+  .btl .btl__pill { padding: 5px 10px 4px; font-size: 11px; }
+  .btl .btl__page { width: 34px; height: 34px; font-size: 16px; }
+  .btl .btl__page svg { width: 34px; height: 34px; }
 }
 {% endstyle %}
 
 <div class="btl {{ s.custom_class | escape }}">
+  <div class="btl__inner">
   {%- paginate blog.articles by s.per_page -%}
     {%- if blog.articles.size == 0 -%}
       <p class="btl__empty">{{ s.empty_text | escape }}</p>
@@ -232,8 +283,6 @@
       {%- liquid
         assign article = blog.articles.first
         assign tag = article.tags.first | default: fallback_tag
-        assign alt = article.image.alt | default: article.title
-        assign hero_image = article.metafields.custom.listing_image.value | default: article.image
         assign article_link = article.url
         if article_view != blank and article.template_suffix != article_view
           assign article_link = article.url | append: '?view=' | append: article_view
@@ -241,11 +290,9 @@
       -%}
       <a class="btl__hero" href="{{ article_link }}">
         <div class="btl__hero-media">
-          {%- if hero_image != blank -%}
-            {{ hero_image | image_url: width: 3640 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750, 1100, 1500, 1820, 2400, 3640', alt: alt }}
-          {%- endif -%}
+          {%- render 'blog-tlpc-cover', article: article, blocks: section.blocks, index: 0, rotate: rotate, fallback: hero_fallback, width: 3640, widths: '750, 1100, 1500, 1820, 2400, 3640', sizes: '100vw', loading: 'eager', fetchpriority: 'high', decorative: true -%}
         </div>
-        <div>
+        <div class="btl__hero-content">
           {%- render 'blog-tlpc-pills', article: article, tag: tag, show_date: s.show_date -%}
           <h2 class="btl__hero-title">{{ article.title | escape }}</h2>
           <span class="btl__more">{{ s.read_more | escape }}</span>
@@ -260,8 +307,6 @@
             assign words = article.content | strip_html | split: ' ' | size
             assign minutes = words | plus: 199 | divided_by: 200 | at_least: 1
             assign tag = article.tags.first | default: fallback_tag
-            assign alt = article.image.alt | default: article.title
-            assign card_image = article.metafields.custom.listing_image.value | default: article.image
             assign article_link = article.url
             if article_view != blank and article.template_suffix != article_view
               assign article_link = article.url | append: '?view=' | append: article_view
@@ -270,9 +315,7 @@
           <li>
             <a class="btl__card" href="{{ article_link }}">
               <div class="btl__card-media">
-                {%- if card_image != blank -%}
-                  {{ card_image | image_url: width: 1174 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 31vw, (min-width: 769px) 48vw, 100vw', widths: '400, 600, 800, 1174', alt: alt }}
-                {%- endif -%}
+                {%- render 'blog-tlpc-cover', article: article, blocks: section.blocks, index: forloop.index0, rotate: rotate, width: 1174, widths: '400, 600, 800, 1174', sizes: '(min-width: 1101px) 31vw, (min-width: 681px) 48vw, 100vw', loading: 'lazy', decorative: true -%}
               </div>
               <div class="btl__card-body">
                 <div class="btl__card-meta">
@@ -313,6 +356,7 @@
       </nav>
     {%- endif -%}
   {%- endpaginate -%}
+  </div>
 </div>
 
 {% schema %}
@@ -324,6 +368,11 @@
     { "type": "range", "id": "per_page", "label": "Articles per page", "info": "The first article on each page becomes the hero, so 10 gives 1 hero + 9 cards.", "min": 4, "max": 25, "step": 1, "default": 10 },
     { "type": "text", "id": "article_view", "label": "Open articles with template", "info": "Article links add ?view= with this template name so they open in the TLPC article design. Skipped for articles that already use it. Leave empty for plain links.", "default": "blog-tlpc" },
     { "type": "checkbox", "id": "show_hero", "label": "Show the first article as a large hero", "default": true },
+    { "type": "header", "content": "Cover images" },
+    { "type": "paragraph", "content": "A Cover block with an article always replaces that article's image. Articles can also set an image metafield custom.listing_image." },
+    { "type": "select", "id": "cover_mode", "label": "Articles without their own cover show", "options": [ { "value": "featured", "label": "Their featured image" }, { "value": "design", "label": "Design covers (hero image + Cover blocks)" } ], "default": "featured", "info": "Use design covers while featured images have their title printed in the artwork." },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (design covers)", "info": "1820 × 500. Design export: 01-blog-featured.webp." },
+    { "type": "header", "content": "Content" },
     { "type": "checkbox", "id": "show_date", "label": "Show date pill", "default": true },
     { "type": "checkbox", "id": "show_read_time", "label": "Show read time", "default": true },
     { "type": "text", "id": "fallback_tag", "label": "Category pill when an article has no tags", "info": "The pill shows the article's first tag. Leave empty to hide it for untagged articles.", "default": "Skin Science" },
@@ -343,6 +392,18 @@
     { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
     { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 56 },
     { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "cover",
+      "name": "Cover",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "587 × 360 or larger, without text." },
+        { "type": "article", "id": "article", "label": "Article", "info": "Pick an article to give it this cover everywhere. Leave empty to add the image to the rotating design covers." }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Blog listing (TLPC)" } ],
+  "enabled_on": { "templates": ["blog"] }
 }
 {% endschema %}

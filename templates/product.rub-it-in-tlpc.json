@@ -1566,35 +1566,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome Friendly"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_FUg9VM": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan"
+            "title": "Dermatologically Tested"
           }
         },
         "item_Hc86hi": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Cruelty Free"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_zeBtf7": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Made in India"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_wBgage": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Science-Backed"
+            "title": "All Skin Types"
+          }
+        },
+        "item_qc5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
           }
         }
       },
@@ -1603,7 +1610,8 @@
         "item_FUg9VM",
         "item_Hc86hi",
         "item_zeBtf7",
-        "item_wBgage"
+        "item_wBgage",
+        "item_qc5"
       ],
       "name": "Marquee Bar",
       "settings": {

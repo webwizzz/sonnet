@@ -30,9 +30,9 @@
         "show_bundle": true,
         "bundle_image": "shopify://shop_images/07-bundle-promo.webp",
         "bundle_heading": "<p>Five products. one <em>complete ritual.</em></p>",
-        "bundle_product": "am-pm-skincare-ritual",
+        "bundle_product": "am-pm-box",
         "bundle_button": "Add bundle",
-        "bundle_badge": "-10% OFF",
+        "bundle_badge": "-[percent]% OFF",
         "adding_label": "Adding…",
         "added_label": "Added to your cart.",
         "error_label": "Could not add to cart.",
@@ -46,8 +46,37 @@
         "mobile_padding_bottom": 56,
         "custom_class": "",
         "article_view": "blog-tlpc",
-        "listing_view": "blog-tlpc"
-      }
+        "listing_view": "blog-tlpc",
+        "cover_mode": "design",
+        "hero_image": "shopify://shop_images/03-article-hero.webp",
+        "avatar_image": "shopify://shop_images/04-author-avatar.webp",
+        "author_image": "shopify://shop_images/05-author-photo.webp"
+      },
+      "blocks": {
+        "cover_sun": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-3.webp"
+          }
+        },
+        "cover_profile": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-2.webp"
+          }
+        },
+        "cover_lips": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-1.webp"
+          }
+        }
+      },
+      "block_order": [
+        "cover_lips",
+        "cover_sun",
+        "cover_profile"
+      ]
     }
   },
   "order": [

@@ -506,6 +506,8 @@
   .hsr { --hsr-u: 0.75px; }
   .hsr__grid { grid-template-columns: minmax(0, 1fr); }
   .hsr__card { min-height: 0; }
+  /* Card height follows the active review (QC: no empty band under shorter reviews on tablet/phone) */
+  .hsr__slide:not(.is-active) { height: 0; overflow: hidden; }
   .hsr__media {
     min-height: 0;
     aspect-ratio: 851 / 700;

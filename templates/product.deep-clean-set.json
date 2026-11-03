@@ -315,11 +315,18 @@
             "font": "montserrat_n4",
             "padding_bottom": 0
           }
+        },
+        "liquid_rating_line": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pdp-rating' %}"
+          }
         }
       },
       "block_order": [
         "title_d8f4NW",
         "text_MwYrmh",
+        "liquid_rating_line",
         "description_HjAF3F",
         "spacer_Rcz69C",
         "product_info_VVyN8P",
@@ -327,12 +334,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
-        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
-        "liquid_jWXjdi",
-        "shop_combo_826ev3"
+        "upsell_UgXWDc",
+        "shop_combo_826ev3",
+        "liquid_jWXjdi"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -350,7 +357,7 @@
         "product_breadcrumbs_list": [],
         "width": "wrapper--full",
         "padding_top": 20,
-        "padding_bottom": 130
+        "padding_bottom": 80
       }
     },
     "marquee_bar_z7LLMg": {
@@ -395,7 +402,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -774,7 +781,7 @@
         "ingredient_dcc3": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-lactobacillus.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "LACTOBACILLUS FERMENT LYSATE (1%)",
             "description": "Inactivated postbiotic. Helps maintain a conditioned skin surface while masking."
           }
@@ -782,7 +789,7 @@
         "ingredient_dcc4": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-kaolin-clay.webp",
+            "image": "shopify://shop_images/f5ddf25a-689f-460a-8b8d-d15f2f47e09e.png",
             "name": "KAOLIN CLAY (20%)",
             "description": "Mineral clay. Helps absorb excess surface oil and lift pore debris."
           }
@@ -790,7 +797,7 @@
         "ingredient_dcc5": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-glycolic-acid.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "GLYCOLIC ACID (4%)",
             "description": "An AHA. Helps loosen dead surface skin cells for smoother-looking texture."
           }
@@ -798,7 +805,7 @@
         "ingredient_dcc6": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-green-tea-extract.webp",
+            "image": "shopify://shop_images/9dd8c4fb-e683-4bf0-96bd-8065df21715f.png",
             "name": "GREEN TEA LEAF EXTRACT (1%)",
             "description": "Antioxidant support at the skin surface during masking."
           }
@@ -806,7 +813,7 @@
         "ingredient_dcc7": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-aloe.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "ALOE LEAF JUICE (5%)",
             "description": "Keeps skin comfortable during and after masking."
           }
@@ -814,7 +821,7 @@
         "ingredient_dcc8": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-glycerin-mask.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "GLYCERIN (3%)",
             "description": "Draws moisture to the surface, balancing the absorbent clay."
           }
@@ -822,7 +829,7 @@
         "ingredient_dcc9": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-magnesium-aluminium-silicate.webp",
+            "image": "shopify://shop_images/86ec09dc-b209-4e79-bbd4-6b0973d686d9.png",
             "name": "MAGNESIUM ALUMINIUM SILICATE (5%)",
             "description": "Gives the mask a smooth, spreadable consistency."
           }
@@ -836,7 +843,7 @@
         "ingredient_dcc10": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-lactobacillus.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "Lactobacillus Ferment Lysate (1%)",
             "description": "Inactivated postbiotic. Helps maintain a conditioned, comfortable skin surface."
           }
@@ -844,7 +851,7 @@
         "ingredient_dcc11": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-niacinamide-cream.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide (2%)",
             "description": "Vitamin B3. Helps support an even-looking tone and refined-looking pores."
           }
@@ -852,7 +859,7 @@
         "ingredient_dcc12": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-toner-witch-hazel.webp",
+            "image": "shopify://shop_images/81097532-6f85-436a-9670-3fbc84029720.png",
             "name": "WITCH HAZEL EXTRACT (2%)",
             "description": "A pore-refining botanical. Helps refine the visible appearance of pores."
           }
@@ -860,7 +867,7 @@
         "ingredient_dcc13": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-toner-chamomile.webp",
+            "image": "shopify://shop_images/9bc1ac35-14bf-4792-97e3-80afc93e2f52.png",
             "name": "CHAMOMILE FLOWER EXTRACT (1%)",
             "description": "Helps soothe the visible appearance of redness on reactive skin."
           }
@@ -868,7 +875,7 @@
         "ingredient_dcc14": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-aloe.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "ALOE LEAF JUICE (5%)",
             "description": "Soothing hydration that helps skin feel comfortable after toning."
           }
@@ -876,7 +883,7 @@
         "ingredient_dcc15": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-glycerin-mask.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "Propanediol (1%)",
             "description": "A plant-derived humectant that draws in moisture and keeps niacinamide stable."
           }
@@ -884,7 +891,7 @@
         "ingredient_dcc16": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/dcc-mask-glycolic-acid.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "Glycolic Acid (0.1%)",
             "description": "Adjusts pH. At this level it is not an exfoliant."
           }
@@ -1209,7 +1216,6 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
         "video_on_mobile": true,
         "background_position": "center center",
         "overlay_color": "#28201f",
@@ -1231,7 +1237,9 @@
         "band_padding_bottom": 131,
         "mobile_band_padding_top": 48,
         "mobile_band_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "background_image": "shopify://shop_images/rub-science-background.webp",
+        "footnote": "Sourced from the product INCI and formulation sheet - Sonnet Wellness does not publish third-party clinical trial percentages for this set."
       }
     },
     "trust_badges_XGitCm": {
@@ -1302,7 +1310,7 @@
         "hotspot_4h66jW": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "clean-it-off-face-wash",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
@@ -1411,7 +1419,7 @@
         "show_button": true,
         "button_label": "ADD BUNDLE",
         "bundle_discount": 10,
-        "discount_code": "",
+        "discount_code": "RITUAL10",
         "show_compare_price": true,
         "price_format": "money_without_trailing_zeros",
         "price_override": "Rs. 1,199",
@@ -1458,7 +1466,8 @@
         "width": "wrapper",
         "padding_top": 30,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "faq_know_first_rwdfL3": {
       "type": "faq-know-first",
@@ -1572,35 +1581,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome Friendly"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_JYamad": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan"
+            "title": "Dermatologically Tested"
           }
         },
         "item_DrKT6k": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Cruelty Free"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_6qYzTR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Made in India"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_qnTthh": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Science-Backed"
+            "title": "All Skin Types"
+          }
+        },
+        "item_qc5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
           }
         }
       },
@@ -1609,7 +1625,8 @@
         "item_JYamad",
         "item_DrKT6k",
         "item_6qYzTR",
-        "item_qnTthh"
+        "item_qnTthh",
+        "item_qc5"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -1622,6 +1639,24 @@
         "padding_top_mobile": 14,
         "padding_bottom_mobile": 14
       }
+    },
+    "reviews_tlpc_judgeme": {
+      "type": "reviews-tlpc",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1639,8 +1674,9 @@
     "science_stats_cEpVm6",
     "trust_badges_XGitCm",
     "ritual_bundle_dE8MLN",
-    "17930103146ee3d04d",
+    "reviews_tlpc_judgeme",
     "faq_know_first_rwdfL3",
-    "marquee_bar_K9WLgV"
+    "marquee_bar_K9WLgV",
+    "17930103146ee3d04d"
   ]
 }

@@ -22,8 +22,35 @@
         "mobile_padding_top": 24,
         "mobile_padding_bottom": 56,
         "custom_class": "",
-        "article_view": "blog-tlpc"
-      }
+        "article_view": "blog-tlpc",
+        "cover_mode": "design",
+        "hero_image": "shopify://shop_images/01-blog-featured.webp"
+      },
+      "blocks": {
+        "cover_lips": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-1.webp"
+          }
+        },
+        "cover_profile": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-2.webp"
+          }
+        },
+        "cover_sun": {
+          "type": "cover",
+          "settings": {
+            "image": "shopify://shop_images/02-blog-card-3.webp"
+          }
+        }
+      },
+      "block_order": [
+        "cover_lips",
+        "cover_profile",
+        "cover_sun"
+      ]
     }
   },
   "order": [

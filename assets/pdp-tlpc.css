@@ -404,9 +404,6 @@
     border-radius: 8px;
 }
 
-.product-accordion .accordion__wrapper.is-active .accordion__body {
-    display: block;
-}
 .product__block__description{
     margin-bottom: 0;
 }
@@ -897,6 +894,7 @@
     background: #FDFCFA;
     border-radius: 30px;
     padding: 16px 16px 16px 24px;
+    transition: border-radius 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .product-accordion .accordion__wrapper.is-active,
 .product-accordion .accordion__wrapper:has(.accordion-is-open) {
@@ -1135,3 +1133,63 @@
 .product-accordion .accordion__body li {
     line-height: 1.8;
 }
+
+/* ==========================================================================
+   QC round 3
+   ========================================================================== */
+/* Main image card (Figma 279:2888): the 1:1 product shot sits whole on a white 490×737 card
+   instead of being zoomed to fill it (cover cropped the jar/bottle on Soak, Smear, Dab). */
+.featured-wrapper {
+    border-radius: 16px;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+.featured-wrapper img {
+    object-fit: contain;
+    background: #FFFFFF;
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+    .product-section .featured-wrapper img {
+        aspect-ratio: 1 / 1;
+    }
+}
+
+/* Badge row: one line on desktop. Sizes follow the row width (cqi), so four badges with a longer
+   label ("POSTBIOTIC FORMULA" on the sets) shrink a touch instead of wrapping to a second row. */
+@media (min-width: 1471px) {
+    .product__inner .trust-badges {
+        container-type: inline-size;
+        gap: min(10px, 1.4cqi);
+    }
+    .product__inner .trust-badge {
+        padding: 9px min(16px, 2.2cqi) 9px min(12px, 1.6cqi);
+    }
+    .product__inner .trust-badge__label {
+        font-size: min(13px, 1.78cqi);
+    }
+}
+
+/* Fullscreen video anywhere on the PDP shows the whole frame (System Logic, routine, gallery) */
+video:fullscreen,
+video:-webkit-full-screen {
+    object-fit: contain !important;
+    background: #000;
+}
+
+/* Tablet + phone: "Complete your ritual" / "Shop individually" cards share the full row
+   (the wrapper shrank to its content and left an empty band on the right) */
+@media (max-width: 1199px) {
+    .product__inner .product__block__upsell .upsell__holder,
+    .product__inner .product__block__upsell .upsell__holder__wrapper {
+        width: 100%;
+    }
+    .product__inner .product__block__upsell .upsell__holder__wrapper > * {
+        flex: 1 0 calc(50% - 5px);
+    }
+    .product__inner .product__block__upsell .product-clip {
+        min-width: 260px;
+        max-width: none;
+        width: 100%;
+    }
+}
+

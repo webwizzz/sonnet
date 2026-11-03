@@ -370,8 +370,9 @@
 .wis .wis__arrow--prev { grid-area: prev; }
 .wis .wis__arrow--next { grid-area: next; background-color: var(--wis-accent); color: #FFFFFF; }
 @media (hover: hover) {
-  .wis .wis__arrow--prev:hover { background-color: var(--wis-accent); color: #FFFFFF; }
-  .wis .wis__arrow--next:hover { opacity: 0.88; }
+  /* Hover moves the filled state to the hovered arrow, so only one is ever dark (same as the other sliders) */
+  .wis .wis__arrow--prev:hover ~ .wis__arrow--next { background-color: var(--wis-arrow-bg); color: var(--wis-text); }
+  .wis .wis__arrow:hover { background-color: var(--wis-accent); color: #FFFFFF; }
 }
 .wis .wis__arrow:focus { outline: none; }
 .wis .wis__arrow:focus-visible { outline: 2px solid var(--wis-accent); outline-offset: 3px; }
@@ -451,7 +452,7 @@
     margin-top: 20px;
   }
   .wis__body--single { grid-template-columns: 1fr; grid-template-areas: "title" "desc"; }
-  .wis .wis__title { font-size: 18px; }
+  .wis .wis__title { font-size: 18px; line-height: 1.3; text-wrap: balance; }   /* long names break evenly, not one word on line 2 */
   .wis .wis__desc { max-width: 280px; font-size: 16px; }
   .wis .wis__arrow--prev { justify-self: end; margin-top: 10px; }
   .wis .wis__arrow--next { justify-self: start; margin-top: 10px; }

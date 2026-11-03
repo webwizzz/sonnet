@@ -228,16 +228,38 @@
 .asa .asa__item-text strong,
 .asa .asa__item-text b { font-family: 'Blauer Nue RG', sans-serif; font-weight: 400; color: var(--asa-text); }
 
+/* Tablet / mobile: the card goes full width, so the product shot moves into the flow between the
+   title and the note (instead of a full-bleed background the text would sit on top of). */
 @media screen and (max-width: 1100px) {
-  .asa__row { grid-template-columns: 1fr; }
-  .asa__feature { min-height: 420px; }
+  .asa__row { grid-template-columns: 1fr; gap: 20px; }
+  .asa__feature { min-height: 0; justify-content: flex-start; gap: 20px; padding: 30px 24px 34px; }
+  .asa .asa__feature-title { order: 1; }
+  .asa__feature-media {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    order: 2;
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 1 / 1;
+    -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  }
+  .asa__feature-media img { object-position: 50% 55%; }
+  .asa .asa__feature-note { order: 3; max-width: 420px; }
+  .asa__panel { grid-template-columns: 1fr 260px 1fr; column-gap: 24px; padding: 20px 24px; }
+  .asa__product { min-height: 0; padding: 24px 16px 28px; }
+  .asa__product-media { width: 180px; height: 190px; margin-top: 32px; }
+  .asa__product-media .asa__shadow { top: 129px; left: -5px; width: 190px; }
+  .asa__item { padding: 24px 0; }
 }
 @media screen and (max-width: 768px) {
-  .asa__feature { min-height: 380px; padding: 24px 20px; }
+  .asa__feature { padding: 24px 20px 28px; gap: 16px; }
+  .asa__feature-media { max-width: 320px; }
   .asa .asa__feature-note { max-width: 320px; }
   .asa__panel { grid-template-columns: 1fr; grid-template-rows: none; padding: 16px; }
   .asa__product { grid-column: 1; grid-row: auto; min-height: 0; padding: 24px 16px 28px; margin-bottom: 8px; }
-  .asa__product-media { width: 180px; height: 190px; margin-top: 28px; }
+  .asa__product-media { margin-top: 28px; }
   .asa__item,
   .asa__item--r1 { grid-column: 1; grid-row: auto !important; padding: 18px 0; }
   .asa__item--last { border-bottom: 1px solid var(--asa-line); }
@@ -253,7 +275,7 @@
       <div class="asa__feature">
         <div class="asa__feature-media">
           {%- if s.feature_image != blank -%}
-            {{ s.feature_image | image_url: width: 828 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 22vw, 100vw', widths: '414, 600, 828', alt: s.feature_image.alt }}
+            {{ s.feature_image | image_url: width: 1260 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 22vw, (min-width: 769px) 460px, 320px', widths: '414, 600, 828, 1040, 1260', alt: s.feature_image.alt }}
           {%- endif -%}
         </div>
         {%- if s.feature_title != blank -%}<h3 class="asa__feature-title">{{ s.feature_title | escape }}</h3>{%- endif -%}
@@ -266,7 +288,7 @@
           <div class="asa__product-media">
             <img class="asa__shadow" src="{{ 'about-safety-shadow.svg' | asset_url }}" alt="" width="228" height="81" loading="lazy">
             {%- if s.product_image != blank -%}
-              {{ s.product_image | image_url: width: 648 | image_tag: class: 'asa__product-img', loading: 'lazy', sizes: '220px', widths: '220, 440, 648', alt: s.product_image.alt }}
+              {{ s.product_image | image_url: width: 1296 | image_tag: class: 'asa__product-img', loading: 'lazy', sizes: '(min-width: 769px) 216px, 180px', widths: '220, 440, 648, 864, 1296', alt: s.product_image.alt }}
             {%- endif -%}
           </div>
           {%- if s.product_title != blank -%}<h3 class="asa__product-title">{{ s.product_title | escape }}</h3>{%- endif -%}
@@ -308,12 +330,12 @@
     { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Safety</p>" },
     { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
     { "type": "header", "content": "Left card" },
-    { "type": "image_picker", "id": "feature_image", "label": "Image", "info": "414 × 546. Design export: 09-safety-all-products.webp." },
+    { "type": "image_picker", "id": "feature_image", "label": "Image", "info": "414 × 546 (upload at 2–3×). Design export: about-safety-all-products.webp (1260 × 1662)." },
     { "type": "text", "id": "feature_title", "label": "Title", "default": "All Products" },
     { "type": "textarea", "id": "feature_text", "label": "Note", "default": "Patch test on the inner forearm 24 hours before first full use. Discontinue use if irritation occurs. For external use only. Keep out of reach of children." },
     { "type": "header", "content": "Product card" },
     { "type": "text", "id": "product_tag", "label": "Tag", "default": "Product warnings" },
-    { "type": "image_picker", "id": "product_image", "label": "Image", "info": "Transparent cut-out. Design export: 09-safety-face-mask.webp." },
+    { "type": "image_picker", "id": "product_image", "label": "Image", "info": "Transparent cut-out. Design export: about-safety-face-mask.webp (1296 × 1368)." },
     { "type": "text", "id": "product_title", "label": "Title", "default": "Smear It On Face Mask" },
     { "type": "text", "id": "product_meta", "label": "Subtitle", "default": "20% Kaolin Clay - Glycolic Acid | 45 ml" },
     { "type": "font_picker", "id": "tag_font", "label": "Tag font", "info": "Design: Montserrat Medium.", "default": "montserrat_n5" },

@@ -1,0 +1,67 @@
+{%- comment -%}
+  Cover image for an article in the TLPC blog listing / article sections.
+  Many featured images have their title baked into the artwork, which clashes with the text the
+  design lays over or beside them, so a text-free cover is picked in this order:
+    1. a "Cover" block whose article is this article
+    2. the article's image metafield custom.listing_image
+    3. `fallback` (a section image setting), when given
+    4. when `rotate` is true: the "Cover" blocks without an article, in turn by `index`
+    5. the article's featured image
+  Accepts: article, blocks (section.blocks), index (number), rotate (boolean), fallback (image),
+  width, widths, sizes, loading, fetchpriority (optional), alt (optional), decorative (true = alt="").
+{%- endcomment -%}
+{%- liquid
+  assign cover = blank
+  for b in blocks
+    if b.type == 'cover' and b.settings.image != blank and b.settings.article != blank
+      if b.settings.article.id == article.id
+        assign cover = b.settings.image
+        break
+      endif
+    endif
+  endfor
+
+  if cover == blank
+    assign cover = article.metafields.custom.listing_image.value
+  endif
+  if cover == blank and fallback != blank
+    assign cover = fallback
+  endif
+
+  if cover == blank and rotate
+    assign pool_size = 0
+    for b in blocks
+      if b.type == 'cover' and b.settings.image != blank and b.settings.article == blank
+        assign pool_size = pool_size | plus: 1
+      endif
+    endfor
+    if pool_size > 0
+      assign pick = index | modulo: pool_size
+      assign n = 0
+      for b in blocks
+        if b.type == 'cover' and b.settings.image != blank and b.settings.article == blank
+          if n == pick
+            assign cover = b.settings.image
+            break
+          endif
+          assign n = n | plus: 1
+        endif
+      endfor
+    endif
+  endif
+
+  if cover == blank
+    assign cover = article.image
+  endif
+  assign cover_alt = alt | default: cover.alt | default: article.title
+  if decorative
+    assign cover_alt = ''
+  endif
+-%}
+{%- if cover != blank -%}
+  {%- if fetchpriority != blank -%}
+    {{ cover | image_url: width: width | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes, widths: widths, alt: cover_alt }}
+  {%- else -%}
+    {{ cover | image_url: width: width | image_tag: loading: loading, sizes: sizes, widths: widths, alt: cover_alt }}
+  {%- endif -%}
+{%- endif -%}

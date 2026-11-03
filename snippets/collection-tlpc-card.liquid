@@ -1,0 +1,88 @@
+{%- comment -%}
+  Product card for sections/collection-tlpc.liquid (Figma QvQ11convTbPladsyhAg96, card 249:954).
+  422 × 635 at 1920: image 422 × 428 (radius 10, badge 12px in), 2px gap, info panel #F6F3EE (radius 10):
+  title row (Blauer Nue MD 16 / volume Blauer Nue TH 14, 20px padding, 1px rgba(40,32,31,.06) rule),
+  stars 12px + count (TH 14), tagline (TH 14, 60%), and a 46px #78563D pill with "Add to Cart" left and
+  the price right (Blauer Nue RG 16, 30px side padding). Styles live in the section (.ctc__*).
+  Metafields: custom.card_image, custom.badge, custom.volume, custom.tagline, reviews.rating(_count).
+
+  Usage: {% render 'collection-tlpc-card', product: product, eager: true, sizes: '...' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign card_variant = product.selected_or_first_available_variant
+  assign card_image = product.metafields.custom.card_image.value | default: product.featured_media
+  assign badge_text = product.metafields.custom.badge.value
+  assign volume_text = product.metafields.custom.volume.value
+  assign tagline_text = product.metafields.custom.tagline.value
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+  assign image_sizes = sizes | default: '(min-width: 1101px) calc((100vw - 200px) / 4), (min-width: 769px) calc((100vw - 120px) / 3), calc((100vw - 40px) / 2)'
+  assign on_sale = false
+  if card_variant.compare_at_price > card_variant.price
+    assign on_sale = true
+  endif
+-%}
+
+<article class="ctc" data-ctc>
+  <a class="ctc__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    {%- if card_image != blank -%}
+      {{ card_image | image_url: width: 1100 | image_tag: class: 'ctc__img', loading: loading, sizes: image_sizes, widths: '300, 420, 560, 700, 850, 1100', alt: product.title }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'ctc__img ctc__img--placeholder' }}
+    {%- endif -%}
+    {%- if badge_text != blank -%}<span class="ctc__badge">{{ badge_text | escape }}</span>{%- endif -%}
+  </a>
+
+  <div class="ctc__info">
+    <div class="ctc__head">
+      <h3 class="ctc__title"><a href="{{ product.url }}">{{ product.title | strip_html | upcase }}</a></h3>
+      {%- if volume_text != blank -%}<span class="ctc__volume">{{ volume_text | escape }}</span>{%- endif -%}
+    </div>
+
+    <div class="ctc__body">
+      {%- if rating != blank or tagline_text != blank -%}<div class="ctc__meta">{%- endif -%}
+      {%- if rating != blank -%}
+        {%- assign stars = rating.rating | round -%}
+        {%- assign scale = rating.scale_max | default: 5 | round -%}
+        <div class="ctc__rating" role="img" aria-label="{{ rating.rating | round: 1 }} / {{ scale }}{% if rating_count != blank %}, {{ rating_count }}{% endif %}">
+          <span class="ctc__stars" aria-hidden="true">
+            {%- for i in (1..scale) -%}
+              {%- if i <= stars -%}{{ 'cio-star-filled.svg' | inline_asset_content }}{%- else -%}{{ 'cio-star-outline.svg' | inline_asset_content }}{%- endif -%}
+            {%- endfor -%}
+          </span>
+          {%- if rating_count != blank -%}<span class="ctc__count" aria-hidden="true">{{ rating_count }}</span>{%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if tagline_text != blank -%}<p class="ctc__tagline">{{ tagline_text | escape }}</p>{%- endif -%}
+      {%- if rating != blank or tagline_text != blank -%}</div>{%- endif -%}
+
+      <button
+        type="button"
+        class="ctc__atc"
+        data-ctc-atc
+        data-variant-id="{{ card_variant.id }}"
+        {% unless product.available %}disabled aria-disabled="true"{% endunless %}
+      >
+        <span class="ctc__atc-label">
+          {%- if product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+        </span>
+        <span class="ctc__prices">
+          <span class="ctc__price">
+            {%- if settings.currency_code_enable -%}{{ card_variant.price | money_with_currency }}{%- else -%}₹{{ card_variant.price | money_without_currency | split: '.' | first }}{%- endif -%}
+          </span>
+          {%- if on_sale -%}
+            <s class="ctc__compare">
+              {%- if settings.currency_code_enable -%}{{ card_variant.compare_at_price | money_with_currency }}{%- else -%}₹{{ card_variant.compare_at_price | money_without_currency | split: '.' | first }}{%- endif -%}
+            </s>
+          {%- endif -%}
+        </span>
+      </button>
+    </div>
+  </div>
+</article>

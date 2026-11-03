@@ -252,6 +252,26 @@
 .sba__empty { margin: 0; font-family: 'Blauer Nue RG', sans-serif; font-size: 15px; color: var(--sba-text); }
 
 /* ---------- Stacked (≤1100) ---------- */
+/* Both lists share one row grid, so each before/after pair lines up and both boxes end together
+   (separate lists drifted apart when a line wrapped differently, leaving a gap under the shorter box). */
+@supports (grid-template-rows: subgrid) {
+  @media screen and (min-width: 561px) {
+    .sba__lists--paired {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 331px));
+      grid-template-rows: repeat(var(--sba-rows), auto);
+      justify-content: center;
+      column-gap: 10px;
+    }
+    .sba__lists--paired .sba__box {
+      display: grid;
+      grid-row: 1 / span var(--sba-rows);
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+  }
+}
+
 @media screen and (max-width: 1100px) {
   .sba__grid { grid-template-columns: minmax(0, 1fr); }
   .sba--image-right .sba__media { order: 0; }
@@ -328,7 +348,8 @@
           <h2 class="sba__heading">{{ s.heading }}</h2>
         {%- endif -%}
         {%- if before_count > 0 or after_count > 0 -%}
-          <div class="sba__lists">
+          {%- assign row_count = before_count | at_least: after_count -%}
+          <div class="sba__lists{% if before_count > 0 and after_count > 0 %} sba__lists--paired{% endif %}" style="--sba-rows: {{ row_count }};">
             {%- if before_count > 0 -%}
               <ul class="sba__box" role="list" aria-label="{{ s.before_list_label | escape }}">
                 {%- for block in section.blocks -%}

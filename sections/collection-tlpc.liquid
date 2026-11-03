@@ -6,7 +6,8 @@
   80px below: tiles 260 × 180 (radius 10, #F6F3EE, 30px gaps, centred); the current collection's tile gets
   a 1px #78563D border and a 6px dot before its label (Blauer Nue LT 14 uppercase, 12px under the tile).
   80px below: Filter (142 × 50) left, "Sort by" (246 × 50) right — 1px #78563D pills on #FFFCF9.
-  41px below: 4 columns of 422 (10px column gap, 20px row gap) built from snippets/product-card-custom.
+  41px below: 4 columns of 422 (10px column gap, 20px row gap) built from snippets/collection-tlpc-card
+  (styles below, sized from the card width with container query units; add to cart handled in the script here).
   Filter opens a drawer with the collection's storefront filters (Search & Discovery); Sort is a native
   <select> laid over the pill. Both submit as normal GET parameters, so results stay shareable.
 {%- endcomment -%}
@@ -104,9 +105,9 @@
   display: block;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: contain;
   object-position: center bottom;
-  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.22));
 }
 
 /* ---------- Category tiles ---------- */
@@ -118,7 +119,7 @@
   padding: 0 16px;
   list-style: none;
 }
-.ctl__tiles li { margin: 0; flex: 0 1 260px; }
+.ctl__tiles li { margin: 0; flex: 0 1 260px; min-width: 0; }
 .ctl__tile { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .ctl__tile-box {
   position: relative;
@@ -129,23 +130,25 @@
   border: 1px solid transparent;
   border-radius: 10px;
   background: var(--ctl-tile);
-  transition: border-color 200ms ease;
+  transition: border-color 200ms ease, box-shadow 250ms ease;
 }
 .ctl__tile:hover .ctl__tile-box,
+.ctl__tile:focus-visible .ctl__tile-box,
 .ctl__tile--active .ctl__tile-box { border-color: var(--ctl-accent); }
+.ctl__tile:hover .ctl__tile-box { box-shadow: 0 10px 24px rgba(40, 32, 31, 0.08); }
+/* Tile images are full-tile (260 × 180) transparent cut-outs with the product placed and shadowed as in Figma. */
 .ctl__tile-box img {
   position: absolute;
-  top: 8%;
-  left: 10%;
+  inset: 0;
   display: block;
-  width: 80%;
-  height: 84%;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  object-fit: contain;
-  filter: drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.12));
-  transition: transform 300ms ease;
+  object-fit: cover;
+  transition: transform 400ms ease;
 }
-.ctl__tile:hover .ctl__tile-box img { transform: translateY(-3px); }
+.ctl__tile-box .ctl__tile-img--fallback { inset: 8% 10%; width: 80%; height: 84%; object-fit: contain; }
+.ctl__tile:hover .ctl__tile-box img { transform: scale(1.05); }
 .ctl__tile-label {
   display: inline-flex;
   align-items: center;
@@ -153,11 +156,14 @@
   font-family: 'Blauer Nue LT', sans-serif;
   font-weight: 300;
   font-size: 14px;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  text-align: center;
   text-transform: uppercase;
   color: var(--ctl-text);
+  transition: color 200ms ease;
 }
+.ctl__tile:hover .ctl__tile-label { color: var(--ctl-accent); }
 .ctl__tile--active .ctl__tile-label::before {
   content: '';
   width: 6px;
@@ -174,32 +180,39 @@
   gap: 12px;
   margin-top: max(32px, calc(80 * var(--ctl-u)));
 }
+/* Figma: Filter 142 × 50 (icon 30px in, text ends 29px from the edge), Sort 246 × 50 (25px each side),
+   1px #78563D on #FFFCF9, Blauer Nue LT 16 uppercase, 10px icon gap. */
 .ctl .ctl__pill {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  height: 50px;
+  height: max(44px, calc(50 * var(--ctl-u)));
   min-height: 0;
   margin: 0;
-  padding: 0 25px 0 30px;
+  padding: 0 max(16px, calc(25 * var(--ctl-u)));
   border: 1px solid var(--ctl-accent);
   border-radius: 50px;
   background: #FFFCF9;
   font-family: 'Blauer Nue LT', sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  line-height: normal;
+  font-size: max(14px, calc(16 * var(--ctl-u)));
+  line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--ctl-text);
   cursor: pointer;
-  transition: background-color 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease;
 }
-.ctl .ctl__pill:hover { background: #F6F3EE; }
-.ctl .ctl__pill svg { display: block; flex: none; }
+.ctl .ctl__pill:hover { background: var(--ctl-accent); color: #FFFCF9; }
+.ctl .ctl__pill svg { display: block; flex: none; width: 24px; height: 24px; }
+.ctl .ctl__pill svg path { transition: fill 200ms ease, stroke 200ms ease; }
+.ctl .ctl__pill:hover svg path[fill] { fill: #FFFCF9; }
+.ctl .ctl__pill:hover svg path[stroke] { stroke: #FFFCF9; }
+.ctl .ctl__pill:hover .ctl__count { background: #FFFCF9; color: var(--ctl-accent); }
 .ctl__sort-text { white-space: nowrap; }
-.ctl .ctl__pill--filter { padding-right: 30px; }
+.ctl .ctl__pill--filter { padding: 0 max(18px, calc(29 * var(--ctl-u))) 0 max(18px, calc(30 * var(--ctl-u))); }
+.ctl .ctl__pill--filter svg { padding: 2px; }
 .ctl__count {
   display: inline-flex;
   align-items: center;
@@ -221,20 +234,161 @@
   cursor: pointer;
   font-size: 16px;
 }
-.ctl__sort:focus-within { outline: 2px solid var(--ctl-accent); outline-offset: 2px; }
+.ctl__sort:has(select:focus-visible) { outline: 2px solid var(--ctl-accent); outline-offset: 2px; }
 
 /* ---------- Grid ---------- */
 .ctl__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px 10px;
-  margin: 41px 0 0;
+  gap: max(12px, calc(20 * var(--ctl-u))) max(8px, calc(10 * var(--ctl-u)));
+  margin: max(24px, calc(41 * var(--ctl-u))) 0 0;
   padding: 0;
   list-style: none;
 }
-.ctl__grid > li { margin: 0; display: flex; }
-.ctl__grid .pcc__card { max-width: none; height: 100%; }
-.ctl__grid .pcc__image-wrap { height: auto; aspect-ratio: 422 / 428; background: var(--ctl-tile); }
+.ctl__grid > li { margin: 0; display: flex; min-width: 0; }
+
+/* ---------- Product card (snippets/collection-tlpc-card) ----------
+   Sized from the card's own width (Figma card = 422px): --k is 1 design px, capped at Figma's values. */
+.ctc {
+  --k: calc(100cqw / 422);
+  --ctc-pad: clamp(12px, calc(20 * var(--k)), 20px);
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  color: var(--ctl-text);
+}
+.ctc__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 422 / 428;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--ctl-tile);
+}
+.ctc__img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.ctc:hover .ctc__img { transform: scale(1.04); }
+.ctc__img--placeholder { fill: rgba(40, 32, 31, 0.15); }
+.ctc__badge {
+  position: absolute;
+  top: clamp(8px, calc(12 * var(--k)), 12px);
+  left: clamp(8px, calc(12 * var(--k)), 12px);
+  z-index: 1;
+  max-width: calc(100% - 16px);
+  padding: clamp(4px, calc(5 * var(--k)), 5px) clamp(8px, calc(10 * var(--k)), 10px);
+  border-radius: 30px;
+  background: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: clamp(10px, calc(12 * var(--k)), 12px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(40, 32, 31, 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ctc__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: var(--ctl-tile);
+}
+.ctc__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: var(--ctc-pad) var(--ctc-pad) clamp(12px, calc(16 * var(--k)), 16px);
+  border-bottom: 1px solid rgba(40, 32, 31, 0.06);
+}
+.ctl .ctc__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-width: 0;
+  margin: 0;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, calc(16 * var(--k)), 16px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--ctl-text);
+}
+.ctc__title a { transition: color 200ms ease; }
+.ctc__title a:hover { color: var(--ctl-accent); }
+.ctc__volume,
+.ctc__count,
+.ctc__tagline {
+  font-family: 'Blauer Nue TH', sans-serif;
+  font-weight: 200;
+  font-size: clamp(13px, calc(14 * var(--k)), 14px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.ctc__volume { flex: none; white-space: nowrap; color: #000000; }
+.ctc__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(12px, calc(16 * var(--k)), 16px) var(--ctc-pad) var(--ctc-pad);
+}
+.ctc__meta { margin-bottom: var(--ctc-pad); }
+.ctc__rating { display: flex; align-items: center; gap: 4px; min-height: 18px; }
+.ctc__stars { display: inline-flex; gap: 1px; color: var(--ctl-text); }
+.ctc__stars svg { display: block; width: 12px; height: 12px; }
+.ctc__count { color: #000000; }
+.ctc__tagline { margin: clamp(8px, calc(12 * var(--k)), 12px) 0 0; color: rgba(40, 32, 31, 0.6); }
+.ctc__meta > .ctc__tagline:first-child { margin-top: 0; }
+.ctl .ctc__atc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  height: clamp(40px, calc(46 * var(--k)), 46px);
+  min-height: 0;
+  margin: auto 0 0;
+  padding: 0 clamp(14px, calc(30 * var(--k)), 30px);
+  border: 0;
+  border-radius: 50px;
+  background: var(--ctl-accent);
+  color: #FFFFFF;
+  font-family: 'Blauer Nue RG', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, calc(16 * var(--k)), 16px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+.ctl .ctc__atc:hover:not(:disabled) { background: var(--ctl-text); }
+.ctl .ctc__atc:active:not(:disabled) { transform: scale(0.98); }
+.ctl .ctc__atc:focus-visible { outline: 2px solid var(--ctl-accent); outline-offset: 2px; }
+.ctl .ctc__atc:disabled { opacity: 0.6; cursor: not-allowed; }
+.ctl .ctc__atc.is-loading { opacity: 0.7; pointer-events: none; }
+.ctc__atc-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ctc__prices { display: inline-flex; align-items: baseline; gap: 6px; flex: none; }
+.ctc__compare { font-size: 0.875em; opacity: 0.7; }
+@container (max-width: 239px) {
+  .ctc__compare { display: none; }
+  .ctl .ctc__title { font-size: 13px; }
+  .ctc__volume, .ctc__count, .ctc__tagline { font-size: 12px; }
+  .ctl .ctc__atc { gap: 6px; padding: 0 12px; font-size: 13px; }
+}
+@container (max-width: 200px) {
+  .ctc__head { flex-direction: column; gap: 4px; }
+}
+@container (max-width: 160px) {
+  .ctl .ctc__atc { padding: 0 10px; font-size: 12px; }
+}
 .ctl__empty { margin: 60px 0; text-align: center; font-family: 'Blauer Nue LT', sans-serif; font-size: 18px; }
 .ctl__empty a { text-decoration: underline; }
 
@@ -327,8 +481,18 @@
   text-transform: uppercase;
   letter-spacing: -0.01em;
   cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
+.ctl .ctl__btn:hover { background: var(--ctl-text); border-color: var(--ctl-text); color: #FFFFFF; }
 .ctl .ctl__btn--ghost { background: transparent; color: var(--ctl-accent); }
+.ctl .ctl__btn--ghost:hover { background: var(--ctl-accent); border-color: var(--ctl-accent); color: #FFFFFF; }
+.ctl .ctl__close { transition: background-color 200ms ease, color 200ms ease; }
+.ctl .ctl__close:hover { background: var(--ctl-accent); color: #FFFFFF; }
+.ctl .ctl__page { transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease; }
+.ctl a.ctl__page:not(.ctl__page--arrow):hover { background: var(--ctl-accent); color: #FFFFFF; }
+.ctl a.ctl__page--arrow svg { transition: transform 200ms ease; }
+.ctl a.ctl__page--arrow:hover svg { transform: translateX(3px); }
+.ctl a.ctl__page--prev:hover svg { transform: scaleX(-1) translateX(3px); }
 @keyframes ctl-fade { from { opacity: 0; } }
 @keyframes ctl-slide { from { transform: translateX(-100%); } }
 
@@ -336,14 +500,19 @@
   .ctl__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media screen and (max-width: 768px) {
-  .ctl__hero { min-height: 240px; align-items: flex-start; padding-top: 40px; }
-  .ctl__hero-products { right: 12px; bottom: 8px; width: 42%; height: 80%; }
-  .ctl__tiles { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
-  .ctl__tiles::-webkit-scrollbar { display: none; }
-  .ctl__tiles li { flex: 0 0 140px; }
-  .ctl .ctl__pill { height: 44px; padding: 0 16px; font-size: 14px; }
+  /* 16px gutters to line up with .main-container on mobile */
+  .ctl__hero { min-height: 220px; margin: 0 16px; padding: 32px 20px; align-items: flex-start; }
+  .ctl__hero-products { right: 8px; bottom: 8px; width: 44%; height: 86%; }
+  .ctl__tiles { flex-wrap: wrap; gap: 16px 10px; margin-top: 28px; }
+  .ctl__tiles li { flex: 0 1 calc((100% - 20px) / 3); }
+  .ctl__tile { gap: 8px; }
+  .ctl__tile-label { font-size: 12px; gap: 6px; }
+  .ctl__bar { margin-top: 28px; }
+  .ctl .ctl__pill,
+  .ctl .ctl__pill--filter { height: 44px; padding: 0 16px; font-size: 14px; gap: 8px; }
+  .ctl .ctl__pill svg { width: 20px; height: 20px; }
   .ctl__sort-prefix { display: none; }
-  .ctl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 8px; }
+  .ctl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 8px; margin-top: 20px; }
   .ctl .ctl__page { width: 40px; height: 40px; font-size: 18px; }
   .ctl .ctl__page--arrow svg { width: 40px; height: 40px; }
 }
@@ -369,7 +538,7 @@
       </h1>
       {%- if s.hero_products != blank -%}
         <div class="ctl__hero-products">
-          {{ s.hero_products | image_url: width: 680 | image_tag: loading: 'eager', sizes: '(min-width: 769px) 18vw, 42vw', widths: '340, 500, 680', alt: '' }}
+          {{ s.hero_products | image_url: width: 1017 | image_tag: loading: 'eager', sizes: '(min-width: 769px) 18vw, 44vw', widths: '340, 500, 680, 1017', alt: '' }}
         </div>
       {%- endif -%}
     </div>
@@ -395,9 +564,9 @@
           <a class="ctl__tile{% if is_active %} ctl__tile--active{% endif %}" href="{{ tile_url | default: '#' }}"{% if is_active %} aria-current="page"{% endif %}>
             <span class="ctl__tile-box">
               {%- if b.image != blank -%}
-                {{ b.image | image_url: width: 400 | image_tag: loading: 'eager', sizes: '200px', widths: '200, 300, 400', alt: '' }}
+                {{ b.image | image_url: width: 1040 | image_tag: loading: 'eager', sizes: '(min-width: 769px) 260px, 33vw', widths: '260, 400, 520, 780, 1040', alt: '' }}
               {%- elsif tile_col.featured_image != blank -%}
-                {{ tile_col.featured_image | image_url: width: 400 | image_tag: loading: 'eager', sizes: '200px', widths: '200, 300, 400', alt: '' }}
+                {{ tile_col.featured_image | image_url: width: 600 | image_tag: class: 'ctl__tile-img--fallback', loading: 'eager', sizes: '(min-width: 769px) 210px, 27vw', widths: '210, 420, 600', alt: '' }}
               {%- endif -%}
             </span>
             <span class="ctl__tile-label">{{ tile_label | escape }}</span>
@@ -442,7 +611,7 @@
                 if forloop.index <= 4
                   assign eager = true
                 endif
-                render 'product-card-custom', product: product, eagerload: eager
+                render 'collection-tlpc-card', product: product, eager: eager
               -%}
             </li>
           {%- endfor -%}
@@ -555,7 +724,30 @@
         document.documentElement.style.overflow = '';
         if (opener) opener.focus();
       }
+      function addToCart(btn) {
+        var id = parseInt(btn.getAttribute('data-variant-id'), 10);
+        if (!id || btn.disabled) return;
+        btn.classList.add('is-loading');
+        btn.setAttribute('aria-busy', 'true');
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+          body: JSON.stringify({ id: id, quantity: 1 })
+        })
+          .then(function (res) { if (!res.ok) throw new Error('Add to cart failed: ' + res.status); return fetch('/cart.js'); })
+          .then(function (res) { return res.json(); })
+          .then(function (cart) {
+            // Pipeline listens for theme:cart:change on document and theme:drawer:open on #drawer-cart.
+            document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true, detail: { cart: cart } }));
+            var cartDrawer = document.getElementById('drawer-cart');
+            if (cartDrawer) cartDrawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+          })
+          .catch(function (err) { console.error('[collection-tlpc]', err); })
+          .then(function () { btn.classList.remove('is-loading'); btn.removeAttribute('aria-busy'); });
+      }
       function onClick(e) {
+        var atc = e.target.closest('[data-ctc-atc]');
+        if (atc) { e.preventDefault(); addToCart(atc); return; }
         if (e.target.closest('[data-ctl-open]')) { openDrawer(); return; }
         if (e.target.closest('[data-ctl-close]')) closeDrawer();
       }
@@ -606,8 +798,8 @@
   "settings": [
     { "type": "header", "content": "Hero" },
     { "type": "checkbox", "id": "show_hero", "label": "Show hero banner", "default": true },
-    { "type": "image_picker", "id": "hero_image", "label": "Background image", "info": "1820 × 500. Falls back to the collection image. Design export: 01-collection-hero-bg.webp." },
-    { "type": "image_picker", "id": "hero_products", "label": "Product cut-out (right side)", "info": "Transparent PNG/WebP, 339 × 453. Design export: 02-collection-products.webp." },
+    { "type": "image_picker", "id": "hero_image", "label": "Background image", "info": "1820 × 500 or larger (cropped to fill). Falls back to the collection image. Design file: collection-tlpc-hero-bg.webp." },
+    { "type": "image_picker", "id": "hero_products", "label": "Product cut-out (right side)", "info": "Transparent PNG/WebP, 339 × 453 (shadow included). Design file: collection-tlpc-hero-products.webp." },
     { "type": "text", "id": "heading_prefix", "label": "Heading prefix", "info": "The heading reads \"<prefix> <collection title in italics>\", e.g. Shop All.", "default": "Shop" },
     { "type": "richtext", "id": "heading", "label": "Heading override", "info": "Optional. Replaces the automatic heading; use italic for the serif word." },
     { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 36, "max": 90, "step": 1, "unit": "px", "default": 68 },
@@ -646,7 +838,7 @@
       "settings": [
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "text", "id": "label", "label": "Label", "info": "Defaults to the collection title." },
-        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent product cut-out. Falls back to the collection's first product image." }
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent 260 × 180 (or 1040 × 720) image with the product placed as it should sit in the tile. Falls back to the collection image. Design files: collection-tlpc-tile-all / -singles / -combos.webp." }
       ]
     }
   ],

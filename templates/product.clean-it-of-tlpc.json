@@ -1128,42 +1128,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "POSTBIOTIC SKINCARE"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_KMPzEE": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "DERMATOLOGICALLY TESTED"
+            "title": "Dermatologically Tested"
           }
         },
         "item_6bJRGJ": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% VEGAN & CRUELTY-FREE"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_HPzMjX": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "MICROBIOME-FRIENDLY FORMULA"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_BmntKC": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "ALL SKIN TYPES"
+            "title": "All Skin Types"
           }
         },
         "item_XXn8Wr": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "NO PARABENS"
+            "title": "Made in India"
           }
         },
         "item_E7rTcm": {
@@ -1171,21 +1171,24 @@
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "MADE IN INDIA"
-          }
+          },
+          "disabled": true
         },
         "item_zKBqR8": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "FORMULATED WITHOUT ALCOHOL"
-          }
+          },
+          "disabled": true
         },
         "item_jdkJLR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "COCONUT-DERIVED SURFACTANTS"
-          }
+          },
+          "disabled": true
         }
       },
       "block_order": [

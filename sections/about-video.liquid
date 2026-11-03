@@ -2,7 +2,8 @@
   About video: 1820 × 782 rounded (22) poster with the warm diagonal overlay and a 40px white play button.
   Design: Figma QvQ11convTbPladsyhAg96, node 249:514 (About Us page).
   Click → the poster is swapped for the Shopify-hosted video (or a YouTube / Vimeo embed) which
-  plays inline. Without a video the poster is shown on its own and the button is hidden.
+  plays inline. The play button is always drawn (as in Figma); until a video is chosen in the
+  customizer it is inert (aria-disabled).
 {%- endcomment -%}
 
 {%- liquid
@@ -79,31 +80,17 @@
   cursor: pointer;
   transition: transform 300ms ease;
 }
-.avd .avd__play::before {
-  content: '';
-  position: absolute;
-  inset: -14px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  animation: avd-pulse 2.4s ease-out infinite;
-}
-.avd .avd__play:hover,
-.avd .avd__play:focus-visible { transform: translate(-50%, -50%) scale(1.12); }
+.avd .avd__play:not([aria-disabled]):hover,
+.avd .avd__play:not([aria-disabled]):focus-visible { transform: translate(-50%, -50%) scale(1.12); }
+.avd .avd__play[aria-disabled] { cursor: default; }
 .avd__play svg { display: block; width: 100%; height: 100%; }
 .avd__player { z-index: 3; background: #000; }
 .avd__player video,
 .avd__player iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: cover; }
 .avd.is-playing .avd__poster,
 .avd.is-playing .avd__play { visibility: hidden; }
-@keyframes avd-pulse {
-  0% { transform: scale(0.7); opacity: 1; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
 @media screen and (max-width: 768px) {
   .avd__frame { aspect-ratio: 4 / 3; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .avd .avd__play::before { animation: none; opacity: 0; }
 }
 {% endstyle %}
 
@@ -117,10 +104,10 @@
       {%- endif -%}
     </div>
 
+    <button type="button" class="avd__play" data-avd-play aria-label="{{ s.play_label | escape }}"{% unless has_video %} aria-disabled="true" tabindex="-1"{% endunless %}>
+      {{- 'about-play-button.svg' | inline_asset_content -}}
+    </button>
     {%- if has_video -%}
-      <button type="button" class="avd__play" data-avd-play aria-label="{{ s.play_label | escape }}">
-        {{- 'about-play-button.svg' | inline_asset_content -}}
-      </button>
       <template data-avd-template>
         {%- if s.video != blank -%}
           {{ s.video | video_tag: autoplay: true, controls: true, playsinline: true, loop: s.loop, image_size: '1820x' }}
@@ -175,7 +162,7 @@
   "settings": [
     { "type": "image_picker", "id": "poster", "label": "Poster image", "info": "1820 × 782. Design export: 05-video-poster.webp." },
     { "type": "range", "id": "overlay_opacity", "label": "Warm overlay", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
-    { "type": "video", "id": "video", "label": "Video (uploaded)" },
+    { "type": "video", "id": "video", "label": "Video (uploaded)", "info": "Plays inline when the play button is clicked. The poster above stays visible until then." },
     { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
     { "type": "checkbox", "id": "loop", "label": "Loop uploaded video", "default": false },
     { "type": "text", "id": "play_label", "label": "Play button label (screen readers)", "default": "Play video" },

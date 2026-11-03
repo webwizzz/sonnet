@@ -170,6 +170,39 @@
 .yrt__player { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .yrt__player video,
 .yrt__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.yrt__player.is-playing { pointer-events: auto; }
+/* Play button (Figma 203:5593): 30px white circle, brown triangle; plays the clip from the start with sound */
+.yrt__play {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #FFFFFF;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.yrt__play::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  border-style: solid;
+  border-width: 5px 0 5px 8.3px;
+  border-color: transparent transparent transparent var(--yrt-accent);
+  transform: translate(-50%, -50%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .yrt__play:hover { transform: translate(-50%, -50%) scale(1.12); }
+}
+.yrt__play:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+.yrt__player.is-playing + .yrt__play { opacity: 0; pointer-events: none; }
 
 .yrt__meta { margin-top: 10px; }
 .yrt__row { display: flex; align-items: flex-start; gap: 8px; min-height: 38px; }   /* Figma number box 31 × 38 */
@@ -329,6 +362,9 @@
                       <iframe src="https://player.vimeo.com/video/{{ b.video_url.id }}?background=1&autoplay=1&muted=1&loop=1&dnt=1" title="{{ title | escape }}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     {%- endif -%}
                   </div>
+                  {%- if b.video != blank -%}
+                    <button type="button" class="yrt__play" data-yrt-play aria-label="Play video: {{ title | escape }}"></button>
+                  {%- endif -%}
                 {%- endif -%}
               </div>
               <div class="yrt__meta">
@@ -392,6 +428,20 @@
       }
 
       function onClick(e) {
+        var play = e.target.closest('[data-yrt-play]');
+        if (play && root.contains(play)) {
+          var player = play.previousElementSibling;
+          var vid = player && player.querySelector('video');
+          if (vid) {
+            vid.muted = false;
+            vid.currentTime = 0;
+            vid.setAttribute('controls', '');
+            player.classList.add('is-playing');
+            var pr = vid.play();
+            if (pr && pr.catch) pr.catch(function () {});
+          }
+          return;
+        }
         var opt = e.target.closest('[data-yrt-opt]');
         if (opt && root.contains(opt)) {
           var v = opt.getAttribute('data-yrt-opt');

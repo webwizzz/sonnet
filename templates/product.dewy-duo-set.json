@@ -315,11 +315,18 @@
             "font": "montserrat_n4",
             "padding_bottom": 0
           }
+        },
+        "liquid_rating_line": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pdp-rating' %}"
+          }
         }
       },
       "block_order": [
         "title_d8f4NW",
         "text_MwYrmh",
+        "liquid_rating_line",
         "description_HjAF3F",
         "spacer_Rcz69C",
         "product_info_VVyN8P",
@@ -327,12 +334,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
-        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
-        "liquid_jWXjdi",
-        "shop_combo_826ev3"
+        "upsell_UgXWDc",
+        "shop_combo_826ev3",
+        "liquid_jWXjdi"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -350,7 +357,7 @@
         "product_breadcrumbs_list": [],
         "width": "wrapper--full",
         "padding_top": 20,
-        "padding_bottom": 130
+        "padding_bottom": 80
       }
     },
     "marquee_bar_z7LLMg": {
@@ -367,14 +374,14 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_1_565b7b0c-de56-48be-abbe-a421b11047d7.webp",
-            "title": "Postbiotic Skincare"
+            "title": "Alcohol-Free Toner"
           }
         },
         "item_XD396D": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_2087329696.webp",
-            "title": "100% vegan & cruelty free"
+            "title": "100% Vegan & Clean"
           }
         },
         "item_6hFP7W": {
@@ -402,7 +409,7 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
-            "title": "All Skin Type"
+            "title": "All Skin Types"
           }
         }
       },
@@ -419,7 +426,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -794,7 +801,7 @@
         "ingredient_U8JNpD": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "Lactobacillus Ferment Lysate (1%)",
             "description": "Inactivated postbiotic. Helps maintain a conditioned, comfortable skin surface."
           }
@@ -802,7 +809,7 @@
         "ingredient_ETQtC3": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Niacinamide_IP.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide (2%)",
             "description": "Vitamin B3. Helps support an even-looking tone and refined-looking pores."
           }
@@ -810,7 +817,7 @@
         "ingredient_7KBdrr": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_7.png",
+            "image": "shopify://shop_images/81097532-6f85-436a-9670-3fbc84029720.png",
             "name": "WITCH HAZEL EXTRACT (2%)",
             "description": "A pore-refining botanical. Helps refine the visible appearance of pores."
           }
@@ -818,7 +825,7 @@
         "ingredient_R8D4aN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Chamomilla_Recutita_Flower_Extract.webp",
+            "image": "shopify://shop_images/9bc1ac35-14bf-4792-97e3-80afc93e2f52.png",
             "name": "Chamomilla Recutita Flower Extract (1%)",
             "description": "Helps soothe the visible appearance of redness on reactive skin."
           }
@@ -826,7 +833,7 @@
         "ingredient_MXgQhh": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Leaf Juice (5%)",
             "description": "Soothing hydration that helps skin feel comfortable after toning."
           }
@@ -834,7 +841,7 @@
         "ingredient_Bcx6NR": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image_8.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "Propanediol (1%)",
             "description": "A plant-derived humectant that draws in moisture and keeps niacinamide stable."
           }
@@ -842,7 +849,7 @@
         "ingredient_pLQEiM": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCOLIC_ACID.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "Glycolic Acid (0.1%)",
             "description": "Adjusts pH. At this level it is not an exfoliant."
           }
@@ -856,7 +863,7 @@
         "ingredient_M8JDWU": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image_1.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide IP (5%)",
             "description": "Vitamin B3 to a pharmacopoeial purity spec. Helps support an even-looking tone."
           }
@@ -864,7 +871,7 @@
         "ingredient_dd3t25v": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Tocopheryl_Acetate.webp",
+            "image": "shopify://shop_images/10bdbd42-b304-4b8c-b8dd-f98001ec38d4.png",
             "name": "Tocopheryl Acetate (0.5%)",
             "description": "Vitamin E. Antioxidant support at the skin surface against daily exposure."
           }
@@ -872,7 +879,7 @@
         "ingredient_dd4ic44": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Jojoba_Oi_-_Rub_It_In_Serum_-_Sonnet_Wellness.png",
+            "image": "shopify://shop_images/21de8445-9bf6-4981-bc3d-07ed2eef9650.png",
             "name": "Jojoba Seed Oil (0.5%)",
             "description": "A light emollient with a lipid profile close to skin's own sebum."
           }
@@ -880,7 +887,7 @@
         "ingredient_dd50v9r": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Leaf Juice (5%)",
             "description": "Hydrates and helps skin feel comfortable."
           }
@@ -888,7 +895,7 @@
         "ingredient_dd6qrkq": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/133f0cf3-f5e9-4678-8c9a-6ef6290f7652.png",
             "name": "Caprylic/Capric Triglyceride (2%)",
             "description": "A light coconut-derived emollient that improves slip."
           }
@@ -896,7 +903,7 @@
         "ingredient_dd74zi4": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "Glycerin (2%)",
             "description": "Draws moisture toward the skin surface."
           }
@@ -904,7 +911,7 @@
         "ingredient_dd8v1va": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/d632176d-2503-47ab-931f-682724876980.png",
             "name": "Cetearyl Olivate & Sorbitan Olivate (1.5%)",
             "description": "Olive-derived emulsifier for a smooth, lightweight texture."
           }
@@ -912,7 +919,7 @@
         "ingredient_dd9lwfa": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "Lactobacillus Ferment Lysate (1%)",
             "description": "Inactivated postbiotic. Helps maintain a conditioned, comfortable skin surface."
           }
@@ -1239,7 +1246,6 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
         "video_on_mobile": true,
         "background_position": "center center",
         "overlay_color": "#28201f",
@@ -1261,7 +1267,9 @@
         "band_padding_bottom": 131,
         "mobile_band_padding_top": 48,
         "mobile_band_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "background_image": "shopify://shop_images/rub-science-background.webp",
+        "footnote": "Sourced from the product INCI and formulation sheet - Sonnet Wellness does not publish third-party clinical trial percentages for this set."
       }
     },
     "trust_badges_XGitCm": {
@@ -1332,7 +1340,7 @@
         "hotspot_4h66jW": {
           "type": "hotspot",
           "settings": {
-            "product": "",
+            "product": "clean-it-off-face-wash",
             "include_in_bundle": true,
             "link": "",
             "image": "shopify://shop_images/sonet-wellness-serum-1-191-606-97x257.webp",
@@ -1441,7 +1449,7 @@
         "show_button": true,
         "button_label": "ADD BUNDLE",
         "bundle_discount": 10,
-        "discount_code": "",
+        "discount_code": "RITUAL10",
         "show_compare_price": true,
         "price_format": "money_without_trailing_zeros",
         "price_override": "Rs. 1,199",
@@ -1488,7 +1496,8 @@
         "width": "wrapper",
         "padding_top": 30,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "faq_know_first_rwdfL3": {
       "type": "faq-know-first",
@@ -1602,35 +1611,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome Friendly"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_JYamad": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan"
+            "title": "Dermatologically Tested"
           }
         },
         "item_DrKT6k": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Cruelty Free"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_6qYzTR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Made in India"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_qnTthh": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Science-Backed"
+            "title": "All Skin Types"
+          }
+        },
+        "item_qc5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
           }
         }
       },
@@ -1639,7 +1655,8 @@
         "item_JYamad",
         "item_DrKT6k",
         "item_6qYzTR",
-        "item_qnTthh"
+        "item_qnTthh",
+        "item_qc5"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -1652,6 +1669,24 @@
         "padding_top_mobile": 14,
         "padding_bottom_mobile": 14
       }
+    },
+    "reviews_tlpc_judgeme": {
+      "type": "reviews-tlpc",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1669,8 +1704,9 @@
     "science_stats_cEpVm6",
     "trust_badges_XGitCm",
     "ritual_bundle_dE8MLN",
-    "17930107502f5f39bc",
+    "reviews_tlpc_judgeme",
     "faq_know_first_rwdfL3",
-    "marquee_bar_K9WLgV"
+    "marquee_bar_K9WLgV",
+    "17930107502f5f39bc"
   ]
 }

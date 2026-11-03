@@ -4,8 +4,8 @@
       "type": "about-hero",
       "settings": {
         "tag": "About us",
-        "heading": "<p>Nourish. Balance. <em>Glow.</em></p>",
-        "heading_size": 65,
+        "heading": "<p>Nourish. <em>Balance. Glow.</em></p>",
+        "heading_size": 68,
         "image": "shopify://shop_images/01-hero-products.webp",
         "title": "Postbiotic-powered skincare, formulated to work with your skin — not strip it back.",
         "text": "<p>Sonnet Wellness is a five-step postbiotic skincare ritual built around Lactobacillus Ferment Lysate alongside established actives — Niacinamide, Glycolic Acid and Aloe Vera — formulated for all skin types, with every ingredient listed in full.</p>",
@@ -21,8 +21,8 @@
         "color_accent": "#78563d",
         "padding_top": 50,
         "padding_bottom": 50,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 32,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
         "custom_class": ""
       },
       "blocks": {
@@ -51,7 +51,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#f5eee6",
         "marquee_speed": 6,
         "padding_top_desktop": 18,
         "padding_bottom_desktop": 18,
@@ -62,49 +62,49 @@
         "item_1": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_1_565b7b0c-de56-48be-abbe-a421b11047d7.webp",
+            "icon": "shopify://shop_images/about-why-badge.webp",
             "title": "Probiotic + Prebiotic Skincare"
           }
         },
         "item_2": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321669.webp",
+            "icon": "shopify://shop_images/about-why-shield-check.webp",
             "title": "No Harsh Chemicals"
           }
         },
         "item_3": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_9459032a-d4e9-46fe-8074-20303eb80182.webp",
+            "icon": "shopify://shop_images/about-why-heart.webp",
             "title": "For All Skin Types"
           }
         },
         "item_4": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_1.png",
+            "icon": "shopify://shop_images/about-why-leaf.webp",
             "title": "100% vegan & cruelty free"
           }
         },
         "item_5": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_2.png",
+            "icon": "shopify://shop_images/about-why-shield-check.webp",
             "title": "No GMO Ingredients"
           }
         },
         "item_6": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668_3.png",
+            "icon": "shopify://shop_images/about-why-india.webp",
             "title": "Made In India"
           }
         },
         "item_7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_1321321668.png",
+            "icon": "shopify://shop_images/about-why-shield-check.webp",
             "title": "Dermatologically Tested"
           }
         }
@@ -413,7 +413,7 @@
         "padding_top": 100,
         "padding_bottom": 100,
         "mobile_padding_top": 50,
-        "mobile_padding_bottom": 50
+        "mobile_padding_bottom": 24
       },
       "blocks": {
         "ing_lacto": {
@@ -427,7 +427,7 @@
         "ing_niacinamide": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/08-ing-niacinamide.webp",
+            "image": "shopify://shop_images/about-ing-niacinamide.webp",
             "name": "NIACINAMIDE 2–5%",
             "description": "Helps support the appearance of an even skin tone and helps minimise the visible appearance of enlarged pores, with regular use."
           }
@@ -443,7 +443,7 @@
         "ing_kaolin": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/08-ing-kaolin-clay.webp",
+            "image": "shopify://shop_images/about-ing-kaolin-clay.webp",
             "name": "KAOLIN CLAY 20%",
             "description": "A mineral clay that helps absorb excess surface sebum and lift pore debris during masking."
           }
@@ -470,11 +470,11 @@
       "settings": {
         "heading": "<p>Safety</p>",
         "heading_size": 58,
-        "feature_image": "shopify://shop_images/09-safety-all-products.webp",
+        "feature_image": "shopify://shop_images/about-safety-all-products.webp",
         "feature_title": "All Products",
         "feature_text": "Patch test on the inner forearm 24 hours before first full use. Discontinue use if irritation occurs. For external use only. Keep out of reach of children.",
         "product_tag": "Product warnings",
-        "product_image": "shopify://shop_images/09-safety-face-mask.webp",
+        "product_image": "shopify://shop_images/about-safety-face-mask.webp",
         "product_title": "Smear It On Face Mask",
         "product_meta": "20% Kaolin Clay - Glycolic Acid | 45 ml",
         "tag_font": "montserrat_n5",
@@ -485,7 +485,7 @@
         "color_dark_text": "#f5eee6",
         "padding_top": 108,
         "padding_bottom": 100,
-        "mobile_padding_top": 48,
+        "mobile_padding_top": 24,
         "mobile_padding_bottom": 48,
         "custom_class": ""
       },
@@ -543,10 +543,10 @@
       ]
     },
     "faq": {
-      "type": "faq-know-first",
+      "type": "about-faq",
       "settings": {
         "heading": "<p>Frequently asked.</p>",
-        "heading_size": 59,
+        "heading_size": 58,
         "heading_size_mobile": 28,
         "open_first": true,
         "allow_multiple_open": false,
@@ -575,7 +575,9 @@
         "padding_bottom": 100,
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "heading_font": "poppins_n4",
+        "body_font": "poppins_n4"
       },
       "blocks": {
         "faq_vegan": {

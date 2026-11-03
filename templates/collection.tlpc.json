@@ -8,7 +8,7 @@
           "settings": {
             "collection": "all",
             "label": "Shop all",
-            "image": "shopify://shop_images/02-collection-products.webp"
+            "image": "shopify://shop_images/collection-tlpc-tile-all.webp"
           }
         },
         "tile_singles": {
@@ -16,7 +16,7 @@
           "settings": {
             "collection": "skincare",
             "label": "Singles",
-            "image": "shopify://shop_images/03-tile-singles.webp"
+            "image": "shopify://shop_images/collection-tlpc-tile-singles.webp"
           }
         },
         "tile_combos": {
@@ -24,7 +24,7 @@
           "settings": {
             "collection": "combo",
             "label": "Combos",
-            "image": "shopify://shop_images/04-tile-combos.webp"
+            "image": "shopify://shop_images/collection-tlpc-tile-combos.webp"
           }
         }
       },
@@ -35,8 +35,8 @@
       ],
       "settings": {
         "show_hero": true,
-        "hero_image": "shopify://shop_images/01-collection-hero-bg.webp",
-        "hero_products": "shopify://shop_images/02-collection-products.webp",
+        "hero_image": "shopify://shop_images/collection-tlpc-hero-bg.webp",
+        "hero_products": "shopify://shop_images/collection-tlpc-hero-products.webp",
         "heading_prefix": "Shop",
         "heading_size": 68,
         "keep_template": true,

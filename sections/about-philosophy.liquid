@@ -209,7 +209,9 @@
   color: var(--aph-muted);
 }
 
-@media screen and (max-width: 768px) {
+/* Tablet + mobile (< 1200): the absolutely-placed body copy would run into the portrait, so the
+   block stacks: portrait, copy, card. The sticky/zoom effect is desktop-only. */
+@media screen and (max-width: 1199px) {
   .aph__stage { margin-top: 24px; }
   .aph__sticky {
     position: relative;
@@ -222,18 +224,19 @@
   .aph__media {
     position: relative;
     left: auto;
-    width: 100%;
+    width: min(100%, 820px);
     height: auto;
-    margin: 0;
+    margin: 0 auto;
     aspect-ratio: 1032 / 765;
     transform: none;
   }
-  .aph .aph__body { position: relative; top: auto; left: auto; order: 2; width: auto; margin: 4px 16px 0; font-size: 15px; }
+  .aph .aph__body { position: relative; top: auto; left: auto; order: 2; width: auto; max-width: 640px; margin: 4px auto 0; padding: 0 16px; font-size: 15px; }
   .aph__card {
     grid-template-columns: 1fr;
     width: auto;
+    max-width: 720px;
     min-height: 0;
-    margin: 28px 16px 0;
+    margin: 28px max(16px, calc((100% - 720px) / 2)) 0;
     padding: 28px 20px 32px;
   }
   .aph__card-media { width: 220px; height: 186px; margin: 0 auto; }
@@ -261,7 +264,7 @@
     <div class="aph__sticky" data-aph-sticky>
       <div class="aph__media">
         {%- if s.image != blank -%}
-          {{ s.image | image_url: width: 2064 | image_tag: loading: 'lazy', sizes: '(min-width: 769px) 54vw, 100vw', widths: '600, 900, 1200, 1600, 2064', alt: s.image.alt }}
+          {{ s.image | image_url: width: 2064 | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 54vw, (min-width: 769px) 820px, 100vw', widths: '600, 900, 1200, 1600, 2064', alt: s.image.alt }}
         {%- else -%}
           {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
         {%- endif -%}
@@ -298,7 +301,7 @@
   (function () {
     var SECTION_ID = {{ section.id | json }};
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var mobile = window.matchMedia('(max-width: 768px)');
+    var mobile = window.matchMedia('(max-width: 1199px)');
 
     function init(root) {
       if (!root || root._aphInit) return;

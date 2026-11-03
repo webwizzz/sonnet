@@ -596,7 +596,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Kaolin_Clay_-_Smear_It_On_Face_Mask_-_Sonnet_Wellness_Artboard_1_copy_14.png",
+            "image": "shopify://shop_images/f5ddf25a-689f-460a-8b8d-d15f2f47e09e.png",
             "name": "KAOLIN CLAY",
             "description": "A naturally occurring mineral clay that absorbs excess surface oil and lifts pore debris during masking."
           }
@@ -604,7 +604,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCOLIC_ACID.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "GLYCOLIC ACID",
             "description": "The smallest AHA molecule. Helps loosen dead surface cells for a smoother-looking texture, in a rinse-off format."
           }
@@ -612,7 +612,7 @@
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "image": "shopify://shop_images/9dd8c4fb-e683-4bf0-96bd-8065df21715f.png",
             "name": "GREEN TEA EXTRACT",
             "description": "Provides antioxidant support at the skin surface during the masking period."
           }
@@ -620,7 +620,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "ALOE VERA",
             "description": "Helps keep skin comfortable during masking and hydrated after rinsing."
           }
@@ -628,7 +628,7 @@
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "LACTOBACILLUS",
             "description": "An inactivated postbiotic extract that helps maintain a conditioned skin surface."
           }
@@ -636,10 +636,10 @@
       },
       "block_order": [
         "ingredient_UJfpeN",
-        "ingredient_BciJAz",
-        "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
-        "ingredient_8WxCii"
+        "ingredient_BciJAz",
+        "ingredient_8WxCii",
+        "ingredient_Eyfm37"
       ],
       "name": "What's Inside Carousel",
       "settings": {
@@ -753,7 +753,8 @@
             "icon": "sun_skin",
             "value": "20%",
             "text": "Kaolin Clay\nAbsorbs excess oil & lifts pore debris.",
-            "text_width": 221
+            "text_width": 221,
+            "icon_image": "shopify://shop_images/e61b94b7-cb07-4158-946b-2b7ff753e881.svg"
           }
         },
         "stat_CmcnmV": {
@@ -762,7 +763,8 @@
             "icon": "skin_layers",
             "value": "4%",
             "text": "Glycolic Acid\nHelps smooth & refine skin texture.",
-            "text_width": 216
+            "text_width": 216,
+            "icon_image": "shopify://shop_images/129b626c-15fa-452a-ac14-c8f0bef6f4a8.svg"
           }
         },
         "stat_r4yenw": {
@@ -771,7 +773,8 @@
             "icon": "drops",
             "value": "10 - 15 min",
             "text": "Wear Time\nDeep-cleanses without overstaying on skin.",
-            "text_width": 204
+            "text_width": 204,
+            "icon_image": "shopify://shop_images/5910547f-d032-489f-a47b-a1102e204707.svg"
           }
         },
         "stat_iNkgTr": {
@@ -780,7 +783,8 @@
             "icon": "shield_cross",
             "value": "0",
             "text": "Cracking or Hardening\nStays smooth & comfortable throughout wear.",
-            "text_width": 200
+            "text_width": 200,
+            "icon_image": "shopify://shop_images/e024f9a8-8458-43d6-8ecb-393df48e4d3e.svg"
           }
         },
         "stat_JkQBhR": {
@@ -789,7 +793,8 @@
             "icon": "face_glow",
             "value": "2 - 3×",
             "text": "Weekly Use\nDeep-cleanse regularly without overdoing it.",
-            "text_width": 250
+            "text_width": 250,
+            "icon_image": "shopify://shop_images/2d3a5fee-77f6-4cfc-a3a7-053dbd5b7a0c.svg"
           }
         }
       },
@@ -1580,6 +1585,13 @@
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "All Skin Types"
           }
+        },
+        "item_qc5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
+          }
         }
       },
       "block_order": [
@@ -1587,7 +1599,8 @@
         "item_4JMWnT",
         "item_KA8J3Q",
         "item_nBAKKk",
-        "item_Kkf3Kg"
+        "item_Kkf3Kg",
+        "item_qc5"
       ],
       "name": "Marquee Bar",
       "settings": {

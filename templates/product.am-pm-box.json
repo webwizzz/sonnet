@@ -315,11 +315,18 @@
             "font": "montserrat_n4",
             "padding_bottom": 0
           }
+        },
+        "liquid_rating_line": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "{% render 'pdp-rating' %}"
+          }
         }
       },
       "block_order": [
         "title_d8f4NW",
         "text_MwYrmh",
+        "liquid_rating_line",
         "description_HjAF3F",
         "spacer_Rcz69C",
         "product_info_VVyN8P",
@@ -327,12 +334,12 @@
         "variant_selectors_zYEyb3",
         "price_wMgK3w",
         "add_buttons_WB8Rwr",
-        "upsell_UgXWDc",
         "liquid_GYcMU3",
         "description_CwzkCw",
         "liquid_hkkHPA",
-        "liquid_jWXjdi",
-        "shop_combo_826ev3"
+        "upsell_UgXWDc",
+        "shop_combo_826ev3",
+        "liquid_jWXjdi"
       ],
       "name": "Product Tlpc page",
       "settings": {
@@ -350,7 +357,7 @@
         "product_breadcrumbs_list": [],
         "width": "wrapper--full",
         "padding_top": 20,
-        "padding_bottom": 130
+        "padding_bottom": 80
       }
     },
     "marquee_bar_z7LLMg": {
@@ -419,7 +426,7 @@
       "settings": {
         "add_class": "",
         "label": "WHY US?",
-        "background_color": "#f3ede7",
+        "background_color": "#eae7e2",
         "marquee_speed": 6,
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -859,7 +866,7 @@
         "ingredient_U8JNpD": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "Lactobacillus Ferment Lysate (1%)",
             "description": "A postbiotic, not a live culture. Helps maintain a comfortable, conditioned skin surface."
           }
@@ -867,7 +874,7 @@
         "ingredient_gDN8Kq": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCERIN.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "Glycerin (6%)",
             "description": "Draws moisture toward the skin surface, helping offset the drying effect of cleansing."
           }
@@ -875,7 +882,7 @@
         "ingredient_R8D4aN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-aloe-vera.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Vera (5%)",
             "description": "Helps soothe and hydrate during cleansing and supports a comfortable rinse-off."
           }
@@ -883,7 +890,7 @@
         "ingredient_MXgQhh": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/COCAMIDOPROPYL_BETAINE.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "Cocamidopropyl Betaine (17%)",
             "description": "A coconut-derived co-surfactant that lifts impurities with a gentler profile than anionic surfactants alone."
           }
@@ -897,7 +904,7 @@
         "ingredient_Bcx6NR": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Niacinamide_IP.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide (2%)",
             "description": "Vitamin B3. Helps support the appearance of an even skin tone."
           }
@@ -905,7 +912,7 @@
         "ingredient_pLQEiM": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Hamamelis_Virginiana.webp",
+            "image": "shopify://shop_images/90c5b212-18bb-4741-9cbb-bf3eb4109451.png",
             "name": "Witch Hazel Extract (2%)",
             "description": "Helps refine the visible appearance of pores."
           }
@@ -913,7 +920,7 @@
         "ingredient_xX6wWE": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-chamomile-extract.webp",
+            "image": "shopify://shop_images/9bc1ac35-14bf-4792-97e3-80afc93e2f52.png",
             "name": "Chamomile Extract (1%)",
             "description": "Helps soothe the visible appearance of redness on reactive or sensitive skin."
           }
@@ -921,7 +928,7 @@
         "ingredient_M8JDWU": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Vera (5%)",
             "description": "Hydrates and helps skin feel comfortable after toning."
           }
@@ -935,7 +942,7 @@
         "ingredient_dd7y2sv": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Niacinamide_IP.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide IP (5%)",
             "description": "Vitamin B3 at 5%. Helps minimise the look of dark spots and enlarged pores."
           }
@@ -943,7 +950,7 @@
         "ingredient_dd822sk": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image_11.webp",
+            "image": "shopify://shop_images/10bdbd42-b304-4b8c-b8dd-f98001ec38d4.png",
             "name": "Vitamin E (0.5%)",
             "description": "Helps protect skin-surface lipids against oxidative stress from environmental exposure."
           }
@@ -951,7 +958,7 @@
         "ingredient_dd9f74s": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-jojoba-serum.webp",
+            "image": "shopify://shop_images/21de8445-9bf6-4981-bc3d-07ed2eef9650.png",
             "name": "Jojoba Seed Oil (0.5%)",
             "description": "A liquid wax ester close to human sebum. Conditions with a light feel."
           }
@@ -959,7 +966,7 @@
         "ingredient_ddalteu": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-aloe-vera.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Vera (5%)",
             "description": "Provides hydration and helps skin feel comfortable."
           }
@@ -973,7 +980,7 @@
         "ingredient_ddcb5lv": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-jojoba-seed-oil.webp",
+            "image": "shopify://shop_images/21de8445-9bf6-4981-bc3d-07ed2eef9650.png",
             "name": "Jojoba Seed Oil",
             "description": "A liquid wax ester close in structure to skin's own sebum."
           }
@@ -981,7 +988,7 @@
         "ingredient_ddd9693": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-niacinamide-cream.webp",
+            "image": "shopify://shop_images/872723e4-bfa3-408d-ad4f-38b8fb889bb1.png",
             "name": "Niacinamide (2%)",
             "description": "Helps support an even-looking skin tone and helps minimise the look of pores."
           }
@@ -989,7 +996,7 @@
         "ingredient_ddet6t2": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-aloe-vera-cream.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "Aloe Vera (5%)",
             "description": "Hydrates and helps skin feel comfortable and soothed."
           }
@@ -997,7 +1004,7 @@
         "ingredient_ddf45cj": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-kokum-butter.webp",
+            "image": "shopify://shop_images/feebc485-5911-4bf6-ae0c-9d81179ef157.png",
             "name": "Kokum Butter",
             "description": "From kokum seeds, naturally rich in stearic acid. A conditioning emollient."
           }
@@ -1011,7 +1018,7 @@
         "ingredient_ddhmzxi": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-kaolin-clay.webp",
+            "image": "shopify://shop_images/f5ddf25a-689f-460a-8b8d-d15f2f47e09e.png",
             "name": "Kaolin Clay (20%)",
             "description": "A mineral clay that absorbs excess surface oil and lifts pore debris."
           }
@@ -1019,7 +1026,7 @@
         "ingredient_ddi1chg": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-glycolic-acid.webp",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "Glycolic Acid (4%)",
             "description": "Helps loosen dead surface cells for a smoother-looking texture. Rinse-off format."
           }
@@ -1027,7 +1034,7 @@
         "ingredient_ddj5idd": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-green-tea-extract.webp",
+            "image": "shopify://shop_images/9dd8c4fb-e683-4bf0-96bd-8065df21715f.png",
             "name": "Green Tea Extract (1%)",
             "description": "Provides antioxidant support at the skin surface during the masking period."
           }
@@ -1035,7 +1042,7 @@
         "ingredient_ddk4rs3": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/amp-glycerin-mask.webp",
+            "image": "shopify://shop_images/3222aec3-e552-4552-9cba-08009b891c39.png",
             "name": "Glycerin (3%)",
             "description": "Draws moisture to the skin surface, balancing the clay's absorbent action."
           }
@@ -1170,7 +1177,7 @@
           "type": "card",
           "settings": {
             "style": "product",
-            "image": "shopify://shop_images/card-1-product-face-wash-345x420.webp",
+            "image": "shopify://shop_images/5ee9801e4ab6d7984820d503115b59f7.png",
             "label": "Clean It Off Face Wash",
             "video_url": "",
             "product": "clean-it-off-face-wash",
@@ -1242,7 +1249,7 @@
           "type": "card",
           "settings": {
             "style": "product",
-            "image": "shopify://shop_images/card-4-product-2-345x420.webp",
+            "image": "shopify://shop_images/17e24e315c898378fdca6a4eeb2089ea.png",
             "label": "Soak It In",
             "video_url": "",
             "product": "soak-it-in-face-cream",
@@ -1389,7 +1396,6 @@
         "heading_size": 58,
         "heading_size_mobile": 28,
         "heading_color": "#ffffff",
-        "background_video": "shopify://files/videos/d2f69157-4342-42ff-bf50-edf0c72af52c-0.mp4",
         "video_on_mobile": true,
         "background_position": "center center",
         "overlay_color": "#28201f",
@@ -1411,7 +1417,9 @@
         "band_padding_bottom": 131,
         "mobile_band_padding_top": 48,
         "mobile_band_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "background_image": "shopify://shop_images/rub-science-background.webp",
+        "footnote": "Sourced from the product INCI and formulation sheet - Sonnet Wellness does not publish third-party clinical trial percentages for this set."
       }
     },
     "trust_badges_XGitCm": {
@@ -1591,7 +1599,7 @@
         "show_button": true,
         "button_label": "ADD BUNDLE",
         "bundle_discount": 10,
-        "discount_code": "",
+        "discount_code": "RITUAL10",
         "show_compare_price": true,
         "price_format": "money_without_trailing_zeros",
         "price_override": "Rs. 1,199",
@@ -1638,7 +1646,8 @@
         "width": "wrapper",
         "padding_top": 30,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "faq_know_first_rwdfL3": {
       "type": "faq-know-first",
@@ -1728,35 +1737,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome Friendly"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_JYamad": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan"
+            "title": "Dermatologically Tested"
           }
         },
         "item_DrKT6k": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Cruelty Free"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_6qYzTR": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Made in India"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_qnTthh": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Science-Backed"
+            "title": "All Skin Types"
+          }
+        },
+        "item_qc5": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Ellipse_82.webp",
+            "title": "Made in India"
           }
         }
       },
@@ -1765,7 +1781,8 @@
         "item_JYamad",
         "item_DrKT6k",
         "item_6qYzTR",
-        "item_qnTthh"
+        "item_qnTthh",
+        "item_qc5"
       ],
       "name": "Marquee Bar",
       "settings": {
@@ -1778,6 +1795,24 @@
         "padding_top_mobile": 14,
         "padding_bottom_mobile": 14
       }
+    },
+    "reviews_tlpc_judgeme": {
+      "type": "reviews-tlpc",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1795,8 +1830,9 @@
     "science_stats_cEpVm6",
     "trust_badges_XGitCm",
     "ritual_bundle_dE8MLN",
-    "17930109986ce0fac4",
+    "reviews_tlpc_judgeme",
     "faq_know_first_rwdfL3",
-    "marquee_bar_K9WLgV"
+    "marquee_bar_K9WLgV",
+    "17930109986ce0fac4"
   ]
 }

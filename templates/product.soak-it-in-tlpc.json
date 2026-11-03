@@ -588,7 +588,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
+            "image": "shopify://shop_images/7bbefb83-3230-4152-b230-81f1ea0fcf2a.png",
             "name": "NIACINAMIDE · 2%",
             "description": "Vitamin B3. Helps support a visibly more even-looking skin tone and helps minimise the look of enlarged pores with consistent use"
           }
@@ -596,7 +596,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "LACTOBACILLUS FERMENT LYSATE · 1%",
             "description": "Postbiotic active — inactivated ferment lysate, not a live culture. Helps maintain a conditioned skin surface after application"
           }
@@ -604,7 +604,7 @@
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "image": "shopify://shop_images/4b1028fc-06e0-4ddf-a6a7-6227063ebb2d.png",
             "name": "ISOPROPYL MYRISTATE · 5%",
             "description": "Primary emollient giving the cream its spreadability and quick-absorbing, non-greasy finish"
           }
@@ -612,7 +612,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer1-240x240.webp",
+            "image": "shopify://shop_images/feebc485-5911-4bf6-ae0c-9d81179ef157.png",
             "name": "GARCINIA INDICA SEED BUTTER (KOKUM)",
             "description": "Conditioning emollient from the seeds of the kokum tree — naturally rich in stearic acid, non-pore-clogging"
           }
@@ -620,7 +620,7 @@
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-470-300x300.webp",
+            "image": "shopify://shop_images/21de8445-9bf6-4981-bc3d-07ed2eef9650.png",
             "name": "SIMMONDSIA CHINENSIS SEED OIL (JOJOBA)",
             "description": "Liquid wax ester close in structure to skin's own sebum — light, conditioning, absorbs cleanly"
           }
@@ -628,7 +628,7 @@
         "ingredient_3rTr6i": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "ALOE BARBADENSIS LEAF JUICE · 5%",
             "description": "Hydrates and helps skin feel comfortable and soothed after application"
           }
@@ -636,10 +636,10 @@
       },
       "block_order": [
         "ingredient_UJfpeN",
-        "ingredient_BciJAz",
-        "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
+        "ingredient_BciJAz",
         "ingredient_8WxCii",
+        "ingredient_Eyfm37",
         "ingredient_3rTr6i"
       ],
       "name": "What's Inside Carousel",
@@ -754,7 +754,8 @@
             "icon": "sun_skin",
             "value": "2%",
             "text": "Niacinamide — helps support a visibly more even-looking skin tone with regular use",
-            "text_width": 221
+            "text_width": 221,
+            "icon_image": "shopify://shop_images/64ff76f4-50a9-44ee-b728-0df6eadbb29c.svg"
           }
         },
         "stat_CmcnmV": {
@@ -763,7 +764,8 @@
             "icon": "skin_layers",
             "value": "5%",
             "text": "Aloe Barbadensis Leaf Juice — hydrates and helps skin feel comfortable and soothed",
-            "text_width": 216
+            "text_width": 216,
+            "icon_image": "shopify://shop_images/f364821d-74a5-4b07-bcd1-ab92a8a0366e.svg"
           }
         },
         "stat_r4yenw": {
@@ -772,7 +774,8 @@
             "icon": "drops",
             "value": "5%",
             "text": "Isopropyl Myristate — non-greasy emollient that absorbs without heaviness",
-            "text_width": 204
+            "text_width": 204,
+            "icon_image": "shopify://shop_images/5da7013d-886c-47e1-8584-13e832cdbd8a.svg"
           }
         },
         "stat_iNkgTr": {
@@ -781,7 +784,8 @@
             "icon": "shield_cross",
             "value": "1%",
             "text": "Lactobacillus Ferment Lysate — postbiotic active in every application",
-            "text_width": 183
+            "text_width": 183,
+            "icon_image": "shopify://shop_images/04b0b0e1-9705-4c56-9de5-691d7328d82d.svg"
           }
         },
         "stat_JkQBhR": {
@@ -790,7 +794,8 @@
             "icon": "face_glow",
             "value": "0%",
             "text": "Parabens - Phthalates - Alcohol - Mineral Oil - Petrolatum - Propylene Glycol",
-            "text_width": 190
+            "text_width": 190,
+            "icon_image": "shopify://shop_images/b62a2b52-4c57-45ef-a728-badf0c0fec8c.svg"
           }
         }
       },
@@ -1551,42 +1556,42 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "POSTBIOTIC SKINCARE"
+            "title": "India's First Probiotic & Prebiotic Skincare"
           }
         },
         "item_mAEEkV": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "DERMATOLOGICALLY TESTED"
+            "title": "Dermatologically Tested"
           }
         },
         "item_czkRkt": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% VEGAN & CRUELTY-FREE"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_Ghyp8d": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "MICROBIOME-FRIENDLY FORMULA"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_JNwBbH": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "ALL SKIN TYPES"
+            "title": "All Skin Types"
           }
         },
         "item_WPhA4J": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "NO PARABENS"
+            "title": "Made in India"
           }
         },
         "item_VUVJR8": {
@@ -1594,14 +1599,16 @@
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "MADE IN INDIA"
-          }
+          },
+          "disabled": true
         },
         "item_XbkG9d": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
             "title": "NON-GREASY FORMULA"
-          }
+          },
+          "disabled": true
         }
       },
       "block_order": [

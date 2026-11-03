@@ -1,7 +1,7 @@
 {%- comment -%}
   About hero: "ABOUT US" tag, "Nourish. Balance. Glow." heading and the dark product card.
   Design: Figma QvQ11convTbPladsyhAg96, nodes 249:142 / 249:143 / 249:121 (About Us page).
-  Desktop 1920: tag at 50px, heading (Blauer Nue MD 65 + Tiempos italic, 674 wide) 20px under it,
+  Desktop 1920: tag at 50px, heading (Blauer Nue MD 68/81.6, "Balance. Glow." in Tiempos Fine italic) 20px under it,
   card 1820 × 782 (radius 22) 30px under the heading. Card text column starts 123px in and is
   vertically centred: heading 40/48, body 20/26 @80%, two 288 × 52 pill buttons (gap 16).
   The product shot fills the card from 24.5% to the right edge.
@@ -64,13 +64,13 @@
   color: var(--ahe-text);
 }
 
-/* Heading: Blauer Nue MD 65 (matches Figma's 674px line), Tiempos Fine Italic RG accent */
+/* Heading: Blauer Nue MD 68 / 81.6, -2% tracking; <em> = Test Tiempos Fine Italic RG (Figma 249:142) */
 .ahe .ahe__heading {
   margin: max(14px, calc(20 * var(--ahe-u))) 0 0;
   font-family: 'Blauer Nue MD', sans-serif;
   font-weight: 500;
   font-size: max(34px, calc(var(--ahe-h) * var(--ahe-u)));
-  line-height: 1.206;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--ahe-text);
   text-transform: none;
@@ -81,7 +81,7 @@
   font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
   font-weight: 400;
   font-style: italic;
-  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 /* Card: 1820 × 782, radius 22, 50px side gutters */
@@ -114,7 +114,7 @@
 .ahe__media .placeholder-svg { fill: rgba(255, 255, 255, 0.2); }
 
 .ahe__content {
-  width: calc(592 * var(--ahe-u) + 40px);
+  width: calc(max(380px, 592 * var(--ahe-u)) + 40px);
   max-width: 100%;
   margin-left: calc(123 * var(--ahe-u) - 20px);
   padding: 40px 20px;
@@ -147,7 +147,7 @@
 .ahe__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: max(12px, calc(16 * var(--ahe-u)));
   margin-top: max(28px, calc(60 * var(--ahe-u)));
 }
 .ahe .ahe__btn {
@@ -155,15 +155,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  width: max(240px, calc(288 * var(--ahe-u)));
-  height: 52px;
-  padding: 0 2px 0 30px;
+  gap: max(16px, calc(32 * var(--ahe-u)));
+  min-width: calc(288 * var(--ahe-u));
+  height: max(44px, calc(52 * var(--ahe-u)));
+  padding: 0 2px 0 max(20px, calc(30 * var(--ahe-u)));
+  white-space: nowrap;
   border-radius: 50px;
   background: var(--ahe-btn);
   color: var(--ahe-btn-text);
   font-family: 'Blauer Nue LT', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: max(14px, calc(16 * var(--ahe-u)));
   line-height: 1;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -175,8 +177,8 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 48px;
-  height: 48px;
+  width: max(40px, calc(48 * var(--ahe-u)));
+  height: max(40px, calc(48 * var(--ahe-u)));
   border-radius: 50%;
   background: var(--ahe-accent);
   transition: transform 300ms ease;
@@ -185,6 +187,10 @@
 .ahe .ahe__btn:hover .ahe__btn-icon,
 .ahe .ahe__btn:focus-visible .ahe__btn-icon { transform: rotate(45deg); }
 
+/* Desktop: keep both pills on one row (labels never wrap); the row may run past the text column. */
+@media screen and (min-width: 1200px) {
+  .ahe__buttons { flex-wrap: nowrap; width: max-content; }
+}
 @media screen and (max-width: 768px) {
   .ahe__card {
     flex-direction: column;
@@ -197,9 +203,11 @@
     order: 2;
     aspect-ratio: 1374 / 782;
   }
+  .ahe .ahe__heading { font-size: min(34px, 8.4vw); }
   .ahe__content { order: 1; width: 100%; margin-left: 0; padding: 32px 20px 8px; }
   .ahe__buttons { flex-direction: column; }
-  .ahe .ahe__btn { width: 100%; max-width: 320px; }
+  .ahe .ahe__btn { width: 100%; min-width: 0; max-width: 320px; height: 52px; padding-left: 24px; font-size: 15px; }
+  .ahe__btn-icon { width: 48px; height: 48px; }
 }
 {% endstyle %}
 
@@ -257,8 +265,8 @@
   "settings": [
     { "type": "header", "content": "Intro" },
     { "type": "text", "id": "tag", "label": "Tag", "default": "About us" },
-    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent word.", "default": "<p>Nourish. Balance. <em>Glow.</em></p>" },
-    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 36, "max": 90, "step": 1, "unit": "px", "default": 65 },
+    { "type": "richtext", "id": "heading", "label": "Heading", "info": "Use italic for the serif accent word.", "default": "<p>Nourish. <em>Balance. Glow.</em></p>" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 36, "max": 90, "step": 1, "unit": "px", "default": 68 },
     { "type": "header", "content": "Card" },
     { "type": "image_picker", "id": "image", "label": "Product image", "info": "Fills the card from 24.5% to the right edge. Design export: 01-hero-products.webp (2748 × 1564)." },
     { "type": "text", "id": "title", "label": "Title", "default": "Postbiotic-powered skincare, formulated to work with your skin — not strip it back." },

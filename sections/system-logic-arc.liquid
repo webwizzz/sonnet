@@ -429,7 +429,8 @@
 /* ---------- Compact layout (phones, tablets held upright): heading on top, arc below ---------- */
 @media only screen and (max-width: 768px), only screen and (max-width: 1100px) and (orientation: portrait) {
   .sla {
-    --sla-cw: min(46vw, 345px, calc(var(--sla-vh) * 0.36));
+    /* cards fill more of the pinned screen (at 0.36 vh they sat in a wide empty band top and bottom) */
+    --sla-cw: min(46vw, 345px, calc(var(--sla-vh) * 0.46));
     --sla-ay: 0px;
     --sla-rk: 0.8;
   }
@@ -453,7 +454,7 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  .sla { --sla-cw: min(62vw, 300px, calc(var(--sla-vh) * 0.36)); }
+  .sla { --sla-cw: min(72vw, 320px, calc(var(--sla-vh) * 0.46)); }
   .sla .sla__heading { font-size: var(--sla-hm); }
   .sla .sla__sub { font-size: 14px; }
 }
@@ -1157,6 +1158,9 @@
         if (v) {
           v.setAttribute('controls', '');
           v.setAttribute('playsinline', '');
+          // started by a tap on play, so it can play with sound (video_tag's autoplay leaves it muted)
+          v.removeAttribute('muted');
+          v.muted = false;
           var pr = v.play();
           if (pr && pr.catch) pr.catch(function () {});
         }

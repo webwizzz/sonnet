@@ -13,6 +13,11 @@
   326 × 44 pill 43px from the bottom with ADD BUNDLE, prices and a green badge.
   Tabs: Popular / Trendy list articles tagged with the chosen tags; with none tagged they fall back to
   the next newest articles so every tab has content. +ADD and ADD BUNDLE use /cart/add.js and open the drawer.
+  Desktop: the bundle card sticks under the header while the article scrolls.
+  Images: hero + sidebar thumbnails go through snippets/blog-tlpc-cover.liquid (Cover blocks,
+  custom.listing_image, then the design covers when "Use design covers" is on), because many featured
+  images have their title printed in the artwork. Word-pasted article HTML (inline font sizes, justify,
+  mso-list bullets) is normalised so the body always uses the design type scale.
 {%- endcomment -%}
 
 {%- liquid
@@ -36,6 +41,12 @@
   endcomment
   assign article_view = s.article_view | strip
   assign listing_view = s.listing_view | strip
+  assign rotate = false
+  assign hero_fallback = blank
+  if s.cover_mode == 'design'
+    assign rotate = true
+    assign hero_fallback = s.hero_image
+  endif
   assign listing_query = ''
   if listing_view != blank and blog.template_suffix != listing_view
     assign listing_query = '?view=' | append: listing_view
@@ -78,6 +89,7 @@
   gap: calc(50 * var(--atl-u));
   align-items: start;
 }
+.atl__main, .atl__side { min-width: 0; }
 
 /* Shared pill */
 .atl .atl__pill {
@@ -134,6 +146,7 @@
 .atl__avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .atl__byline-name { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: var(--atl-text); }
 .atl__sep { font-family: 'Blauer Nue MD', sans-serif; font-weight: 500; color: rgba(40, 32, 31, 0.4); }
+.atl__byline-read { display: inline-flex; align-items: center; gap: 14px; white-space: nowrap; }
 .atl__hero {
   margin-top: 24px;
   aspect-ratio: 1100 / 500;
@@ -186,6 +199,19 @@
 .atl .atl__body a { color: var(--atl-accent); text-decoration: underline; text-underline-offset: 2px; }
 .atl .atl__body img { max-width: 100%; height: auto; border-radius: 10px; }
 .atl .atl__body blockquote { margin: 24px 0; padding: 0 0 0 20px; border-left: 2px solid var(--atl-accent); font-style: normal; }
+/* Word / Google Docs paste: inline font sizes, fonts and colours must not override the design scale. */
+.atl .atl__body span,
+.atl .atl__body font { font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; color: inherit !important; letter-spacing: inherit !important; }
+.atl .atl__body p[style],
+.atl .atl__body h1[style], .atl .atl__body h2[style], .atl .atl__body h3[style], .atl .atl__body h4[style] { padding: 0 !important; border: 0 !important; text-indent: 0 !important; }
+.atl .atl__body p[style] { margin: 0 0 16px !important; }
+.atl .atl__body h1[style], .atl .atl__body h2[style], .atl .atl__body h3[style], .atl .atl__body h4[style] { margin: 30px 0 20px !important; }
+.atl .atl__body [style*="justify"] { text-align: left !important; }
+.atl .atl__body div[style] { margin: 24px 0 !important; padding: 0 !important; border: 0 !important; border-bottom: 1px solid rgba(40, 32, 31, 0.1) !important; }
+.atl .atl__body div[style] > p:last-child { margin-bottom: 16px !important; }
+.atl .atl__body p[style*="mso-list"] { position: relative; margin: 0 !important; padding-left: 1.05em !important; line-height: 1.8; }
+.atl .atl__body p[style*="mso-list"] + p:not([style*="mso-list"]) { margin-top: 16px !important; }
+.atl .atl__body span[style*="mso-list"] { position: absolute; left: 0; top: 0; width: 1.05em; overflow: hidden; white-space: nowrap; }
 
 /* Share row */
 .atl__share {
@@ -346,13 +372,14 @@
   list-style: none;
 }
 .atl__tags li { margin: 0; }
-.atl__tabs { display: flex; gap: 6px; }
+.atl__tabs { display: flex; gap: 6px; min-width: 0; }
 .atl__tags + .atl__tabs { margin-top: 30px; }
 .atl .atl__tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 98px;
+  flex: 0 1 98px;
+  min-width: 0;
   height: 30px;
   min-height: 0;
   margin: 0;
@@ -366,12 +393,14 @@
   line-height: normal;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--atl-accent);
   cursor: pointer;
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
 }
+.atl .atl__tab:hover { border-color: var(--atl-accent); background: rgba(120, 86, 61, 0.08); }
 .atl .atl__tab[aria-selected="true"] {
-  min-width: 112px;
+  flex-basis: 112px;
   border-color: var(--atl-accent);
   background: var(--atl-accent);
   color: #FFFFFF;
@@ -391,6 +420,9 @@
   transition: box-shadow 200ms ease;
 }
 .atl__post:hover { box-shadow: 0 6px 18px rgba(40, 32, 31, 0.08); }
+.atl__post:hover .atl__post-title { color: var(--atl-accent); }
+.atl__post-media img { transition: transform 400ms ease; }
+.atl__post:hover .atl__post-media img { transform: scale(1.05); }
 .atl__post-media { flex: none; width: 93px; height: 93px; border-radius: 6px; overflow: hidden; background: #e5dccf; }
 .atl__post-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .atl__post-text { min-width: 0; padding: 10px 10px 0 0; }
@@ -408,6 +440,7 @@
   letter-spacing: -0.02em;
   color: var(--atl-text);
   text-transform: none;
+  transition: color 200ms ease;
 }
 .atl .atl__post-date {
   display: block;
@@ -428,7 +461,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: calc(583 * var(--atl-u));
+  aspect-ratio: 470 / 583;
   margin-top: 30px;
   padding: 40px 20px 43px;
   border-radius: 8px;
@@ -459,10 +492,11 @@
   justify-content: center;
   gap: 20px;
   width: min(100%, 326px);
-  height: 44px;
-  min-height: 0;
+  flex-wrap: wrap;
+  min-height: 44px;
+  height: auto;
   margin: 0;
-  padding: 0 14px 0 24px;
+  padding: 6px 14px 6px 24px;
   border: 0;
   border-radius: 120px;
   background: #FFFFFF;
@@ -476,7 +510,9 @@
   cursor: pointer;
   transition: transform 200ms ease;
 }
-.atl .atl__bundle-btn:hover { transform: translateY(-2px); }
+.atl .atl__bundle-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); }
+.atl .atl__bundle-btn:disabled { cursor: not-allowed; opacity: 0.7; transform: none; }
+.atl .atl__add:not(:disabled):hover { opacity: 0.85; }
 .atl .atl__bundle-btn[aria-busy="true"] { opacity: 0.7; pointer-events: none; }
 .atl__bundle-prices { display: inline-flex; align-items: center; gap: 6px; text-transform: none; }
 .atl__bundle-prices .atl__price-was { font-size: 14px; }
@@ -490,23 +526,57 @@
   font-family: 'Blauer Nue MD', sans-serif;
   font-weight: 500;
   font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: #FFFFFF;
   text-transform: uppercase;
 }
 .atl__status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* Desktop: the aside spans the full row so the bundle card can stick under the header. */
+@media screen and (min-width: 1101px) and (min-height: 700px) {
+  .atl__side { align-self: stretch; }
+  .atl__bundle { position: sticky; top: var(--atl-sticky-top, 20px); transition: top 250ms ease; }
+}
+@media screen and (min-width: 1101px) and (max-width: 1500px) {
+  .atl__layout { grid-template-columns: minmax(0, 1200fr) minmax(340px, 470fr); gap: 30px; }
+  .atl__panel { padding: 24px 20px; }
+  .atl__post { gap: 14px; }
+  .atl__post-media { width: 80px; height: 80px; }
+  .atl__post { min-height: 92px; }
+}
 @media screen and (max-width: 1100px) {
   .atl__layout { grid-template-columns: 1fr; gap: 30px; }
-  .atl__bundle { min-height: 520px; }
+  .atl .atl__title { max-width: none; }
+  .atl__card { padding: 32px 30px 28px; }
+  .atl__tabpanel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .atl .atl__post-title { max-width: none; }
+  .atl__bundle { width: min(100%, 470px); margin: 30px auto 0; }
+}
+@media screen and (max-width: 480px) {
+  .atl__byline-read { flex-basis: 100%; padding-left: 46px; }
+  .atl__byline-read .atl__sep { display: none; }
 }
 @media screen and (max-width: 768px) {
   .atl__card { padding: 24px 16px; }
-  .atl .atl__title { max-width: none; }
-  .atl__author { flex-direction: column; padding: 16px; }
+  .atl .atl__title { font-size: 24px; line-height: 1.25; margin-top: 16px; }
+  .atl__byline { margin-top: 16px; font-size: 13px; gap: 4px 10px; }
+  .atl__byline-read { gap: 10px; }
+  .atl__byline time { white-space: nowrap; }
+  .atl__hero { margin-top: 16px; aspect-ratio: 16 / 10; }
+  .atl .atl__body h1, .atl .atl__body h2,
+  .atl .atl__body h1[style], .atl .atl__body h2[style] { font-size: 20px; margin: 24px 0 14px !important; }
+  .atl .atl__body h3, .atl .atl__body h4,
+  .atl .atl__body h3[style], .atl .atl__body h4[style] { font-size: 18px; margin: 22px 0 12px !important; }
+  .atl__author { flex-direction: column; gap: 16px; padding: 16px; }
   .atl__author-media { width: 160px; }
   .atl__author-text { padding-top: 0; }
+  .atl .atl__author-name { font-size: 24px; }
   .atl__panel { padding: 20px 16px; }
+  .atl__tabpanel { grid-template-columns: 1fr; }
+  .atl__tab { flex: 1 1 0; }
   .atl__share { flex-wrap: wrap; gap: 12px; }
+  .atl__product { width: 100%; }
 }
 {% endstyle %}
 
@@ -528,16 +598,15 @@
             <span class="atl__sep" aria-hidden="true">|</span>
             <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %-d, %Y' }}</time>
             {%- if s.show_read_time -%}
-              <span class="atl__sep" aria-hidden="true">|</span>
-              <span>{{ minutes }} {{ s.read_time_label | escape }}</span>
+              <span class="atl__byline-read"><span class="atl__sep" aria-hidden="true">|</span><span>{{ minutes }} {{ s.read_time_label | escape }}</span></span>
             {%- endif -%}
           </div>
 
-          {%- if s.show_image and article.image != blank -%}
-            <div class="atl__hero">
-              {%- assign hero_alt = article.image.alt | default: article.title -%}
-              {{ article.image | image_url: width: 2200 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 1101px) 58vw, 100vw', widths: '600, 900, 1200, 1600, 2200', alt: hero_alt }}
-            </div>
+          {%- if s.show_image -%}
+            {%- capture hero_img -%}
+              {%- render 'blog-tlpc-cover', article: article, blocks: section.blocks, index: 0, rotate: false, fallback: hero_fallback, width: 2200, widths: '600, 900, 1200, 1600, 2200', sizes: '(min-width: 1101px) 58vw, 100vw', loading: 'eager', fetchpriority: 'high' -%}
+            {%- endcapture -%}
+            {%- if hero_img != blank -%}<div class="atl__hero">{{ hero_img }}</div>{%- endif -%}
           {%- endif -%}
 
           <div class="atl__body">{{ article.content }}</div>
@@ -631,7 +700,7 @@
             {%- capture card -%}
               <li>
                 <a class="atl__post" href="{{ a_link }}">
-                  <span class="atl__post-media">{%- if a.image != blank -%}{{ a.image | image_url: width: 186 | image_tag: loading: 'lazy', width: 93, height: 93, alt: '' }}{%- endif -%}</span>
+                  <span class="atl__post-media">{%- render 'blog-tlpc-cover', article: a, blocks: section.blocks, index: others, rotate: rotate, width: 186, widths: '186', sizes: '93px', loading: 'lazy', decorative: true -%}</span>
                   <span class="atl__post-text">
                     <span class="atl__post-title">{{ a.title | escape }}</span>
                     <time class="atl__post-date" datetime="{{ a.published_at | date: '%Y-%m-%d' }}">{{ a.published_at | date: '%b %-d, %Y' }}</time>
@@ -673,7 +742,7 @@
               {%- capture card -%}
                 <li>
                   <a class="atl__post" href="{{ a_link }}">
-                    <span class="atl__post-media">{%- if a.image != blank -%}{{ a.image | image_url: width: 186 | image_tag: loading: 'lazy', width: 93, height: 93, alt: '' }}{%- endif -%}</span>
+                    <span class="atl__post-media">{%- render 'blog-tlpc-cover', article: a, blocks: section.blocks, index: idx, rotate: rotate, width: 186, widths: '186', sizes: '93px', loading: 'lazy', decorative: true -%}</span>
                     <span class="atl__post-text">
                       <span class="atl__post-title">{{ a.title | escape }}</span>
                       <time class="atl__post-date" datetime="{{ a.published_at | date: '%Y-%m-%d' }}">{{ a.published_at | date: '%b %-d, %Y' }}</time>
@@ -714,17 +783,26 @@
                 {{ s.bundle_image | image_url: width: 940 | image_tag: loading: 'lazy', sizes: '(min-width: 1101px) 25vw, 100vw', widths: '470, 700, 940', alt: s.bundle_image.alt }}
               {%- endif -%}
             </div>
-            {%- if s.bundle_heading != blank -%}<div class="atl__bundle-title">{{ s.bundle_heading }}</div>{%- endif -%}
+            {%- if s.bundle_heading != blank -%}<div class="atl__bundle-title">{{ s.bundle_heading }}</div>{%- else -%}<span></span>{%- endif -%}
             {%- if bundle != blank -%}
-              {%- assign b_variant = bundle.selected_or_first_available_variant -%}
+              {%- liquid
+                assign b_variant = bundle.selected_or_first_available_variant
+                assign b_badge = ''
+                if s.bundle_badge != blank and b_variant.compare_at_price > b_variant.price
+                  assign b_saving = b_variant.compare_at_price | minus: b_variant.price | times: 100 | divided_by: b_variant.compare_at_price
+                  assign b_badge = s.bundle_badge | replace: '[percent]', b_saving
+                endif
+              -%}
               <button type="button" class="atl__bundle-btn" data-atl-add="{{ b_variant.id }}" data-label="{{ s.bundle_button | escape }}" {% unless b_variant.available %}disabled{% endunless %}>
                 <span data-atl-label>{{ s.bundle_button | escape }}</span>
                 <span class="atl__bundle-prices">
                   <span class="atl__price-now">{{ b_variant.price | money_without_trailing_zeros }}</span>
                   {%- if b_variant.compare_at_price > b_variant.price -%}<span class="atl__price-was">{{ b_variant.compare_at_price | money_without_trailing_zeros }}</span>{%- endif -%}
-                  {%- if s.bundle_badge != blank -%}<span class="atl__badge">{{ s.bundle_badge | escape }}</span>{%- endif -%}
+                  {%- if b_badge != blank -%}<span class="atl__badge">{{ b_badge | escape }}</span>{%- endif -%}
                 </span>
               </button>
+            {%- elsif request.design_mode -%}
+              <button type="button" class="atl__bundle-btn" disabled><span>{{ s.bundle_button | escape }}</span><span class="atl__bundle-prices">Pick an active bundle product</span></button>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -805,11 +883,40 @@
         if (e.key === 'ArrowRight') { e.preventDefault(); selectTab(tabs[(i + 1) % tabs.length], true); }
         if (e.key === 'ArrowLeft') { e.preventDefault(); selectTab(tabs[(i - 1 + tabs.length) % tabs.length], true); }
       }
+      // Sticky bundle: sit below the header whenever the theme's header is pinned on screen.
+      var raf = 0;
+      function headerOffset() {
+        var h = document.querySelector('[data-header-height]') || document.querySelector('.theme__header');
+        if (!h) return 0;
+        var cs = window.getComputedStyle(h);
+        var rect = h.getBoundingClientRect();
+        var pinned = (cs.position === 'fixed' || cs.position === 'sticky') && rect.bottom > 0;
+        var wrap = h.closest('.shopify-section');
+        if (!pinned && wrap) {
+          var ws = window.getComputedStyle(wrap);
+          var wr = wrap.getBoundingClientRect();
+          pinned = (ws.position === 'fixed' || ws.position === 'sticky') && wr.bottom > 0 && wr.top <= 0.5;
+          if (pinned) rect = wr;
+        }
+        return pinned ? Math.max(0, Math.round(rect.bottom)) : 0;
+      }
+      function updateSticky() {
+        raf = 0;
+        root.style.setProperty('--atl-sticky-top', (headerOffset() + 20) + 'px');
+      }
+      function onScroll() { if (!raf) raf = window.requestAnimationFrame(updateSticky); }
+      updateSticky();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+
       root.addEventListener('click', onClick);
       root.addEventListener('keydown', onKey);
       root._atlCleanup = function () {
         root.removeEventListener('click', onClick);
         root.removeEventListener('keydown', onKey);
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+        if (raf) window.cancelAnimationFrame(raf);
         root._atlInit = false;
       };
     }
@@ -843,6 +950,8 @@
     { "type": "text", "id": "article_view", "label": "Open other articles with template", "info": "Sidebar article links add ?view= with this template name. Skipped for articles that already use it. Leave empty for plain links.", "default": "blog-tlpc" },
     { "type": "text", "id": "listing_view", "label": "Open tag links with blog template", "info": "Tag links add ?view= with this template name. Skipped when the blog already uses it.", "default": "blog-tlpc" },
     { "type": "checkbox", "id": "show_image", "label": "Show featured image", "default": true },
+    { "type": "select", "id": "cover_mode", "label": "Articles without their own cover show", "options": [ { "value": "featured", "label": "Their featured image" }, { "value": "design", "label": "Design covers (hero image + Cover blocks)" } ], "default": "featured", "info": "A Cover block with an article, or the metafield custom.listing_image, always wins. Use design covers while featured images have their title printed in the artwork." },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (design covers)", "info": "1100 × 500. Design export: 03-article-hero.webp." },
     { "type": "checkbox", "id": "show_read_time", "label": "Show read time", "default": true },
     { "type": "text", "id": "read_time_label", "label": "Read time label", "default": "Minutes Read" },
     { "type": "image_picker", "id": "avatar_image", "label": "Fallback author avatar", "info": "Used when the author's staff account has no photo. Use a real photo of the author; the Figma placeholder is 04-author-avatar.webp." },
@@ -877,7 +986,7 @@
     { "type": "richtext", "id": "bundle_heading", "label": "Heading", "default": "<p>Five products. one <em>complete ritual.</em></p>" },
     { "type": "product", "id": "bundle_product", "label": "Bundle product" },
     { "type": "text", "id": "bundle_button", "label": "Button label", "default": "Add bundle" },
-    { "type": "text", "id": "bundle_badge", "label": "Badge", "default": "-10% OFF" },
+    { "type": "text", "id": "bundle_badge", "label": "Badge", "info": "Shown only when the bundle has a compare-at price. [percent] becomes the saving.", "default": "-[percent]% OFF" },
     { "type": "header", "content": "Cart messages" },
     { "type": "text", "id": "adding_label", "label": "While adding", "default": "Adding…" },
     { "type": "text", "id": "added_label", "label": "Added", "default": "Added to your cart." },
@@ -893,6 +1002,18 @@
     { "type": "range", "id": "mobile_padding_top", "label": "Padding top (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 20 },
     { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 56 },
     { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "cover",
+      "name": "Cover",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Square-friendly, without text." },
+        { "type": "article", "id": "article", "label": "Article", "info": "Pick an article to give it this cover (hero and sidebar). Leave empty to add the image to the rotating sidebar covers." }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Article (TLPC)" } ],
+  "enabled_on": { "templates": ["article"] }
 }
 {% endschema %}

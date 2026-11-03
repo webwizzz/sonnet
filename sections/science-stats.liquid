@@ -16,9 +16,11 @@
   assign overlay = s.overlay_color | color_modify: 'alpha', overlay_alpha
 -%}
 
+{%- if s.footnote != blank and s.footnote_font != blank -%}{% style %}{{ s.footnote_font | font_face: font_display: 'swap' }}{% endstyle %}{%- endif -%}
 {% style %}
 #shopify-section-{{ section.id }} {
   --sci-heading: {{ s.heading_color }};
+  --sci-note-font: {{ s.footnote_font.family | default: 'Montserrat' }}, {{ s.footnote_font.fallback_families | default: 'sans-serif' }};
   --sci-overlay: {{ overlay }};
   --sci-pill: {{ s.pill_color }};
   --sci-icon-bg: {{ s.icon_bg_color }};
@@ -218,6 +220,18 @@
 @media (prefers-reduced-motion: reduce) {
   .sci--anim .sci__pill { opacity: 1; transform: none; transition: none; }
 }
+/* Footnote (Figma 261:8): Montserrat 400 18/24.5, white, centred, ~907px measure, 36px under the capsules */
+.sci .sci__note {
+  max-width: 907px;
+  margin: clamp(24px, calc(36 * 100vw / 1920), 36px) auto 0;
+  font-family: var(--sci-note-font);
+  font-weight: 400;
+  font-size: clamp(13px, calc(18 * 100vw / 1920), 18px);
+  line-height: 1.36;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--sci-heading);
+}
 {% endstyle %}
 
 {%- capture bg_desktop -%}
@@ -292,6 +306,9 @@
             </div></li>
           {%- endfor -%}
         </ul>
+        {%- if s.footnote != blank -%}
+          <p class="sci__note">{{ s.footnote | escape | newline_to_br }}</p>
+        {%- endif -%}
       {%- elsif request.design_mode -%}
         <p class="sci__text" style="--sci-tw: 600; margin: 0 auto; text-align: center; color: var(--sci-heading); font-size: 16px;">Add a stat block to show the capsules.</p>
       {%- endif -%}
@@ -492,6 +509,8 @@
     { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 30, "max": 80, "step": 1, "unit": "px", "default": 58 },
     { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
     { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#FFFFFF" },
+    { "type": "textarea", "id": "footnote", "label": "Footnote under the capsules", "info": "Optional source line, shown in the heading color." },
+    { "type": "font_picker", "id": "footnote_font", "label": "Footnote font", "default": "montserrat_n4" },
     { "type": "header", "content": "Background" },
     { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "Full-width band, 1920 × 847 in the design. Use at least 2400px wide." },
     { "type": "image_picker", "id": "mobile_background_image", "label": "Mobile background image", "info": "Optional. Used at 768px and below." },

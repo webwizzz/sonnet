@@ -468,8 +468,8 @@
         "testimonial_mQe9DQ": {
           "type": "testimonial",
           "settings": {
-            "before_image": "shopify://shop_images/Unretouched_Open-Pore_Skin_Macro_1.webp",
-            "after_image": "shopify://shop_images/Calm_matte_nose_and_cheek_macro_1.webp",
+            "before_image": "shopify://shop_images/544d34964c61176614902096f70ad7db.png",
+            "after_image": "shopify://shop_images/fca8878abad8e0d973d9dbbd58365c97.png",
             "tag": "Combination / Oily Skin",
             "title": "My pores look visibly refined.",
             "review": "<p>\"Witch Hazel Extract helps refine the visible appearance of pores, my skin healed.\"</p>",
@@ -614,7 +614,7 @@
         "ingredient_UJfpeN": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/B12_Niacinamide_-_Dab_It_On_Toner_-_Sonnet_Wellness.png",
+            "image": "shopify://shop_images/4b1028fc-06e0-4ddf-a6a7-6227063ebb2d.png",
             "name": "NIACINAMIDE",
             "description": "Helps support an even-looking skin tone and helps minimise the appearance of enlarged pores."
           }
@@ -622,7 +622,7 @@
         "ingredient_BciJAz": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-471-300x300.webp",
+            "image": "shopify://shop_images/aab9d948-cfb9-47eb-8432-a390788551cb.png",
             "name": "WITCH HAZEL",
             "description": "An aqueous extract that helps refine the visible appearance of pores."
           }
@@ -630,7 +630,7 @@
         "ingredient_Eyfm37": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/image-191-468-layer2-240x240.webp",
+            "image": "shopify://shop_images/9bc1ac35-14bf-4792-97e3-80afc93e2f52.png",
             "name": "CHAMOMILE",
             "description": "Helps soothe the visible appearance of redness on reactive or sensitive skin."
           }
@@ -638,7 +638,7 @@
         "ingredient_Hg4EBX": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/Ingredients_Artboard_1_copy_5.png",
+            "image": "shopify://shop_images/a1c094c9-cfcf-4ff8-b73e-82058e258cb9.png",
             "name": "ALOE VERA",
             "description": "Hydrates and helps skin feel comfortable after toning."
           }
@@ -646,7 +646,7 @@
         "ingredient_8WxCii": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/a03f8bc9-71f2-4817-9705-b0b4085afc16.png",
             "name": "LACTOBACILLUS",
             "description": "An inactivated postbiotic extract that helps maintain a conditioned skin surface."
           }
@@ -654,10 +654,10 @@
       },
       "block_order": [
         "ingredient_UJfpeN",
-        "ingredient_BciJAz",
-        "ingredient_Eyfm37",
         "ingredient_Hg4EBX",
-        "ingredient_8WxCii"
+        "ingredient_BciJAz",
+        "ingredient_8WxCii",
+        "ingredient_Eyfm37"
       ],
       "name": "What's Inside Carousel",
       "settings": {
@@ -780,7 +780,8 @@
             "icon": "sun_skin",
             "value": "2%",
             "text": "Niacinamide\nthe concentration used for pore appearance and even-looking tone.",
-            "text_width": 221
+            "text_width": 221,
+            "icon_image": "shopify://shop_images/1ede3fe8-103b-4d9a-ab5b-8a27523be6aa.svg"
           }
         },
         "stat_CmcnmV": {
@@ -789,7 +790,8 @@
             "icon": "skin_layers",
             "value": "2%",
             "text": "Witch Hazel Extract\nincluded at a cosmetically effective level for pore refinement.",
-            "text_width": 216
+            "text_width": 216,
+            "icon_image": "shopify://shop_images/13a85fa7-925b-41af-9f7b-98a89eda09a3.svg"
           }
         },
         "stat_r4yenw": {
@@ -798,7 +800,8 @@
             "icon": "drops",
             "value": "0%",
             "text": "Alcohol content\nno denatured alcohol, ethanol, or isopropyl alcohol, anywhere in the formula.",
-            "text_width": 204
+            "text_width": 204,
+            "icon_image": "shopify://shop_images/0fa46c23-5996-438b-92c5-82b294f26704.svg"
           }
         },
         "stat_iNkgTr": {
@@ -807,7 +810,8 @@
             "icon": "shield_cross",
             "value": "3",
             "text": "Ways to apply\ncotton pad, palm press, or facial mist.",
-            "text_width": 183
+            "text_width": 183,
+            "icon_image": "shopify://shop_images/a3a3a798-9236-4a7d-b760-eedff59ba792.svg"
           }
         },
         "stat_JkQBhR": {
@@ -816,7 +820,8 @@
             "icon": "face_glow",
             "value": "AM/PM",
             "text": "Recommended use\ntwice daily after cleansing, or as needed as a mist.",
-            "text_width": 190
+            "text_width": 190,
+            "icon_image": "shopify://shop_images/8cad128b-2c84-4ca9-bf10-447937f1047a.svg"
           }
         }
       },
@@ -1576,35 +1581,35 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Postbiotic Formula"
+            "title": "Dermatologically Tested"
           }
         },
         "item_cccMXY": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Dermatologically Tested"
+            "title": "100% Vegan & Cruelty-Free"
           }
         },
         "item_UAwfXj": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "100% Vegan & Cruelty-Free"
+            "title": "Microbiome-Balanced Formula"
           }
         },
         "item_Mi7ADa": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "Microbiome-Balanced Formula"
+            "title": "All Skin Types"
           }
         },
         "item_VWFpi6": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Ellipse_82.webp",
-            "title": "All Skin Types"
+            "title": "Made in India"
           }
         }
       },
