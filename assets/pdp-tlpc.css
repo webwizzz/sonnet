@@ -1155,9 +1155,16 @@
     }
 }
 
-/* Badge row: one line on desktop. Sizes follow the row width (cqi), so four badges with a longer
-   label ("POSTBIOTIC FORMULA" on the sets) shrink a touch instead of wrapping to a second row. */
-@media (min-width: 1471px) {
+/* Badge row on desktop. Figma's row is 708px at full size and runs 38px past the 670px column
+   (into the page margin at 1920). 1900px and up: that, with sizes following (row width + 38px) / 708.
+   1700-1899px: no margin to spare, so the row scales down to fit inside the column.
+   1471-1699px: too narrow to scale (the text fell to ~9px), so full-size badges wrap to two rows. */
+@media (min-width: 1471px) and (max-width: 1699px) {
+    .product__inner .trust-badges {
+        flex-wrap: wrap;
+    }
+}
+@media (min-width: 1700px) {
     .product__inner .trust-badges {
         container-type: inline-size;
         gap: min(10px, 1.4cqi);
@@ -1167,6 +1174,19 @@
     }
     .product__inner .trust-badge__label {
         font-size: min(13px, 1.78cqi);
+    }
+}
+@media (min-width: 1900px) {
+    .product__inner .trust-badges {
+        overflow: visible;
+        gap: min(10px, calc((100cqi + 38px) * 0.01412));
+    }
+    .product__inner .trust-badge {
+        flex: none;
+        padding: 9px min(16px, calc((100cqi + 38px) * 0.0226)) 9px min(12px, calc((100cqi + 38px) * 0.01695));
+    }
+    .product__inner .trust-badge__label {
+        font-size: min(13px, calc((100cqi + 38px) * 0.01836));
     }
 }
 
