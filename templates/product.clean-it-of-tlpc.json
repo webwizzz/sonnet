@@ -569,7 +569,7 @@
         "ingredient_YTjpCq": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/LACTOBACILLUS_FERMENT_LYSATE.webp",
+            "image": "shopify://shop_images/b1210a8b-2252-48dd-af1a-ca6b038109c8.png",
             "name": "LACTOBACILLUS FERMENT LYSATE - 1%",
             "description": "Postbiotic active that helps maintain a comfortable, conditioned skin surface. Inactivated ferment lysate — not a live culture."
           }
@@ -577,7 +577,7 @@
         "ingredient_jjyC8a": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCERIN.webp",
+            "image": "shopify://shop_images/e2f77895-2f80-4544-9589-8c7eb4048b73.png",
             "name": "GLYCERIN - 6%",
             "description": "A proven humectant that draws moisture to the skin surface, helping offset cleansing-related dryness."
           }
@@ -585,7 +585,7 @@
         "ingredient_7wfwhh": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/COCAMIDOPROPYL_BETAINE.webp",
+            "image": "shopify://shop_images/60aa344d-9203-4440-9096-27aa38a1829f.png",
             "name": "COCAMIDOPROPYL BETAINE - 17%",
             "description": "Coconut-derived co-surfactant that lifts impurities and creates foam with a gentler cleansing profile."
           }
@@ -593,7 +593,7 @@
         "ingredient_QgKec3": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/ALOE_BARBADENSIS_LEAF_JUICE.webp",
+            "image": "shopify://shop_images/ac742db8-c678-40ae-a793-4134f8f168fc.png",
             "name": "ALOE BARBADENSIS LEAF JUICE - 5%",
             "description": "Helps hydrate and soothe during cleansing for a comfortable, non-tight finish."
           }
@@ -601,7 +601,7 @@
         "ingredient_DYBTNG": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/POLYQUATERNIUM.webp",
+            "image": "shopify://shop_images/4fe103b7-21d4-4ca0-8328-c7853c9a9dc1.png",
             "name": "POLYQUATERNIUM-7 - 2%",
             "description": "A conditioning polymer that leaves skin feeling smooth and soft after rinsing."
           }
@@ -609,7 +609,7 @@
         "ingredient_4DKJCj": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/MENTHOL.webp",
+            "image": "shopify://shop_images/3b72579f-ec96-485f-8cf9-15ac920f0416.png",
             "name": "MENTHOL - 0.03%",
             "description": "A low-level sensory ingredient that provides a light, refreshing cooling finish."
           }
@@ -617,7 +617,7 @@
         "ingredient_K6DDLg": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/GLYCOLIC_ACID.webp",
+            "image": "shopify://shop_images/dd861448-2244-4d0a-92f9-8f846a60fa12.png",
             "name": "GLYCOLIC ACID - 0.1%",
             "description": "Used as a pH adjuster at this concentration — not an exfoliant."
           }
@@ -625,7 +625,7 @@
         "ingredient_J9EYVw": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/SODIUM_LAURETH_SULFATE.webp",
+            "image": "shopify://shop_images/115db68e-3f8c-4faa-a59f-64f82b7ebebf.png",
             "name": "SODIUM LAURETH SULFATE - 28%",
             "description": "The primary cleansing and foaming surfactant, balanced with Cocamidopropyl Betaine, Glycerin and Aloe."
           }

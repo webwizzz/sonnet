@@ -721,7 +721,7 @@
         "heading_size": 40,
         "heading_size_mobile": 28,
         "footnote": "*Comparison based on leading industry competitors",
-        "brand_image": "shopify://shop_images/image_41_797b74c2-6fbb-45d6-bc4f-5239b40f314f.webp",
+        "brand_image": "shopify://shop_images/ed36f69de9848c7f8b4fac03d29e23a1.png",
         "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
         "brand_name": "Sonnet Wellness",
         "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
@@ -742,7 +742,9 @@
         "padding_bottom": 100,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "brand_image_width": 60,
+        "brand_image_height": 60
       }
     },
     "science_stats_cEpVm6": {

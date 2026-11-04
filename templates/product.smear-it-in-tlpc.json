@@ -720,7 +720,7 @@
         "heading_size": 40,
         "heading_size_mobile": 28,
         "footnote": "*Comparison based on leading industry competitors",
-        "brand_image": "shopify://shop_images/sonet-wellness-serum-3-191-495-27x71.webp",
+        "brand_image": "shopify://shop_images/a984186d0fc0bef212fd9e32a8daeb8f.png",
         "brand_logo": "shopify://shop_images/image-2-191-496-110x59.webp",
         "brand_name": "Sonnet Wellness",
         "competitor_image": "shopify://shop_images/image-47-191-538-65x65.webp",
@@ -741,7 +741,9 @@
         "padding_bottom": 100,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 48,
-        "custom_class": ""
+        "custom_class": "",
+        "brand_image_width": 62,
+        "brand_image_height": 65
       }
     },
     "science_stats_cEpVm6": {

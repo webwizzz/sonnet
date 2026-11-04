@@ -41,6 +41,15 @@
     padding-bottom: {{ s.mobile_padding_bottom }}px;
   }
 }
+{%- if s.brand_image_width != blank and s.brand_image_height != blank %}
+/* Figma crops each pack shot into its own frame (jar 60 × 60, bottle 24 × 86), filled from the centre */
+#shopify-section-{{ section.id }} .cmp__tube { height: {{ s.brand_image_height }}px; }
+#shopify-section-{{ section.id }} .cmp__tube img { width: {{ s.brand_image_width }}px; height: {{ s.brand_image_height }}px; object-fit: cover; }
+#shopify-section-{{ section.id }} .cmp__list-tube { width: calc({{ s.brand_image_width }}px * 54 / {{ s.brand_image_height }}); object-fit: cover; }
+@media screen and (max-width: 768px) {
+  #shopify-section-{{ section.id }} .cmp__list-tube { width: calc({{ s.brand_image_width }}px * 44 / {{ s.brand_image_height }}); }
+}
+{%- endif %}
 {% endstyle %}
 
 {% style %}
@@ -448,6 +457,8 @@
     { "type": "text", "id": "footnote", "label": "Footnote", "default": "*Comparison based on leading industry competitors" },
     { "type": "header", "content": "Your brand row" },
     { "type": "image_picker", "id": "brand_image", "label": "Product image", "info": "Tall product shot with a transparent background, shown at 71px high." },
+    { "type": "number", "id": "brand_image_width", "label": "Product image frame width (px)", "info": "Optional. With a height, the shot is cropped from the centre into this frame, like Figma's jar (60 × 60) or bottle (24 × 86)." },
+    { "type": "number", "id": "brand_image_height", "label": "Product image frame height (px)" },
     { "type": "image_picker", "id": "brand_logo", "label": "Logo", "info": "Shown at 110 × 59px. Crop it to the artwork." },
     { "type": "text", "id": "brand_name", "label": "Brand name", "info": "Used as alt text, and shown when no logo is set.", "default": "Sonnet Wellness" },
     { "type": "header", "content": "Competitor row" },

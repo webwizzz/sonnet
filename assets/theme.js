@@ -4180,6 +4180,22 @@
         }
         showAccordion() {
             this.trigger.classList.add(classes$o.open);
+            // PDP accordions: keep the opened row still while the open row above it slides shut,
+            // otherwise it slid up mid-animation and then got scrolled back (read as a jerky open)
+            if (this.trigger.closest('.product-accordion')) {
+                const anchor = this.trigger.getBoundingClientRect().top;
+                const started = performance.now();
+                const hold = ()=>{
+                    const drift = this.trigger.getBoundingClientRect().top - anchor;
+                    if (Math.abs(drift) > 0.5) {
+                        const target = (window.pageYOffset || document.documentElement.scrollTop) + drift;
+                        if (window.lenis) window.lenis.scrollTo(target, { immediate: true, force: true });
+                        else window.scrollTo(0, target);
+                    }
+                    if (performance.now() - started < 520) requestAnimationFrame(hold);
+                };
+                requestAnimationFrame(hold);
+            }
             slideDown(this.body);
             setTimeout(()=>{
                 this.checkInViewportAndScrollTo();
@@ -4190,11 +4206,16 @@
             const windowScrollY = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
             const inViewport = rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
             if (!inViewport) {
-                window.scrollTo({
-                    top: windowScrollY + rect.top,
-                    left: 0,
-                    behavior: 'smooth'
-                });
+                // the page scrolls through Lenis; a native smooth scroll fought it and stuttered
+                if (window.lenis) {
+                    window.lenis.scrollTo(windowScrollY + rect.top, { duration: 0.8 });
+                } else {
+                    window.scrollTo({
+                        top: windowScrollY + rect.top,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
             }
         }
         onBlockSelect(evt) {
