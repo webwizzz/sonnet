@@ -1193,4 +1193,31 @@ video:-webkit-full-screen {
         width: 100%;
     }
 }
-
+/* Image column slider (769px and up): snaps one image at a time; arrows sit over the bottom-right corner */
+@media (min-width: 769px) {
+    .product-section .media-desktop { position: relative; }
+    .product-section .media-desktop .product__grid { scroll-snap-type: y mandatory; }
+    .product-section .media-desktop .product__grid > .product__media { scroll-snap-align: start; }
+    .pdp-gallery-nav {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .pdp-gallery-nav[hidden] { display: none; }
+    .pdp-gallery-nav .pdp-gallery-nav__btn {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        box-shadow: 0 2px 10px rgba(40, 32, 31, 0.12);
+    }
+    .pdp-gallery-nav__btn svg { width: 18px; height: 18px; transform: rotate(90deg); }
+    .pdp-gallery-nav__btn:disabled { opacity: 0.45; pointer-events: none; }
+}
+@media (max-width: 768px) {
+    .pdp-gallery-nav { display: none !important; }
+}

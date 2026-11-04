@@ -524,6 +524,9 @@
   z-index: 5;
   background: #000;
 }
+/* full screen shows the whole frame; the card's cover crop cut it off */
+.sla .sla__vid video:fullscreen { object-fit: contain; }
+.sla .sla__vid video:-webkit-full-screen { object-fit: contain; }
 .sla .sla__vid video,
 .sla .sla__vid iframe {
   display: block;
@@ -571,6 +574,7 @@
   data-step="{{ s.angle_step | default: 10 }}"
   data-radius="{{ s.arc_radius | default: 2440 }}"
   data-offset-mode="{{ s.sticky_offset_mode | default: 'auto' | escape }}"
+  {% unless s.mobile_layout == 'arc' %}data-phone-row{% endunless %}
   {% if is_arc %}role="region" aria-roledescription="carousel" aria-label="{{ heading_text | default: 'Cards' | escape }}"{% endif %}
 >
   <div class="sla__track" data-sla-track>
@@ -741,7 +745,10 @@
         if (!this.count || !this.track || !this.sticky) return;
         this.isArc = root.classList.contains('sla--arc') && this.count > 1;
         // Phones held sideways (and very short windows): the pinned arc cannot fit, so show the row instead.
-        this.mqShort = mql('(max-width: 990px) and (max-height: 540px) and (orientation: landscape), (max-height: 420px)');
+        // Phones in portrait too, unless the section asks for the arc: pinned at full height the cards
+        // left a wide empty band above and below them
+        this.mqShort = mql('(max-width: 990px) and (max-height: 540px) and (orientation: landscape), (max-height: 420px)'
+          + (root.hasAttribute('data-phone-row') ? ', (max-width: 768px)' : ''));
         this.mqReduce = mql('(prefers-reduced-motion: reduce)');
         this.init();
       };
@@ -1270,6 +1277,7 @@
     { "type": "number", "id": "decor_width", "label": "Image frame width (px)", "info": "Measured at 1920 px wide; the frame is 856 px tall and the photo fills it from the centre.", "default": 821 },
     { "type": "checkbox", "id": "show_decor_mobile", "label": "Show on mobile", "default": false },
     { "type": "header", "content": "Scroll animation" },
+    { "type": "select", "id": "mobile_layout", "label": "Phone layout", "options": [{ "value": "row", "label": "Swipeable row" }, { "value": "arc", "label": "Pinned arc" }], "default": "row", "info": "Up to 768 px wide. The pinned arc leaves empty space above and below the cards on tall phones." },
     { "type": "paragraph", "content": "The section pins while the cards travel along the arc, and moves on once the last card reaches the centre. Visitors who prefer reduced motion see a swipeable row." },
     { "type": "range", "id": "scroll_per_card", "label": "Scroll distance per card", "min": 40, "max": 150, "step": 5, "unit": "vh", "info": "100 = one screen height of scrolling per card.", "default": 70 },
     { "type": "range", "id": "arc_radius", "label": "Arc radius", "min": 1200, "max": 4000, "step": 40, "unit": "px", "info": "At desktop size. Smaller = tighter curve. Scales with the card size.", "default": 2440 },

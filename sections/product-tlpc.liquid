@@ -145,7 +145,7 @@
 				{% render 'pdp-testimonial' %}
 			</div>
         </div>
-		<div class="media-desktop">
+		<div class="media-desktop" data-pdp-gallery>
 			{% if product.metafields.custom.badge != blank %}
 					<div class="product-badges desktop-hide">
 						<span class="badge">
@@ -191,6 +191,13 @@
 				</div>
 			{% endif %}
 			</div>
+			{%- if product_media.size > 2 -%}
+				{%- comment -%} Desktop/tablet: the image column slides one image per click (phones keep the swipe carousel) {%- endcomment -%}
+				<div class="pdp-gallery-nav" data-pdp-gallery-nav hidden>
+					<button type="button" class="arrow-slider pdp-gallery-nav__btn pdp-gallery-nav__btn--prev" data-pdp-gallery-prev aria-label="Previous images">{% render 'arrow-left' %}</button>
+					<button type="button" class="arrow-slider pdp-gallery-nav__btn pdp-gallery-nav__btn--next" data-pdp-gallery-next aria-label="More images">{% render 'arrow-right' %}</button>
+				</div>
+			{%- endif -%}
         </div>
 
         {% assign first_3d_model = product_media | where: "media_type", "model" | first %}
@@ -419,10 +426,12 @@
 
 					/* switches on the block's own width, not the screen width; four two-line labels need about 610px */
 					@container (max-width: 620px) {
-						#pib-{{ block.id }} .pib { display:grid; grid-template-columns:repeat(2, 1fr); }
+						/* the pair of columns sits centred with the divider in the middle of the gap
+						   (left-aligned halves left a wide space before it and almost none after) */
+						#pib-{{ block.id }} .pib { display:grid; grid-template-columns:repeat(2, auto); justify-content:center; }
 						#pib-{{ block.id }} .pib__item { justify-content:flex-start; gap:6px; padding-right:0; }
-						#pib-{{ block.id }} .pib__item:nth-child(odd) { border-left:0; padding-left:0; }
-						#pib-{{ block.id }} .pib__item:nth-child(even) { padding-left:10px; }
+						#pib-{{ block.id }} .pib__item:nth-child(odd) { border-left:0; padding-left:0; padding-right:14px; }
+						#pib-{{ block.id }} .pib__item:nth-child(even) { padding-left:14px; }
 						/* eases to ~13px on a 375px phone so "Looking Texture" keeps to one line */
 						#pib-{{ block.id }} .pib__text { font-size:min({{ block.settings.font_size }}px, 3.8cqi); white-space:normal; }
 					}
@@ -757,6 +766,49 @@
   document.addEventListener('dragstart', function (e) {
     if (e.target.closest && e.target.closest('.upsell__holder__wrapper')) e.preventDefault();
   });
+})();
+
+(function () {
+  /* Image column slider: the arrows move the stacked images one at a time */
+  function initGallery(scope) {
+    (scope || document).querySelectorAll('[data-pdp-gallery]').forEach(function (wrap) {
+      if (wrap.__pdpGallery) return;
+      var grid = wrap.querySelector('[data-product-slideshow]');
+      var nav = wrap.querySelector('[data-pdp-gallery-nav]');
+      if (!grid || !nav) return;
+      wrap.__pdpGallery = true;
+      var prev = nav.querySelector('[data-pdp-gallery-prev]');
+      var next = nav.querySelector('[data-pdp-gallery-next]');
+
+      var shown = function () {
+        return Array.prototype.filter.call(grid.children, function (el) { return el.offsetParent !== null; });
+      };
+      var step = function () {
+        var s = shown();
+        return s.length > 1 ? s[1].offsetTop - s[0].offsetTop : grid.clientHeight;
+      };
+      var update = function () {
+        var max = grid.scrollHeight - grid.clientHeight - 1;
+        nav.hidden = max <= 0;
+        prev.disabled = grid.scrollTop <= 1;
+        next.disabled = grid.scrollTop >= max;
+      };
+
+      prev.addEventListener('click', function () { grid.scrollBy({ top: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { grid.scrollBy({ top: step(), behavior: 'smooth' }); });
+      grid.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      grid.addEventListener('load', update, true); // images settling change the scroll height
+      update();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { initGallery(); });
+  } else {
+    initGallery();
+  }
+  document.addEventListener('shopify:section:load', function (e) { initGallery(e.target); });
 })();
 </script>
 
