@@ -90,12 +90,13 @@
   padding-bottom: {{ s.padding_bottom }}px;
 }
 {%- if s.decor_image != blank %}
-/* Figma crops each set's photo into its own frame (685 or 571 × 856), filled from the centre */
+/* Figma crops each set's photo into its own frame (685 or 571 × 856). A photo narrower than its frame
+   overflows vertically, so it is anchored (top by default) to keep the head in view; the bottom bleeds off the band. */
 #shopify-section-{{ section.id }} .sla__decor {
   left: calc({{ s.decor_left }} * var(--sla-u));
   width: calc({{ s.decor_width }} * var(--sla-u));
 }
-#shopify-section-{{ section.id }} .sla .sla__decor img { object-fit: cover; object-position: center; }
+#shopify-section-{{ section.id }} .sla .sla__decor img { object-fit: cover; object-position: center {{ s.decor_anchor | default: 'top' }}; }
 {%- endif %}
 {%- unless s.show_decor_mobile %}
 @media only screen and (max-width: 768px) {
@@ -1275,6 +1276,18 @@
     { "type": "image_picker", "id": "decor_image", "label": "Image", "info": "Sits behind the cards at the bottom left, 856 px tall at full width. A transparent background works best." },
     { "type": "number", "id": "decor_left", "label": "Image left edge (px)", "info": "Measured at 1920 px wide. Negative values let the photo bleed off the left edge.", "default": -161 },
     { "type": "number", "id": "decor_width", "label": "Image frame width (px)", "info": "Measured at 1920 px wide; the frame is 856 px tall and the photo fills it from the centre.", "default": 821 },
+    {
+      "type": "select",
+      "id": "decor_anchor",
+      "label": "Image crop anchor",
+      "info": "When the photo is taller than its frame, which edge stays in view.",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Centre" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "top"
+    },
     { "type": "checkbox", "id": "show_decor_mobile", "label": "Show on mobile", "default": false },
     { "type": "header", "content": "Scroll animation" },
     { "type": "select", "id": "mobile_layout", "label": "Phone layout", "options": [{ "value": "row", "label": "Swipeable row" }, { "value": "arc", "label": "Pinned arc" }], "default": "row", "info": "Up to 768 px wide. The pinned arc leaves empty space above and below the cards on tall phones." },
