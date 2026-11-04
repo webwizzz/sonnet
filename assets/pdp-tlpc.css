@@ -228,39 +228,42 @@
     font-size: 10px;
     border-radius: 30px;
 }
-/* Price row for single-variant products (same look as the variant cards, one line) */
+/* Price row for single-variant products. Figma (pack card): price Blauer Nue RG 16, then 6px,
+   compare-at Blauer Nue TH 200 13 struck through at 50%, then 4px, the green "% OFF" pill (MD 10) */
 .pdp-price-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px 10px;
+    gap: 6px;
 }
 .pdp-price-row__price {
     font-family: 'Blauer Nue RG';
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
     letter-spacing: -0.02em;
     color: #28201F;
 }
 .pdp-price-row__compare {
-    font-family: 'Blauer Nue RG';
-    font-weight: 400;
-    font-size: 15px;
+    font-family: 'Blauer Nue TH';
+    font-weight: 200;
+    font-size: 13px;
     line-height: 1.2;
     letter-spacing: -0.02em;
+    text-decoration: line-through;
     color: #28201F80;
 }
 .pdp-price-row__off {
+    margin-left: -2px;
     background: #0080001A;
-    padding: 3px 8px;
+    padding: 2px 8px;
     font-family: 'Blauer Nue MD';
     font-weight: 500;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.2;
     letter-spacing: -0.02em;
     color: #008000;
-    border-radius: 30px;
+    border-radius: 40px;
 }
 .radio__button input[type="radio"] + label::before {
   content: "";
