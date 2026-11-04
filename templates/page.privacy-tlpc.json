@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-tlpc",
+      "blocks": {
+        "clause_1": {
+          "type": "clause",
+          "settings": {
+            "heading": "",
+            "text": "<p>Sonnet Wellness is a brand based out of Mumbai, Maharashtra, India.</p><p>Throughout this privacy policy any references to “you” means and signifies any person submitting any data to us our site or our agent and partners’ site. “we” refers to Sonnet Wellness or our partners and agents.</p><p>Data protection is of uttermost importance to us. We understand the importance of maintaining your privacy and appreciate your trust in us.</p><p>This policy describes how we treat user information we collect on https://www.sonnetwellness.com and other online and offline sources. This privacy policy applies to current and former visitors to our website and to our online customers. By visiting and/or using our website, you agree to this privacy policy.</p><p>You must only submit to us or our agent or the site information which is accurate and not misleading and you must keep it up to date and inform us of changes. You undertake to treat the personal access data confidentially and not make it available to unauthorised third parties.</p><p>We will only collect information where it is necessary and mandatory for us to do so. At any point of time, you can visit our site and browse without having to provide personal details. You will remain anonymous and at all times and we cannot identify you unless you have an account on the site and have logged in with your user name and password.</p>"
+          }
+        },
+        "clause_2": {
+          "type": "clause",
+          "settings": {
+            "heading": "1. Information We Collect",
+            "text": "<p><strong>Contact information</strong></p><p>We will collect your name, company name, gender, email, mobile number, phone number, postal address and ip address.</p><p><strong>Order related information</strong></p><p>Your order details will be stored with us and you may access this information at any time by logging into your account on the site. Here you can view the details of your order that are under process or completed.</p><p><strong>Payment and billing information</strong></p><p>We might collect your billing name, billing address and payment method when you shop with us. We never collect your payment details. We do not collect your debit/credit card number or debit/credit card expiry date or other details pertaining to your credit card on our website or your net banking details. All your payment information will be obtained and processed by our online payment partner RazorPay. RazorPay uses industry-standard 128 bit ssl (standard sockets layer) technology, which is used worldwide, for data encryption.</p><p><strong>Information you post</strong></p><p>We may collect information you post in a public space on our website or on a third-party social media site belonging to https://www.sonnetwellness.com/.</p><p><strong>Demographic information</strong></p><p>We may collect demographic information about you, events you like, events you intend to participate in, products you buy, or any other information provided by you during the use of our website. We might collect this as a part of a survey also.</p><p><strong>Other information</strong></p><p>If you use our website, we may collect information about your ip address and the browser you’re using. We might look at what site you came from, duration of time spent on our website, pages accessed or what site you visit when you leave us. We might also collect the type of mobile device you are using, or the version of the operating system your computer or device is running.</p>"
+          }
+        },
+        "clause_3": {
+          "type": "clause",
+          "settings": {
+            "heading": "2. We Collect Information In Different Ways",
+            "text": "<p>We collect information directly from you. We collect information directly from you when you register for an account or shop with us. We also collect information if you post a comment on our website or ask us a question through phone or email.</p><p>We collect information from you passively. We use tracking tools such as google analytics, google webmaster for collecting information about your usage of our website. Cookies are tiny text files which identify your computer to our server as a unique user when you visit certain pages on the site and they are stored by your internet browser on your computer’s hard drive. Cookies can be used to recognise your ip address, saving you time while you are on, or want to enter, the site. We only use cookies for your convenience in using the site (for example to remember who you are when you want to amend your shopping cart without having to re-enter your email address) and not for obtaining or using any other information about you (for example targeted advertising). Your browser can be set to not accept cookies, but this would restrict your use of the site. Please accept our assurance that our use of cookies does not contain any personal or private details and are free from viruses. The site uses technology cookies for marketing and optimization purposes. The cookies enable recognition of the internet browser.</p><p>We get information about you from third parties. For example, if you use an integrated social media feature on our websites. The third-party social media site will give us certain information about you. This could include your name and email address or your social media profile.</p>"
+          }
+        },
+        "clause_4": {
+          "type": "clause",
+          "settings": {
+            "heading": "3. Use Of Your Personal Information",
+            "text": "<p>We use information to contact you: we might use the information you provide to contact you for confirmation of a purchase on our website or for other promotional purposes.</p><p>We use information to respond to your requests or questions or process your order and claims. We might use your information to confirm your registration for an event or contest. We also use that data to inform you when the product is about to be delivered. We may pass your name and address on to a third party in order to make delivery of the product to you (for example to our courier or supplier).</p><p>We use information to improve our products and services. We might use your information to customise your experience with us. This could include displaying content based upon your preferences.</p><p>We use information to look at site trends and customer interests. We may use your information to make our website and products better. We may combine information we get from you with information about you we get from third parties.</p><p>We use information for security purposes. We may use information to protect our company, our customers, or our websites. We have in place appropriate technical and security measures to prevent unauthorised or unlawful access to or accidental loss of or destruction or damage to your information. When we collect data through the site, we collect your personal details on a secure server. We use firewalls on our servers. When we collect payment card details electronically, we use encryption by using secure socket layer (ssl) coding. Whilst we are unable to guarantee 100% security, this makes it hard for a hacker to decrypt your details. You are strongly recommended not to send full credit or debit card details in unencrypted electronic communications with us. We maintain physical, electronic and procedural safeguards in connection with the collection, storage and disclosure of your information. Our security procedures mean that we may occasionally request proof of identity before we disclose personal information to you. You are responsible for protecting against unauthorised access to your password and to your computer.</p><p>We use information for marketing purposes. We might send you information about special promotions or offers. We might also tell you about new features or products. These might be our own offers or products, or third-party offers or products we think you might find interesting. Or, for example, if you subscribe for a newsletter or buy a product from us, we’ll enroll you in our newsletter.</p><p>We use information to send you transactional communications. We might send you emails or sms about your account or a ticket purchase.</p>"
+          }
+        },
+        "clause_5": {
+          "type": "clause",
+          "settings": {
+            "heading": "4. Competitions or Giveaways",
+            "text": "<p>For any competitions or giveaways we use the data to notify winners and advertise our offers. You can find more details where applicable in our participation terms for the respective competition.</p><p>We use information as otherwise permitted by law.</p>"
+          }
+        },
+        "clause_6": {
+          "type": "clause",
+          "settings": {
+            "heading": "5. Sharing Of Information With Third-parties",
+            "text": "<p>We shall not share any of your personal information with third parties without your explicit consent. We do not sell or rent your personal information to third parties for their marketing purposes without your explicit consent and we only use your information as described in the privacy policy. We reserve the right to communicate your personal information to any third party that makes a legally-compliant request for its disclosure.</p><p>We may pass your details to other companies in our group. We may also pass your details to our agents and subcontractors to help us with any of our uses of your data set out in our privacy policy. For example, we may use third parties to assist us with delivering products to you, to help us to collect payments from you, to analyze data and to provide us with marketing or customer service assistance. We may exchange information with third parties for the purposes of fraud protection and credit risk reduction. We may transfer our databases containing your personal information if we sell our business or part of it. Other than as set out in this privacy policy, we shall not sell or disclose your personal data to third parties without obtaining your prior consent unless this is necessary for the purposes set out in this privacy policy or unless we are required to do so by law. The site may contain advertising of third parties and links to other sites or frames of other sites. Please be aware that we are not responsible for the privacy practices or content of those third parties or other sites, nor for any third party to whom we transfer your data in accordance with our privacy policy.</p><p>We will share information with third parties who perform services on our behalf. We share information with vendors who help us manage our online registration process or payment processors or transactional message processors. Some vendors may be located outside of India.</p><p>We may share information if we think we have to in order to comply with the law or to protect ourselves. We will share information to respond to a court order or subpoena. We may also share it if a government agency or investigatory body requests. Or, we might also share information when we are investigating potential fraud.</p><p>We may share information with any successor to all or part of our business. For example, if part of our business is sold we may give our customer list as part of that transaction.</p><p>We may share your information for reasons not described in this policy. We will tell you before we do this.</p>"
+          }
+        },
+        "clause_7": {
+          "type": "clause",
+          "settings": {
+            "heading": "6. Other Uses Of Your Personal Information",
+            "text": "<p>You can opt out of receiving our marketing emails.</p><p>We may also send you other information about us, the site, our other websites, our products, sales promotions, our newsletters, sms updates, anything relating to other companies in our group or our business partners. If you would prefer not to receive any of this additional information as detailed in this paragraph (or any part of it) please click the “unsubscribe” link in any email that we send to you or follow the unsubscription process as detailed in the sms. Kindly note that unsubscribing from one medium does not automatically lead to unsubscription from the other. Within 7 working days (days which are neither (I) a saturday or sunday, nor (ii) a public holiday anywhere in india) of receipt of your instruction we will cease to send you information as requested. If your instruction is unclear we will contact you for clarification. It may take about ten days to process your request. Even if you opt out of getting marketing messages, we will still be sending you transactional messages through email and sms about your purchases.</p>"
+          }
+        },
+        "clause_8": {
+          "type": "clause",
+          "settings": {
+            "heading": "7. Third Party Sites",
+            "text": "<p>If you click on one of the links to third party websites, you may be taken to websites we do not control. This policy does not apply to the privacy practices of those websites. Read the privacy policy of other websites carefully. We are not responsible for these third party sites.</p><p>If you have any questions about this policy or other privacy concerns, you can also email us at care@sonnetwellness.com.</p>"
+          }
+        },
+        "clause_9": {
+          "type": "clause",
+          "settings": {
+            "heading": "8. Updates To This Policy",
+            "text": "<p>This privacy policy was last updated on 1.10.2022. From time to time we may change our privacy practices. We will notify you of any material changes to this policy by posting an updated copy on our website. Please check our site periodically for updates.</p>"
+          }
+        },
+        "clause_10": {
+          "type": "clause",
+          "settings": {
+            "heading": "9. Jurisdiction",
+            "text": "<p>If you choose to visit the website, your visit and any dispute over privacy is subject to this policy and the website’s terms of use. In addition to the foregoing, any disputes arising under this policy shall be governed by the laws of India. All disputes would be handled by mumbai courts.</p><p>By submitting data to us or our agent or using the site, you consent to our use of your data in the manner set out in this privacy policy.</p><p>For any queries, feel free to reach us at care@sonnetwellness.com.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "clause_1",
+        "clause_2",
+        "clause_3",
+        "clause_4",
+        "clause_5",
+        "clause_6",
+        "clause_7",
+        "clause_8",
+        "clause_9",
+        "clause_10"
+      ],
+      "settings": {
+        "title": "<p>Privacy <em>Policy</em></p>",
+        "title_size": 68,
+        "content_width": 1120,
+        "text_width": 1120,
+        "show_bullets": false,
+        "padding_top": 50,
+        "padding_bottom": 100,
+        "color_bg": "#FFFCF9",
+        "color_text": "#28201F",
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

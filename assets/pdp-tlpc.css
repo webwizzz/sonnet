@@ -762,8 +762,9 @@
     margin: 0;
     line-height: 22px;
 }
+/* Figma keeps 20px above the divider; without this the opened description's last line sat on it */
 .product__block__description .product-description__holder {
-    margin-bottom: 0;
+    margin-bottom: 16px;
 }
 .product__block__description .product-description__actions:empty {
     display: none;

@@ -1,0 +1,201 @@
+{%- comment -%}
+  Policy page (Privacy / Terms / Delivery / Return & Exchange).
+  Design: Figma QvQ11convTbPladsyhAg96, node 249:1860 (Policy Page).
+  Desktop 1920: title Blauer Nue MD 68 + Tiempos italic accent, centred 50px under the header;
+  content column 1120 wide starting 50px under the title.
+  Clause heading Blauer Nue MD 30 (40px above, 24px below), body Blauer Nue LT 16/24 @80%,
+  paragraphs 16px apart, a bold-only label line sits 8px above its paragraph,
+  list rows 12px apart (20px above the list). Content ends 100px above the footer.
+  With no clause blocks the page's own content (page editor) is rendered with the same styles.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+{% style %}
+#shopify-section-{{ section.id }} {
+  --pol-u: clamp(0.5px, calc(100vw / 1920), 1px);
+  --pol-bg: {{ s.color_bg }};
+  --pol-text: {{ s.color_text }};
+  --pol-muted: {{ s.color_text | color_modify: 'alpha', 0.8 }};
+  --pol-title: {{ s.title_size }};
+  --pol-width: {{ s.content_width }};
+  --pol-text-width: {{ s.text_width }};
+  background-color: {{ s.color_bg }};
+}
+{% endstyle %}
+
+{% style %}
+.pol {
+  padding: max(32px, calc({{ s.padding_top }} * var(--pol-u))) 20px max(56px, calc({{ s.padding_bottom }} * var(--pol-u)));
+  background: var(--pol-bg);
+  color: var(--pol-text);
+}
+.pol .pol__title {
+  margin: 0 auto;
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(36px, calc(var(--pol-title) * var(--pol-u)));
+  line-height: 1.206;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--pol-text);
+}
+.pol .pol__title p { margin: 0; font: inherit; letter-spacing: inherit; line-height: inherit; }
+.pol .pol__title em,
+.pol .pol__title i {
+  font-family: 'Test Tiempos Fine Italic RG', 'Test Tiempos Fine Italic', serif;
+  font-weight: 400;
+  font-style: italic;
+}
+.pol__content {
+  max-width: calc(var(--pol-width) * 1px);
+  margin: max(28px, calc(50 * var(--pol-u))) auto 0;
+}
+.pol__clause + .pol__clause { margin-top: max(32px, calc(40 * var(--pol-u))); }
+.pol .pol__heading,
+.pol .pol__rte h2 {
+  margin: 0 0 max(16px, calc(24 * var(--pol-u)));
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  font-size: max(22px, calc(30 * var(--pol-u)));
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--pol-text);
+  /* two-line headings on phones split evenly ("12. Applicable Law / and Jurisdiction") */
+  text-wrap: balance;
+}
+.pol .pol__rte h2:not(:first-child) { margin-top: max(32px, calc(40 * var(--pol-u))); }
+/* Text width can sit a few px inside the column so line breaks match Figma's glyph metrics */
+.pol .pol__rte {
+  padding-right: max(0px, calc((var(--pol-width) - var(--pol-text-width)) * 1px));
+  font-family: 'Blauer Nue LT', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--pol-muted);
+}
+.pol .pol__rte :is(p, ul, ol) {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  list-style: none;
+}
+/* Paragraphs 16 apart, lists 20 from their neighbours, list rows 12 apart, label 8 above its text */
+.pol .pol__rte > :is(p, ul, ol, h3) + :is(p, h3) { margin-top: 16px; }
+.pol .pol__rte > * + :is(ul, ol),
+.pol .pol__rte > :is(ul, ol) + :is(p, h3) { margin-top: 20px; }
+.pol .pol__rte li { margin: 0; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+.pol .pol__rte li + li { margin-top: 12px; }
+.pol .pol__rte > p:has(> :is(strong, b):only-child) + p,
+.pol .pol__rte > h3 + p { margin-top: 8px; }
+/* Figma: a 4px dot hung 12px in, text indented 24px */
+.pol--bullets .pol__rte ul { padding-left: 24px; }
+.pol--bullets .pol__rte ul > li { position: relative; }
+.pol--bullets .pol__rte ul > li::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: calc(0.75em - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.pol--bullets .pol__rte ol { padding-left: 1.25em; list-style: decimal; }
+/* a clause written as bullets from the start (Terms) keeps the 16px paragraph rhythm */
+.pol--bullets .pol__rte > ul:first-child > li + li { margin-top: 16px; }
+.pol .pol__rte strong,
+.pol .pol__rte b,
+.pol .pol__rte h3 {
+  font-family: 'Blauer Nue MD', sans-serif;
+  font-weight: 500;
+  color: var(--pol-text);
+}
+.pol .pol__rte h3 { margin: 0; font-size: 16px; line-height: 1.5; letter-spacing: -0.02em; text-transform: none; }
+.pol .pol__rte p:has(> strong:only-child) + p,
+.pol .pol__rte p:has(> b:only-child) + p,
+.pol .pol__rte h3 + p { margin-top: 8px; }
+.pol .pol__rte a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.pol .pol__rte a:hover { color: var(--pol-text); }
+
+@media screen and (max-width: 768px) {
+  .pol__content { margin-top: 28px; }
+  .pol .pol__rte { padding-right: 0; }
+}
+{% endstyle %}
+
+<div class="pol{% if s.show_bullets %} pol--bullets{% endif %} {{ s.custom_class | escape }}">
+  <h1 class="pol__title">
+    {%- if s.title != blank -%}
+      {{ s.title }}
+    {%- else -%}
+      {{ page.title | escape }}
+    {%- endif -%}
+  </h1>
+
+  <div class="pol__content">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <div class="pol__clause" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}
+            <h2 class="pol__heading">{{ block.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="pol__rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="pol__clause"><div class="pol__rte">{{ page.content }}</div></div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Policy page",
+  "tag": "section",
+  "class": "policy-tlpc-section",
+  "settings": [
+    { "type": "richtext", "id": "title", "label": "Title", "info": "Use italic for the serif accent word. Leave blank to use the page title." },
+    { "type": "range", "id": "title_size", "label": "Title size (desktop)", "min": 40, "max": 90, "step": 1, "unit": "px", "default": 68 },
+    { "type": "paragraph", "content": "Add a clause block per numbered heading. Without blocks, the page content from the page editor is shown (Heading 2 = clause heading, bold line = label)." },
+    { "type": "range", "id": "content_width", "label": "Content width", "min": 700, "max": 1400, "step": 20, "unit": "px", "default": 1120 },
+    { "type": "range", "id": "text_width", "label": "Text width", "min": 1060, "max": 1160, "step": 1, "unit": "px", "default": 1120, "info": "Fine-tunes where lines wrap inside the column." },
+    { "type": "checkbox", "id": "show_bullets", "label": "Show bullets on lists", "default": false },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 100 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Background", "default": "#FFFCF9" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#28201F" },
+    { "type": "text", "id": "custom_class", "label": "Custom CSS class" }
+  ],
+  "blocks": [
+    {
+      "type": "clause",
+      "name": "Clause",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank for an intro block." },
+        { "type": "richtext", "id": "text", "label": "Text", "info": "A line that is only bold becomes a label above the next paragraph. Bulleted lists are tighter (12px rows)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy page",
+      "blocks": [
+        { "type": "clause", "settings": { "text": "<p>Introductory text for this policy.</p>" } },
+        { "type": "clause", "settings": { "heading": "1. First clause", "text": "<p>Clause text.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

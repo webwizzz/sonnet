@@ -1,0 +1,90 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-tlpc",
+      "blocks": {
+        "clause_1": {
+          "type": "clause",
+          "settings": {
+            "heading": "",
+            "text": "<p>At Sonnet Wellness, your satisfaction is our priority. We take great care to ensure that every product reaches you in perfect condition. If something isn't quite right with your order, we're here to help.</p>"
+          }
+        },
+        "clause_2": {
+          "type": "clause",
+          "settings": {
+            "heading": "1. Return Policy",
+            "text": "<p>We want you to feel confident with every purchase. If you are not completely satisfied with your order, you may request a return within 7 days of delivery, subject to the following conditions:</p><ul><li>Products must be unused, unopened, and in their original packaging.</li><li>All original labels, seals, and tags must remain intact.</li><li>Proof of purchase or an order confirmation is required.</li><li>Products that have been used, damaged, or altered after delivery are not eligible for return.</li></ul>"
+          }
+        },
+        "clause_3": {
+          "type": "clause",
+          "settings": {
+            "heading": "2. Exchange Policy",
+            "text": "<p>Received the wrong product or an item that arrived damaged? You may request an exchange within 7 days of receiving your order.</p><p>Exchanges are subject to product availability and verification by our customer support team.</p>"
+          }
+        },
+        "clause_4": {
+          "type": "clause",
+          "settings": {
+            "heading": "3. Non-Returnable Items",
+            "text": "<p>For hygiene and safety reasons, certain products may not be eligible for return or exchange, including:</p><ul><li>Opened or used skincare products.</li><li>Items purchased during clearance or final-sale promotions.</li><li>Complimentary gifts and promotional samples.</li><li>Products without their original packaging or seals.</li></ul>"
+          }
+        },
+        "clause_5": {
+          "type": "clause",
+          "settings": {
+            "heading": "4. Refund Process",
+            "text": "<p>Once your return request is received and approved, our team will initiate the refund process.</p><p>Approved refunds will be processed to the original payment method within 5–7 business days after inspection of the returned product.</p><p>Please note that processing times may vary depending on your bank or payment provider.</p>"
+          }
+        },
+        "clause_6": {
+          "type": "clause",
+          "settings": {
+            "heading": "5. Damaged or Incorrect Products",
+            "text": "<p>If your order arrives damaged, defective, or incorrect, please contact our support team within 48 hours of delivery.</p><p>To help us resolve your concern efficiently, please provide your order number, a brief description of the issue, and clear photographs of the product and packaging.</p>"
+          }
+        },
+        "clause_7": {
+          "type": "clause",
+          "settings": {
+            "heading": "6. How to Request a Return or Exchange",
+            "text": "<p>To initiate a request:</p><ul><li>Contact our customer support team.</li><li>Share your order number and reason for the request.</li><li>Provide supporting photographs, if applicable.</li><li>Our team will review your request and guide you through the next steps.</li></ul>"
+          }
+        },
+        "clause_8": {
+          "type": "clause",
+          "settings": {
+            "heading": "7. Contact Us",
+            "text": "<p>For any questions regarding returns, exchanges, or refunds, please reach out to our customer support team.</p><p>We're always happy to assist you and make your Sonnet Wellness experience as seamless as possible.</p><p>Thank you for choosing Sonnet Wellness.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "clause_1",
+        "clause_2",
+        "clause_3",
+        "clause_4",
+        "clause_5",
+        "clause_6",
+        "clause_7",
+        "clause_8"
+      ],
+      "settings": {
+        "title": "<p>Return &amp; <em>Exchange</em></p>",
+        "title_size": 68,
+        "content_width": 1120,
+        "text_width": 1120,
+        "show_bullets": true,
+        "padding_top": 50,
+        "padding_bottom": 100,
+        "color_bg": "#FFFCF9",
+        "color_text": "#28201F",
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

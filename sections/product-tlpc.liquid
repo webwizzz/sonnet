@@ -420,10 +420,11 @@
 					/* switches on the block's own width, not the screen width; four two-line labels need about 610px */
 					@container (max-width: 620px) {
 						#pib-{{ block.id }} .pib { display:grid; grid-template-columns:repeat(2, 1fr); }
-						#pib-{{ block.id }} .pib__item { justify-content:flex-start; padding-right:0; }
+						#pib-{{ block.id }} .pib__item { justify-content:flex-start; gap:6px; padding-right:0; }
 						#pib-{{ block.id }} .pib__item:nth-child(odd) { border-left:0; padding-left:0; }
-						#pib-{{ block.id }} .pib__item:nth-child(even) { padding-left:14px; }
-						#pib-{{ block.id }} .pib__text { font-size:{{ block.settings.font_size }}px; white-space:normal; }
+						#pib-{{ block.id }} .pib__item:nth-child(even) { padding-left:10px; }
+						/* eases to ~13px on a 375px phone so "Looking Texture" keeps to one line */
+						#pib-{{ block.id }} .pib__text { font-size:min({{ block.settings.font_size }}px, 3.8cqi); white-space:normal; }
 					}
 					</style>
 
